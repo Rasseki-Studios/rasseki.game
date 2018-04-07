@@ -1,4 +1,5 @@
 #include "base.h"
+#include <iostream>
 
 //---LOCATED---
 Located::Located(int x, int y) {
@@ -14,9 +15,9 @@ void Located::SetCoord(coord coordinates) {
     this->coordinates = coordinates;
 }
 
-//---MOVEBLE---
-Moveble::Moveble(int, int) : Located(){}
+// ---MOVABLE---
+Movable::Movable(int x, int y) : Located(x, y){}
 
-void Moveble::Move(coord destination) {
-    cout << destination.x << " - " << destination.y << endl;
+void Movable::Move(coord destination) {
+    std::cout << destination.x << " - " << destination.y << std::endl;
 }
