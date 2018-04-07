@@ -18,9 +18,9 @@ protected:
     coord coordinates;
 };
 
-class Moveble : Located {
+class Movable : Located {
 public:
-    Moveble(int, int);
+    Movable(int, int);
     void Move(coord);
 protected:
     short speed;
