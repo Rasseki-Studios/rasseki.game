@@ -15,7 +15,7 @@ void Located::SetCoord(coord coordinates) {
 }
 
 //---MOVEBLE---
-Moveble::Moveble(int, int) : Located(){}
+Moveble::Moveble(int x, int y) : Located(x, y) {}
 
 void Moveble::Move(coord destination) {
     cout << destination.x << " - " << destination.y << endl;
