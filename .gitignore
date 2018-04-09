@@ -1,0 +1,6 @@
+*.[oa]
+*vgcore*
+.vscode/**
+*.txt
+*.out
+*tests*
