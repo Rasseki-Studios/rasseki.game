@@ -7,7 +7,8 @@
 
 class Artifact : public Item {
 public:
-    Artifact(string, short, short);
+    Artifact(std::string, short, short);
+    short GetPower();
 private:
     short power;
 };
@@ -17,21 +18,22 @@ public:
     Storage(short);
     void AddArtifact(Artifact);
     void RemoveArtifact(short);
-    Artifact GetArtifact(short);
+    Artifact* GetArtifact(short);
 private:
-    vector<Artifact> artifacts;
+    std::vector<Artifact> artifacts;
 };
 
-class Creature : public Item, public Moveble {
+class Creature : public Item, public Movable {
 public:
-    Creature(string, short, short, coord);
+    Creature(std::string, short, short, coord);
 };
 
 class Hero : public Creature {
 public:
-    Hero(string, short, short, coord, Storage);
+    Hero(std::string, short, short, coord, Storage*);
+    Storage* GetInventary();
 protected:
-    Storage inventary;
+    Storage *inventary;
 };
 
 #endif //SUBJECTS_H

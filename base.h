@@ -1,11 +1,7 @@
 #ifndef BASE_H
 #define BASE_H
 
-//------------------
-#include <iostream>
 #include <string>
-using namespace std;
-//------------------
 
 struct coord {
     int x;
@@ -21,18 +17,24 @@ protected:
     coord coordinates;
 };
 
-class Moveble : public Located {
+class Movable : public Located {
 public:
-    Moveble(int, int);
+    Movable(coord, short);
     void Move(coord);
+    short GetSpeed();
 protected:
     short speed;
 };
 
 class Item {
+public:
+    Item(std::string, short);
+    short GetId();
+    std::string GetName();
+    short GetLevel();
 protected:
     short id;
-    string name;
+    std::string name;
     short level;
 };
 

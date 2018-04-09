@@ -14,9 +14,35 @@ void Located::SetCoord(coord coordinates) {
     this->coordinates = coordinates;
 }
 
-//---MOVEBLE---
-Moveble::Moveble(int x, int y) : Located(x, y) {}
 
-void Moveble::Move(coord destination) {
+//---MOVEBLE---
+Movable::Movable(coord coordinates, short speed) : Located(coordinates.x, coordinates.y) {
+    this->speed = speed;
+}
+
+void Movable::Move(coord destination) {
     //движение
+}
+
+short Movable::GetSpeed() {
+    return speed;
+}
+
+
+//---ITEM---
+Item::Item(std::string name, short level) {
+    this->name = name;
+    this->level = level;
+}
+
+short Item::GetId() {
+    return id;
+}
+
+std::string Item::GetName() {
+    return name;
+}
+
+short Item::GetLevel() {
+    return level;
 }

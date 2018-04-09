@@ -1,11 +1,14 @@
 #include "subjects.h"
 
 //---ARTIFACT---
-Artifact::Artifact(string name, short level, short power) {
-    this->name = name;
-    this->level = level;
+Artifact::Artifact(std::string name, short level, short power) : Item(name, level) {
     this->power = power;
 }
+
+short Artifact::GetPower() {
+    return power;
+}
+
 
 //---STORAGE---
 Storage::Storage(short count) {
@@ -17,31 +20,32 @@ void Storage::AddArtifact(Artifact new_artifact) {  //добавить пров�
 }
 
 void Storage::RemoveArtifact(short id) {
-    for (int i = 0; i < artifacts.size(); i++) {
-        if (artifacts[i].id == id) {
-            artifacts.erase(artifacts.begin() + i);
+    for (std::vector<Artifact>::iterator it = artifacts.begin(); it != artifacts.end(); it++) {
+        if ((*it).GetId() == id) {
+            artifacts.erase(it);
         }
     }
 }
 
-Artifact Storage::GetArtifact(short id) {
-    for (int i = 0; i < artifacts.size(); i++) {
-        if (artifacts[i].id == id) {
-            return artifacts[i];
+Artifact* Storage::GetArtifact(short id) {
+    for (std::vector<Artifact>::iterator it = artifacts.begin(); it != artifacts.end(); it++) {
+        if ((*it).GetId() == id) {
+            return it.base();
         }
     }
-    return NULL;
+    return nullptr;
 }
+
 
 //---CREATURE---
-Creature::Creature(string name, short level, short speed, coord coordinates) {
-    this->name = name;
-    this->level = level;
-    this->speed = speed;
-    this->coordinates = coordinates;
-}
+Creature::Creature(std::string name, short level, short speed, coord coordinates) : Item(name, level), Movable(coordinates, speed) {}
+
 
 //---HERO---
-Hero::Hero(string name, short level, short speed, coord coordinates, Storage inventary) : Creature(name, level, speed, coordinates) {
+Hero::Hero(std::string name, short level, short speed, coord coordinates, Storage *inventary) : Creature(name, level, speed, coordinates) {
     this->inventary = inventary;
+}
+
+Storage* Hero::GetInventary() {
+    return inventary;
 }
