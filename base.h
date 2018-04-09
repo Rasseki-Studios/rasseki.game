@@ -1,11 +1,7 @@
 #ifndef BASE_H
 #define BASE_H
 
-//------------------
-#include <iostream>
 #include <string>
-using namespace std;
-//------------------
 
 struct coord {
     int x;
@@ -22,21 +18,33 @@ protected:
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 class Movable : Located {
 =======
 class Moveble : public Located {
 >>>>>>> Добавлены новые классы предметов (subjects .h/.cpp).
 public:
     Movable(int, int);
+=======
+class Movable : public Located {
+public:
+    Movable(coord, short);
+>>>>>>> Переименованны MovAble. Изменены конструкторы классов в subjects. Удален using ns std. В GetArtifact() возвращается указатель на артефакт. Добавлены Get/Set.
     void Move(coord);
+    short GetSpeed();
 protected:
     short speed;
 };
 
 class Item {
+public:
+    Item(std::string, short);
+    short GetId();
+    std::string GetName();
+    short GetLevel();
 protected:
     short id;
-    string name;
+    std::string name;
     short level;
 };
 
