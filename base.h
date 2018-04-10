@@ -2,6 +2,10 @@
 #define BASE_H
 
 #include <string>
+<<<<<<< HEAD
+=======
+#include <functional>
+>>>>>>> abstract class Action added
 
 struct coord {
     int x;
@@ -48,4 +52,15 @@ protected:
     short level;
 };
 
+<<<<<<< HEAD
 #endif //BASE_H
+=======
+class Action {
+    short duration;
+    std::string diaryNote;
+    // universal function template
+    template <class Func, class... Args> std::function<Func(Args...)> act();
+};
+
+#endif  // BASE_H
+>>>>>>> abstract class Action added
