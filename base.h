@@ -37,10 +37,11 @@ public:
     void Move(coord);
     short GetSpeed();
 protected:
-    short speed;
+    int_fast8_t speed;
 };
 
 class Item {
+<<<<<<< HEAD
 public:
     Item(std::string, short);
     short GetId();
@@ -48,15 +49,18 @@ public:
     short GetLevel();
 protected:
     short id;
+=======
+    int_fast8_t id;
+>>>>>>> short chenged to int_fast8_t
     std::string name;
-    short level;
+    int_fast8_t level;
 };
 
 <<<<<<< HEAD
 #endif //BASE_H
 =======
 class Action {
-    short duration;
+    int_fast8_t duration;
     std::string diaryNote;
     // universal function template
     template <class Func, class... Args> std::function<Func(Args...)> act();
