@@ -3,6 +3,7 @@
 
 #include <string>
 #include <functional>
+#include <vector>
 
 struct coord {
     int x;
@@ -18,18 +19,28 @@ protected:
     coord coordinates;
 };
 
-class Movable : Located {
+class Movable : public Located {
 public:
-    Movable(int, int);
-    void Move(coord);
+    Movable(coord, short);
+    bool Move(coord);
+    coord Step();
+    short GetSpeed();
 protected:
     int_fast8_t speed;
+    std::vector<coord> path;
+    short speed;
 };
 
 class Item {
-    int_fast8_t id;
+public:
+    Item(std::string, short);
+    short GetId();
+    std::string GetName();
+    short GetLevel();
+protected:
+    short id;
     std::string name;
-    int_fast8_t level;
+    short level;
 };
 
 class Action {
