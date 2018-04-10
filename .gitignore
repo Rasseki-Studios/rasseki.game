@@ -3,4 +3,9 @@
 .vscode/**
 *.txt
 *.out
+<<<<<<< HEAD
 *tests*
+=======
+*.exe
+*test*
+>>>>>>> Initial commit
