@@ -3,9 +3,13 @@
 
 #include <string>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <functional>
 >>>>>>> abstract class Action added
+=======
+#include <vector>
+>>>>>>> Обновленный base.h
 
 struct coord {
     int x;
@@ -33,11 +37,20 @@ public:
 class Movable : public Located {
 public:
     Movable(coord, short);
+<<<<<<< HEAD
 >>>>>>> Переименованны MovAble. Изменены конструкторы классов в subjects. Удален using ns std. В GetArtifact() возвращается указатель на артефакт. Добавлены Get/Set.
     void Move(coord);
     short GetSpeed();
 protected:
     int_fast8_t speed;
+=======
+    bool Move(coord);
+    coord Step();
+    short GetSpeed();
+protected:
+    std::vector<coord> path;
+    short speed;
+>>>>>>> Обновленный base.h
 };
 
 class Item {
