@@ -23,17 +23,17 @@ public:
     Movable(int, int);
     void Move(coord);
 protected:
-    short speed;
+    int_fast8_t speed;
 };
 
 class Item {
-    short id;
+    int_fast8_t id;
     std::string name;
-    short level;
+    int_fast8_t level;
 };
 
 class Action {
-    short duration;
+    int_fast8_t duration;
     std::string diaryNote;
     // universal function template
     template <class Func, class... Args> std::function<Func(Args...)> act();
