@@ -1,8 +1,8 @@
-#ifndef ADD_H
-#define ADD_H
+#ifndef BASE_H
+#define BASE_H
 
 #include <string>
-using namespace std;
+#include <functional>
 
 struct coord {
     int x;
@@ -28,8 +28,15 @@ protected:
 
 class Item {
     short id;
-    string name;
+    std::string name;
     short level;
 };
 
-#endif
+class Action {
+    short duration;
+    std::string diaryNote;
+    // universal function template
+    template <class Func, class... Args> std::function<Func(Args...)> act();
+};
+
+#endif  // BASE_H
