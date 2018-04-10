@@ -2,6 +2,7 @@
 #define BASE_H
 
 #include <string>
+#include <vector>
 
 struct coord {
     int x;
@@ -20,9 +21,11 @@ protected:
 class Movable : public Located {
 public:
     Movable(coord, short);
-    void Move(coord);
+    bool Move(coord);
+    coord Step();
     short GetSpeed();
 protected:
+    std::vector<coord> path;
     short speed;
 };
 
