@@ -1,1 +1,2 @@
-branch for test releases
+# rasseki.game
+Текстовая РПГ с интерактивной картой
