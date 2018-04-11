@@ -7,8 +7,12 @@
 *tests*
 =======
 *.exe
+<<<<<<< HEAD
 *test*
 <<<<<<< HEAD
 >>>>>>> Initial commit
 =======
 >>>>>>> Updated .gitignore
+=======
+*test*
+>>>>>>> updated .gitignore
