@@ -1,7 +1,7 @@
 #include "subjects.h"
 
 //---ARTIFACT---
-Artifact::Artifact(std::string name, short level, short power) : Item(name, level) {
+Artifact::Artifact(std::string name, int id, short level, short power) : Item(name, id, level) {
     this->power = power;
 }
 
@@ -38,11 +38,11 @@ Artifact* Storage::GetArtifact(short id) {
 
 
 //---CREATURE---
-Creature::Creature(std::string name, short level, short speed, coord coordinates) : Item(name, level), Movable(coordinates, speed) {}
+Creature::Creature(std::string name, int id, short level, short speed, coord coordinates) : Item(name, id, level), Movable(coordinates, speed) {}
 
 
 //---HERO---
-Hero::Hero(std::string name, short level, short speed, coord coordinates, Storage *inventary) : Creature(name, level, speed, coordinates) {
+Hero::Hero(std::string name, int id, short level, short speed, coord coordinates, Storage *inventary) : Creature(name, id, level, speed, coordinates) {
     this->inventary = inventary;
 }
 

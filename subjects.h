@@ -5,9 +5,10 @@
 
 #include "base.h"
 
+
 class Artifact : public Item {
 public:
-    Artifact(std::string, short, short);
+    Artifact(std::string, int, short, short);
     short GetPower();
 private:
     short power;
@@ -25,12 +26,12 @@ private:
 
 class Creature : public Item, public Movable {
 public:
-    Creature(std::string, short, short, coord);
+    Creature(std::string, int, short, short, coord);
 };
 
 class Hero : public Creature {
 public:
-    Hero(std::string, short, short, coord, Storage*);
+    Hero(std::string, int, short, short, coord, Storage*);
     Storage* GetInventary();
 protected:
     Storage *inventary;

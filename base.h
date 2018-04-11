@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+
 struct coord {
     int x;
     int y;
@@ -31,12 +32,12 @@ protected:
 
 class Item {
 public:
-    Item(std::string, short);
+    Item(std::string, int, short);
     short GetId();
     std::string GetName();
     short GetLevel();
 protected:
-    short id;
+    int id;
     std::string name;
     short level;
 };
