@@ -7,14 +7,11 @@ Located::Located(int x, int y) {
     this->coordinates.y = y;
 }
 
-coord Located::GetCoord() {
-    return coordinates;
-}
-
 void Located::SetCoord(coord coordinates) {
     this->coordinates = coordinates;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 // ---MOVABLE---
@@ -27,14 +24,22 @@ Moveble::Moveble(int x, int y) : Located(x, y) {}
 void Movable::Move(coord destination) {
     std::cout << destination.x << " - " << destination.y << std::endl;
 =======
+=======
+inline coord Located::GetCoord() const {return coordinates;}
 
-//---MOVEBLE---
+>>>>>>> const and inline added, pedantic lines swaps made
+
+//---MOVABLE---
 Movable::Movable(coord coordinates, short speed) : Located(coordinates.x, coordinates.y) {
     this->speed = speed;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void Movable::Move(coord destination) {
+=======
+bool Movable::Move(coord destination) {
+>>>>>>> const and inline added, pedantic lines swaps made
     //движение
 >>>>>>> Переименованны MovAble. Изменены конструкторы классов в subjects. Удален using ns std. В GetArtifact() возвращается указатель на артефакт. Добавлены Get/Set.
 =======
@@ -118,9 +123,7 @@ coord Movable::Step() {
 >>>>>>> Добавлены методы рассчета маршрута Move() и перемещения Step(). Id добавлен в конструктор Item для генерации из вне.
 }
 
-short Movable::GetSpeed() {
-    return speed;
-}
+inline short Movable::GetSpeed() const {return speed;}
 
 
 //---ITEM---
@@ -130,14 +133,8 @@ Item::Item(std::string name, int id, short level) {
     this->level = level;
 }
 
-short Item::GetId() {
-    return id;
-}
+inline short Item::GetId() const {return id;}
 
-std::string Item::GetName() {
-    return name;
-}
+inline std::string Item::GetName() const {return name;}
 
-short Item::GetLevel() {
-    return level;
-}
+inline short Item::GetLevel() const {return level;}

@@ -4,10 +4,13 @@
 #include <string>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #include <functional>
 >>>>>>> abstract class Action added
 =======
+=======
+>>>>>>> const and inline added, pedantic lines swaps made
 #include <vector>
 >>>>>>> Обновленный base.h
 
@@ -20,8 +23,8 @@ struct coord {
 class Located {
 public:
     Located(int, int);
-    coord GetCoord();
     void SetCoord(coord);
+    coord GetCoord() const;
 protected:
     coord coordinates;
 };
@@ -47,20 +50,32 @@ protected:
 =======
     bool Move(coord);
     coord Step();
-    short GetSpeed();
+    short GetSpeed() const;
 protected:
+<<<<<<< HEAD
     std::vector<coord> path;
     short speed;
 >>>>>>> Обновленный base.h
+=======
+    short speed;
+    std::vector<coord> path;
+>>>>>>> const and inline added, pedantic lines swaps made
 };
 
 class Item {
 <<<<<<< HEAD
 public:
+<<<<<<< HEAD
     Item(std::string, int, short);
     short GetId();
     std::string GetName();
     short GetLevel();
+=======
+    Item(std::string, short);
+    short GetId() const;
+    std::string GetName() const;
+    short GetLevel() const;
+>>>>>>> const and inline added, pedantic lines swaps made
 protected:
 <<<<<<< HEAD
     short id;
@@ -78,10 +93,16 @@ protected:
 #endif //BASE_H
 =======
 class Action {
-    int_fast8_t duration;
+public:
+    void run() const;
+private:
+    short duration;
     std::string diaryNote;
-    // universal function template
-    template <class Func, class... Args> std::function<Func(Args...)> act();
+};
+
+class IFactory {
+    virtual Item create();
+    // virtual void update();
 };
 
 #endif  // BASE_H
