@@ -4,6 +4,7 @@
 *.txt
 *.out
 <<<<<<< HEAD
+<<<<<<< HEAD
 *tests*
 =======
 *.exe
@@ -16,3 +17,7 @@
 =======
 *test*
 >>>>>>> updated .gitignore
+=======
+*.exe
+*test*
+>>>>>>> Updated .gitignore
