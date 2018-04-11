@@ -6,27 +6,23 @@ Located::Located(int x, int y) {
     this->coordinates.y = y;
 }
 
-coord Located::GetCoord() {
-    return coordinates;
-}
-
 void Located::SetCoord(coord coordinates) {
     this->coordinates = coordinates;
 }
 
+inline coord Located::GetCoord() const {return coordinates;}
 
-//---MOVEBLE---
+
+//---MOVABLE---
 Movable::Movable(coord coordinates, short speed) : Located(coordinates.x, coordinates.y) {
     this->speed = speed;
 }
 
-void Movable::Move(coord destination) {
+bool Movable::Move(coord destination) {
     //движение
 }
 
-short Movable::GetSpeed() {
-    return speed;
-}
+inline short Movable::GetSpeed() const {return speed;}
 
 
 //---ITEM---
@@ -35,14 +31,8 @@ Item::Item(std::string name, short level) {
     this->level = level;
 }
 
-short Item::GetId() {
-    return id;
-}
+inline short Item::GetId() const {return id;}
 
-std::string Item::GetName() {
-    return name;
-}
+inline std::string Item::GetName() const {return name;}
 
-short Item::GetLevel() {
-    return level;
-}
+inline short Item::GetLevel() const {return level;}
