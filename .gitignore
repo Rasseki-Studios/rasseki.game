@@ -3,4 +3,5 @@
 .vscode/**
 *.txt
 *.out
-*tests*
+*.exe
+*test*
