@@ -11,6 +11,7 @@
 #include <vector>
 >>>>>>> Обновленный base.h
 
+
 struct coord {
     int x;
     int y;
@@ -56,15 +57,19 @@ protected:
 class Item {
 <<<<<<< HEAD
 public:
-    Item(std::string, short);
+    Item(std::string, int, short);
     short GetId();
     std::string GetName();
     short GetLevel();
 protected:
+<<<<<<< HEAD
     short id;
 =======
     int_fast8_t id;
 >>>>>>> short chenged to int_fast8_t
+=======
+    int id;
+>>>>>>> Добавлены методы рассчета маршрута Move() и перемещения Step(). Id добавлен в конструктор Item для генерации из вне.
     std::string name;
     int_fast8_t level;
 };
