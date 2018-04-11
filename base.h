@@ -2,7 +2,6 @@
 #define BASE_H
 
 #include <string>
-#include <functional>
 #include <vector>
 
 struct coord {
@@ -13,8 +12,8 @@ struct coord {
 class Located {
 public:
     Located(int, int);
-    coord GetCoord();
     void SetCoord(coord);
+    coord GetCoord() const;
 protected:
     coord coordinates;
 };
@@ -24,19 +23,18 @@ public:
     Movable(coord, short);
     bool Move(coord);
     coord Step();
-    short GetSpeed();
+    short GetSpeed() const;
 protected:
-    int_fast8_t speed;
-    std::vector<coord> path;
     short speed;
+    std::vector<coord> path;
 };
 
 class Item {
 public:
     Item(std::string, short);
-    short GetId();
-    std::string GetName();
-    short GetLevel();
+    short GetId() const;
+    std::string GetName() const;
+    short GetLevel() const;
 protected:
     short id;
     std::string name;
@@ -44,10 +42,16 @@ protected:
 };
 
 class Action {
-    int_fast8_t duration;
+public:
+    void run() const;
+private:
+    short duration;
     std::string diaryNote;
-    // universal function template
-    template <class Func, class... Args> std::function<Func(Args...)> act();
+};
+
+class IFactory {
+    virtual Item create();
+    // virtual void update();
 };
 
 #endif  // BASE_H
