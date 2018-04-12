@@ -89,6 +89,7 @@ public:
 protected:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     short id;
 <<<<<<< HEAD
 =======
@@ -103,6 +104,9 @@ protected:
 =======
     str id;
 >>>>>>> IDs are now strings
+=======
+    str ID;
+>>>>>>> id -> ID
     str name;
     short level;
 >>>>>>> ID are strings now, std::string can be used as str
