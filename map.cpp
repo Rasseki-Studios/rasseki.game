@@ -1,5 +1,6 @@
 #include "map.h"
 
+using namespace Map;
 MapData::MapData(const char* filename) {
     initSurfMatrix(filename);
     
@@ -28,10 +29,8 @@ bool MapData::initSurfMatrix(const char* filename) {
     //allocating memory
     int i = 0, j = 0;
     surfaceMatrix = new short* [mapHeight];
-    assert(surfaceMatrix);
     for (i = 0; i < mapHeight; i++) {
         surfaceMatrix[i] = new short [mapWidth];   
-        assert(surfaceMatrix[i]);
     }
 
     //row by row scanning of bmp file and transformation colours to surface types
