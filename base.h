@@ -56,7 +56,7 @@ private:
 };
 
 class IFactory {
-    virtual Item create();
+    virtual Item* create() = 0;
     // virtual void update();
 };
 
