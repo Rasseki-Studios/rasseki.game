@@ -15,6 +15,8 @@
 >>>>>>> Обновленный base.h
 
 
+using str = std::string;
+
 struct coord {
     int x;
     int y;
@@ -66,19 +68,24 @@ class Item {
 <<<<<<< HEAD
 public:
 <<<<<<< HEAD
+<<<<<<< HEAD
     Item(std::string, int, short);
     short GetId();
     std::string GetName();
     short GetLevel();
 =======
     Item(std::string, short);
+=======
+    Item(str, short);
+>>>>>>> ID are strings now, std::string can be used as str
     short GetId() const;
-    std::string GetName() const;
+    str GetName() const;
     short GetLevel() const;
 >>>>>>> const and inline added, pedantic lines swaps made
 protected:
 <<<<<<< HEAD
     short id;
+<<<<<<< HEAD
 =======
     int_fast8_t id;
 >>>>>>> short chenged to int_fast8_t
@@ -87,6 +94,10 @@ protected:
 >>>>>>> Добавлены методы рассчета маршрута Move() и перемещения Step(). Id добавлен в конструктор Item для генерации из вне.
     std::string name;
     int_fast8_t level;
+=======
+    str name;
+    short level;
+>>>>>>> ID are strings now, std::string can be used as str
 };
 
 <<<<<<< HEAD
@@ -94,10 +105,14 @@ protected:
 =======
 class Action {
 public:
+    Action(short, str, str, str, str);
     void run() const;
 private:
     short duration;
-    std::string diaryNote;
+    str subjectID;  // Item *subject in future
+    str command;  // Converts in function in run()
+    str objectID;  // Item *object in future
+    str diaryNote;
 };
 
 class IFactory {

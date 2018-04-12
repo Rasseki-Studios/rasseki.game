@@ -127,14 +127,28 @@ inline short Movable::GetSpeed() const {return speed;}
 
 
 //---ITEM---
+<<<<<<< HEAD
 Item::Item(std::string name, int id, short level) {
     this->id = id;
+=======
+Item::Item(str name, short level) {
+>>>>>>> ID are strings now, std::string can be used as str
     this->name = name;
     this->level = level;
 }
 
 inline short Item::GetId() const {return id;}
 
-inline std::string Item::GetName() const {return name;}
+inline str Item::GetName() const {return name;}
 
 inline short Item::GetLevel() const {return level;}
+
+
+//---ACTION---
+Action::Action(short duration, str sID, str command, str objID, str note) : 
+    duration(duration),
+    subjectID(sID),
+    command(command),
+    objectID(objID),
+    diaryNote(note) {
+}
