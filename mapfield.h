@@ -13,6 +13,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *e);
 
 signals:
+    void sendNewLine(QString newLine);
 
 public slots:
 };
