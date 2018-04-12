@@ -9,11 +9,12 @@ using str = std::string;
 struct coord {
     int x;
     int y;
+    coord(int, int);
 };
 
 class Located {
 public:
-    Located(int, int);
+    Located(coord);
     void SetCoord(coord);
     coord GetCoord() const;
 protected:
@@ -33,7 +34,7 @@ protected:
 
 class Item {
 public:
-    Item(str, short);
+    Item(str, str, short);
     str GetId() const;
     str GetName() const;
     short GetLevel() const;

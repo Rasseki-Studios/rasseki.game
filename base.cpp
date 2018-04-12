@@ -1,9 +1,16 @@
 #include "base.h"
 
+
+//---coord---
+coord::coord(int _x, int _y) : 
+    x(_x),
+    y(_y) {
+}
+
+
 //---LOCATED---
-Located::Located(int x, int y) {
-    this->coordinates.x = x;
-    this->coordinates.y = y;
+Located::Located(coord _coord) : 
+    coordinates(_coord) {
 }
 
 void Located::SetCoord(coord coordinates) {
@@ -14,7 +21,7 @@ inline coord Located::GetCoord() const {return coordinates;}
 
 
 //---MOVABLE---
-Movable::Movable(coord coordinates, short speed) : Located(coordinates.x, coordinates.y) {
+Movable::Movable(coord coordinates, short speed) : Located(coordinates) {
     this->speed = speed;
 }
 
@@ -26,7 +33,8 @@ inline short Movable::GetSpeed() const {return speed;}
 
 
 //---ITEM---
-Item::Item(str name, short level) {
+Item::Item(str ID, str name, short level) {
+    this->ID = ID;
     this->name = name;
     this->level = level;
 }
