@@ -1,10 +1,17 @@
 #include "base.h"
 #include <iostream>
 
+
+//---coord---
+coord::coord(int _x, int _y) : 
+    x(_x),
+    y(_y) {
+}
+
+
 //---LOCATED---
-Located::Located(int x, int y) {
-    this->coordinates.x = x;
-    this->coordinates.y = y;
+Located::Located(coord _coord) : 
+    coordinates(_coord) {
 }
 
 void Located::SetCoord(coord coordinates) {
@@ -38,7 +45,7 @@ inline coord Located::GetCoord() const {return coordinates;}
 >>>>>>> const and inline added, pedantic lines swaps made
 
 //---MOVABLE---
-Movable::Movable(coord coordinates, short speed) : Located(coordinates.x, coordinates.y) {
+Movable::Movable(coord coordinates, short speed) : Located(coordinates) {
     this->speed = speed;
 }
 
@@ -138,6 +145,7 @@ inline short Movable::GetSpeed() const {return speed;}
 
 //---ITEM---
 <<<<<<< HEAD
+<<<<<<< HEAD
 Item::Item(std::string name, int id, short level) {
 =======
 short Movable::GetSpeed() const {
@@ -152,6 +160,10 @@ Item::Item(str id, str name, short level) {
 =======
 Item::Item(str name, short level) {
 >>>>>>> ID are strings now, std::string can be used as str
+=======
+Item::Item(str ID, str name, short level) {
+    this->ID = ID;
+>>>>>>> basic event reading added, base improved
     this->name = name;
     this->level = level;
 }

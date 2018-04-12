@@ -21,11 +21,12 @@ using str = std::string;
 struct coord {
     int x;
     int y;
+    coord(int, int);
 };
 
 class Located {
 public:
-    Located(int, int);
+    Located(coord);
     void SetCoord(coord);
     coord GetCoord() const;
 protected:
@@ -76,6 +77,7 @@ public:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     Item(std::string, int, short);
     short GetId();
     std::string GetName();
@@ -88,6 +90,9 @@ public:
 >>>>>>> ID are strings now, std::string can be used as str
     short GetId() const;
 =======
+=======
+    Item(str, str, short);
+>>>>>>> basic event reading added, base improved
     str GetId() const;
 >>>>>>> IDs are now strings
     str GetName() const;
