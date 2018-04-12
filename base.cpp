@@ -31,7 +31,7 @@ Item::Item(str name, short level) {
     this->level = level;
 }
 
-inline short Item::GetId() const {return id;}
+inline str Item::GetId() const {return id;}
 
 inline str Item::GetName() const {return name;}
 
