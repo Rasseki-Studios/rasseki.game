@@ -77,12 +77,17 @@ public:
     Item(std::string, short);
 =======
     Item(str, short);
+<<<<<<< HEAD
 >>>>>>> ID are strings now, std::string can be used as str
     short GetId() const;
+=======
+    str GetId() const;
+>>>>>>> IDs are now strings
     str GetName() const;
     short GetLevel() const;
 >>>>>>> const and inline added, pedantic lines swaps made
 protected:
+<<<<<<< HEAD
 <<<<<<< HEAD
     short id;
 <<<<<<< HEAD
@@ -95,6 +100,9 @@ protected:
     std::string name;
     int_fast8_t level;
 =======
+=======
+    str id;
+>>>>>>> IDs are now strings
     str name;
     short level;
 >>>>>>> ID are strings now, std::string can be used as str
