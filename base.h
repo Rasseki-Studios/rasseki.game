@@ -9,6 +9,7 @@ using str = std::string;
 struct coord {
     int x;
     int y;
+    coord() = default;
     coord(int, int);
 };
 
@@ -42,18 +43,6 @@ protected:
     str ID;
     str name;
     short level;
-};
-
-class Action {
-public:
-    Action(short, str, str, str, str);
-    void run() const;
-private:
-    short duration;
-    str subjectID;  // Item *subject in future
-    str command;  // Converts in function in run()
-    str objectID;  // Item *object in future
-    str diaryNote;
 };
 
 class IFactory {

@@ -25,9 +25,9 @@ Movable::Movable(coord coordinates, short speed) : Located(coordinates) {
     this->speed = speed;
 }
 
-bool Movable::Move(coord destination) {
+/* bool Movable::Move(coord destination) {
     //движение
-}
+} */
 
 inline short Movable::GetSpeed() const {return speed;}
 
@@ -44,13 +44,3 @@ inline str Item::GetId() const {return ID;}
 inline str Item::GetName() const {return name;}
 
 inline short Item::GetLevel() const {return level;}
-
-
-//---ACTION---
-Action::Action(short duration, str sID, str command, str objID, str note) : 
-    duration(duration),
-    subjectID(sID),
-    command(command),
-    objectID(objID),
-    diaryNote(note) {
-}
