@@ -1,0 +1,16 @@
+#include "mapfield.h"
+#include <QDebug>
+#include <QPoint>
+#include <QMouseEvent>
+
+MapField::MapField(QWidget *parent) : QWidget(parent)
+{
+}
+
+void MapField::mouseReleaseEvent(QMouseEvent *e) {
+    qDebug() << "Mouse event worked";
+    QPoint point = e->pos();
+    ui->heroInfo->append("TEST");
+
+    qDebug() << point.x() << " and " << point.y();
+}
