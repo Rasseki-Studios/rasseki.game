@@ -21,6 +21,7 @@ using str = std::string;
 struct coord {
     int x;
     int y;
+    coord() = default;
     coord(int, int);
 };
 
@@ -133,6 +134,7 @@ protected:
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #endif //BASE_H
 =======
 class Action {
@@ -147,6 +149,8 @@ private:
     str diaryNote;
 };
 
+=======
+>>>>>>> EventFabric can now read and use all event jsons
 class IFactory {
     virtual Item* create() = 0;
     // virtual void update();

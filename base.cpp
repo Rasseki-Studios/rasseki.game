@@ -51,6 +51,7 @@ Movable::Movable(coord coordinates, short speed) : Located(coordinates) {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 void Movable::Move(coord destination) {
 =======
 bool Movable::Move(coord destination) {
@@ -138,6 +139,11 @@ coord Movable::Step() {
     return coordinates;
 >>>>>>> Добавлены методы рассчета маршрута Move() и перемещения Step(). Id добавлен в конструктор Item для генерации из вне.
 }
+=======
+/* bool Movable::Move(coord destination) {
+    //движение
+} */
+>>>>>>> EventFabric can now read and use all event jsons
 
 <<<<<<< HEAD
 inline short Movable::GetSpeed() const {return speed;}
@@ -173,6 +179,7 @@ inline str Item::GetId() const {return ID;}
 
 inline str Item::GetName() const {return name;}
 
+<<<<<<< HEAD
 inline short Item::GetLevel() const {return level;}
 
 
@@ -196,3 +203,6 @@ short Item::GetLevel() const {
     return level;
 >>>>>>> Добавлены const к Get ф-циям.
 }
+=======
+inline short Item::GetLevel() const {return level;}
+>>>>>>> EventFabric can now read and use all event jsons
