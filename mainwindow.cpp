@@ -10,19 +10,16 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    MapField *mf = new MapField(this);
+    LogBook *lb = new LogBook(this);
+
+    connect(mf, &MapField::sendNewLine, lb, &LogBook::printNewLine);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MapField::mouseReleaseEvent(QMouseEvent *e) {
-    qDebug() << "Mouse event worked";
-    QPoint point = e->pos();
-    ui->heroInfo->append("TEST");
-
-    qDebug() << point.x() << " and " << point.y();
 }
 
 /*
