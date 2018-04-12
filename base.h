@@ -34,11 +34,11 @@ protected:
 class Item {
 public:
     Item(str, short);
-    short GetId() const;
+    str GetId() const;
     str GetName() const;
     short GetLevel() const;
 protected:
-    short id;
+    str id;
     str name;
     short level;
 };
