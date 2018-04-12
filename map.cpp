@@ -1,12 +1,5 @@
 #include "map.h"
 
-using namespace Map;
-MapData::MapData(const char* filename) {
-    initSurfMatrix(filename);
-    
-    //here would be initialization of a content matrix
-}
-
 MapData::~MapData() {
     for (int i = 0; i < mapHeight; i++) {
         delete [] surfaceMatrix[i];
@@ -18,9 +11,9 @@ short MapData::GetSurfaceType(coord* point) {
     return surfaceMatrix[point->x][point->y];
 }
 
-bool MapData::initSurfMatrix(const char* filename) {
+bool MapData::initSurfMatrix(const str filename) {
     BMP map;
-    if (!map.ReadFromFile(filename)) return false; 
+    if (!map.ReadFromFile(filename.c_str())) return false; 
     mapWidth = map.TellWidth();
     mapHeight = map.TellHeight();
     int intColor; // 9-digit RGB representation
@@ -40,26 +33,34 @@ bool MapData::initSurfMatrix(const char* filename) {
             intColor = tempPixel.Red * 1000000 + tempPixel.Green * 1000 + tempPixel.Blue;
             switch (intColor) {
                 case 0:                     //black
-                    surfaceMatrix[i][j] = 0;
+                    surfaceMatrix[j][i] = 0;
                     break;
                 case 255000000:             //red
-                    surfaceMatrix[i][j] = 1;
+                    surfaceMatrix[j][i] = 1;
                     break;
                 case 255255000:             //yellow
-                    surfaceMatrix[i][j] = 2;
+                    surfaceMatrix[j][i] = 2;
                     break;
                 case 255:                   //blue
-                    surfaceMatrix[i][j] = 3;
+                    surfaceMatrix[j][i] = 3;
                     break;
                 case 255000:                //green
-                    surfaceMatrix[i][j] = 4 ;
+                    surfaceMatrix[j][i] = 4 ;
                     break;
                 case 255255255:             //white
-                    surfaceMatrix[i][j] = 5;
+                    surfaceMatrix[j][i] = 5;
                     break;
             }
         }
     }
 
     return true;
+}
+
+int MapData::getWidth() {
+    return mapWidth;
+} 
+
+int MapData::getHeight() {
+    return mapHeight;
 }

@@ -7,22 +7,21 @@
 #include "EasyBMP/EasyBMP.h"
 #include "base.h"
 
-namespace Map {
-    class MapData {
-    public:
-        MapData(const char*);
-        ~MapData();
-        short GetSurfaceType(coord*);
-        void getContent(coord*); //here must be Event getContent(coord);
-    private:
-        int mapWidth;
-        int mapHeight;
-        short** surfaceMatrix;
-        bool initSurfMatrix(const char*); //returns FALSE if something went wrong (e.g. file doesn't exist)
-        // *vector<GUID> contentMap; 
-        // map<GUID, Event> contentList;
-        // map<GUID, SurfaceType> surfaceTypesList;
-    };
-}
+class MapData {
+public:
+    ~MapData();
+    static bool initSurfMatrix(const str); //returns FALSE if something went wrong (e.g. file doesn't exist)
+    static short GetSurfaceType(coord*);
+    inline static void getContent(coord*); //here must be Event getContent(coord);
+    inline static int getHeight();
+    inline static int getWidth();
+private:
+    static int mapWidth;
+    static int mapHeight;
+    static short** surfaceMatrix;
+    // *vector<GUID> contentMap; 
+    // map<GUID, Event> contentList;
+    // map<GUID, SurfaceType> surfaceTypesList;
+};
 
 #endif
