@@ -14,6 +14,7 @@
 #include <vector>
 >>>>>>> Обновленный base.h
 
+using str = std::string;
 
 using str = std::string;
 
@@ -55,6 +56,7 @@ protected:
     short GetSpeed() const;
 protected:
 <<<<<<< HEAD
+<<<<<<< HEAD
     std::vector<coord> path;
     short speed;
 >>>>>>> Обновленный base.h
@@ -62,11 +64,16 @@ protected:
     short speed;
     std::vector<coord> path;
 >>>>>>> const and inline added, pedantic lines swaps made
+=======
+    short speed;
+    std::vector<coord> path;
+>>>>>>> Добавлены const к Get ф-циям.
 };
 
 class Item {
 <<<<<<< HEAD
 public:
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     Item(std::string, int, short);
@@ -107,6 +114,14 @@ protected:
 =======
     str ID;
 >>>>>>> id -> ID
+=======
+    Item(str, str, short);
+    str GetId() const;
+    str GetName() const;
+    short GetLevel() const;
+protected:
+    str id;
+>>>>>>> Добавлены const к Get ф-циям.
     str name;
     short level;
 >>>>>>> ID are strings now, std::string can be used as str

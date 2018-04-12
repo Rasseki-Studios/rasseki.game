@@ -14,9 +14,17 @@ void Located::SetCoord(coord coordinates) {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // ---MOVABLE---
 Movable::Movable(int x, int y) : Located(x, y){}
 =======
+=======
+coord Located::GetCoord() const {
+    return coordinates;
+}
+
+
+>>>>>>> Добавлены const к Get ф-циям.
 //---MOVEBLE---
 Moveble::Moveble(int x, int y) : Located(x, y) {}
 >>>>>>> Добавлены новые классы предметов (subjects .h/.cpp).
@@ -44,6 +52,7 @@ bool Movable::Move(coord destination) {
 >>>>>>> Переименованны MovAble. Изменены конструкторы классов в subjects. Удален using ns std. В GetArtifact() возвращается указатель на артефакт. Добавлены Get/Set.
 =======
 bool Movable::Move(coord destination) {
+    path.clear();
     const int WALL = -1;    //непроходимая ячейка
     const int BLANK = -2;   //свободная непомеченная ячейка
 
@@ -123,12 +132,22 @@ coord Movable::Step() {
 >>>>>>> Добавлены методы рассчета маршрута Move() и перемещения Step(). Id добавлен в конструктор Item для генерации из вне.
 }
 
+<<<<<<< HEAD
 inline short Movable::GetSpeed() const {return speed;}
 
 
 //---ITEM---
 <<<<<<< HEAD
 Item::Item(std::string name, int id, short level) {
+=======
+short Movable::GetSpeed() const {
+    return speed;
+}
+
+
+//---ITEM---
+Item::Item(str id, str name, short level) {
+>>>>>>> Добавлены const к Get ф-циям.
     this->id = id;
 =======
 Item::Item(str name, short level) {
@@ -137,6 +156,7 @@ Item::Item(str name, short level) {
     this->level = level;
 }
 
+<<<<<<< HEAD
 inline str Item::GetId() const {return ID;}
 
 inline str Item::GetName() const {return name;}
@@ -151,4 +171,16 @@ Action::Action(short duration, str sID, str command, str objID, str note) :
     command(command),
     objectID(objID),
     diaryNote(note) {
+=======
+str Item::GetId() const {
+    return id;
+}
+
+str Item::GetName() const {
+    return name;
+}
+
+short Item::GetLevel() const {
+    return level;
+>>>>>>> Добавлены const к Get ф-циям.
 }
