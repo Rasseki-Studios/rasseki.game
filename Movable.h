@@ -1,14 +1,21 @@
-//
-// Created by moleque on 12.04.18.
-//
-
-#ifndef RG_MOVABLE_H
-#define RG_MOVABLE_H
+#ifndef MOVABLE_H
+#define MOVABLE_H
 
 
-class Movable {
+#include <vector>
 
+#include "Located.h"
+
+class Movable : public Located {
+public:
+    Movable(coord, short);
+    bool Move(coord);
+    coord Step();
+    short GetSpeed() const;
+protected:
+    short speed;
+    std::vector<coord> path;
 };
 
 
-#endif //RG_MOVABLE_H
+#endif //MOVABLE_H

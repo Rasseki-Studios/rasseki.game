@@ -1,14 +1,20 @@
-//
-// Created by moleque on 12.04.18.
-//
+#ifndef STORAGE_H
+#define STORAGE_H
 
-#ifndef RG_STORAGE_H
-#define RG_STORAGE_H
 
+#include <vector>
+
+#include "Artifact.h"
 
 class Storage {
-
+public:
+    Storage(short);
+    void AddArtifact(Artifact);
+    void RemoveArtifact(std::string);
+    Artifact* GetArtifact(std::string);
+private:
+    std::vector<Artifact> artifacts;
 };
 
 
-#endif //RG_STORAGE_H
+#endif //STORAGE_H

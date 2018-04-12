@@ -1,14 +1,20 @@
-//
-// Created by moleque on 12.04.18.
-//
+#ifndef LOCATED_H
+#define LOCATED_H
 
-#ifndef RG_LOCATED_H
-#define RG_LOCATED_H
 
+struct coord {
+    int x;
+    int y;
+};
 
 class Located {
-
+public:
+    Located(coord);
+    void SetCoord(coord);
+    coord GetCoord() const;
+protected:
+    coord coordinates;
 };
 
 
-#endif //RG_LOCATED_H
+#endif //LOCATED_H

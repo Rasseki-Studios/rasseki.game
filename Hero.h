@@ -1,14 +1,17 @@
-//
-// Created by moleque on 13.04.18.
-//
-
-#ifndef RG_HERO_H
-#define RG_HERO_H
+#ifndef HERO_H
+#define HERO_H
 
 
-class Hero {
+#include "Creature.h"
+#include "Storage.h"
 
+class Hero : public Creature {
+public:
+    Hero(std::string, std::string, short, short, coord, Storage*);
+    Storage* GetInventory() const;
+protected:
+    Storage *inventory;
 };
 
 
-#endif //RG_HERO_H
+#endif //HERO_H

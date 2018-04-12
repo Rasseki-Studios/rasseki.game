@@ -1,5 +1,3 @@
-//
-// Created by moleque on 13.04.18.
-//
-
 #include "Creature.h"
+
+Creature::Creature(std::string name, std::string id, short level, short speed, coord coordinates) : Item(name, id, level), Movable(coordinates, speed) {}

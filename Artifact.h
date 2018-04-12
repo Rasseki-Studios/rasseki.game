@@ -1,14 +1,16 @@
-//
-// Created by moleque on 12.04.18.
-//
-
-#ifndef RG_ARTIFACT_H
-#define RG_ARTIFACT_H
+#ifndef ARTIFACT_H
+#define ARTIFACT_H
 
 
-class Artifact {
+#include "Item.h"
 
+class Artifact : public Item {
+public:
+    Artifact(std::string, std::string, short, short);
+    short GetPower() const ;
+private:
+    short power;
 };
 
 
-#endif //RG_ARTIFACT_H
+#endif //ARTIFACT_H

@@ -1,14 +1,14 @@
-//
-// Created by moleque on 13.04.18.
-//
-
-#ifndef RG_CREATURE_H
-#define RG_CREATURE_H
+#ifndef CREATURE_H
+#define CREATURE_H
 
 
-class Creature {
+#include "Item.h"
+#include "Movable.h"
 
+class Creature : public Item, public Movable {
+public:
+    Creature(std::string, std::string, short, short, coord);
 };
 
 
-#endif //RG_CREATURE_H
+#endif //CREATURE_H
