@@ -6,12 +6,12 @@ Located::Located(int x, int y) {
     this->coordinates.y = y;
 }
 
-coord Located::GetCoord() {
-    return coordinates;
-}
-
 void Located::SetCoord(coord coordinates) {
     this->coordinates = coordinates;
+}
+
+coord Located::GetCoord() const {
+    return coordinates;
 }
 
 
@@ -21,6 +21,7 @@ Movable::Movable(coord coordinates, short speed) : Located(coordinates.x, coordi
 }
 
 bool Movable::Move(coord destination) {
+    path.clear();
     const int WALL = -1;    //непроходимая ячейка
     const int BLANK = -2;   //свободная непомеченная ячейка
 
@@ -99,26 +100,26 @@ coord Movable::Step() {
     return coordinates;
 }
 
-short Movable::GetSpeed() {
+short Movable::GetSpeed() const {
     return speed;
 }
 
 
 //---ITEM---
-Item::Item(std::string name, int id, short level) {
+Item::Item(str id, str name, short level) {
     this->id = id;
     this->name = name;
     this->level = level;
 }
 
-short Item::GetId() {
+str Item::GetId() const {
     return id;
 }
 
-std::string Item::GetName() {
+str Item::GetName() const {
     return name;
 }
 
-short Item::GetLevel() {
+short Item::GetLevel() const {
     return level;
 }

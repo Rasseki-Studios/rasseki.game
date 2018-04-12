@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+using str = std::string;
 
 struct coord {
     int x;
@@ -13,8 +14,8 @@ struct coord {
 class Located {
 public:
     Located(int, int);
-    coord GetCoord();
     void SetCoord(coord);
+    coord GetCoord() const;
 protected:
     coord coordinates;
 };
@@ -24,21 +25,21 @@ public:
     Movable(coord, short);
     bool Move(coord);
     coord Step();
-    short GetSpeed();
+    short GetSpeed() const;
 protected:
-    std::vector<coord> path;
     short speed;
+    std::vector<coord> path;
 };
 
 class Item {
 public:
-    Item(std::string, int, short);
-    short GetId();
-    std::string GetName();
-    short GetLevel();
+    Item(str, str, short);
+    str GetId() const;
+    str GetName() const;
+    short GetLevel() const;
 protected:
-    int id;
-    std::string name;
+    str id;
+    str name;
     short level;
 };
 
