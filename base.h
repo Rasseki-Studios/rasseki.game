@@ -38,7 +38,7 @@ public:
     str GetName() const;
     short GetLevel() const;
 protected:
-    str id;
+    str ID;
     str name;
     short level;
 };
