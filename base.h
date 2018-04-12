@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+using str = std::string;
+
 struct coord {
     int x;
     int y;
@@ -31,22 +33,26 @@ protected:
 
 class Item {
 public:
-    Item(std::string, short);
+    Item(str, short);
     short GetId() const;
-    std::string GetName() const;
+    str GetName() const;
     short GetLevel() const;
 protected:
     short id;
-    std::string name;
+    str name;
     short level;
 };
 
 class Action {
 public:
+    Action(short, str, str, str, str);
     void run() const;
 private:
     short duration;
-    std::string diaryNote;
+    str subjectID;  // Item *subject in future
+    str command;  // Converts in function in run()
+    str objectID;  // Item *object in future
+    str diaryNote;
 };
 
 class IFactory {
