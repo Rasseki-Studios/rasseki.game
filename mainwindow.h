@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 
-//#include "mapfield.h"
+#include "mapfield.h"
+#include "logbook.h"
 
 namespace Ui {
 class MainWindow;
