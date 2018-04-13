@@ -30,6 +30,7 @@ coord Located::GetCoord() const {
     return coordinates;
 }
 
+<<<<<<< HEAD
 
 >>>>>>> Добавлены const к Get ф-циям.
 //---MOVEBLE---
@@ -159,6 +160,8 @@ short Movable::GetSpeed() const {
 }
 
 
+=======
+>>>>>>> definition of class Movable was taken to individual file
 //---ITEM---
 Item::Item(str id, str name, short level) {
 >>>>>>> Добавлены const к Get ф-циям.
