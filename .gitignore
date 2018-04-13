@@ -9,6 +9,7 @@
 =======
 *.exe
 <<<<<<< HEAD
+<<<<<<< HEAD
 *test*
 <<<<<<< HEAD
 >>>>>>> Initial commit
@@ -21,3 +22,7 @@
 *.exe
 *test*
 >>>>>>> Updated .gitignore
+=======
+*tests*
+
+>>>>>>> method getFromJson getting filename replaced method create

@@ -36,7 +36,7 @@ private:
 
 class EventFactory : public IFactory {
 public:
-    Event* create();
+    Event* getFromJson(str);
 };
 
 #endif  // EVENT

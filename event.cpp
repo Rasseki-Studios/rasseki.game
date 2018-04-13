@@ -45,8 +45,8 @@ void from_json(const json &j, Action &action) {
     );
 }
 
-Event* EventFactory::create() {
-    std::ifstream file("event2.json");
+Event* EventFactory::getFromJson(str filename) {
+    std::ifstream file(filename);
     json j;
     file >> j;
     Event *ev = new Event(
