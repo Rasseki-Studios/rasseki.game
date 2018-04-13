@@ -42,10 +42,10 @@ Creature::Creature(std::string name, std::string id, short level, short speed, c
 
 
 //---HERO---
-Hero::Hero(std::string name, std::string id, short level, short speed, coord coordinates, Storage *inventary) : Creature(name, id, level, speed, coordinates) {
-    this->inventary = inventary;
+Hero::Hero(std::string name, std::string id, short level, short speed, coord coordinates, Storage *inventory) : Creature(name, id, level, speed, coordinates) {
+    this->inventory = inventory;
 }
 
-Storage* Hero::GetInventary() const {
-    return inventary;
+Storage* Hero::GetInventory() const {
+    return inventory;
 }
