@@ -4,4 +4,5 @@
 *.txt
 *.out
 *.exe
-*test*
+*tests*
+

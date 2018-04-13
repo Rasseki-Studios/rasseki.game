@@ -46,7 +46,7 @@ protected:
 };
 
 class IFactory {
-    virtual Item* create() = 0;
+    virtual Item* getFromJson(str filename) = 0;
     // virtual void update();
 };
 
