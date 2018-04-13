@@ -5,10 +5,11 @@
 
 #include "base.h"
 
+
 class Artifact : public Item {
 public:
-    Artifact(std::string, short, short);
-    short GetPower();
+    Artifact(std::string, std::string, short, short);
+    short GetPower() const ;
 private:
     short power;
 };
@@ -17,21 +18,21 @@ class Storage {
 public:
     Storage(short);
     void AddArtifact(Artifact);
-    void RemoveArtifact(short);
-    Artifact* GetArtifact(short);
+    void RemoveArtifact(std::string);
+    Artifact* GetArtifact(std::string);
 private:
     std::vector<Artifact> artifacts;
 };
 
 class Creature : public Item, public Movable {
 public:
-    Creature(std::string, short, short, coord);
+    Creature(std::string, std::string, short, short, coord);
 };
 
 class Hero : public Creature {
 public:
-    Hero(std::string, short, short, coord, Storage*);
-    Storage* GetInventary();
+    Hero(std::string, std::string, short, short, coord, Storage*);
+    Storage* GetInventary() const;
 protected:
     Storage *inventary;
 };
