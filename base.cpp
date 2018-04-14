@@ -31,6 +31,7 @@ coord Located::GetCoord() const {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 >>>>>>> Добавлены const к Get ф-циям.
 //---MOVEBLE---
@@ -149,6 +150,8 @@ coord Movable::Step() {
 <<<<<<< HEAD
 inline short Movable::GetSpeed() const {return speed;}
 
+=======
+>>>>>>> catching exceptions in jsons, invalid events are skipping now
 
 //---ITEM---
 <<<<<<< HEAD
