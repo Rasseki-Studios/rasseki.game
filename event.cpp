@@ -16,7 +16,7 @@ void Action::set(str _sID, str _command, str _objID, str _note, str _cond, short
 
 /* DEBUG_FUNCTION */
 void Action::printActData() {
-    std::cout << "condition: " << condition << std::endl;    
+    std::cout << "condition: " << condition << std::endl;
     std::cout << "subjectID: " << subjectID << std::endl;
     std::cout << "command: " << command << std::endl;  // Converts in function in run()
     std::cout << "objectID: " << objectID << std::endl;  // Item *object in future

@@ -2,7 +2,6 @@
 #define BASE_H
 
 #include <string>
-
 using str = std::string;
 
 class Item {
