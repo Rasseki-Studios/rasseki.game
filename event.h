@@ -1,10 +1,12 @@
 #ifndef EVENT
 #define EVENT
 
-#include "base.h"
+#include "item.h"
+#include "location.h"
 #include "libs/json_fwd.hpp"
 
 using json = nlohmann::json;
+using str = std::string;
 
 class Action {
 public:
@@ -35,7 +37,7 @@ private:
     std::vector<Action> actions;
 };
 
-class EventFactory : public IFactory {
+class EventFactory : public ItemFactory {
 public:
     Event* getFromJson(str);
 };
