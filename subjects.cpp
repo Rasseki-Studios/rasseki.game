@@ -1,11 +1,11 @@
 #include "subjects.h"
 
 //---ARTIFACT---
-Artifact::Artifact(std::string name, short level, short power) : Item(name, level) {
+Artifact::Artifact(std::string name, std::string id, short level, short power) : Item(name, id, level) {
     this->power = power;
 }
 
-short Artifact::GetPower() {
+short Artifact::GetPower() const {
     return power;
 }
 
@@ -19,7 +19,7 @@ void Storage::AddArtifact(Artifact new_artifact) {  //добавить пров�
     artifacts.insert(artifacts.end(), new_artifact);
 }
 
-void Storage::RemoveArtifact(short id) {
+void Storage::RemoveArtifact(std::string id) {
     for (std::vector<Artifact>::iterator it = artifacts.begin(); it != artifacts.end(); it++) {
         if ((*it).GetId() == id) {
             artifacts.erase(it);
@@ -27,7 +27,7 @@ void Storage::RemoveArtifact(short id) {
     }
 }
 
-Artifact* Storage::GetArtifact(short id) {
+Artifact* Storage::GetArtifact(std::string id) {
     for (std::vector<Artifact>::iterator it = artifacts.begin(); it != artifacts.end(); it++) {
         if ((*it).GetId() == id) {
             return it.base();
@@ -38,14 +38,14 @@ Artifact* Storage::GetArtifact(short id) {
 
 
 //---CREATURE---
-Creature::Creature(std::string name, short level, short speed, coord coordinates) : Item(name, level), Movable(coordinates, speed) {}
+Creature::Creature(std::string name, std::string id, short level, short speed, coord coordinates) : Item(name, id, level), Movable(coordinates, speed) {}
 
 
 //---HERO---
-Hero::Hero(std::string name, short level, short speed, coord coordinates, Storage *inventary) : Creature(name, level, speed, coordinates) {
-    this->inventary = inventary;
+Hero::Hero(std::string name, std::string id, short level, short speed, coord coordinates, Storage *inventory) : Creature(name, id, level, speed, coordinates) {
+    this->inventory = inventory;
 }
 
-Storage* Hero::GetInventary() {
-    return inventary;
+Storage* Hero::GetInventory() const {
+    return inventory;
 }

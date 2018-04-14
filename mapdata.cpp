@@ -1,4 +1,13 @@
-#include "map.h"
+//This code uses free-distributed library "EasyBMP-1.06". 
+//https://sourceforge.net/projects/easybmp/
+//Great thanks to the authors of this pretty useful tool.
+
+#include "mapdata.h"
+#include "libs/EasyBMP/EasyBMP.h"
+
+int MapData::mapWidth = 0;
+int MapData::mapHeight = 0;
+short** MapData::surfaceMatrix = nullptr;
 
 MapData::~MapData() {
     for (int i = 0; i < mapHeight; i++) {
@@ -7,11 +16,11 @@ MapData::~MapData() {
     delete [] surfaceMatrix;
 }
 
-short MapData::GetSurfaceType(coord* point) {
-    return surfaceMatrix[point->x][point->y];
+short MapData::getSurfaceType(coord point) {
+    return surfaceMatrix[point.x][point.y];
 }
 
-bool MapData::initSurfMatrix(const str filename) {
+bool MapData::initSurfMatrix(const std::string filename) {
     BMP map;
     if (!map.ReadFromFile(filename.c_str())) return false; 
     mapWidth = map.TellWidth();
@@ -23,7 +32,7 @@ bool MapData::initSurfMatrix(const str filename) {
     int i = 0, j = 0;
     surfaceMatrix = new short* [mapHeight];
     for (i = 0; i < mapHeight; i++) {
-        surfaceMatrix[i] = new short [mapWidth];   
+        surfaceMatrix[i] = new short [mapWidth];
     }
 
     //row by row scanning of bmp file and transformation colours to surface types
