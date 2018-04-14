@@ -35,7 +35,7 @@ Event::Event(str _ID, str _name, short _level,
 void from_json(const json &j, coord &c) {
     c.x = j.at("x").get<int>();
     c.y = j.at("y").get<int>();
-}
+} 
 
 void from_json(const json &j, Action &action) {
     str object_id, condition;
