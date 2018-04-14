@@ -32,9 +32,9 @@ public:
 class Hero : public Creature {
 public:
     Hero(std::string, std::string, short, short, coord, Storage*);
-    Storage* GetInventary() const;
+    Storage* GetInventory() const;
 protected:
-    Storage *inventary;
+    Storage *inventory;
 };
 
 #endif //SUBJECTS_H
