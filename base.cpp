@@ -21,6 +21,7 @@ coord Located::GetCoord() const {
     return coordinates;
 }
 
+
 //---ITEM---
 Item::Item(str ID, str name, short level) {
     this->ID = ID;

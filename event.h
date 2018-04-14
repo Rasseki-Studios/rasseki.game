@@ -12,11 +12,12 @@ public:
     /* DEBUG_FUNCTION */ void printActData();
 private:
     str subjectID;  // Item *subject in future
-    str command;  // Converts in function in run()
+    str command;  // Converts to function in run()
     str objectID;  // Item *object in future
     str diaryNote;
+    str condition;
     short duration;
-    void set(str, str, str, str, short);
+    void set(str, str, str, str, str, short);
     friend void from_json(const json&, Action&);
 };
 
