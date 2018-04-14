@@ -1,26 +1,28 @@
-#ifndef MAP_H
-#define MAP_H
-//This code uses free-distributed library "EasyBMP-1.06". 
-//https://sourceforge.net/projects/easybmp/
-//Great thanks to the authors of this pretty useful tool.
+#ifndef MAPDATA
+#define MAPDATA
 
-#include "EasyBMP/EasyBMP.h"
-#include "base.h"
+#include "location.h"
+
+#ifndef STRING
+#define STRING
+#include <string>
+#endif
 
 class MapData {
 public:
-    MapData(const char*);
+    static bool initSurfMatrix(const std::string); //returns FALSE if something went wrong (e.g. file doesn't exist)
+    static short getSurfaceType(coord);
+    static void getContent(coord); //here must be Event getContent(coord);
+    static int getHeight();
+    static int getWidth();
     ~MapData();
-    short GetSurfaceType(coord*);
-    void getContent(coord*); //here must be Event getContent(coord);
 private:
-    int mapWidth;
-    int mapHeight;
-    short** surfaceMatrix;
-    bool initSurfMatrix(const char*); //returns FALSE if something went wrong (e.g. file doesn't exist)
-    // *vector<GUID> contentMap; 
-    // map<GUID, Event> contentList;
-    // map<GUID, SurfaceType> surfaceTypesList;
-
+    static int mapWidth;
+    static int mapHeight;
+    static short** surfaceMatrix;
+    // *vector<ID> contentMap; 
+    // map<ID, Event> contentList;
+    // map<ID, SurfaceType> surfaceTypesList;
 };
-#endif
+
+#endif  // MAPDATA

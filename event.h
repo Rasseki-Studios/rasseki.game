@@ -6,7 +6,6 @@
 #include "libs/json_fwd.hpp"
 
 using json = nlohmann::json;
-using str = std::string;
 
 class Action {
 public:
