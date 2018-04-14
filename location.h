@@ -1,14 +1,11 @@
-#ifndef BASE_H
-#define BASE_H
+#ifndef LOCATION
+#define LOCATION
 
-#include <string>
 #include <vector>
 
-using str = std::string;
-
 struct coord {
-    int x;
-    int y;
+    int x = 0;
+    int y = 0;
     coord() = default;
     coord(int, int);
 };
@@ -33,21 +30,4 @@ protected:
     std::vector<coord> path;
 };
 
-class Item {
-public:
-    Item(str, str, short);
-    str GetId() const;
-    str GetName() const;
-    short GetLevel() const;
-protected:
-    str ID;
-    str name;
-    short level;
-};
-
-class IFactory {
-    virtual Item* getFromJson(str filename) = 0;
-    // virtual void update();
-};
-
-#endif  // BASE_H
+#endif  // LOCATION
