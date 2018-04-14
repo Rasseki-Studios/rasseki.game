@@ -1,5 +1,9 @@
+<<<<<<< HEAD:base.cpp
 #include "base.h"
 #include <iostream>
+=======
+#include "location.h"
+>>>>>>> base transformed to item, movable and location parts:location.cpp
 
 
 //---coord---
@@ -29,6 +33,7 @@ Movable::Movable(int x, int y) : Located(x, y){}
 coord Located::GetCoord() const {
     return coordinates;
 }
+<<<<<<< HEAD:base.cpp
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -212,3 +217,5 @@ short Item::GetLevel() const {
 =======
 inline short Item::GetLevel() const {return level;}
 >>>>>>> EventFabric can now read and use all event jsons
+=======
+>>>>>>> base transformed to item, movable and location parts:location.cpp

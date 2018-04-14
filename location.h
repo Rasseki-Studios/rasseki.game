@@ -1,6 +1,7 @@
-#ifndef BASE_H
-#define BASE_H
+#ifndef LOCATION
+#define LOCATION
 
+<<<<<<< HEAD:base.h
 #include <string>
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -11,16 +12,16 @@
 =======
 =======
 >>>>>>> const and inline added, pedantic lines swaps made
+=======
+>>>>>>> base transformed to item, movable and location parts:location.h
 #include <vector>
 >>>>>>> Обновленный base.h
 
 using str = std::string;
 
-using str = std::string;
-
 struct coord {
-    int x;
-    int y;
+    int x = 0;
+    int y = 0;
     coord() = default;
     coord(int, int);
 };
@@ -72,6 +73,7 @@ protected:
 >>>>>>> Добавлены const к Get ф-циям.
 };
 
+<<<<<<< HEAD:base.h
 class Item {
 <<<<<<< HEAD
 public:
@@ -158,3 +160,6 @@ class IFactory {
 
 #endif  // BASE_H
 >>>>>>> abstract class Action added
+=======
+#endif  // LOCATION
+>>>>>>> base transformed to item, movable and location parts:location.h
