@@ -1,4 +1,4 @@
-#include "base.h"
+#include "location.h"
 
 //---MOVABLE---
 Movable::Movable(coord coordinates, short speed) : Located(coordinates) {
