@@ -21,8 +21,11 @@
 =======
 *.exe
 *test*
+<<<<<<< HEAD
 >>>>>>> Updated .gitignore
 =======
 *tests*
+=======
+>>>>>>> updated .gitignore
 
 >>>>>>> method getFromJson getting filename replaced method create
