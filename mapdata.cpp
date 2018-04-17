@@ -1,13 +1,10 @@
-//This code uses free-distributed library "EasyBMP-1.06". 
-//https://sourceforge.net/projects/easybmp/
-//Great thanks to the authors of this pretty useful tool.
-
 #include "mapdata.h"
 #include "libs/EasyBMP/EasyBMP.h"
 
 int MapData::mapWidth = 0;
 int MapData::mapHeight = 0;
 short** MapData::surfaceMatrix = nullptr;
+std::unordered_map<std::string, Event> MapData::eventsList;
 
 MapData::~MapData() {
     for (int i = 0; i < mapHeight; i++) {
@@ -16,11 +13,11 @@ MapData::~MapData() {
     delete [] surfaceMatrix;
 }
 
-short MapData::getSurfaceType(coord point) {
+short MapData::getSurface(coord point) {
     return surfaceMatrix[point.x][point.y];
 }
 
-bool MapData::initSurfMatrix(const std::string filename) {
+bool MapData::initMatrix(const std::string filename) {
     BMP map;
     if (!map.ReadFromFile(filename.c_str())) return false; 
     mapWidth = map.TellWidth();
@@ -30,9 +27,9 @@ bool MapData::initSurfMatrix(const std::string filename) {
 
     //allocating memory
     int i = 0, j = 0;
-    surfaceMatrix = new short* [mapHeight];
+    short** tempMatrix = new short* [mapHeight];
     for (i = 0; i < mapHeight; i++) {
-        surfaceMatrix[i] = new short [mapWidth];
+        tempMatrix[i] = new short [mapWidth];   
     }
 
     //row by row scanning of bmp file and transformation colours to surface types
@@ -42,27 +39,27 @@ bool MapData::initSurfMatrix(const std::string filename) {
             intColor = tempPixel.Red * 1000000 + tempPixel.Green * 1000 + tempPixel.Blue;
             switch (intColor) {
                 case 0:                     //black
-                    surfaceMatrix[j][i] = 0;
+                    tempMatrix[j][i] = 0;
                     break;
                 case 255000000:             //red
-                    surfaceMatrix[j][i] = 1;
+                    tempMatrix[j][i] = 1;
                     break;
                 case 255255000:             //yellow
-                    surfaceMatrix[j][i] = 2;
+                    tempMatrix[j][i] = 2;
                     break;
                 case 255:                   //blue
-                    surfaceMatrix[j][i] = 3;
+                    tempMatrix[j][i] = 3;
                     break;
                 case 255000:                //green
-                    surfaceMatrix[j][i] = 4 ;
+                    tempMatrix[j][i] = 4 ;
                     break;
                 case 255255255:             //white
-                    surfaceMatrix[j][i] = 5;
+                    tempMatrix[j][i] = 5;
                     break;
             }
         }
     }
-
+    setSurfMatrix(tempMatrix);
     return true;
 }
 
@@ -72,4 +69,13 @@ int MapData::getWidth() {
 
 int MapData::getHeight() {
     return mapHeight;
+}
+
+void MapData::setSurfMatrix(short** matrix) {
+    surfaceMatrix = matrix;
+}
+
+void MapData::addEvent(Event event) {
+    // eventsList[event.GetId()] = event;
+    eventsList.insert(make_pair(event.GetId(), event));
 }
