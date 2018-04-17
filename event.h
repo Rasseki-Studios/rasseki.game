@@ -3,17 +3,18 @@
 
 #include "item.h"
 #include "location.h"
+#include "subjects.h"
 
 class Action {
 public:
     void run() const;
     /* DEBUG_FUNCTION */ void printAction();
 private:
-    str subjectID;  // Item *subject in future
+    Creature *subject;
     str command;  // Converts to function in run()
-    str objectID;  // Item *object in future
+    Item *object;
     str diaryNote;
-    str condition;
+    str condition;  // Converts to if { ... } in run()
     short duration;
     void set(str, str, str, str, str, short);
 };
@@ -25,7 +26,6 @@ public:
     /* DEBUG_FUNCTION */ void printEvent();
     friend EventFactory;
 private:
-    // Event() = default;
     Event(str, str, short, coord, short, std::vector<Action>);
     short radius;
     std::vector<Action> actions;
@@ -33,8 +33,8 @@ private:
 
 class EventFactory : public ItemFactory {
 public:
+    int initEventMap(str path);
     Event* createFromJson(str filename);
-    // getFromJson(str filename);
 };
 
 #endif  // EVENT
