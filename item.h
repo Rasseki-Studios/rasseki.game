@@ -1,7 +1,11 @@
-#ifndef BASE_H
-#define BASE_H
+#ifndef ITEM_H
+#define ITEM_H
 
+#ifndef STRING
+#define STRING
 #include <string>
+#endif
+
 using str = std::string;
 
 class Item {
@@ -17,8 +21,8 @@ protected:
 };
 
 class ItemFactory {
-    virtual Item* getFromJson(str filename) = 0;
+    virtual Item* createFromJson(str filename) = 0;
     // virtual void update();
 };
 
-#endif  // BASE_H
+#endif  // ITEM_H

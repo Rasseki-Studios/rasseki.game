@@ -1,7 +1,11 @@
 #ifndef LOCATION
 #define LOCATION
 
+
+#ifndef VECTOR
+#define VECTOR
 #include <vector>
+#endif
 
 struct coord {
     int x = 0;
