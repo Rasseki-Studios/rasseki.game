@@ -1,4 +1,9 @@
-#include "Located.h"
+#include "Location.h"
+
+coord::coord(int x, int y) {
+    this->x = x;
+    this->y = y;
+}
 
 Located::Located(coord coordinates) {
     this->coordinates = coordinates;

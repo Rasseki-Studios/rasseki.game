@@ -1,10 +1,17 @@
-#ifndef STORAGE_H
-#define STORAGE_H
-
+#ifndef THINGS_H
+#define THINGS_H
 
 #include <vector>
 
-#include "Artifact.h"
+#include "Item.h"
+
+class Artifact : public Item {
+public:
+    Artifact(std::string, std::string, short, short);
+    short GetPower() const ;
+private:
+    short power;
+};
 
 class Storage {
 public:
@@ -16,5 +23,4 @@ private:
     std::vector<Artifact> artifacts;
 };
 
-
-#endif //STORAGE_H
+#endif //THINGS_H

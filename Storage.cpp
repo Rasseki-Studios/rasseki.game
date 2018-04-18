@@ -1,4 +1,4 @@
-#include "Storage.h"
+#include "Things.h"
 
 Storage::Storage(short count) {
     artifacts.reserve(count);   //выделение памяти под count этементов

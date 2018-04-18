@@ -1,7 +1,6 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-
 #include <string>
 
 class Item {
@@ -15,6 +14,5 @@ protected:
     std::string name;
     short level;
 };
-
 
 #endif //ITEM_H

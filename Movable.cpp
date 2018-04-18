@@ -1,4 +1,4 @@
-#include "Movable.h"
+#include "Location.h"
 
 Movable::Movable(coord coordinates, short speed) : Located(coordinates) {
     this->speed = speed;
