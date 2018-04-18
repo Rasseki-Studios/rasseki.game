@@ -1,6 +1,5 @@
-#ifndef LOCALITY_H
-#define LOCALITY_H
-
+#ifndef LOCATION_H
+#define LOCATION_H
 #include <vector>
 
 struct coord {
@@ -30,4 +29,4 @@ protected:
     std::vector<coord> path;
 };
 
-#endif //LOCALITY_H
+#endif //LOCATION_H

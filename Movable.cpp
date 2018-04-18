@@ -1,8 +1,6 @@
 #include "Location.h"
 
-Movable::Movable(coord coordinates, short speed) : Located(coordinates) {
-    this->speed = speed;
-}
+Movable::Movable(coord coordinates, short speed) : Located(coordinates), speed(speed) {}
 
 bool Movable::Move(coord destination) {
     path.clear();
