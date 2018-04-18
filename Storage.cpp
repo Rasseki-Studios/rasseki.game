@@ -9,18 +9,23 @@ void Storage::AddArtifact(Artifact new_artifact) {  //добавить пров�
 }
 
 void Storage::RemoveArtifact(std::string id) {
-    for (std::vector<Artifact>::iterator it = artifacts.begin(); it != artifacts.end(); it++) {
-        if ((*it).GetId() == id) {
-            artifacts.erase(it);
+    std::vector<Artifact>::iterator deleted = artifacts.end();
+    for (auto artifact : artifacts) {
+        if (artifact.GetId() == id) {
+            *deleted = artifact;
+            break;
         }
     }
+    artifacts.erase(deleted);
 }
 
 Artifact* Storage::GetArtifact(std::string id) {
-    for (std::vector<Artifact>::iterator it = artifacts.begin(); it != artifacts.end(); it++) {
-        if ((*it).GetId() == id) {
-            return it.base();
+    Artifact *searched = nullptr;
+    for (auto artifact : artifacts) {
+        if (artifact.GetId() == id) {
+            searched = &artifact;
+            break;
         }
     }
-    return nullptr;
+    return searched;
 }
