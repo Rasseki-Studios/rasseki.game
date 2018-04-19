@@ -1,6 +1,10 @@
 #ifndef LOCATION_H
 #define LOCATION_H
+
 #include <vector>
+#include <memory>
+#include <iostream>
+using namespace std;
 
 struct coord {
     int x = 0;
@@ -27,6 +31,8 @@ public:
 protected:
     short speed;
     std::vector<coord> path;
+
+    int wave(int**, int, int, coord);
 };
 
 #endif //LOCATION_H
