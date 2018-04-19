@@ -11,25 +11,39 @@
 #include <string>
 #endif
 
+#ifndef VECTOR
+#define VECTOR
+#include <vector>
+#endif
+
 class Event;
 
-class MapData {
+class SurfaceData {
 public:
     static bool initMatrix(const std::string); //returns FALSE if something went wrong (e.g. file doesn't exist)
     static short getSurface(coord);
-    static Event getContent(coord); //here must be Event getContent(coord);
     static int getHeight();
     static int getWidth();
     static void setSurfMatrix(short**);
-    static void addEvent(Event);
-    ~MapData();
+     ~SurfaceData();
 private:
     static int mapWidth;
     static int mapHeight;
     static short** surfaceMatrix;
-    static std::unordered_map<std::string, Event> eventsList;
     // map<ID, SurfaceType> surfaceTypesList;
 };
 
+
+class EventData {
+public:
+    static void initEventMatrix();
+    static Event getContent(coord);
+    static void addEvent(Event);
+    static void printEvents(); //DEBUG FUNCTION
+
+private:
+    static std::unordered_map<std::string, Event> eventsList;
+    static std::vector<Event> ***eventMatrix;
+};
+
 #endif  // MAPDATA
-  
