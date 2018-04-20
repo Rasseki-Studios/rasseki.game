@@ -74,4 +74,3 @@ int SurfaceData::getHeight() {
 void SurfaceData::setSurfMatrix(short** matrix) {
     surfaceMatrix = matrix;
 }
-

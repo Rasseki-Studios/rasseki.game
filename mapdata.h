@@ -34,7 +34,7 @@ private:
 };
 
 
-class EventData {
+class EventsMapData {
 public:
     static void initEventMatrix();
     static Event getContent(coord);
@@ -44,6 +44,7 @@ public:
 private:
     static std::unordered_map<std::string, Event> eventsList;
     static std::vector<Event> ***eventMatrix;
+    static void sortEventVector(std::vector<Event>*);
 };
 
 #endif  // MAPDATA
