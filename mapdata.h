@@ -3,8 +3,11 @@
 
 #include "location.h"
 #include "event.h"
+
+#ifndef UNORDERED_MAP
+#define UNORDERED_MAP
 #include <unordered_map>
-// #include <bits/stdc++.h>
+#endif
 
 #ifndef STRING
 #define STRING
@@ -40,7 +43,7 @@ public:
     static Event getContent(coord);
     static void addEvent(Event);
     static void printEvents(); //DEBUG FUNCTION
-
+    static Event& getEvent(coord&);
 private:
     static std::unordered_map<std::string, Event> eventsList;
     static std::vector<Event> ***eventMatrix;
