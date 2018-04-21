@@ -51,11 +51,6 @@ void EventsMapData::addEvent(Event event) {
 void EventsMapData::printEvents() {
     //get an iterator pointing to begining of the map
      std::unordered_map<std::string, Event>::iterator it = eventsList.begin(); 
-/*
-    while(it != eventsList.end()) {
-        std::cout << it->first << " :: " << it->second.printEvent() << std::endl;
-        it++;
-    }  */
      for (auto it : eventsList) it.second.printEvent();
 }
 
@@ -64,4 +59,8 @@ void EventsMapData::sortEventVector(std::vector<Event> * vector) {
     [](Event& a, Event& b) -> bool {
         return a.getPriority() > b.getPriority();
     });
+}
+
+Event& EventsMapData::getEvent(coord& point) {
+    return eventMatrix[point.x][point.y]->at(0);
 }

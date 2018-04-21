@@ -13,8 +13,8 @@
 
 class EntityData {
 public:
-    static bool check(Creature&);
-    static bool check(Artifact&);
+    static bool checkCreature(std::string);
+    static bool checkArtifact(std::string);
     static void add(Creature);
     static void add(Artifact);
     static void printAllCreatures();
@@ -22,6 +22,4 @@ public:
 private:
     static std::unordered_map<std::string, Creature> creaturesList;
     static std::unordered_map<std::string, Artifact> artifactsList;
-    
-
-}
+};
