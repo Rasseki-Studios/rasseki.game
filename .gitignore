@@ -1,11 +1,3 @@
-*.[oa]
-*vgcore*
-.vscode/**
-*.txt
-*.out
-*.exe
-*tests*
-
 CMakeLists.txt
 cmake-build-debug/*
 .idea/*

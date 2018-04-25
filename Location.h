@@ -2,9 +2,6 @@
 #define LOCATION_H
 
 #include <vector>
-#include <memory>
-#include <iostream>
-using namespace std;
 
 struct coord {
     int x = 0;
