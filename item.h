@@ -1,11 +1,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#ifndef STRING
-#define STRING
 #include <string>
-#endif
-
 using str = std::string;
 
 class Item {

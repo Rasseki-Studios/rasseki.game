@@ -4,17 +4,16 @@
 //for error printing, should be changed to QT error printer
 #include <iostream>
 
-#include <experimental/filesystem>
-namespace fs = std::experimental::filesystem::v1;
-
-/* void Action::set(str _sID, str _command, str _objID, str _note, str _cond, short _duration) { 
-    subjectID = _sID;
-    command = _command;
-    objectID = _objID;
-    diaryNote = _note;
-    condition = _cond;
-    duration = _duration;
-} */
+Action::Action(Creature *subj, str _command, Item *obj,
+    str _note, str _cond, short _priority, short _duration) : 
+    subject(subj),
+    command(_command),
+    object(obj),
+    diaryNote(_note),
+    condition(_cond),
+    priority(_priority),
+    duration(_duration) {
+}
 
 /* DEBUG_FUNCTION */
 /* void Action::printAction() {
@@ -32,23 +31,6 @@ Event::Event(str _ID, str _name, short _level,
     Located(_coord),
     radius(_radius),
     actions(_actions) {
-}
-
-Event* EventFactory::createFromJson(str filename) {
-    eventData *ev_data = Parser::getEventData(filename);
-    ev_data->printEventData();
-    return nullptr;
-}
-
-int EventFactory::initEventMap(str eventsPath) {
-    int eventCount = 0;
-    for (auto &it : fs::directory_iterator(eventsPath)) {
-        if (it.path().extension() == ".json") {
-            createFromJson(it.path());
-            eventCount++;
-        }
-    }
-    return eventCount;
 }
 
 /* DEBUG_FUNCTION */

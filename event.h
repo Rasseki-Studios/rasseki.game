@@ -5,21 +5,23 @@
 #include "location.h"
 #include "subjects.h"
 
+class EventFactory;  // forward declaration
 class Action {
 public:
     void run() const;
     /* DEBUG_FUNCTION */ void printAction();
+    friend EventFactory;
 private:
+    Action(Creature*, str, Item*, str, str, short, short);
     Creature *subject;
     str command;  // Converts to function in run()
     Item *object;
     str diaryNote;
     str condition;  // Converts to if { ... } in run()
+    short priority;
     short duration;
-    void set(str, str, str, str, str, short);
 };
 
-class EventFactory;  // forward declaration
 class Event : public Item, public Located {
 public:
     void runEvent();
@@ -29,12 +31,6 @@ private:
     Event(str, str, short, coord, short, std::vector<Action>);
     short radius, priority;
     std::vector<Action> actions;
-};
-
-class EventFactory : public ItemFactory {
-public:
-    int initEventMap(str path);
-    Event* createFromJson(str filename);
 };
 
 #endif  // EVENT
