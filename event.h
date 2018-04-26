@@ -27,7 +27,7 @@ public:
     friend EventFactory;
 private:
     Event(str, str, short, coord, short, std::vector<Action>);
-    short radius;
+    short radius, priority;
     std::vector<Action> actions;
 };
 

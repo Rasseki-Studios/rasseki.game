@@ -1,5 +1,5 @@
 #include "event.h"
-#include "json-parser.h"
+#include "parser.h"
 
 //for error printing, should be changed to QT error printer
 #include <iostream>
