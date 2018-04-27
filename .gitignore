@@ -3,29 +3,5 @@
 .vscode/**
 *.txt
 *.out
-<<<<<<< HEAD
-<<<<<<< HEAD
-*tests*
-=======
-*.exe
-<<<<<<< HEAD
-<<<<<<< HEAD
-*test*
-<<<<<<< HEAD
->>>>>>> Initial commit
-=======
->>>>>>> Updated .gitignore
-=======
-*test*
->>>>>>> updated .gitignore
-=======
 *.exe
 *test*
-<<<<<<< HEAD
->>>>>>> Updated .gitignore
-=======
-*tests*
-=======
->>>>>>> updated .gitignore
-
->>>>>>> method getFromJson getting filename replaced method create
