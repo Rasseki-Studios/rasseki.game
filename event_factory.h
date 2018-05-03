@@ -8,7 +8,7 @@
 
 class EventFactory : public ItemFactory {
 public:
-    int initEventMap(str path);
+    int initEventMap(str folder);
     Event* createFromJson(str filename);
 };
 
@@ -18,7 +18,7 @@ struct actionData {
     str subjectID, command, objectID, diaryNote, condition;
     short duration;
     void set(str, str, str, str, str, short);
-    void printActionData();
+    /* DEBUG */ void printActionData();
 };
 
 struct eventData {
@@ -27,7 +27,7 @@ struct eventData {
     short radius, level;
     std::vector<actionData> actions;
     eventData(str, str, coord, short, short, std::vector<actionData>);
-    void printEventData();
+    /* DEBUG */ void printEventData();
 };
 
 #endif

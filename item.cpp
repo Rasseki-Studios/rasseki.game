@@ -1,11 +1,8 @@
 #include "item.h"
 
 //---ITEM---
-Item::Item(str ID, str name, short level) {
-    this->ID = ID;
-    this->name = name;
-    this->level = level;
-}
+Item::Item(str _ID, str _name, short _level)
+: ID(_ID), name(_name), level(_level) {}
 
 str Item::GetId() const {
     return ID;

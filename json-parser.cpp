@@ -4,12 +4,11 @@
 
 //for error printing, should be changed to QT error printer
 #include <iostream>
+using std::cout;
+using std::endl;
 
 using json = nlohmann::json;
 using std::vector;
-
-using std::cout;
-using std::endl;
 
 void from_json(const json &j, coord &c) {
     c.x = j.at("x").get<int>();
@@ -37,7 +36,7 @@ eventData* Parser::getEventData(str filename) {
     std::ifstream file(filename);
     json j;
     try {file >> j;} catch(nlohmann::detail::parse_error) {
-        std::cout << "Error: json " << filename << " is invalid." << std::endl;
+        cout << "Error: json " << filename << " is invalid." << endl;
         return nullptr;
     }
     eventData *ev_data;
@@ -51,7 +50,7 @@ eventData* Parser::getEventData(str filename) {
             j.at("actions").get<std::vector<actionData>>()
         );
     } catch(nlohmann::detail::out_of_range) {
-        std::cout << "Event from file " << filename << " is invalid." << std::endl;
+        cout << "Event from file " << filename << " is invalid." << endl;
         return nullptr;
     }
     return ev_data;

@@ -12,23 +12,22 @@ public:
     /* DEBUG_FUNCTION */ void printAction();
     friend EventFactory;
 private:
-    Action(Creature*, str, Item*, str, str, short, short);
+    Action(Creature*, str, Item*, str, str, short);
     Creature *subject;
     str command;  // Converts to function in run()
     Item *object;
     str diaryNote;
     str condition;  // Converts to if { ... } in run()
-    short priority;
     short duration;
 };
 
 class Event : public Item, public Located {
 public:
-    void runEvent();
-    /* DEBUG_FUNCTION */ void printEvent();
+    void runEvent() const;
+    /* DEBUG_FUNCTION */ void printEvent() const;
     friend EventFactory;
 private:
-    Event(str, str, short, coord, short, std::vector<Action>);
+    Event(str, str, short, coord, short, short, std::vector<Action>);
     short radius, priority;
     std::vector<Action> actions;
 };

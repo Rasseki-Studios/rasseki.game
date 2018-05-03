@@ -10,6 +10,7 @@ namespace fs = std::experimental::filesystem::v1;
 
 Event* EventFactory::createFromJson(str filename) {
     eventData *ev_data = Parser::getEventData(filename);
+    /*  */
     ev_data->printEventData();
     return nullptr;
 }
