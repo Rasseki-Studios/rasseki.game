@@ -3,32 +3,21 @@
 
 #include "location.h"
 #include "event.h"
-
-#ifndef UNORDERED_MAP
-#define UNORDERED_MAP
 #include <unordered_map>
-#endif
-
-#ifndef STRING
-#define STRING
 #include <string>
-#endif
-
-#ifndef VECTOR
-#define VECTOR
 #include <vector>
-#endif
 
 class Event;
 
-class SurfaceData {
+class SurfaceMapData {
 public:
-    static bool initMatrix(const std::string); //returns FALSE if something went wrong (e.g. file doesn't exist)
+    //returns FALSE if something went wrong (e.g. file doesn't exist)
+    static bool initMatrix(const std::string); 
     static short getSurface(coord);
     static int getHeight();
     static int getWidth();
     static void setSurfMatrix(short**);
-     ~SurfaceData();
+    ~SurfaceMapData();
 private:
     static int mapWidth;
     static int mapHeight;
@@ -39,11 +28,11 @@ private:
 
 class EventsMapData {
 public:
-    static void initEventMatrix();
-    static Event getContent(coord);
+    static bool initMatrix();
     static void addEvent(Event);
     static void printEvents(); //DEBUG FUNCTION
     static Event& getEvent(coord&);
+    ~EventsMapData();
 private:
     static std::unordered_map<std::string, Event> eventsList;
     static std::vector<Event> ***eventMatrix;
