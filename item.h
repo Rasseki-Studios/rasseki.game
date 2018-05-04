@@ -17,7 +17,8 @@ protected:
 };
 
 class ItemFactory {
-    virtual Item* createFromJson(str filename) = 0;
+    virtual int InitAll(str path) = 0;
+    virtual Item* CreateOne(str filename) = 0;
     // virtual void update();
 };
 

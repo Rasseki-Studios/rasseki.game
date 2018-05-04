@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "Things.h"
-#include "Location.h"
+#include "things.h"
+#include "location.h"
 
 class Creature : public Item, public Movable {
 public:

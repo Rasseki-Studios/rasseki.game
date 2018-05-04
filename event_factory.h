@@ -1,5 +1,5 @@
-#ifndef FACTORY
-#define FACTORY
+#ifndef EVENT_FACTORY
+#define EVENT_FACTORY
 
 #include <vector>
 
@@ -8,30 +8,30 @@
 
 class EventFactory : public ItemFactory {
 public:
-    int initEventMap(str folder);
-    Event* createFromJson(str filename);
+    int InitAll(str folder);
+    Event* CreateOne(str filename);
 };
 
 // unfortunately we can't use std::map instead of
 // structures because of different collected types
-struct actionData {
+struct ActionData {
     str subjectID, command, objectID, diaryNote, condition;
     short duration;
     void set(str, str, str, str, str, short);
-    /* DEBUG */ void printActionData();
+    /* DEBUG */ void PrintActionData();
 };
 
-struct eventData {
+struct EventData {
     str ID, name;
     coord coordinate;
     short radius, level;
-    std::vector<actionData> actions;
-    eventData(str, str, coord, short, short, std::vector<actionData>);
-    /* DEBUG */ void printEventData();
+    std::vector<ActionData> actions;
+    EventData(str, str, coord, short, short, std::vector<ActionData>);
+    /* DEBUG */ void PrintEventData();
 };
 
 // instead of class "json-event-parser" with only one static method:
-eventData* getEventData(str filename);
+EventData* getEventData(str filename);
 // this function can be defined anywhere and however we want (json/xml/rss/...)
 // now it is definied in event_parser.cpp
 
