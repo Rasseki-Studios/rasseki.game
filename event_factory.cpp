@@ -4,12 +4,11 @@
 #include <iostream>
 
 #include "event_factory.h"
-#include "parser.h"
 
 namespace fs = std::experimental::filesystem::v1;
 
 Event* EventFactory::createFromJson(str filename) {
-    eventData *ev_data = Parser::getEventData(filename);
+    eventData *ev_data = getEventData(filename);
     /*  */
     ev_data->printEventData();
     return nullptr;

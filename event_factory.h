@@ -30,4 +30,11 @@ struct eventData {
     /* DEBUG */ void printEventData();
 };
 
+// instead of class "json-event-parser" with only one static method:
+eventData* getEventData(str filename);
+// this function can be defined anywhere and however we want (json/xml/rss/...)
+// now it is definied in event_parser.cpp
+
 #endif
+
+//селиванов

@@ -1,8 +1,10 @@
-#include "parser.h"
+// this file is definition of getEventData() function
+
+#include "event_factory.h"
 #include "libs/json.hpp"
 #include <fstream>
 
-//for error printing, should be changed to QT error printer
+// for error printing, should be changed to QT error printer
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -32,7 +34,7 @@ void from_json(const json &j, actionData &action) {
     action.set(subject_id, command, object_id, toDiary, condition, duration);
 }
 
-eventData* Parser::getEventData(str filename) {
+eventData* getEventData(str filename) {
     std::ifstream file(filename);
     json j;
     try {file >> j;} catch(nlohmann::detail::parse_error) {
