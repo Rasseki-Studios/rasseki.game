@@ -12,7 +12,7 @@ public:
     Event* createFromJson(str filename);
 };
 
-// unfortunately we can't use std::map instead of 
+// unfortunately we can't use std::map instead of
 // structures because of different collected types
 struct actionData {
     str subjectID, command, objectID, diaryNote, condition;

@@ -7,9 +7,17 @@
 
 using str = std::string;
 
-class Parser {
+class EventParser {
 public:
     static eventData* getEventData(str filename);
+};
+
+class CreatureParser {
+    static creatureData* getCreatureData(str filename);
+};
+
+class ArtifactParser {
+    static artifactData* getArtifactData(str filename);
 };
 
 #endif  // PARSER
