@@ -12,7 +12,7 @@ class Event;
 class SurfaceMapData {
 public:
     //returns FALSE if something went wrong (e.g. file doesn't exist)
-    static bool initMatrix(const std::string); 
+    static bool InitMatrix(const std::string); 
     static short getSurface(coord);
     static int getHeight();
     static int getWidth();
@@ -28,15 +28,15 @@ private:
 
 class EventsMapData {
 public:
-    static bool initMatrix();
-    static void addEvent(Event);
-    static void printEvents(); //DEBUG FUNCTION
+    static bool InitMatrix();
+    static void AddEvent(Event);
+    static void PrintEvents(); //DEBUG FUNCTION
     static Event& getEvent(coord&);
     ~EventsMapData();
 private:
     static std::unordered_map<std::string, Event> eventsList;
     static std::vector<Event> ***eventMatrix;
-    static void sortEventVector(std::vector<Event>*);
+    static void SortEventVector(std::vector<Event>*);
 };
 
 #endif  // MAPDATA

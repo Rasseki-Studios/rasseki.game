@@ -2,22 +2,22 @@
 
 #include "libs/EasyBMP/EasyBMP.h"
 
-int SurfaceData::mapWidth = 0;
-int SurfaceData::mapHeight = 0;
-short** SurfaceData::surfaceMatrix = nullptr;
+int SurfaceMapData::mapWidth = 0;
+int SurfaceMapData::mapHeight = 0;
+short** SurfaceMapData::surfaceMatrix = nullptr;
 
-SurfaceData::~SurfaceData() {
+SurfaceMapData::~SurfaceMapData() {
     for (int i = 0; i < mapHeight; i++) {
-        delete [] surfaceMatrix[i];
+        if (surfaceMatrix[i]) delete [] surfaceMatrix[i];
     }
     delete [] surfaceMatrix;
 }
 
-short SurfaceData::getSurface(coord point) {
+short SurfaceMapData::getSurface(coord point) {
     return surfaceMatrix[point.x][point.y];
 }
 
-bool SurfaceData::initMatrix(const std::string filename) {
+bool SurfaceMapData::InitMatrix(const std::string filename) {
     BMP map;
     if (!map.ReadFromFile(filename.c_str())) return false; 
     mapWidth = map.TellWidth();
@@ -63,14 +63,14 @@ bool SurfaceData::initMatrix(const std::string filename) {
     return true;
 }
 
-int SurfaceData::getWidth() {
+int SurfaceMapData::getWidth() {
     return mapWidth;
 } 
 
-int SurfaceData::getHeight() {
+int SurfaceMapData::getHeight() {
     return mapHeight;
 }
 
-void SurfaceData::setSurfMatrix(short** matrix) {
+void SurfaceMapData::setSurfMatrix(short** matrix) {
     surfaceMatrix = matrix;
 }

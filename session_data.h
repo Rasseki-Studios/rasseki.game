@@ -8,24 +8,11 @@
 #include <string>
 #include <unordered_map>
 
-/* class SessionData {
-      class GameData {//init with session
-      CrearuresList
-      EventsList
-      ArtifactsList
-      class LocationData { //changes when navigatin' to another location
-            class SurfaceMapData
-            class EventsMapData
-      }
-} */
-
-
-//сюда передаём имя локации (= имя бмп)
 class LocationData { 
 public:
-      LocationData(std::string);
+      LocationData(std::string); //here goes location name (e.g. bmp filename)
       ~LocationData();
-      bool enterLocation(std::string);
+      bool EnterLocation(std::string);
       SurfaceMapData surfMap;
       EventsMapData evMap;
 private:
@@ -44,11 +31,13 @@ private:
       static std::unordered_map<std::string, Event> eventsList;
 };
 
+
+//singleton class
 class SessionData {
 public:
     static SessionData& getInstance();
-    SessionData(SessionData const&) = delete;        // Don't forget to disable copy
-    void operator=(SessionData const&) = delete;   // Don't forget to disable copy
+    SessionData(SessionData const&) = delete;      //disable copy
+    void operator=(SessionData const&) = delete;   //disable copy
 
     GameData gameData(std::string locationName);
 private:
@@ -58,8 +47,7 @@ private:
 
 #endif //SESSION
 
-
-
+//smth that can be useful sometime...
 /*    
       static bool checkArtifact(std::string);
       static bool checkCreature(std::string);

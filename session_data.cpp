@@ -1,20 +1,21 @@
 #include "session_data.h"
 #include "mapdata.h"
 
-bool LocationData::enterLocation(std::string name) {
+bool LocationData::EnterLocation(std::string name) {
     if (!ID.empty()) {
         surfMap.~SurfaceMapData();
-        evMap.~evMap();
+        evMap.~EventsMapData();
     };
-    bool surfMapSuccess = surfMap.initMatrix(name);
-    bool evMapSuccess = evMap.initMatrix();
+    //here we need to add events on the evMap
+    bool surfMapSuccess = surfMap.InitMatrix(name);
+    bool evMapSuccess = evMap.InitMatrix();
     return surfMapSuccess && evMapSuccess;
 
 }
 
 LocationData::LocationData(std::string locationName) {
     // ID = locationName;
-    enterLocation(ID);
+    if (EnterLocation(ID)) ID = locationName;
 }
 
 SessionData& SessionData::getInstance() {

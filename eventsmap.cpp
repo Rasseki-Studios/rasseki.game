@@ -4,22 +4,27 @@
 std::unordered_map<std::string, Event> EventsMapData::eventsList;
 std::vector<Event> ***EventsMapData::eventMatrix = nullptr;
 
-void EventsMapData::initEventMatrix() {
-    int height = SurfaceData::getHeight();
-    int width = SurfaceData::getWidth();
+bool EventsMapData::InitMatrix() {
+    int height = SurfaceMapData::getHeight();
+    int width = SurfaceMapData::getWidth();
     eventMatrix = new std::vector<Event> **[height];
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             eventMatrix[i][j] = nullptr;
         }
     }
+    return true;
 }
 
-void EventsMapData::addEvent(Event event) {
+EventsMapData::~EventsMapData() {
+
+}
+
+void EventsMapData::AddEvent(Event event) {
     eventsList.insert(make_pair(event.GetId(), event));
 
-    int width = SurfaceData::getWidth();
-    int height = SurfaceData::getHeight();
+    int width = SurfaceMapData::getWidth();
+    int height = SurfaceMapData::getHeight();
     
     coord eventCenter = event.GetCoord();
     if (eventCenter.x > width || eventCenter.y > height) throw "coordinates are out of range";
@@ -35,6 +40,8 @@ void EventsMapData::addEvent(Event event) {
                 eventCenter.x - event.getRadius() < 0      
             ) break; //total size of event mark exceeded the map
 
+            if (!SurfaceMapData::getSurface(eventCenter)) break;
+
             if (!eventMatrix[eventCenter.x][eventCenter.y]) {
                 eventMatrix[eventCenter.x][eventCenter.y] = new std::vector<Event>;
             eventMatrix[eventCenter.x][eventCenter.y]->push_back(event);
@@ -42,19 +49,19 @@ void EventsMapData::addEvent(Event event) {
             else {
                 eventMatrix[eventCenter.x][eventCenter.y]->push_back(event);            
                 //here'll be sorting function
-                sortEventVector(eventMatrix[eventCenter.x][eventCenter.y]);
+                SortEventVector(eventMatrix[eventCenter.x][eventCenter.y]);
             }
         }
     }
 }
 
-void EventsMapData::printEvents() {
+void EventsMapData::PrintEvents() {
     //get an iterator pointing to begining of the map
      std::unordered_map<std::string, Event>::iterator it = eventsList.begin(); 
      for (auto it : eventsList) it.second.printEvent();
 }
 
-void EventsMapData::sortEventVector(std::vector<Event> * vector) {
+void EventsMapData::SortEventVector(std::vector<Event> * vector) {
     std::sort(vector->begin(), vector->end(), 
     [](Event& a, Event& b) -> bool {
         return a.getPriority() > b.getPriority();
