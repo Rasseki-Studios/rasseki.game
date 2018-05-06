@@ -9,11 +9,13 @@ using std::endl;
 
 namespace fs = std::experimental::filesystem::v1;
 
-Event* EventFactory::CreateOne(str filename) {
-    EventData *ev_data = getEventData(filename);
-    /*  */
-    /*  */
-    /*  */
+// EventFactory::EventFactory() : parser() {}
+
+Event* EventFactory::Create(str filename) {
+    auto ev_data = parser.getData(filename);
+    /* needs SessionData  */
+    /*     mouseartiom    */
+    /*      write it!    */
     ev_data->PrintEventData();
     return nullptr;
 }
@@ -22,7 +24,7 @@ int EventFactory::InitAll(str eventsPath) {
     int eventCount = 0;
     for (auto &it : fs::directory_iterator(eventsPath)) {
         if (it.path().extension() == ".json") {
-            CreateOne(it.path());
+            Event *event = Create(it.path());
             eventCount++;
         }
     }

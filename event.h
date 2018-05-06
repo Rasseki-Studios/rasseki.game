@@ -3,7 +3,7 @@
 
 #include "item.h"
 #include "location.h"
-#include "subjects.h"
+#include "units.h"
 
 class EventFactory;  // forward declaration
 class Action {
