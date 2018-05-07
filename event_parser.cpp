@@ -1,5 +1,3 @@
-// this file is definition of getEventData() function
-
 #include "event_factory.h"
 #include "libs/json.hpp"
 #include <fstream>

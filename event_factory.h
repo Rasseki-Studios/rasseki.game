@@ -6,7 +6,8 @@
 #include "location.h"
 #include "event.h"
 
-struct ActionData : public ItemData {
+struct ActionData {
+    // Action is not an Item and has no own factory or parser
     str subjectID, command, objectID, diaryNote, condition;
     short duration;
     void set(str, str, str, str, str, short);
@@ -14,9 +15,8 @@ struct ActionData : public ItemData {
 };
 
 struct EventData : public ItemData {
-    str ID, name;
     coord coordinate;
-    short radius, level;
+    short radius;
     std::vector<ActionData> actions;
     EventData(str, str, coord, short, short, std::vector<ActionData>);
     /* DEBUG */ void PrintEventData();

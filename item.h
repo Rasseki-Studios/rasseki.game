@@ -17,6 +17,9 @@ protected:
 };
 
 struct ItemData {
+    str ID, name;
+    short level;
+    ItemData(str, str, short);
     // consists of data of Items, written with strings and integers
     // can be easily written to a file, for example, .json or .xml
     // converts to Item object in factories

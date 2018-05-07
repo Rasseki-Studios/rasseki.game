@@ -9,10 +9,8 @@ using std::endl;
 
 namespace fs = std::experimental::filesystem::v1;
 
-// EventFactory::EventFactory() : parser() {}
-
 Event* EventFactory::Create(str filename) {
-    // Getting EventData from file. 
+    // Getting EventData from file.
     // Unfortunately it can't get it as argument
     auto ev_data = parser.getData(filename);
 
@@ -40,8 +38,8 @@ void ActionData::set(
 
     subjectID = _subjectID;
     command = _command;
-    objectID = _objectID; 
-    diaryNote = _toDiary; 
+    objectID = _objectID;
+    diaryNote = _toDiary;
     condition = _condition;
     duration = _duration;
 }
@@ -57,11 +55,11 @@ void ActionData::PrintActionData() {
 }
 
 EventData::EventData(
-    str _ID, str _name, coord _coord, short _rad, 
-    short _level, std::vector<ActionData> _actions) 
+    str _ID, str _name, coord _coord, short _rad,
+    short _level, std::vector<ActionData> _actions)
     :
-    ID(_ID), name(_name), coordinate(_coord), 
-    radius(_rad), level(_level), actions(_actions) 
+    ItemData(_ID, _name, _level), coordinate(_coord),
+    radius(_rad), actions(_actions)
 {}
 
 /* DEBUG_FUNCTION */
