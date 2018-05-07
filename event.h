@@ -23,6 +23,8 @@ private:
 
 class Event : public Item, public Located {
 public:
+    short getRadius();
+    short getPriority();
     void runEvent() const;
     /* DEBUG_FUNCTION */ void printEvent() const;
     friend EventFactory;
