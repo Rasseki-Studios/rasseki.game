@@ -5,11 +5,16 @@
 
 #include "item.h"
 
+// System of artifact modifiers will be strongly expanded
+
 class Artifact : public Item {
 public:
     Artifact(std::string, std::string, short, short);
     short GetPower() const;
 private:
+    // some kind of effect description
+    // effect can be applied with function GetPower()
+    str modifier;
     short power;
 };
 
