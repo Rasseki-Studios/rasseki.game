@@ -1,34 +1,36 @@
 #ifndef SESSION
 #define SESSION
 
-#include "item.h"
-#include "subjects.h"
-#include "event.h"
-#include "mapdata.h"
 #include <string>
 #include <unordered_map>
 
+#include "item.h"
+#include "units.h"
+#include "things.h"
+#include "event.h"
+#include "mapdata.h"
+
 class LocationData { 
 public:
-      LocationData(std::string); //here goes location name (e.g. bmp filename)
+      LocationData(str); //here goes location name (e.g. bmp filename)
       ~LocationData();
-      bool EnterLocation(std::string);
+      bool EnterLocation(str);
       SurfaceMapData surfMap;
       EventsMapData evMap;
 private:
-      std::string ID = NULL;
+      str ID = NULL;
 };
 
 class GameData {
 public:
       friend ItemFactory;
-      GameData(std::string locationName) : currentLocation(locationName) { };
+      GameData(str locationName) : currentLocation(locationName) { };
       ~GameData();
       LocationData currentLocation;
 private:
-      static std::unordered_map<std::string, Artifact> artifactsList;
-      static std::unordered_map<std::string, Creature> creaturesList;
-      static std::unordered_map<std::string, Event> eventsList;
+      static std::unordered_map<str, Artifact> artifactsList;
+      static std::unordered_map<str, Creature> creaturesList;
+      static std::unordered_map<str, Event> eventsList;
 };
 
 
@@ -39,7 +41,7 @@ public:
     SessionData(SessionData const&) = delete;      //disable copy
     void operator=(SessionData const&) = delete;   //disable copy
 
-    GameData gameData(std::string locationName);
+    GameData gameData(str locationName);
 private:
     SessionData() { };       // forbid to create instance outside
     ~SessionData() { };      // forbid to delete instance outside    
@@ -49,9 +51,9 @@ private:
 
 //smth that can be useful sometime...
 /*    
-      static bool checkArtifact(std::string);
-      static bool checkCreature(std::string);
-      static bool checkEvent(std::string);
+      static bool checkArtifact(str);
+      static bool checkCreature(str);
+      static bool checkEvent(str);
       static void add(Artifact);
       static void add(Creature);
       static void add(Event);

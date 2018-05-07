@@ -1,17 +1,18 @@
 #ifndef MAPDATA
 #define MAPDATA
 
-#include "location.h"
-#include "event.h"
 #include <unordered_map>
 #include <string>
 #include <vector>
+
+#include "location.h"
+#include "event.h"
 
 class Event;
 
 class SurfaceMapData {
 public:
-    //returns FALSE if something went wrong (e.g. file doesn't exist)
+    // returns FALSE if something went wrong (e.g. file doesn't exist)
     static bool InitMatrix(const std::string); 
     static short getSurface(coord);
     static int getHeight();
@@ -30,7 +31,7 @@ class EventsMapData {
 public:
     static bool InitMatrix();
     static void AddEvent(Event);
-    static void PrintEvents(); //DEBUG FUNCTION
+    static void PrintEvents();  // DEBUG FUNCTION
     static Event& getEvent(coord&);
     ~EventsMapData();
 private:
