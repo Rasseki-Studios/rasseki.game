@@ -12,10 +12,13 @@ namespace fs = std::experimental::filesystem::v1;
 // EventFactory::EventFactory() : parser() {}
 
 Event* EventFactory::Create(str filename) {
+    // Getting EventData from file. 
+    // Unfortunately it can't get it as argument
     auto ev_data = parser.getData(filename);
+
     /* needs SessionData  */
     /*     mouseartiom    */
-    /*      write it!    */
+    /*      write it!     */
     ev_data->PrintEventData();
     return nullptr;
 }
