@@ -27,6 +27,16 @@ public:
       GameData(str locationName) : currentLocation(locationName) { };
       ~GameData();
       LocationData currentLocation;
+
+      static bool checkEvent(str);
+      static bool checkArtifact(str);
+      static bool checkCreature(str);
+      static void add(Event);
+      static void add(Artifact);
+      static void add(Creature);
+      static void printAllEvents(); 
+      static void printAllArtifacts();
+      static void printAllCreatures();
 private:
       static std::unordered_map<str, Artifact> artifactsList;
       static std::unordered_map<str, Creature> creaturesList;
