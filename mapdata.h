@@ -10,34 +10,36 @@
 
 class Event;
 
-class SurfaceMapData {
+class SurfaceMap {
 public:
     // returns FALSE if something went wrong (e.g. file doesn't exist)
-    static bool InitMatrix(const std::string); 
-    static short getSurface(coord);
-    static int getHeight();
-    static int getWidth();
-    static void setSurfMatrix(short**);
-    ~SurfaceMapData();
+    // bool InitMatrix(const stССd::string); в отдельный класс
+    SurfaceMap();
+    short getSurface(coord);
+    void setSurfMatrix(short**);  
+    // int getHeight(); в специфик бля
+    // int getWidth(); в специфик бля
+    ~SurfaceMap();
 private:
-    static int mapWidth;
-    static int mapHeight;
-    static short** surfaceMatrix;
+    // int mapWidth; в специфик бля
+    // int mapHeight; в специфик бля
+    short** surfaceMatrix;
     // map<ID, SurfaceType> surfaceTypesList;
 };
 
 
-class EventsMapData {
+class EventsMap {
 public:
-    static bool InitMatrix();
-    static void AddEvent(Event);
-    static void PrintEvents();  // DEBUG FUNCTION
-    static Event& getEvent(coord&);
-    ~EventsMapData();
+    EventsMap();
+    // bool InitMatrix(); в конструктор бля
+    void AddEvent(Event);
+    /* DEBUG FUNCTION */ void PrintEvents();
+    Event& getEvent(coord&);
+    ~EventsMap();
 private:
-    static std::unordered_map<std::string, Event> eventsList;
-    static std::vector<Event> ***eventMatrix;
-    static void SortEventVector(std::vector<Event>*);
+    std::unordered_map<std::string, Event> eventsList;
+    std::vector<Event> ***eventMatrix;
+    void SortEventVector(std::vector<Event>*);
 };
 
 #endif  // MAPDATA
