@@ -21,7 +21,7 @@ private:
     short duration;
 };
 
-class Event : public Item, public Located {
+class Event : public Item, public virtual Located {
 public:
     short getRadius();
     short getPriority();
