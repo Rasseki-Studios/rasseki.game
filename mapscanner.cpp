@@ -1,6 +1,19 @@
 #include "mapscanner.h"
 #include "libs/EasyBMP/EasyBMP.h"
 
+// enumeration representing uniqe color ion the bmp file
+enum rgbColor {
+    black_color = 0, 
+    red_color = 255000000, 
+    yellow_color = 255255000, 
+    blue_color = 255, 
+    green_color = 255000, 
+    white_color = 255255255
+};
+
+// simple enumeration for storing map in memory
+enum mapColor {black, red, yellow, blue, green, white};
+
 bool MapScanner::InitMatrix(const std::string filename) {
     BMP map;
     X data;
@@ -23,23 +36,23 @@ bool MapScanner::InitMatrix(const std::string filename) {
             tempPixel = map.GetPixel(i,j);
             intColor = tempPixel.Red * 1000000 + tempPixel.Green * 1000 + tempPixel.Blue;
             switch (intColor) {
-                case 0:                     //black
-                    tempMatrix[j][i] = 0;
+                case black_color:             //black
+                    tempMatrix[j][i] = black;
                     break;
-                case 255000000:             //red
-                    tempMatrix[j][i] = 1;
+                case red_color:               //red
+                    tempMatrix[j][i] = red;
                     break;
-                case 255255000:             //yellow
-                    tempMatrix[j][i] = 2;
+                case yellow_color:            //yellow
+                    tempMatrix[j][i] = yellow;
                     break;
-                case 255:                   //blue
-                    tempMatrix[j][i] = 3;
+                case blue_color:              //blue
+                    tempMatrix[j][i] = blue;
                     break;
-                case 255000:                //green
-                    tempMatrix[j][i] = 4 ;
+                case green_color:             //green
+                    tempMatrix[j][i] = green;
                     break;
-                case 255255255:             //white
-                    tempMatrix[j][i] = 5;
+                case white_color:             //white
+                    tempMatrix[j][i] = white;
                     break;
             }
         }
