@@ -18,16 +18,21 @@ Event* EventFactory::Create(EventData &ev_data) {
     return nullptr;
 }
 
-// int EventFactory::InitAll(str eventsPath, ) {
-//     int eventCount = 0;
-//     for (auto &it : fs::directory_iterator(eventsPath)) {
-//         if (it.path().extension() == ".json") {
-//             Event *event = Create(it.path());
-//             eventCount++;
-//         }
-//     }
-//     return eventCount;
-// }
+int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
+    int eventCount = 0;
+    for (auto &it : fs::directory_iterator(folder)) {
+        if (it.path().extension() == ".json") {
+            tempData = parser.getData(it.path());
+            if (!tempData) continue;
+            for (auto it : *tempData) {
+                it.PrintEventData();
+                eventCount++;
+            }
+            // Event *event = Create(it.path());
+        }
+    }
+    return eventCount;
+}
 
 void ActionData::set(
     str _subjectID, str _command, str _objectID,

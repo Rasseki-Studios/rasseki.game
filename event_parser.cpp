@@ -52,11 +52,13 @@ shared_ptr<vector<EventData>> EventParser::getData(str filename) {
         return nullptr;
     }
     try {
-        auto ev_data_vector = j.at("actions").get<std::vector<EventData>>();
-        auto ev_data = make_shared<vector<EventData>>(ev_data_vector);
+        auto ev_data_vector = j.at("events").get<std::vector<EventData>>();
+        ev_data = make_shared<vector<EventData>>(ev_data_vector);
+        cout << ev_data->size() << endl;
     } catch(nlohmann::detail::out_of_range) {
         cout << "Events from file " << filename << " are invalid." << endl;
         return nullptr;
     }
+    cout << ev_data->size() << endl;
     return ev_data;
 }

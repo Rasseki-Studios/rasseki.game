@@ -37,10 +37,10 @@ public:
 
 class EventFactory {
 public:
-    int InitAll(str folder, unordered_map<str, Event>);
+    int InitAll(str folder, unordered_map<str, Event>&);
 private:
     EventParser parser;
-    vector<EventData> tempData;
+    shared_ptr<vector<EventData>> tempData;
     // needs when there are several artifacts in one file
 
     bool isVaild(EventData&);
