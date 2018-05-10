@@ -15,6 +15,3 @@ str Item::getName() const {
 short Item::getLevel() const {
     return level;
 }
-
-ItemData::ItemData(str _ID, str _name, short _level) 
-: ID(_ID), name(_name), level(_level) {};
