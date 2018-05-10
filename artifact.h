@@ -1,5 +1,5 @@
-#ifndef THINGS_H
-#define THINGS_H
+#ifndef ARTIFACT
+#define ARTIFACT
 
 #include <vector>
 #include <unordered_map>
@@ -64,4 +64,4 @@ private:
     std::vector<Artifact> artifacts;
 };
 
-#endif //THINGS_H
+#endif //ARTIFACT
