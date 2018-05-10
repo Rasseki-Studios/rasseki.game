@@ -1,4 +1,5 @@
 #include <experimental/filesystem>
+namespace fs = std::experimental::filesystem::v1;
 
 //for error printing, should be changed to QT error printer
 #include <iostream>
@@ -7,30 +8,26 @@ using std::endl;
 
 #include "event_factory.h"
 
-namespace fs = std::experimental::filesystem::v1;
 
-Event* EventFactory::Create(str filename) {
-    // Getting EventData from file.
-    // Unfortunately it can't get it as argument
-    auto ev_data = parser.getData(filename);
+Event* EventFactory::Create(EventData &ev_data) {
 
-    /* needs SessionData  */
-    /*     mouseartiom    */
-    /*      write it!     */
-    ev_data->PrintEventData();
+    /*  needs SessionData  */
+    /*     mouseartiom     */
+    /*      write  it!     */
+    // ev_data->PrintEventData();
     return nullptr;
 }
 
-int EventFactory::InitAll(str eventsPath) {
-    int eventCount = 0;
-    for (auto &it : fs::directory_iterator(eventsPath)) {
-        if (it.path().extension() == ".json") {
-            Event *event = Create(it.path());
-            eventCount++;
-        }
-    }
-    return eventCount;
-}
+// int EventFactory::InitAll(str eventsPath, ) {
+//     int eventCount = 0;
+//     for (auto &it : fs::directory_iterator(eventsPath)) {
+//         if (it.path().extension() == ".json") {
+//             Event *event = Create(it.path());
+//             eventCount++;
+//         }
+//     }
+//     return eventCount;
+// }
 
 void ActionData::set(
     str _subjectID, str _command, str _objectID,
@@ -54,13 +51,17 @@ void ActionData::PrintActionData() {
     cout << "duration: " << duration << endl;
 }
 
-EventData::EventData(
+void EventData::set(
     str _ID, str _name, coord _coord, short _rad,
-    short _level, std::vector<ActionData> _actions)
-    :
-    ItemData(_ID, _name, _level), coordinate(_coord),
-    radius(_rad), actions(_actions)
-{}
+    short _level, std::vector<ActionData> _actions) {
+
+    ID =_ID; 
+    name = _name; 
+    level = _level; 
+    coordinate = _coord;
+    radius = _rad; 
+    actions = _actions;
+}
 
 /* DEBUG_FUNCTION */
 void EventData::PrintEventData() {
