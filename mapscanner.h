@@ -5,7 +5,7 @@
 
 using str = std::string;
 
-struct X { // temp name
+struct MapData {
     int mapWidth;
     int mapHeight;
     short** surfaceMatrix;
@@ -13,9 +13,9 @@ struct X { // temp name
 
 class MapScanner { // scans the map
 public:
-    X& getMap(const str);
+    MapData& getMap(const str);
 private:
-    X data;
+    MapData data;
     bool InitMatrix(const str);
 };
 

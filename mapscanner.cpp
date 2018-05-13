@@ -1,7 +1,7 @@
 #include "mapscanner.h"
 #include "libs/EasyBMP/EasyBMP.h"
 
-// enumeration representing uniqe color ion the bmp file
+// enumeration representing uniqe color on the bmp file
 enum rgbColor {
     black_color = 0, 
     red_color = 255000000, 
@@ -16,7 +16,7 @@ enum mapColor {black, red, yellow, blue, green, white};
 
 bool MapScanner::InitMatrix(const std::string filename) {
     BMP map;
-    X data;
+    MapData data;
     if (!map.ReadFromFile(filename.c_str())) return false; 
     data.mapWidth = map.TellWidth();
     data.mapHeight = map.TellHeight();
@@ -60,7 +60,7 @@ bool MapScanner::InitMatrix(const std::string filename) {
     return true;
 }
 
-X& MapScanner::getMap(const str filename) {
+MapData& MapScanner::getMap(const str filename) {
     if (InitMatrix(filename)) return data;
     else {
         throw "error during file scanning";
