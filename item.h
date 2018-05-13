@@ -7,7 +7,7 @@ using str = std::string;
 class Item {
 public:
     Item(str, str, short);
-    str getId() const;
+    str getID() const;
     str getName() const;
     short getLevel() const;
 protected:

@@ -4,7 +4,7 @@
 Item::Item(str _ID, str _name, short _level)
 : ID(_ID), name(_name), level(_level) {}
 
-str Item::getId() const {
+str Item::getID() const {
     return ID;
 }
 
