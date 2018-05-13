@@ -3,7 +3,8 @@
 
 #include <string>
 
-#include "things.h"
+#include "artifact.h"
+#include "event.h"
 #include "location.h"
 
 class Hero : public Item, public Movable {
@@ -14,7 +15,8 @@ protected:
     Storage *inventory;
 };
 
-class Creature : public Item, public Movable {
+// TEMPORARY
+class Creature : public Event, public Movable {
 public:
     Creature(std::string, std::string, short, short, coord);
 };
