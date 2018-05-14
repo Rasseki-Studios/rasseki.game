@@ -18,6 +18,10 @@ public:
 private slots:
     void on_exit_clicked();
 
+    void on_load_clicked();
+
+    void on_save_clicked();
+
 private:
     Ui::GameWindow *ui;
 };

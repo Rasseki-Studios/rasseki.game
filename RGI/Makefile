@@ -52,21 +52,25 @@ SOURCES       = main.cpp \
 		menuwindow.cpp \
 		gamewindow.cpp \
 		loadwindow.cpp \
-		mapview.cpp qrc_resource.cpp \
+		mapview.cpp \
+		savewindow.cpp qrc_resource.cpp \
 		moc_menuwindow.cpp \
 		moc_gamewindow.cpp \
 		moc_loadwindow.cpp \
-		moc_mapview.cpp
+		moc_mapview.cpp \
+		moc_savewindow.cpp
 OBJECTS       = main.o \
 		menuwindow.o \
 		gamewindow.o \
 		loadwindow.o \
 		mapview.o \
+		savewindow.o \
 		qrc_resource.o \
 		moc_menuwindow.o \
 		moc_gamewindow.o \
 		moc_loadwindow.o \
-		moc_mapview.o
+		moc_mapview.o \
+		moc_savewindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -126,11 +130,13 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		RGI.pro menuwindow.h \
 		gamewindow.h \
 		loadwindow.h \
-		mapview.h main.cpp \
+		mapview.h \
+		savewindow.h main.cpp \
 		menuwindow.cpp \
 		gamewindow.cpp \
 		loadwindow.cpp \
-		mapview.cpp
+		mapview.cpp \
+		savewindow.cpp
 QMAKE_TARGET  = RGI
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = RGI
@@ -158,7 +164,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h $(OBJECTS)  
+$(TARGET): ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h ui_savewindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: RGI.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -299,9 +305,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents resource.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents menuwindow.h gamewindow.h loadwindow.h mapview.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp menuwindow.cpp gamewindow.cpp loadwindow.cpp mapview.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents menuwindow.ui gamewindow.ui loadwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents menuwindow.h gamewindow.h loadwindow.h mapview.h savewindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp menuwindow.cpp gamewindow.cpp loadwindow.cpp mapview.cpp savewindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents menuwindow.ui gamewindow.ui loadwindow.ui savewindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -333,9 +339,9 @@ qrc_resource.cpp: resource.qrc \
 		img/testmap.bmp
 	/usr/lib/x86_64-linux-gnu/qt5/bin/rcc -name resource resource.qrc -o qrc_resource.cpp
 
-compiler_moc_header_make_all: moc_menuwindow.cpp moc_gamewindow.cpp moc_loadwindow.cpp moc_mapview.cpp
+compiler_moc_header_make_all: moc_menuwindow.cpp moc_gamewindow.cpp moc_loadwindow.cpp moc_mapview.cpp moc_savewindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_menuwindow.cpp moc_gamewindow.cpp moc_loadwindow.cpp moc_mapview.cpp
+	-$(DEL_FILE) moc_menuwindow.cpp moc_gamewindow.cpp moc_loadwindow.cpp moc_mapview.cpp moc_savewindow.cpp
 moc_menuwindow.cpp: gamewindow.h \
 		menuwindow.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/moleque/rasseki.game/RGI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include menuwindow.h -o moc_menuwindow.cpp
@@ -349,11 +355,14 @@ moc_loadwindow.cpp: loadwindow.h
 moc_mapview.cpp: mapview.h
 	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/moleque/rasseki.game/RGI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mapview.h -o moc_mapview.cpp
 
+moc_savewindow.cpp: savewindow.h
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/moleque/rasseki.game/RGI -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include savewindow.h -o moc_savewindow.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h
+compiler_uic_make_all: ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h ui_savewindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h
+	-$(DEL_FILE) ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h ui_savewindow.h
 ui_menuwindow.h: menuwindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic menuwindow.ui -o ui_menuwindow.h
 
@@ -363,6 +372,9 @@ ui_gamewindow.h: gamewindow.ui \
 
 ui_loadwindow.h: loadwindow.ui
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic loadwindow.ui -o ui_loadwindow.h
+
+ui_savewindow.h: savewindow.ui
+	/usr/lib/x86_64-linux-gnu/qt5/bin/uic savewindow.ui -o ui_savewindow.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -386,7 +398,8 @@ menuwindow.o: menuwindow.cpp menuwindow.h \
 
 gamewindow.o: gamewindow.cpp gamewindow.h \
 		ui_gamewindow.h \
-		mapview.h
+		mapview.h \
+		loadwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gamewindow.o gamewindow.cpp
 
 loadwindow.o: loadwindow.cpp loadwindow.h \
@@ -396,6 +409,10 @@ loadwindow.o: loadwindow.cpp loadwindow.h \
 mapview.o: mapview.cpp mapview.h \
 		gamewindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mapview.o mapview.cpp
+
+savewindow.o: savewindow.cpp savewindow.h \
+		ui_savewindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o savewindow.o savewindow.cpp
 
 qrc_resource.o: qrc_resource.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resource.o qrc_resource.cpp
@@ -411,6 +428,9 @@ moc_loadwindow.o: moc_loadwindow.cpp
 
 moc_mapview.o: moc_mapview.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mapview.o moc_mapview.cpp
+
+moc_savewindow.o: moc_savewindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_savewindow.o moc_savewindow.cpp
 
 ####### Install
 

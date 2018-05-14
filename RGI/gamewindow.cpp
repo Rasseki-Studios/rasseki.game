@@ -1,5 +1,7 @@
 #include "gamewindow.h"
 #include "ui_gamewindow.h"
+#include "loadwindow.h"
+#include "savewindow.h"
 
 #include <QMessageBox>
 
@@ -23,4 +25,18 @@ void GameWindow::on_exit_clicked()
         parentWidget()->show();
         close();
     }
+}
+
+void GameWindow::on_load_clicked()
+{   //запуск окна загрузки игры
+    LoadWindow Load;
+    Load.setModal(true);
+    Load.exec();
+}
+
+void GameWindow::on_save_clicked()
+{   //запуск окна сохранения игры
+    SaveWindow Save;
+    Save.setModal(true);
+    Save.exec();
 }

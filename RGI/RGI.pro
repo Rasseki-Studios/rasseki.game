@@ -16,16 +16,19 @@ SOURCES += main.cpp\
         menuwindow.cpp \
     gamewindow.cpp \
     loadwindow.cpp \
-    mapview.cpp
+    mapview.cpp \
+    savewindow.cpp
 
 HEADERS  += menuwindow.h \
     gamewindow.h \
     loadwindow.h \
-    mapview.h
+    mapview.h \
+    savewindow.h
 
 FORMS    += menuwindow.ui \
     gamewindow.ui \
-    loadwindow.ui
+    loadwindow.ui \
+    savewindow.ui
 
 RESOURCES += \
     resource.qrc
