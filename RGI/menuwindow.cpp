@@ -10,6 +10,8 @@ MenuWindow::MenuWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    Game = NULL;
+
     //установка фона и размеров окна меню
     QImage bg_menu(":/resources/img/menu.png");
     setFixedSize(bg_menu.width(), bg_menu.height());
@@ -29,6 +31,7 @@ MenuWindow::MenuWindow(QWidget *parent) :
 MenuWindow::~MenuWindow()
 {
     delete ui;
+    delete Game;
 }
 
 void MenuWindow::on_newGame_clicked()

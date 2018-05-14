@@ -7,9 +7,9 @@ LoadWindow::LoadWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //установка фона и размеров окна меню
-    setFixedSize(width(), height());
+    //установка фона и размеров окна загрузки игры
     QImage bg_window(":/resources/img/bground.png");
+    setFixedSize(width(), height());
     QBrush br;
     br.setTextureImage(bg_window);
     QPalette plt = palette();
@@ -25,7 +25,12 @@ LoadWindow::~LoadWindow()
     delete ui;
 }
 
-void LoadWindow::on_backLoading_clicked()
-{   //закрытие окна загрузки игры
+void LoadWindow::on_loadLoading_2_clicked()
+{
+
+}
+
+void LoadWindow::on_backLoading_2_clicked()
+{   //закрыть окно загрузки игры
     close();
 }

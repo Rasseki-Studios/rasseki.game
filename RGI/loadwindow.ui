@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>551</width>
-    <height>394</height>
+    <width>508</width>
+    <height>349</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,6 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget {
-	color: white;
 	font-weight: bold
 }
 
@@ -37,26 +36,30 @@ QMessageBox {
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="2">
+    <widget class="QListWidget" name="listWidget">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="1">
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="backLoading">
+      <widget class="QPushButton" name="backLoading_2">
        <property name="text">
         <string>Назад</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="loadLoading">
+      <widget class="QPushButton" name="loadLoading_2">
        <property name="text">
         <string>Загрузить</string>
        </property>
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="0" column="0" colspan="2">
-    <widget class="QListWidget" name="listWidget"/>
    </item>
   </layout>
  </widget>

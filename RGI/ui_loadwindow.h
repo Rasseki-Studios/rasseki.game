@@ -26,18 +26,17 @@ class Ui_LoadWindow
 {
 public:
     QGridLayout *gridLayout;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *backLoading;
-    QPushButton *loadLoading;
     QListWidget *listWidget;
+    QHBoxLayout *horizontalLayout_2;
+    QPushButton *backLoading_2;
+    QPushButton *loadLoading_2;
 
     void setupUi(QDialog *LoadWindow)
     {
         if (LoadWindow->objectName().isEmpty())
             LoadWindow->setObjectName(QStringLiteral("LoadWindow"));
-        LoadWindow->resize(551, 394);
+        LoadWindow->resize(508, 349);
         LoadWindow->setStyleSheet(QLatin1String("QWidget {\n"
-"	color: white;\n"
 "	font-weight: bold\n"
 "}\n"
 "\n"
@@ -59,26 +58,26 @@ public:
 "}"));
         gridLayout = new QGridLayout(LoadWindow);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        backLoading = new QPushButton(LoadWindow);
-        backLoading->setObjectName(QStringLiteral("backLoading"));
-
-        horizontalLayout->addWidget(backLoading);
-
-        loadLoading = new QPushButton(LoadWindow);
-        loadLoading->setObjectName(QStringLiteral("loadLoading"));
-
-        horizontalLayout->addWidget(loadLoading);
-
-
-        gridLayout->addLayout(horizontalLayout, 1, 1, 1, 1);
-
         listWidget = new QListWidget(LoadWindow);
         listWidget->setObjectName(QStringLiteral("listWidget"));
-        listWidget->setStyleSheet(QStringLiteral("background-image: url(\":/resources/img/back.jpg\")"));
+        listWidget->setStyleSheet(QStringLiteral(""));
 
         gridLayout->addWidget(listWidget, 0, 0, 1, 2);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        backLoading_2 = new QPushButton(LoadWindow);
+        backLoading_2->setObjectName(QStringLiteral("backLoading_2"));
+
+        horizontalLayout_2->addWidget(backLoading_2);
+
+        loadLoading_2 = new QPushButton(LoadWindow);
+        loadLoading_2->setObjectName(QStringLiteral("loadLoading_2"));
+
+        horizontalLayout_2->addWidget(loadLoading_2);
+
+
+        gridLayout->addLayout(horizontalLayout_2, 1, 1, 1, 1);
 
 
         retranslateUi(LoadWindow);
@@ -89,8 +88,8 @@ public:
     void retranslateUi(QDialog *LoadWindow)
     {
         LoadWindow->setWindowTitle(QApplication::translate("LoadWindow", "Dialog", 0));
-        backLoading->setText(QApplication::translate("LoadWindow", "\320\235\320\260\320\267\320\260\320\264", 0));
-        loadLoading->setText(QApplication::translate("LoadWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214", 0));
+        backLoading_2->setText(QApplication::translate("LoadWindow", "\320\235\320\260\320\267\320\260\320\264", 0));
+        loadLoading_2->setText(QApplication::translate("LoadWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214", 0));
     } // retranslateUi
 
 };

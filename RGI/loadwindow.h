@@ -16,7 +16,9 @@ public:
     ~LoadWindow();
 
 private slots:
-    void on_backLoading_clicked();
+    void on_loadLoading_2_clicked();
+
+    void on_backLoading_2_clicked();
 
 private:
     Ui::LoadWindow *ui;

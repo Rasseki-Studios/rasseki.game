@@ -42,7 +42,7 @@ public:
     {
         if (MenuWindow->objectName().isEmpty())
             MenuWindow->setObjectName(QStringLiteral("MenuWindow"));
-        MenuWindow->resize(687, 488);
+        MenuWindow->resize(611, 488);
         MenuWindow->setStyleSheet(QLatin1String("QWidget {\n"
 "	color: white;\n"
 "	font-weight: bold\n"
@@ -68,7 +68,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayoutWidget = new QWidget(centralWidget);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(60, 90, 554, 385));
+        gridLayoutWidget->setGeometry(QRect(60, 90, 528, 385));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -98,7 +98,7 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(newGame->sizePolicy().hasHeightForWidth());
         newGame->setSizePolicy(sizePolicy);
-        newGame->setMaximumSize(QSize(200, 50));
+        newGame->setMaximumSize(QSize(16777215, 50));
 
         verticalLayout->addWidget(newGame);
 
@@ -106,7 +106,7 @@ public:
         loadGame->setObjectName(QStringLiteral("loadGame"));
         sizePolicy.setHeightForWidth(loadGame->sizePolicy().hasHeightForWidth());
         loadGame->setSizePolicy(sizePolicy);
-        loadGame->setMaximumSize(QSize(200, 50));
+        loadGame->setMaximumSize(QSize(16777215, 50));
 
         verticalLayout->addWidget(loadGame);
 
@@ -114,7 +114,7 @@ public:
         settingGame->setObjectName(QStringLiteral("settingGame"));
         sizePolicy.setHeightForWidth(settingGame->sizePolicy().hasHeightForWidth());
         settingGame->setSizePolicy(sizePolicy);
-        settingGame->setMaximumSize(QSize(200, 50));
+        settingGame->setMaximumSize(QSize(16777215, 50));
 
         verticalLayout->addWidget(settingGame);
 
@@ -122,7 +122,7 @@ public:
         exitGame->setObjectName(QStringLiteral("exitGame"));
         sizePolicy.setHeightForWidth(exitGame->sizePolicy().hasHeightForWidth());
         exitGame->setSizePolicy(sizePolicy);
-        exitGame->setMaximumSize(QSize(200, 50));
+        exitGame->setMaximumSize(QSize(16777215, 50));
 
         verticalLayout->addWidget(exitGame);
 
@@ -144,7 +144,7 @@ public:
     void retranslateUi(QMainWindow *MenuWindow)
     {
         MenuWindow->setWindowTitle(QApplication::translate("MenuWindow", "Rasseki Game", 0));
-        label->setText(QApplication::translate("MenuWindow", "<html><head/><body><p><span style=\" font-size:22pt;\"><br/></span></p><p><span style=\" font-size:22pt;\">Rasseki Game</span></p></body></html>", 0));
+        label->setText(QApplication::translate("MenuWindow", "<html><head/><body><p><br/></p><p><span style=\" font-size:24pt;\">Rasseki Game</span></p></body></html>", 0));
         logo->setText(QString());
         newGame->setText(QApplication::translate("MenuWindow", "\320\235\320\276\320\262\320\260\321\217 \320\270\320\263\321\200\320\260", 0));
         loadGame->setText(QApplication::translate("MenuWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \320\270\320\263\321\200\321\203", 0));
