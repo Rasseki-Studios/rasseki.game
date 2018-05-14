@@ -30,7 +30,7 @@ class Ui_GameWindow
 public:
     QWidget *centralwidget;
     QGridLayout *gridLayout_2;
-    MapView *graphicsView;
+    MapView *map;
     QHBoxLayout *horizontalLayout;
     QPushButton *save;
     QPushButton *load;
@@ -71,16 +71,16 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         gridLayout_2 = new QGridLayout(centralwidget);
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
-        graphicsView = new MapView(centralwidget);
-        graphicsView->setObjectName(QStringLiteral("graphicsView"));
+        map = new MapView(centralwidget);
+        map->setObjectName(QStringLiteral("map"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(graphicsView->sizePolicy().hasHeightForWidth());
-        graphicsView->setSizePolicy(sizePolicy);
-        graphicsView->setMinimumSize(QSize(500, 500));
+        sizePolicy.setHeightForWidth(map->sizePolicy().hasHeightForWidth());
+        map->setSizePolicy(sizePolicy);
+        map->setMinimumSize(QSize(500, 500));
 
-        gridLayout_2->addWidget(graphicsView, 0, 0, 3, 1);
+        gridLayout_2->addWidget(map, 0, 0, 3, 1);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));

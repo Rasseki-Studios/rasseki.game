@@ -39,7 +39,7 @@ QMessageBox {
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0" rowspan="3">
-     <widget class="MapView" name="graphicsView">
+     <widget class="MapView" name="map">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>

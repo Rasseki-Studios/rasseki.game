@@ -5,15 +5,25 @@ MapView::MapView(QWidget *parent)
     : QGraphicsView(parent)
 {
     //настройка отображения виджета и его содержимого
-    this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //отключим скроллбар по горизонтали
-    this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);   //отключим скроллбар по вертикали
-    this->setAlignment(Qt::AlignCenter);                        //делаем привязку содержимого к центру
-    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);    //растягиваем содержимое по виджету
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //отключим скроллбар по горизонтали
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);   //отключим скроллбар по вертикали
+    setAlignment(Qt::AlignCenter);                        //делаем привязку содержимого к центру
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);    //растягиваем содержимое по виджету
+
+
+    //QImage bg_window(":/resources/img/testmap.bmp");
+    //QBrush br;
+    //br.setTextureImage(bg_window);
+
+    //растягиваем изображение по размеру объекта
+    QPixmap img(":/resources/img/testmap.bmp");
+    img.scaled(this->width(), this->height(), Qt::IgnoreAspectRatio);
+
 
     mapScene = new QGraphicsScene();   //инициализируем сцену для отрисовки
-    mapScene->setBackgroundBrush(QBrush(QPixmap(":/resources/img/testmap.bmp")));    //устанавливаем Background виджета (изодражение карты)
+    mapScene->setBackgroundBrush(QBrush(img));    //устанавливаем Background виджета (изображение карты)
 
-    this->setScene(mapScene);          //устанавливаем сцену в виджет
+    setScene(mapScene);          //устанавливаем сцену в виджет
 
     group_1 = new QGraphicsItemGroup(); //инициализируем первую группу элементов
     group_2 = new QGraphicsItemGroup(); //инициализируем вторую группу элементов
@@ -38,12 +48,22 @@ MapView::~MapView()
 void MapView::slotAlarmTimer()
 {
     //удаляем все элементы со сцены, если они есть перед новой отрисовкой
-    this->deleteItemsFromGroup(group_1);
-    this->deleteItemsFromGroup(group_2);
+    deleteItemsFromGroup(group_1);
+    deleteItemsFromGroup(group_2);
+
 
     int width = this->width();      //определяем ширину нашего виджета
     int height = this->height();    //определяем высоту нашего виджета
-    mapScene->setSceneRect(0, 0, width, height);    //устанавливаем размер сцены по размеру виджета
+
+
+    /*qDebug() << width << " | " << height;
+
+    QPixmap img(":/resources/img/testmap.bmp");
+    img.scaled(width, height, Qt::IgnoreAspectRatio);
+    mapScene->setBackgroundBrush(QBrush(img));*/
+
+
+    mapScene->setSceneRect(0, 0, width, height);    //устанавливаем размер сцены по размеру виджет
 
     //приступаем к отрисовке произвольной картинки
     QPen penBlack(Qt::black); //задаём чёрную кисть
