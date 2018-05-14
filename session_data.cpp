@@ -4,6 +4,10 @@
 
 using std::vector;
 
+//---------------------------------------------------------
+//---------------- SurfaceData ----------------------------
+//---------------------------------------------------------
+
 bool SurfaceData::Init(const str locationName) {
     // open map, read it
     // asign map pointers
@@ -22,18 +26,53 @@ int SurfaceData::getWidth() {
     return mapWidth;
 }
 
-int SurfaceData::getWidth() {
+int SurfaceData::getHeight() {
     return mapHeight;
 }
 
-short SurfaceData::getSurface(coord point) {
+short SurfaceData::getSurface(coord& point) {
+    if ((point.x <= 0 || point.x >= mapWidth) || (point.y <= 0 || point.y >= mapHeight))
+        return -1;
     return surfaceMatrix[point.x][point.y];
 }
 
+bool SurfaceData::isValidCoord(coord& point) {
+    if ((point.x < 0 || point.x > mapWidth) || (point.y < 0 || point.y > mapHeight))
+        return false;
+    return true;
+}
+
+bool SurfaceData::isValidRadius(coord& point, short radius) {
+    if (
+        (point.x - radius <= 0) || 
+        (point.x + radius >= mapWidth) || 
+        (point.y + radius >= mapHeight) ||
+        (point.y - radius <= 0) ||
+        (!isValidCoord(point))
+    ) return false;
+
+    bool flag = false;
+    coord temp;
+    for (int i = point.x - radius; i < point.x + radius; i++) {
+        for (int j = point.y - radius; j < point.y + radius; j++) {
+            temp.x = i; temp.y = j;
+            if (getSurface(temp)) flag = true;
+        }
+    }
+    
+    return flag;
+}
+
+//---------------------------------------------------------
+//----------------- EventsData ----------------------------
+//---------------------------------------------------------
+
 bool EventsData::Init() {
     EventFactory eFactory;
-    eFactory.InitAll("tests/events", currentEventList); //hardcoded just for debugging
-    // std::unique_ptr<Event[][]> eventMatrix (nullptr);
+    str path = "tests/events";
+    eFactory.InitAll(path, currentEventList); //hardcoded just for debugging
+    //using unique_ptr for two-dim array isn't a good idea though
+    // std::unique_ptr<Event[][]> eventMatrix (nullptr); 
     PulverizeEvents(currentEventList);
 }
 
@@ -93,14 +132,23 @@ void EventsData::SortEventVector(std::vector<Event> * vector) {
     });
 }
 
+//---------------------------------------------------------
+//---------------- ArtifactsData --------------------------
+//---------------------------------------------------------
+
 bool ArtifactsData::Init() {
     ArtifactFactory aFactory;
-    aFactory.InitAll("tests/artifacts", currentArtifactsList);
+    str path = "tests/artifacts";
+    aFactory.InitAll(path, currentArtifactsList);
 }
 
 Artifact& ArtifactsData::getArtifact(const str key) {
     return currentArtifactsList.at(key);
 }
+
+//---------------------------------------------------------
+//------------------- GameData ----------------------------
+//---------------------------------------------------------
 
 short GameData::getHeight() {
     return mapHeight;
