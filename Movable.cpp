@@ -1,4 +1,4 @@
-#include "Location.h"
+#include "Movable.h"
 
 #define WALL -1    //непроходимая ячейка
 #define BLANK -2   //свободная непомеченная ячейка
@@ -8,8 +8,8 @@ Movable::Movable(coord coordinates, short speed) : Located(coordinates), speed(s
 bool Movable::Move(coord destination) {
     path.clear();   //очищаем текущий маршрут для пересчета
 
-    int width = 0;  //ширина рабочего поля
-    int height = 0;  //высота рабочего поля
+    int width = 100;  //ширина рабочего поля
+    int height = 100;  //высота рабочего поля
     int **map = nullptr;  //картa
     //в дальнейшем будем использовать ф-цию для получения данных
     //Map.getPart(map, &width, &height)

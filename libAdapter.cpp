@@ -17,6 +17,6 @@ std::vector<std::string> GetSavedNames() {
 }
 
 
-int Go(int x, int y) {
-    return x+y;
+bool Go(int x, int y) {
+    return hero.Move({x, y});
 }
