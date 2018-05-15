@@ -1,5 +1,6 @@
 #include "mapview.h"
 #include "gamewindow.h"
+#include "libAdapter.h"
 
 MapView::MapView(QWidget *parent)
     : QGraphicsView(parent)
@@ -128,6 +129,7 @@ void MapView::mousePressEvent(QMouseEvent *mousePressEvt)
     QPointF point = mousePressEvt->pos();
 
     qDebug() << point.x() << " and " << point.y();
+    qDebug() << Go(point.x(), point.y());
 
     emit passCoord(point);
 }

@@ -10,6 +10,14 @@ GameWindow::GameWindow(QWidget *parent) :
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
+
+    //установка фона и размеров окна загрузки игры
+    QImage bg_window(":/resources/img/bground.png");
+    QBrush br;
+    br.setTextureImage(bg_window);
+    QPalette plt = palette();
+    plt.setBrush(QPalette::Background, br);
+    setPalette(plt);
 }
 
 GameWindow::~GameWindow()

@@ -4,9 +4,9 @@
 #include <vector>
 
 struct coord {
-    int x = 0;
-    int y = 0;
-    coord() = default;
+    int x;
+    int y;
+    coord();
     coord(int, int);
 };
 

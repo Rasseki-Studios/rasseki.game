@@ -32,3 +32,17 @@ FORMS    += menuwindow.ui \
 
 RESOURCES += \
     resource.qrc
+
+#Добавление статической библиотеки (адаптер)
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../release/ -lAdapter
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../debug/ -lAdapter
+else:unix: LIBS += -L$$PWD/../ -lAdapter
+
+INCLUDEPATH += $$PWD/../
+DEPENDPATH += $$PWD/../
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../release/libAdapter.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../debug/libAdapter.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../release/Adapter.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../debug/Adapter.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../libAdapter.a
