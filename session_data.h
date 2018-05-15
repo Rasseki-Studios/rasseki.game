@@ -9,10 +9,7 @@
 #include "event_factory.h"
 #include "artifact.h"
 // #include "artifact_factory.h"
-#include "mapdata.h"
-#include "mapscanner.h"
-#include "surface.h"
-
+#include "surface.h" //here is SurfaceData, temporary solution.
 
 class SystemData {
     // coming soon
@@ -21,14 +18,26 @@ class SystemData {
 class GameData {
 // stores finished events and other stuff
 public:
-//    bool Init();
-    static short getHeight();
-    static short getWidth();
-    static void setHeight(short);
-    static void setWidth(short);
+    bool Init(); 
+    int mapHeight;
+    int mapWidth;
+    str locationID; // ID of a map going to be loaded
+};
+
+class SurfaceData {
+public:
+    bool Init();
+    int getWidth();
+    int getHeight();
+    bool IsValidRadius(coord&, short);
+    bool IsValidCoord(coord&);
+    bool IsWalkable(coord&);
+    short getSurface(coord&);
+    Surface& getSurface(str);   
 private:
-    static short mapHeight;
-    static short mapWidth;    
+    int mapWidth, mapHeight;
+    short** surfaceMatrix;    // std::unordered_map<str, Surface> currentSurfaceList; // currently useless
+    // std::unordered_map<str, Surface> globalSurfaceList; //will be added in future
 };
 
 class EventsData {
@@ -36,6 +45,7 @@ public:
     bool Init();
     Event& getEvent(const str);
     Event& getEvent(coord);
+    void removeFrontEvent(coord); // no realization yet
     // more methods coming in future
 private:
     void SortEventVector(std::vector<Event>*);
@@ -53,8 +63,21 @@ public:
     Artifact& getArtifact(const str);
 private:
     std::unordered_map<str, Artifact> currentArtifactsList;
-    std::unordered_map<str, Artifact> globalArtifactsList;
-
+    // std::unordered_map<str, Artifact> globalArtifactsList;
 };
+
+namespace SessionData {
+    SystemData systemData;
+    GameData gameData;
+    SurfaceData surfaceData;
+    EventsData eventsData;
+    ArtifactsData artifactsData;
+
+    // hero initialization
+    str name = "Hero";
+    str id = "super_hero";
+    coord start;
+    Hero hero(name, id, 1, 10, start, nullptr);
+}
 
 #endif //SESSION
