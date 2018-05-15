@@ -1,3 +1,6 @@
+#ifndef SURFACE
+#define SURFACE
+
 #include "item.h"
 
 /* 
@@ -16,20 +19,4 @@ private:
     short modFactor;
 };
 
-class SurfaceData {
-public:
-    bool Init(const str);
-    int getWidth();
-    int getHeight();
-    bool **GetMiniMap(); // coming soon
-    short getSurface(coord&);
-    Surface& getSurface(str);   
-    bool isValidRadius(coord&, short);
-    bool isValidCoord(coord&);
-private:
-    int mapWidth, mapHeight;
-    short** surfaceMatrix;
-    // std::unordered_map<str, Surface> currentSurfaceList; // currently useless
-    // std::unordered_map<str, Surface> globalSurfaceList; //will be added in future
-
-};
+#endif 
