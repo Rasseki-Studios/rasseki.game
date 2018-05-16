@@ -7,7 +7,7 @@ Movable::Movable(coord coordinates, short speed) : Located(coordinates), speed(s
 
 bool Movable::Move(coord destination) {
     path.clear();   //очищаем текущий маршрут для пересчета
-    Wave alg;
+    Wave alg(&SessionData::surfaceData);
     path = alg.Path(coordinates, destination);  //алгоритм поиска пути, формирует вектор path
     return path.size();
 }
@@ -24,9 +24,9 @@ short Movable::GetSpeed() const {
     return speed;
 }
 
-Wave::Wave() {
-    width = getWidth();
-    height = getHeight();
+Wave::Wave(SurfaceData *surface) : surface(surface) {
+    width = surface->getWidth();
+    height = surface->getHeight();
     map.reserve(width);
     for (auto line : map) {
         line.reserve(height);
@@ -38,14 +38,15 @@ void Wave::Reload() {
     map.clear();
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
-            map[x][y] = (IsWalkable({x, y}) ? BLANK : WALL);
+            coord point(x, y);
+            map[x][y] = (surface->IsWalkable(point) ? BLANK : WALL);
         }
     }
 }
 
-std::vector Wave::Path(coord coordinates, coord destination) {
+std::vector<coord> Wave::Path(coord coordinates, coord destination) {
     if (map[coordinates.x][coordinates.y] == WALL || map[destination.x][destination.y] == WALL) {
-        return nullptr;   //если стартовая или конечная ячейка непроходима
+        return std::vector<coord>(0);   //если стартовая или конечная ячейка непроходима
     }
     const int offset = 4;
     coord neighbors[offset] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};   //смещения, соответствующие соседям ячейки
@@ -71,13 +72,13 @@ std::vector Wave::Path(coord coordinates, coord destination) {
     } while (!stop && map[destination.x][destination.y] == BLANK);
 
     if (map[destination.x][destination.y] == BLANK) {
-        return nullptr;   //путь не найден
+        return std::vector<coord>(0);   //путь не найден
     }
 
     //восстановление пути
     int len = map[destination.x][destination.y];    //длина кратчайшего пути из coordinates в destination
     coord place(destination.x, destination.y);  //текущее место рассчета
-    std::vector path(len);  //выделяем место под шаги
+    std::vector<coord> path(len);  //выделяем место под шаги
     d = len;
     while (d > 0) {
         path.push_back(place);   //записываем ячейку в путь
@@ -92,4 +93,3 @@ std::vector Wave::Path(coord coordinates, coord destination) {
     }
     return path;
 }
-

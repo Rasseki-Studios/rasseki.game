@@ -2,7 +2,7 @@
 #define MOVABLE_H
 
 #include "Located.h"
-#include "session_data.h"
+#include "SurfaceData.h"
 
 class Movable : public Located {
 public:
@@ -13,19 +13,18 @@ public:
 protected:
     short speed;
     std::vector<coord> path;
-
-    int wave(int**, int, int, coord);
 };
 
 class Wave {
 public:
-    Wave();
-    void Reload();
-    std::vector Path(coord, coord);
+    Wave(SurfaceData *);
+    void Reload();  //метод обновления информации о проходимости
+    std::vector<coord> Path(coord, coord);  //составление вектора шагод
 private:
     int width;
     int height;
     std::vector<std::vector<short>> map;
+    SurfaceData *surface;
 };
 
 #endif //MOVABLE_H
