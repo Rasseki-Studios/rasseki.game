@@ -3,42 +3,35 @@
 
 #include "item.h"
 #include "location.h"
-#include "libs/json_fwd.hpp"
+#include "units.h"
 
-using json = nlohmann::json;
-
+class EventFactory;  // forward declaration
 class Action {
 public:
     void run() const;
-    /* DEBUG_FUNCTION */ void printActData();
-private:
-    str subjectID;  // Item *subject in future
-    str command;  // Converts to function in run()
-    str objectID;  // Item *object in future
-    str diaryNote;
-    str condition;
-    short duration;
-    void set(str, str, str, str, str, short);
-    friend void from_json(const json&, Action&);
-};
-
-class EventFactory;
-
-class Event : public Item, public Located {
-public:
-    void runEvent();
-    /* DEBUG_FUNCTION */ void printEvData();
+    /* DEBUG_FUNCTION */ void printAction();
     friend EventFactory;
 private:
-    Event() = default;
-    Event(str, str, short, coord, short, std::vector<Action>);
-    short radius;
-    std::vector<Action> actions;
+    Action(Creature*, str, Item*, str, str, short);
+    Creature *subject;
+    str command;  // Converts to function in run()
+    Item *object;
+    str diaryNote;
+    str condition;  // Converts to if { ... } in run()
+    short duration;
 };
 
-class EventFactory : public ItemFactory {
+class Event : public Item, public virtual Located {
 public:
-    Event* getFromJson(str);
+    short getRadius();
+    short getPriority();
+    void runEvent() const;
+    /* DEBUG_FUNCTION */ void printEvent() const;
+    friend EventFactory;
+private:
+    Event(str, str, short, coord, short, short, std::vector<Action>);
+    short radius, priority;
+    std::vector<Action> actions;
 };
 
 #endif  // EVENT

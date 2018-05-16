@@ -19,7 +19,7 @@ protected:
     coord coordinates;
 };
 
-class Movable : public Located {
+class Movable : public virtual Located {
 public:
     Movable(coord, short);
     bool Move(coord);

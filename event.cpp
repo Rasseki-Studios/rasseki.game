@@ -1,7 +1,6 @@
 #include "event.h"
 #include <fstream>
 #include "libs/json.hpp"
-#include "vector"
 
 #include <iostream>
 
@@ -32,66 +31,15 @@ Event::Event(str _ID, str _name, short _level,
     actions(_actions) {
 }
 
-void from_json(const json &j, coord &c) {
-    c.x = j.at("x").get<int>();
-    c.y = j.at("y").get<int>();
-} 
-
-void from_json(const json &j, Action &action) {
-    str object_id, condition;
-    auto subject_id = j.at("subject_id").get<str>();
-    auto command = j.at("command").get<str>();
-    auto toDiary = j.at("toDiary").get<str>();
-    auto duration = j.at("duration").get<short>();
-
-    try {
-        object_id = j.at("object_id").get<str>();
-    } catch(nlohmann::detail::out_of_range) {
-        object_id = "";
-    }
-
-    try {
-        condition = j.at("condition").get<str>();
-    } catch(nlohmann::detail::out_of_range) {
-        condition = "";
-    }
-
-    action.set(subject_id, command, object_id, toDiary, condition, duration);
-}
-
-Event* EventFactory::getFromJson(str filename) {
-    std::ifstream file(filename);
-    json j;
-    try {file >> j;} catch(nlohmann::detail::parse_error) {
-        std::cout << "Error: json " << filename << " is invalid." << std::endl;
-        return nullptr;
-    }
-    Event *ev;
-    try {
-        ev = new Event(
-            j.at("id").get<str>(),
-            j.at("name").get<str>(),
-            j.at("level").get<short>(),
-            j.at("coord").get<coord>(),
-            j.at("radius").get<short>(),
-            j.at("actions").get<std::vector<Action>>()
-        );
-    } catch(nlohmann::detail::out_of_range) {
-        std::cout << "Event from file " << filename << " is invalid." << std::endl;
-        return nullptr;
-    }
-    return ev;
-}
-
 /* DEBUG_FUNCTION */
-void Event::printEvData() {
-    std::cout << "ID: " << ID << std::endl;
-    std::cout << "name: " << name << std::endl;
-    std::cout << "level: " << level << std::endl;
-    std::cout << "coords: " << coordinates.x << ", " << coordinates.y << std::endl;
-    std::cout << "radius: " << radius << std::endl;
+/* void Event::printEvent() const {
+    cout << "ID: " << ID << endl;
+    cout << "name: " << name << endl;
+    cout << "level: " << level << endl;
+    cout << "coords: " << coordinates.x << ", " << coordinates.y << endl;
+    cout << "radius: " << radius << endl;
     for (int i = 0; i < (int)actions.size(); i++) {
-        actions[i].printActData();
-        std::cout << std::endl;
+        actions[i].printAction();
+        cout << endl;
     }
-}
+} */

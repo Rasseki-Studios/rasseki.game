@@ -4,5 +4,9 @@
 *.txt
 *.out
 *.exe
+<<<<<<< HEAD
 *tests*
 
+=======
+*test*
+>>>>>>> 0a156fa5514e37e79de57de8392c45cf7794cef8
