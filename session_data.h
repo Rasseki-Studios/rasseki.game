@@ -5,7 +5,6 @@
 #include <unordered_map>
 
 #include "units.h"
-#include "things.h"
 #include "event_factory.h"
 #include "artifact.h"
 // #include "artifact_factory.h"
@@ -29,14 +28,15 @@ public:
     bool Init();
     int getWidth();
     int getHeight();
-    bool IsValidRadius(coord&, short);
-    bool IsValidCoord(coord&);
+    bool RadiusIsValid(coord&, short);
     bool IsWalkable(coord&);
     short getSurface(coord&);
     Surface& getSurface(str);   
 private:
+    bool CoordIsValid(coord&);
     int mapWidth, mapHeight;
-    short** surfaceMatrix;    // std::unordered_map<str, Surface> currentSurfaceList; // currently useless
+    short** surfaceMatrix;    
+    // std::unordered_map<str, Surface> currentSurfaceList; // currently useless
     // std::unordered_map<str, Surface> globalSurfaceList; //will be added in future
 };
 

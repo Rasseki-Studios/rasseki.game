@@ -39,19 +39,19 @@ short SurfaceData::getSurface(coord& point) {
     return surfaceMatrix[point.x][point.y];
 }
 
-bool SurfaceData::IsValidCoord(coord& point) {
+bool SurfaceData::CoordIsValid(coord& point) {
     if ((point.x < 0 || point.x > mapWidth) || (point.y < 0 || point.y > mapHeight))
         return false;
     return true;
 }
 
-bool SurfaceData::IsValidRadius(coord& point, short radius) {
+bool SurfaceData::RadiusIsValid(coord& point, short radius) {
     if (
         (point.x - radius <= 0) || 
         (point.x + radius >= mapWidth) || 
         (point.y + radius >= mapHeight) ||
         (point.y - radius <= 0) ||
-        (!IsValidCoord(point))
+        (!CoordIsValid(point))
     ) return false;
 
     bool flag = false;
