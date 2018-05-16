@@ -7,43 +7,9 @@ Movable::Movable(coord coordinates, short speed) : Located(coordinates), speed(s
 
 bool Movable::Move(coord destination) {
     path.clear();   //очищаем текущий маршрут для пересчета
-
-    int width = 100;  //ширина рабочего поля
-    int height = 100;  //высота рабочего поля
-    int **map = nullptr;  //картa
-    //в дальнейшем будем использовать ф-цию для получения данных
-    //Map.getPart(map, &width, &height)
-
-
-    //===========================
-    //эмуляция карты
-    map = new int*[width];
-    for (int j = 0; j < width; ++j) {
-        map[j] = new int[height];
-        for (int i = 0; i < height; ++i) {
-            map[j][i] = BLANK;
-        }
-    }
-    //===========================
-
-
-    if (map[coordinates.x][coordinates.y] == WALL || map[destination.x][destination.y] == WALL) {
-        return false;   //если стартовая или конечная ячейка непроходима
-    }
-
-    int len = wave(map, width, height, destination);
-
-
-    //===========================
-    //удаление будет производиться в той же области, где и создание
-    for (int k = 0; k < width; ++k) {
-        delete map[k];
-    }
-    delete [] map;
-    //===========================
-
-
-    return len >= 0 ? true : false;  //алгоритм поиска пути, формирует вектор path
+    Wave alg;
+    path = alg.Path(coordinates, destination);  //алгоритм поиска пути, формирует вектор path
+    return path.size();
 }
 
 coord Movable::Step() {
@@ -58,7 +24,29 @@ short Movable::GetSpeed() const {
     return speed;
 }
 
-int Movable::wave(int **map, int width, int height, coord destination) {
+Wave::Wave() {
+    width = getWidth();
+    height = getHeight();
+    map.reserve(width);
+    for (auto line : map) {
+        line.reserve(height);
+    }
+    Reload();
+}
+
+void Wave::Reload() {
+    map.clear();
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            map[x][y] = (IsWalkable({x, y}) ? BLANK : WALL);
+        }
+    }
+}
+
+std::vector Wave::Path(coord coordinates, coord destination) {
+    if (map[coordinates.x][coordinates.y] == WALL || map[destination.x][destination.y] == WALL) {
+        return nullptr;   //если стартовая или конечная ячейка непроходима
+    }
     const int offset = 4;
     coord neighbors[offset] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};   //смещения, соответствующие соседям ячейки
     bool stop = false;
@@ -83,13 +71,13 @@ int Movable::wave(int **map, int width, int height, coord destination) {
     } while (!stop && map[destination.x][destination.y] == BLANK);
 
     if (map[destination.x][destination.y] == BLANK) {
-        return -1;   //путь не найден
+        return nullptr;   //путь не найден
     }
 
     //восстановление пути
     int len = map[destination.x][destination.y];    //длина кратчайшего пути из coordinates в destination
     coord place(destination.x, destination.y);  //текущее место рассчета
-    path.reserve(len);  //выделяем место под шаги
+    std::vector path(len);  //выделяем место под шаги
     d = len;
     while (d > 0) {
         path.push_back(place);   //записываем ячейку в путь
@@ -102,5 +90,6 @@ int Movable::wave(int **map, int width, int height, coord destination) {
             }
         }
     }
-    return len;
+    return path;
 }
+
