@@ -5,7 +5,6 @@
 #include <unordered_map>
 
 #include "units.h"
-#include "things.h"
 #include "event_factory.h"
 #include "artifact.h"
 // #include "artifact_factory.h"
