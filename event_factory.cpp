@@ -1,5 +1,5 @@
 #include <experimental/filesystem>
-namespace fs = std::experimental::filesystem::v1;
+namespace fs = std::experimental::filesystem;
 
 //for error printing, should be changed to QT error printer
 #include <iostream>
@@ -9,7 +9,11 @@ using std::endl;
 #include "session_data.h"
 #include "event_factory.h"
 
-using namespace SessionData;
+namespace SessionData {
+    extern SurfaceData surfaceData;
+}
+
+// using namespace SessionData;
 
 // bool coordIsValid(coord) {
 //     return 1;
@@ -33,10 +37,9 @@ using namespace SessionData;
 
 bool EventFactory::isValid(EventData &ev_data) {
     
-    if (/* checking if such event already exists */0) ||
+    if (/* checking if such event already exists */0 ||
         ev_data.level <= 0 ||
-        !gameData.CoordIsValid(ev_data.coordinate) ||
-        !gameData.RadiusIsValid(ev_data.coordinate, ev_data.radius)
+        !surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)
     ) return 0;
 
     for (auto it : ev_data.actions) {
@@ -75,8 +78,9 @@ int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
             for (auto it : *tempData) {
                 if (eventsMap.find(it.ID) != eventsMap.end()) continue;
                 if (isValid(it)) {
-                    Event* ev = Create(it);
-                    eventsMap[ev->getID()] = *ev;
+                    cout << "event <" << it.ID << "> read." << endl;
+                    // Event* ev = Create(it);
+                    // eventsMap[ev->getID()] = *ev;
                     eventCount++;
                 } else {
                     continue;

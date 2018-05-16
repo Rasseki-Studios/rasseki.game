@@ -1,4 +1,5 @@
 #include "event_factory.h"
+#include "artifact.h"
 #include <iostream>
 
 int main() {

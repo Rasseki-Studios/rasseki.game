@@ -3,7 +3,6 @@
 
 #include "item.h"
 #include "location.h"
-#include "units.h"
 
 class EventFactory;  // forward declaration
 class Action {
@@ -12,8 +11,8 @@ public:
     /* DEBUG_FUNCTION */ void printAction();
     friend EventFactory;
 private:
-    Action(Creature*, str, Item*, str, str, short);
-    Creature *subject;
+    Action(Item*, str, Item*, str, str, short);
+    Item *subject;
     str command;  // Converts to function in run()
     Item *object;
     str diaryNote;
