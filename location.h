@@ -1,8 +1,6 @@
 #ifndef LOCATION
 #define LOCATION
 
-#include <vector>
-
 struct coord {
     int x = 0;
     int y = 0;
@@ -12,22 +10,12 @@ struct coord {
 
 class Located {
 public:
+    Located();
     Located(coord);
     void SetCoord(coord);
     coord GetCoord() const;
 protected:
     coord coordinates;
-};
-
-class Movable : public virtual Located {
-public:
-    Movable(coord, short);
-    bool Move(coord);
-    coord Step();
-    short GetSpeed() const;
-protected:
-    short speed;
-    std::vector<coord> path;
 };
 
 #endif  // LOCATION

@@ -60,7 +60,7 @@ bool MapScanner::InitMatrix(const std::string filename) {
     return true;
 }
 
-MapData& MapScanner::getMap(const str filename) {
+MapData& MapScanner::getMap(str filename) {
     if (InitMatrix(filename)) return data;
     else {
         throw "error during file scanning";

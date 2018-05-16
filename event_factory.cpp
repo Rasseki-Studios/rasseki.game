@@ -9,9 +9,9 @@ using std::endl;
 #include "session_data.h"
 #include "event_factory.h"
 
-namespace SessionData {
-    extern SurfaceData surfaceData;
-}
+// namespace SessionData {
+//     extern SurfaceData surfaceData;
+// }
 
 // using namespace SessionData;
 
@@ -39,7 +39,7 @@ bool EventFactory::isValid(EventData &ev_data) {
     
     if (/* checking if such event already exists */0 ||
         ev_data.level <= 0 ||
-        !surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)
+        !SessionData::surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)
     ) return 0;
 
     for (auto it : ev_data.actions) {

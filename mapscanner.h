@@ -13,10 +13,10 @@ struct MapData {
 
 class MapScanner { // scans the map
 public:
-    MapData& getMap(const str);
+    MapData& getMap(str);
 private:
     MapData data;
-    bool InitMatrix(const str);
+    bool InitMatrix(str);
 };
 
 #endif  // MAP_SCANNER

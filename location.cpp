@@ -13,6 +13,8 @@ Located::Located(coord _coord) :
     coordinates(_coord) {
 }
 
+Located::Located() { }
+
 void Located::SetCoord(coord coordinates) {
     this->coordinates = coordinates;
 }
