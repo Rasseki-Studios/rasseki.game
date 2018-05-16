@@ -1,32 +1,35 @@
 #include "event.h"
-#include <fstream>
-#include "libs/json.hpp"
 
+//for error printing, should be changed to QT error printer
 #include <iostream>
+using std::cout;
+using std::endl;
 
-void Action::set(str _sID, str _command, str _objID, str _note, str _cond, short _duration) { 
-    subjectID = _sID;
-    command = _command;
-    objectID = _objID;
-    diaryNote = _note;
-    condition = _cond;
-    duration = _duration;
+Action::Action(Creature *subj, str _command, Item *obj,
+    str _note, str _cond, short _duration) : 
+    subject(subj),
+    command(_command),
+    object(obj),
+    diaryNote(_note),
+    condition(_cond),
+    duration(_duration) {
 }
 
 /* DEBUG_FUNCTION */
-void Action::printActData() {
-    std::cout << "condition: " << condition << std::endl;
-    std::cout << "subjectID: " << subjectID << std::endl;
-    std::cout << "command: " << command << std::endl;  // Converts in function in run()
-    std::cout << "objectID: " << objectID << std::endl;  // Item *object in future
-    std::cout << "diaryNote: " << diaryNote << std::endl;
-    std::cout << "duration: " << duration << std::endl;
-}
+/* void Action::printAction() {
+    cout << "condition: " << condition << endl;
+    cout << "subjectID: " << subjectID << endl;
+    cout << "command: " << command << endl;
+    cout << "objectID: " << objectID << endl;
+    cout << "diaryNote: " << diaryNote << endl;
+    cout << "duration: " << duration << endl;
+} */
 
-Event::Event(str _ID, str _name, short _level, 
-    coord _coord, short _radius, std::vector<Action> _actions) :
+Event::Event(str _ID, str _name, short _level, coord _coord,
+    short _priority, short _radius, std::vector<Action> _actions) :
     Item(_ID, _name, _level),
     Located(_coord),
+    priority(_priority),
     radius(_radius),
     actions(_actions) {
 }
