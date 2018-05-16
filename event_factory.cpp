@@ -6,16 +6,64 @@ namespace fs = std::experimental::filesystem::v1;
 using std::cout;
 using std::endl;
 
+#include "session_data.h"
 #include "event_factory.h"
 
+using namespace SessionData;
+
+// bool coordIsValid(coord) {
+//     return 1;
+// }
+
+// bool radiusIsValid(short) {
+//     return 1;
+// }
+
+    // str ID, name;
+    // short level;
+    // coord coordinate;
+    // short radius;
+
+// Creature *subject;
+// str command;  // Converts to function in run()
+// Item *object;
+// str diaryNote;
+// str condition;  // Converts to if { ... } in run()
+// short duration;
+
+bool EventFactory::isValid(EventData &ev_data) {
+    
+    if (/* checking if such event already exists */0) ||
+        ev_data.level <= 0 ||
+        !gameData.CoordIsValid(ev_data.coordinate) ||
+        !gameData.RadiusIsValid(ev_data.coordinate, ev_data.radius)
+    ) return 0;
+
+    for (auto it : ev_data.actions) {
+        if (it.subjectID != "hero" ||
+            /* checking creature list */
+            !1 ||
+            commandList.find(it.command) == commandList.end() ||
+            conditionList.find(it.condition) == conditionList.end() ||
+            it.duration < 0 ||
+            it.duration > 10
+        ) return 0;
+        /* checking Item */
+    }
+    return 1;
+}
 
 Event* EventFactory::Create(EventData &ev_data) {
-
+    // 2) проверка на соответствие пулу действий
+    // 3) проверка на героя
+    // 4) проверка на существование кричера
+    // 5) проверка на приоритет 0-6
+    // 6) проверка на координату
+    // 7) проверка на радиус (не больше диагонали карты)
     /*  needs SessionData  */
     /*     mouseartiom     */
     /*      write  it!     */
     // ev_data->PrintEventData();
-    return nullptr;
 }
 
 int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
@@ -25,10 +73,15 @@ int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
             tempData = parser.getData(it.path());
             if (!tempData) continue;
             for (auto it : *tempData) {
-                it.PrintEventData();
-                eventCount++;
+                if (eventsMap.find(it.ID) != eventsMap.end()) continue;
+                if (isValid(it)) {
+                    Event* ev = Create(it);
+                    eventsMap[ev->getID()] = *ev;
+                    eventCount++;
+                } else {
+                    continue;
+                }
             }
-            // Event *event = Create(it.path());
         }
     }
     return eventCount;
@@ -60,11 +113,11 @@ void EventData::set(
     str _ID, str _name, coord _coord, short _rad,
     short _level, std::vector<ActionData> _actions) {
 
-    ID =_ID; 
-    name = _name; 
-    level = _level; 
+    ID =_ID;
+    name = _name;
+    level = _level;
     coordinate = _coord;
-    radius = _rad; 
+    radius = _rad;
     actions = _actions;
 }
 

@@ -3,13 +3,17 @@
 
 #include <vector>
 #include <memory>
+#include <unordered_set>
 
 #include "location.h"
 #include "event.h"
 
+#include "session_data.h"
+
 using std::vector;
 using std::shared_ptr;
 using std::make_shared;
+using std::unordered_set;
 
 struct ActionData {
     // Action is not an Item and has no own factory or parser
@@ -37,14 +41,27 @@ public:
 
 class EventFactory {
 public:
+    // EventFactory();
     int InitAll(str folder, unordered_map<str, Event>&);
 private:
     EventParser parser;
     shared_ptr<vector<EventData>> tempData;
     // needs when there are several artifacts in one file
 
-    bool isVaild(EventData&);
+    bool isValid(EventData&);
     Event* Create(EventData&);
+    unordered_set<str> commandList {
+        "give",         // give artifact
+        "take_away",    // remove artifact
+        "wait",         // nothing
+        "fight",        // fight
+        "die"           // respawn
+    };
+    unordered_set<str> conditionList {
+        "",             // no condition
+        "win",          // win fight
+        "lose"          // lose fight
+    };
 };
 
 #endif
