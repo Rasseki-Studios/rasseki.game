@@ -15,57 +15,42 @@ using std::endl;
 
 // using namespace SessionData;
 
-// bool coordIsValid(coord) {
-//     return 1;
-// }
-
-// bool radiusIsValid(short) {
-//     return 1;
-// }
-
-    // str ID, name;
-    // short level;
-    // coord coordinate;
-    // short radius;
-
-// Creature *subject;
-// str command;  // Converts to function in run()
-// Item *object;
-// str diaryNote;
-// str condition;  // Converts to if { ... } in run()
-// short duration;
-
 bool EventFactory::isValid(EventData &ev_data) {
-    
-    if (/* checking if such event already exists */0 ||
-        ev_data.level <= 0 ||
-        !SessionData::surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)
-    ) return 0;
-
+    if (/* checking if such event already exists */0) {
+        cout << "such event is already exists" << endl;
+        return 0;
+    } else if (ev_data.level <= 0) {
+        cout << "level is not valid" << endl;
+        return 0;
+    }/*  else if (!surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)) {
+        cout << "radius or coord are not valid" << endl; 
+        return 0;
+    } method RadiusIsValid is incorrect */
     for (auto it : ev_data.actions) {
-        if (it.subjectID != "hero" ||
-            /* checking creature list */
-            !1 ||
-            commandList.find(it.command) == commandList.end() ||
-            conditionList.find(it.condition) == conditionList.end() ||
-            it.duration < 0 ||
-            it.duration > 10
-        ) return 0;
+        if (it.subjectID != "hero") {
+            cout << "subjectID is not valid" << endl;
+            return 0;
+        } else if (/* checking object list */ !1) {
+            cout << "object list is not valid" << endl;
+            return 0;
+        } else if (commandList.find(it.command) == commandList.end()) {
+            cout << "command is not valid" << endl;
+            return 0;
+        } else if (conditionList.find(it.condition) == conditionList.end() 
+            && it.condition != "") {
+            cout << "condition is not valid" << endl;
+            return 0;
+        } else if (it.duration < 0 || it.duration > 10) {
+            cout << "duration is not valid" << endl;
+            return 0;
+        }
         /* checking Item */
     }
     return 1;
 }
 
 Event* EventFactory::Create(EventData &ev_data) {
-    // 2) проверка на соответствие пулу действий
-    // 3) проверка на героя
-    // 4) проверка на существование кричера
     // 5) проверка на приоритет 0-6
-    // 6) проверка на координату
-    // 7) проверка на радиус (не больше диагонали карты)
-    /*  needs SessionData  */
-    /*     mouseartiom     */
-    /*      write  it!     */
     // ev_data->PrintEventData();
 }
 
@@ -83,6 +68,7 @@ int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
                     // eventsMap[ev->getID()] = *ev;
                     eventCount++;
                 } else {
+                    cout << "event <" << it.ID << "> not read." << endl;
                     continue;
                 }
             }
