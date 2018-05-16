@@ -4,11 +4,7 @@
 #include <vector>
 #include <string>
 
-#include "Storage.h"
-#include "Hero.h"
-
-Storage Inventory(5);
-Hero hero("MLQ", "Moleque", 5, 4, {1,1}, &Inventory);
+#include "Movable.h"
 
 int Game();
 bool Save(std::string);

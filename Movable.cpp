@@ -3,11 +3,13 @@
 #define WALL -1    //непроходимая ячейка
 #define BLANK -2   //свободная непомеченная ячейка
 
+SurfaceData SD(1000,1000);
+
 Movable::Movable(coord coordinates, short speed) : Located(coordinates), speed(speed) {}
 
 bool Movable::Move(coord destination) {
     path.clear();   //очищаем текущий маршрут для пересчета
-    Wave alg(&SessionData::surfaceData);
+    Wave alg(&SD);
     path = alg.Path(coordinates, destination);  //алгоритм поиска пути, формирует вектор path
     return path.size();
 }
@@ -27,20 +29,19 @@ short Movable::GetSpeed() const {
 Wave::Wave(SurfaceData *surface) : surface(surface) {
     width = surface->getWidth();
     height = surface->getHeight();
-    map.reserve(width);
-    for (auto line : map) {
-        line.reserve(height);
-    }
     Reload();
 }
 
 void Wave::Reload() {
     map.clear();
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
+    for (int x = 0; x < width; x++) {
+        std::vector<short> temp(height);
+        for (int y = 0; y < height; y++) {
             coord point(x, y);
-            map[x][y] = (surface->IsWalkable(point) ? BLANK : WALL);
+            short pixel = (surface->IsWalkable(point) ? BLANK : WALL);
+            temp[y] = pixel;
         }
+        map.push_back(temp);
     }
 }
 

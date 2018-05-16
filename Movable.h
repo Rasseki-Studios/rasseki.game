@@ -23,7 +23,7 @@ public:
 private:
     int width;
     int height;
-    std::vector<std::vector<short>> map;
+    std::vector<std::vector<short> > map;
     SurfaceData *surface;
 };
 

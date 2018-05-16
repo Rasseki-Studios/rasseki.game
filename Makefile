@@ -1,7 +1,7 @@
 all: libAdapter.a
 
-libAdapter.a: Item.o Located.o Artifact.o Creature.o Hero.o Movable.o Storage.o libAdapter.o 
-	ar crs libAdapter.a libAdapter.o Item.o Located.o Artifact.o Creature.o Hero.o Movable.o Storage.o
+libAdapter.a: Item.o Located.o Artifact.o Creature.o Hero.o Movable.o Storage.o SurfaceData.o libAdapter.o 
+	ar crs libAdapter.a libAdapter.o Item.o Located.o Artifact.o Creature.o Hero.o Movable.o Storage.o SurfaceData.o
 
 libAdapter.o: libAdapter.cpp
 	g++ -std=c++11 -c libAdapter.cpp
@@ -26,6 +26,9 @@ Movable.o: Movable.cpp
 
 Storage.o: Storage.cpp
 	g++ -std=c++11 -c Storage.cpp
+
+SurfaceData.o: SurfaceData.cpp
+	g++ -std=c++11 -c SurfaceData.cpp
 
 clean:
 	rm -f *.o *.a binary

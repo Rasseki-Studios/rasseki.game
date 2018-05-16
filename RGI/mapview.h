@@ -30,14 +30,14 @@ public slots:
 
 private:
     QGraphicsScene *mapScene;       //объявляем сцену для отрисовки
-    QGraphicsItemGroup *group_1;    //объявляем первую группу элементов
-    QGraphicsItemGroup *group_2;    //объявляем вторую группу элементов
+    QGraphicsItemGroup *hero;    //объявляем первую группу элементов
+    //QGraphicsItemGroup *group_2;    //объявляем вторую группу элементов
     QTimer *timer;  //таймер для задержки отрисовки.
 
 private:
     void resizeEvent(QResizeEvent *event);  //перегружаем событие изменения размера окна, чтобы перехватывать его
 
-    void deleteItemsFromGroup(QGraphicsItemGroup *group_1); //метод для удаления всех элементов из группы элементов
+    void deleteItemsFromGroup(QGraphicsItemGroup *hero); //метод для удаления всех элементов из группы элементов
 
     void mousePressEvent(QMouseEvent *mousePressEvt);   //метод для отлавливания нажатий игрока мышкой на карту
 };

@@ -37,8 +37,10 @@ public:
     QPushButton *setting;
     QPushButton *exit;
     QGridLayout *gridLayout;
-    QLabel *label_2;
-    QLabel *label;
+    QLabel *logoHero;
+    QLabel *label_3;
+    QLabel *label_4;
+    QLabel *nameHero;
     QTextEdit *textEdit;
 
     void setupUi(QMainWindow *GameWindow)
@@ -132,15 +134,28 @@ public:
 
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
+        logoHero = new QLabel(centralwidget);
+        logoHero->setObjectName(QStringLiteral("logoHero"));
+        logoHero->setMinimumSize(QSize(80, 80));
+        logoHero->setMaximumSize(QSize(80, 80));
+        logoHero->setPixmap(QPixmap(QString::fromUtf8(":/resources/img/hero.png")));
 
-        gridLayout->addWidget(label_2, 1, 0, 1, 1);
+        gridLayout->addWidget(logoHero, 0, 0, 1, 1);
 
-        label = new QLabel(centralwidget);
-        label->setObjectName(QStringLiteral("label"));
+        label_3 = new QLabel(centralwidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
 
-        gridLayout->addWidget(label, 0, 0, 1, 1);
+        gridLayout->addWidget(label_3, 0, 1, 1, 1);
+
+        label_4 = new QLabel(centralwidget);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        gridLayout->addWidget(label_4, 1, 1, 1, 1);
+
+        nameHero = new QLabel(centralwidget);
+        nameHero->setObjectName(QStringLiteral("nameHero"));
+
+        gridLayout->addWidget(nameHero, 1, 0, 1, 1);
 
 
         gridLayout_2->addLayout(gridLayout, 1, 1, 1, 1);
@@ -171,8 +186,10 @@ public:
         load->setText(QApplication::translate("GameWindow", "PushButton", 0));
         setting->setText(QApplication::translate("GameWindow", "PushButton", 0));
         exit->setText(QApplication::translate("GameWindow", "PushButton", 0));
-        label_2->setText(QApplication::translate("GameWindow", "TextLabel", 0));
-        label->setText(QApplication::translate("GameWindow", "\320\223\320\265\321\200\320\276\320\271", 0));
+        logoHero->setText(QString());
+        label_3->setText(QApplication::translate("GameWindow", "TextLabel", 0));
+        label_4->setText(QApplication::translate("GameWindow", "TextLabel", 0));
+        nameHero->setText(QApplication::translate("GameWindow", "Name", 0));
     } // retranslateUi
 
 };

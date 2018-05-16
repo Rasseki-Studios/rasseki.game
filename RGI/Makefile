@@ -336,6 +336,7 @@ qrc_resource.cpp: resource.qrc \
 		img/archer.png \
 		img/menu.png \
 		img/metal.jpg \
+		img/hero.png \
 		img/testmap.bmp
 	/usr/lib/x86_64-linux-gnu/qt5/bin/rcc -name resource resource.qrc -o qrc_resource.cpp
 
@@ -408,7 +409,16 @@ loadwindow.o: loadwindow.cpp loadwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o loadwindow.o loadwindow.cpp
 
 mapview.o: mapview.cpp mapview.h \
-		gamewindow.h
+		gamewindow.h \
+		../libAdapter.h \
+		../Storage.h \
+		../Artifact.h \
+		../Item.h \
+		../Hero.h \
+		../Creature.h \
+		../Movable.h \
+		../Located.h \
+		../SurfaceData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mapview.o mapview.cpp
 
 savewindow.o: savewindow.cpp savewindow.h \

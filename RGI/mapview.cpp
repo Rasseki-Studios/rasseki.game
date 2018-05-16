@@ -11,26 +11,17 @@ MapView::MapView(QWidget *parent)
     setAlignment(Qt::AlignCenter);                        //делаем привязку содержимого к центру
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);    //растягиваем содержимое по виджету
 
-
-    //QImage bg_window(":/resources/img/testmap.bmp");
-    //QBrush br;
-    //br.setTextureImage(bg_window);
-
     //растягиваем изображение по размеру объекта
     QPixmap img(":/resources/img/testmap.bmp");
-    img.scaled(this->width(), this->height(), Qt::IgnoreAspectRatio);
-
+    img.scaled(this->width(), this->height(), Qt::KeepAspectRatio);
 
     mapScene = new QGraphicsScene();   //инициализируем сцену для отрисовки
     mapScene->setBackgroundBrush(QBrush(img));    //устанавливаем Background виджета (изображение карты)
 
     setScene(mapScene);          //устанавливаем сцену в виджет
 
-    group_1 = new QGraphicsItemGroup(); //инициализируем первую группу элементов
-    group_2 = new QGraphicsItemGroup(); //инициализируем вторую группу элементов
-
-    mapScene->addItem(group_1);            //добавляем первую группу в сцену
-    mapScene->addItem(group_2);            //добавляем вторую группу в сцену
+    hero = new QGraphicsItemGroup(); //инициализируем первую группу элементов
+    mapScene->addItem(hero);         //добавляем первую группу в сцену
 
     //необходимо некоторое время, чтобы родительский слой развернулся, чтобы принимать от него адекватные параметры ширины и высоты
     timer = new QTimer();   //инициализируем Таймер
@@ -41,69 +32,20 @@ MapView::MapView(QWidget *parent)
 MapView::~MapView()
 {
     delete mapScene;
-    delete group_1;
-    delete group_2;
+    delete hero;
     delete timer;
 }
 
 void MapView::slotAlarmTimer()
 {
-    //удаляем все элементы со сцены, если они есть перед новой отрисовкой
-    deleteItemsFromGroup(group_1);
-    deleteItemsFromGroup(group_2);
-
+    deleteItemsFromGroup(hero); //удаляем все элементы со сцены, если они есть перед новой отрисовкой
 
     int width = this->width();      //определяем ширину нашего виджета
     int height = this->height();    //определяем высоту нашего виджета
-
-
-    /*qDebug() << width << " | " << height;
-
-    QPixmap img(":/resources/img/testmap.bmp");
-    img.scaled(width, height, Qt::IgnoreAspectRatio);
-    mapScene->setBackgroundBrush(QBrush(img));*/
-
-
     mapScene->setSceneRect(0, 0, width, height);    //устанавливаем размер сцены по размеру виджет
 
-    //приступаем к отрисовке произвольной картинки
-    QPen penBlack(Qt::black); //задаём чёрную кисть
-    QPen penRed(Qt::red);   //задаём красную кисть
-
-    //нарисуем черный прямоугольник
-    group_1->addToGroup(mapScene->addLine(20,20, width - 20, 20, penBlack));
-    group_1->addToGroup(mapScene->addLine(width - 20, 20, width - 20, height -20, penBlack));
-    group_1->addToGroup(mapScene->addLine(width - 20, height -20, 20, height -20, penBlack));
-    group_1->addToGroup(mapScene->addLine(20, height -20, 20, 20, penBlack));
-
-    //нарисуем красный квадрат
-    int sideOfSquare = (height > width) ? (width - 60) : (height - 60);
-    int centerOfWidget_X = width/2;
-    int centerOfWidget_Y = height/2;
-
-    group_2->addToGroup(mapScene->addLine(centerOfWidget_X - (sideOfSquare/2),
-                                       centerOfWidget_Y - (sideOfSquare/2),
-                                       centerOfWidget_X + (sideOfSquare/2),
-                                       centerOfWidget_Y - (sideOfSquare/2),
-                                       penRed));
-
-    group_2->addToGroup(mapScene->addLine(centerOfWidget_X + (sideOfSquare/2),
-                                       centerOfWidget_Y - (sideOfSquare/2),
-                                       centerOfWidget_X + (sideOfSquare/2),
-                                       centerOfWidget_Y + (sideOfSquare/2),
-                                       penRed));
-
-    group_2->addToGroup(mapScene->addLine(centerOfWidget_X + (sideOfSquare/2),
-                                       centerOfWidget_Y + (sideOfSquare/2),
-                                       centerOfWidget_X - (sideOfSquare/2),
-                                       centerOfWidget_Y + (sideOfSquare/2),
-                                       penRed));
-
-    group_2->addToGroup(mapScene->addLine(centerOfWidget_X - (sideOfSquare/2),
-                                       centerOfWidget_Y + (sideOfSquare/2),
-                                       centerOfWidget_X - (sideOfSquare/2),
-                                       centerOfWidget_Y - (sideOfSquare/2),
-                                       penRed));
+    QPixmap img(":/resources/img/hero.png");
+    hero->addToGroup(mapScene->addPixmap(img.scaled(100,100,Qt::KeepAspectRatio)));
 }
 
 //этим методом перехватываем событие изменения размера виджет

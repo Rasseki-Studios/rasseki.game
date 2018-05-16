@@ -5,5 +5,6 @@
         <file>img/menu.png</file>
         <file>img/metal.jpg</file>
         <file>img/testmap.bmp</file>
+        <file>img/hero.png</file>
     </qresource>
 </RCC>
