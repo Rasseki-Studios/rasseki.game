@@ -5,7 +5,7 @@
 using std::cout;
 using std::endl;
 
-Action::Action(Creature *subj, str _command, Item *obj,
+Action::Action(Item *subj, str _command, Item *obj,
     str _note, str _cond, short _duration) : 
     subject(subj),
     command(_command),
@@ -32,6 +32,14 @@ Event::Event(str _ID, str _name, short _level, coord _coord,
     priority(_priority),
     radius(_radius),
     actions(_actions) {
+}
+
+short Event::getRadius() {
+    return radius;
+}
+
+short Event::getPriority() {
+    return priority;
 }
 
 /* DEBUG_FUNCTION */

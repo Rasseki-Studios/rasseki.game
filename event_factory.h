@@ -4,16 +4,16 @@
 #include <vector>
 #include <memory>
 #include <unordered_set>
+#include <unordered_map>
 
 #include "location.h"
 #include "event.h"
-
-#include "session_data.h"
 
 using std::vector;
 using std::shared_ptr;
 using std::make_shared;
 using std::unordered_set;
+using std::unordered_map;
 
 struct ActionData {
     // Action is not an Item and has no own factory or parser
