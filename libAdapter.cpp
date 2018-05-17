@@ -1,27 +1,22 @@
 #include "libAdapter.h"
 #include <unistd.h>
 
-
-#include <iostream>
-
 using namespace SessionData;
 
 void Moving(int count) {
     for (int i =0 ; i< count; i++) {
         hero.Step();
         usleep(10000);
-        //std::cout << hero.GetCoord().x << " | " << hero.GetCoord().y << "\n";
-        //sleep();
     }
 }
 
 int Game() {
-    //std::thread td(Moving);
-    return 5;
+    gameData.Init();
+    return 0;
 }
 
 void Exit() {
-    //td.join();
+
 }
 
 coord Coords() {
