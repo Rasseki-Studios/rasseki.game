@@ -33,6 +33,9 @@ FORMS    += menuwindow.ui \
 RESOURCES += \
     resource.qrc
 
+CONFIG += C++11
+QMAKE_CXXFLAGS += -std=c++11 -pthread
+
 #Добавление статической библиотеки (адаптер)
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../release/ -lAdapter
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../debug/ -lAdapter
