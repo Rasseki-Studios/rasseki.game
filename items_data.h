@@ -26,8 +26,8 @@ public:
 class EventsData {
 public:
     bool Init();
-    Event& getEvent(const str);
-    Event& getEvent(coord);
+    Event* getEvent(const str);
+    Event* getEvent(coord);
     bool EventExists(str);
     void RemoveFrontEvent(coord); // no realization yet
     // more methods coming in future
@@ -45,7 +45,7 @@ class ArtifactsData {
 public:
     bool Init();
     bool ArtifactExists(str);
-    Artifact& getArtifact(const str);
+    Artifact* getArtifact(const str);
 private:
     std::unordered_map<str, Artifact> currentArtifactsList;
     // std::unordered_map<str, Artifact> globalArtifactsList;

@@ -20,12 +20,12 @@ bool EventsData::Init() {
     return true;
 }
 
-Event& EventsData::getEvent(const str key) {
-    return currentEventList.at(key);
+Event* EventsData::getEvent(const str key) {
+    return &currentEventList.at(key);
 }
 
-Event& EventsData::getEvent(coord point) {
-    return eventMatrix[point.x][point.y]->front();
+Event* EventsData::getEvent(coord point) {
+    return &eventMatrix[point.x][point.y]->front();
 }
 
 void EventsData::PulverizeEvents(std::unordered_map<str, Event>& list) {
@@ -62,8 +62,9 @@ add event to map
                 }
                 else {
                     eventMatrix[eventCenter.x][eventCenter.y]->push_back(event);            
-                    //here'll be sorting function
-                    SortEventVector(eventMatrix[eventCenter.x][eventCenter.y]);
+                    // here'll be sorting function
+                    // SortEventVector(eventMatrix[eventCenter.x][eventCenter.y]);
+
                 }
             }
         }
@@ -74,6 +75,10 @@ void EventsData::SortEventVector(std::vector<Event> * vector) {
     [](Event& a, Event& b) -> bool {
         return a.getPriority() > b.getPriority();
     });
+}
+
+void EventsData::RemoveFrontEvent(coord point) {
+
 }
 
 bool EventsData::EventExists(str ID) {
@@ -91,8 +96,8 @@ bool ArtifactsData::Init() {
     return true;
 }
 
-Artifact& ArtifactsData::getArtifact(const str key) {
-    return currentArtifactsList.at(key);
+Artifact* ArtifactsData::getArtifact(const str key) {
+    return &currentArtifactsList.at(key);
 }
 
 bool ArtifactsData::ArtifactExists(str ID) {
