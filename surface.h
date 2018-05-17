@@ -32,7 +32,8 @@ public:
     Surface& getSurface(str);   
 private:
     bool CoordIsValid(coord&);
-    int mapWidth, mapHeight;
+    int mapWidth;
+    int mapHeight;
     short** surfaceMatrix;    
     // std::unordered_map<str, Surface> currentSurfaceList; // currently useless
     // std::unordered_map<str, Surface> globalSurfaceList; //will be added in future

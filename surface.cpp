@@ -10,7 +10,7 @@ bool SurfaceData::Init() {
     // open map, read it
     // asign map pointers
     // init factories
-    str locationName = "test.bmp";
+    str locationName = "testmap.bmp";
     MapScanner scanner;
     MapData data = scanner.getMap(locationName);
     surfaceMatrix = data.surfaceMatrix;

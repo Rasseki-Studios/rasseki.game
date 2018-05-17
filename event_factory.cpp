@@ -13,7 +13,7 @@ using std::endl;
 //     extern SurfaceData surfaceData;
 // }
 
-// using namespace SessionData;
+using namespace SessionData;
 
 bool EventFactory::isValid(EventData &ev_data) {
     if (/* checking if such event already exists */0) {
@@ -25,10 +25,10 @@ bool EventFactory::isValid(EventData &ev_data) {
     } else if (ev_data.priority > 6 && ev_data.priority <= 0) {
         cout << "level is not valid" << endl;
         return 0;
-    }/*  else if (!surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)) {
+    } else if (!surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)) {
         cout << "radius or coord are not valid" << endl; 
         return 0;
-    } */ //method RadiusIsValid is incorrect
+    } //method RadiusIsValid is incorrect
     for (auto it : ev_data.actions) {
         if (it.subjectID != "hero") {
             cout << "subjectID is not valid" << endl;
