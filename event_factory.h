@@ -16,9 +16,9 @@ using std::unordered_map;
 
 struct ActionData {
     // Action is not an Item and has no own factory or parser
-    str subjectID, command, objectID, diaryNote, condition;
+    str /* subjectID,  */command, objectID, diaryNote, condition;
     short duration;
-    void set(str, str, str, str, str, short);
+    void set(/* str,  */str, str, str, str, short);
     /* DEBUG */ void PrintActionData();
 };
 

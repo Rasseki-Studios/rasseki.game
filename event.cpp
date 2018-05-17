@@ -1,18 +1,34 @@
 #include "event.h"
+#include "session_data.h"
+
+using namespace SessionData;
 
 //for error printing, should be changed to QT error printer
 #include <iostream>
 using std::cout;
 using std::endl;
 
-Action::Action(Item *subj, str _command, Item *obj,
+Action::Action(/* Item *subj,  */str _command, str _obj,
     str _note, str _cond, short _duration) : 
-    subject(subj),
+    // subject(subj),
     command(_command),
-    object(obj),
+    objectID(_obj),
     diaryNote(_note),
     condition(_cond),
     duration(_duration) {
+}
+
+void Action::run() const {
+        // "give",         // give artifact
+        // "take_away",    // remove artifact
+        // "wait",         // nothing
+        // "fight",        // fight
+        // "die"
+    if (command == "give") {
+        hero.giveArtifact(objectID);
+        //   giveArtifact()
+        
+    }
 }
 
 /* DEBUG_FUNCTION */
@@ -40,6 +56,10 @@ short Event::getRadius() {
 
 short Event::getPriority() {
     return priority;
+}
+
+void Event::runEvent() const {
+
 }
 
 /* DEBUG_FUNCTION */

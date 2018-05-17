@@ -17,7 +17,7 @@ void from_json(const json &j, coord &c) {
 
 void from_json(const json &j, ActionData &action) {
     str object_id = "", condition = "";
-    auto subject_id = j.at("subject_id").get<str>();
+    // auto subject_id = j.at("subject_id").get<str>();
     auto command = j.at("command").get<str>();
     auto toDiary = j.at("toDiary").get<str>();
     auto duration = j.at("duration").get<short>();
@@ -29,7 +29,7 @@ void from_json(const json &j, ActionData &action) {
     try { condition = j.at("condition").get<str>();
     } catch(nlohmann::detail::out_of_range) {}
 
-    action.set(subject_id, command, object_id, toDiary, condition, duration);
+    action.set(/* subject_id,  */command, object_id, toDiary, condition, duration);
 }
 
 void from_json(const json &j, EventData &event) {

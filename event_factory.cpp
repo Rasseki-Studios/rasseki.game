@@ -26,10 +26,10 @@ bool EventFactory::isValid(EventData &ev_data) {
         return 0;
     }
     for (auto it : ev_data.actions) {
-        if (it.subjectID != "hero") {
-            cout << "subjectID is not valid" << endl;
-            return 0;
-        } else if (artifactsData.ArtifactExists(ev_data.ID)) {
+        // if (it.subjectID != "hero") {
+        //     cout << "subjectID is not valid" << endl;
+        //     return 0;
+        /* } else  */if (artifactsData.ArtifactExists(ev_data.ID)) {
             cout << "object [artifact] is not valid" << endl;
             return 0;
         } else if (commandList.find(it.command) == commandList.end()) {
@@ -51,9 +51,9 @@ Event* EventFactory::Create(EventData &ev_data) {
     vector<Action> actions;
     for (auto it : ev_data.actions) {
         Action newAction(
-            &hero,
+            // &hero,
             it.command,
-            artifactsData.getArtifact(it.objectID),
+            it.objectID,
             it.diaryNote,
             it.condition,
             it.duration
@@ -92,10 +92,10 @@ int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
 }
 
 void ActionData::set(
-    str _subjectID, str _command, str _objectID,
+    /* str _subjectID,  */str _command, str _objectID,
     str _toDiary, str _condition, short _duration) {
 
-    subjectID = _subjectID;
+    // subjectID = _subjectID;
     command = _command;
     objectID = _objectID;
     diaryNote = _toDiary;
@@ -106,7 +106,7 @@ void ActionData::set(
 /* DEBUG_FUNCTION */
 void ActionData::PrintActionData() {
     cout << "condition: " << condition << endl;
-    cout << "subjectID: " << subjectID << endl;
+    // cout << "subjectID: " << subjectID << endl;
     cout << "command: " << command << endl;  // Converts in function in run()
     cout << "objectID: " << objectID << endl;  // Item *object in future
     cout << "diaryNote: " << diaryNote << endl;
