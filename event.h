@@ -4,6 +4,8 @@
 #include "item.h"
 #include "location.h"
 
+#include <vector>
+
 class EventFactory;  // forward declaration
 class Action {
 public:

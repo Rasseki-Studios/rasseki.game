@@ -6,7 +6,6 @@
 #include <unordered_set>
 #include <unordered_map>
 
-#include "location.h"
 #include "event.h"
 
 using std::vector;
