@@ -13,7 +13,7 @@ using std::endl;
 //     extern SurfaceData surfaceData;
 // }
 
-// using namespace SessionData;
+using namespace SessionData;
 
 bool EventFactory::isValid(EventData &ev_data) {
     if (/* checking if such event already exists */0) {
