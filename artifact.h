@@ -3,12 +3,14 @@
 
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #include <memory>
 
 #include "item.h"
 
 using std::vector;
 using std::unordered_map;
+using std::unordered_set;
 using std::shared_ptr;
 using std::make_shared;
 
@@ -17,6 +19,7 @@ using std::make_shared;
 class Artifact : public Item {
 public:
     Artifact(str, str, short, str, short);
+    str getID() const;
     short GetPower() const;
 private:
     // some kind of effect description
@@ -50,8 +53,14 @@ private:
     shared_ptr<vector<ArtifactData>> tempData;
     // needs when there are several artifacts in one file
 
-    bool isVaild(ArtifactData&);
+    bool isValid(ArtifactData&);
     Artifact* Create(ArtifactData&);
+
+    unordered_set<str> typeList {
+        "weapon",
+        "speed_booster",
+        "throw_weapon"
+    };
 };
 
 class Storage {

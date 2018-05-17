@@ -8,6 +8,10 @@ Artifact::Artifact(
     type(_type), power(_power) {
 }
 
+str Artifact::getID() const {
+    return ID;
+}
+
 void ArtifactData::set(
     str _ID, str _name, short _level,
     str _type, short _power) {
