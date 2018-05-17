@@ -1,9 +1,11 @@
 #include "event_factory.h"
 #include "artifact.h"
+#include "session_data.h"
 #include <iostream>
 
 int main() {
-    EventFactory ev_factory;
+    SessionData::gameData.Init();
+  /*   EventFactory ev_factory;
     str path = "resources/events";
     unordered_map<str, Event> events;
     int eventCount = ev_factory.InitAll(path, events);
@@ -15,7 +17,7 @@ int main() {
     path = "resources/artifacts";
     unordered_map<str, Artifact> artifacts;
     int artifactCount = ar_factory.InitAll(path, artifacts);
-    std::cout << std::endl << artifactCount << " artifacts loaded." << std::endl;
+    std::cout << std::endl << artifactCount << " artifacts loaded." << std::endl; */
 
     return 0;
 }

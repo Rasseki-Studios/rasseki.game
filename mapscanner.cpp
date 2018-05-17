@@ -16,7 +16,6 @@ enum mapColor {black, red, yellow, blue, green, white};
 
 bool MapScanner::InitMatrix(const std::string filename) {
     BMP map;
-    MapData data;
     if (!map.ReadFromFile(filename.c_str())) return false; 
     data.mapWidth = map.TellWidth();
     data.mapHeight = map.TellHeight();
@@ -57,6 +56,7 @@ bool MapScanner::InitMatrix(const std::string filename) {
             }
         }
     }
+    data.surfaceMatrix = tempMatrix;
     return true;
 }
 
@@ -64,6 +64,9 @@ MapData& MapScanner::getMap(str filename) {
     if (InitMatrix(filename)) return data;
     else {
         throw "error during file scanning";
+        abort();
+        data.mapHeight = -1;
+        data.mapWidth = -1;
         return data;
     } 
 }

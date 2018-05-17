@@ -12,7 +12,7 @@ using std::vector;
 
 bool EventsData::Init() {
     EventFactory eFactory;
-    str path = "tests/events";
+    str path = "resources/events";
     eFactory.InitAll(path, currentEventList); // hardcoded just for debugging
     // using unique_ptr for two-dim array isn't a good idea though
     // std::unique_ptr<Event[][]> eventMatrix (nullptr); 
@@ -82,7 +82,7 @@ void EventsData::SortEventVector(std::vector<Event> * vector) {
 
 bool ArtifactsData::Init() {
     ArtifactFactory aFactory;
-    str path = "tests/artifacts";
+    str path = "resources/artifacts";
     aFactory.InitAll(path, currentArtifactsList);
     return true;
 }
@@ -97,6 +97,6 @@ Artifact& ArtifactsData::getArtifact(const str key) {
 
 bool GameData::Init() {
     using namespace SessionData;
-    return eventsData.Init() && surfaceData.Init() && artifactsData.Init();
+    return surfaceData.Init() && eventsData.Init() && artifactsData.Init();
 }
 
