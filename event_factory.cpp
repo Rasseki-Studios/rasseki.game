@@ -22,6 +22,9 @@ bool EventFactory::isValid(EventData &ev_data) {
     } else if (ev_data.level <= 0) {
         cout << "level is not valid" << endl;
         return 0;
+    } else if (ev_data.priority > 6 && ev_data.priority <= 0) {
+        cout << "level is not valid" << endl;
+        return 0;
     }/*  else if (!surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)) {
         cout << "radius or coord are not valid" << endl; 
         return 0;
@@ -100,12 +103,13 @@ void ActionData::PrintActionData() {
 }
 
 void EventData::set(
-    str _ID, str _name, coord _coord, short _rad,
-    short _level, std::vector<ActionData> _actions) {
+    str _ID, str _name, short _level, coord _coord,
+    short _rad, short _priority, std::vector<ActionData> _actions) {
 
     ID =_ID;
     name = _name;
     level = _level;
+    priority = _priority;
     coordinate = _coord;
     radius = _rad;
     actions = _actions;

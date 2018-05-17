@@ -9,6 +9,7 @@
             "y": 500
         },
         "radius": 2,
+        "priority": 6,
         "actions": [
             {
                 "subject_id": "hero",

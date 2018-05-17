@@ -37,10 +37,11 @@ void from_json(const json &j, EventData &event) {
     auto name = j.at("name").get<str>();
     auto coordinate = j.at("coord").get<coord>();
     auto radius = j.at("radius").get<short>();
+    auto priority = j.at("priority").get<short>();
     auto level = j.at("level").get<short>();
     auto actions = j.at("actions").get<std::vector<ActionData>>();
 
-    event.set(id, name, coordinate, radius, level, actions);
+    event.set(id, name, level, coordinate, radius, priority, actions);
 }
 
 shared_ptr<vector<EventData>> EventParser::getData(str filename) {

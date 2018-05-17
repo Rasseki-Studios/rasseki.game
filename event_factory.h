@@ -24,9 +24,9 @@ struct ActionData {
 
 struct EventData : public ItemData {
     coord coordinate;
-    short radius;
+    short radius, priority;
     std::vector<ActionData> actions;
-    void set(str, str, coord, short, short, std::vector<ActionData>);
+    void set(str, str, short, coord, short, short, std::vector<ActionData>);
     /* DEBUG */ void PrintEventData();
 };
 
