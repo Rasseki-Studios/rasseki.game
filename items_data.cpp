@@ -76,6 +76,10 @@ void EventsData::SortEventVector(std::vector<Event> * vector) {
     });
 }
 
+bool EventsData::EventExists(str ID) {
+    return currentEventList.count(ID);
+}
+
 //---------------------------------------------------------
 //---------------- ArtifactsData --------------------------
 //---------------------------------------------------------
@@ -89,6 +93,10 @@ bool ArtifactsData::Init() {
 
 Artifact& ArtifactsData::getArtifact(const str key) {
     return currentArtifactsList.at(key);
+}
+
+bool ArtifactsData::ArtifactExists(str ID) {
+    return currentArtifactsList.count(ID);
 }
 
 //---------------------------------------------------------

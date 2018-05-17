@@ -28,7 +28,8 @@ public:
     bool Init();
     Event& getEvent(const str);
     Event& getEvent(coord);
-    void removeFrontEvent(coord); // no realization yet
+    bool EventExists(str);
+    void RemoveFrontEvent(coord); // no realization yet
     // more methods coming in future
 private:
     void SortEventVector(std::vector<Event>*);
@@ -43,6 +44,7 @@ private:
 class ArtifactsData {
 public:
     bool Init();
+    bool ArtifactExists(str);
     Artifact& getArtifact(const str);
 private:
     std::unordered_map<str, Artifact> currentArtifactsList;
