@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/resources">
+        <file>img/archer.png</file>
+        <file>img/bground.png</file>
+        <file>img/menu.png</file>
+        <file>img/metal.jpg</file>
+        <file>img/testmap.bmp</file>
+        <file>img/hero.png</file>
+    </qresource>
+</RCC>
