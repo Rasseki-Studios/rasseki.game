@@ -4,7 +4,7 @@ libAdapter.a: Item.o Located.o Artifact.o Creature.o Hero.o Movable.o Storage.o 
 	ar crs libAdapter.a libAdapter.o Item.o Located.o Artifact.o Creature.o Hero.o Movable.o Storage.o SurfaceData.o
 
 libAdapter.o: libAdapter.cpp
-	g++ -std=c++11 -c libAdapter.cpp
+	g++ -std=c++11 -c -pthread libAdapter.cpp
 
 Item.o: Item.cpp
 	g++ -std=c++11 -c Item.cpp

@@ -7,7 +7,7 @@
 class Movable : public Located {
 public:
     Movable(coord, short);
-    bool Move(coord);
+    int Move(coord);
     coord Step();
     short GetSpeed() const;
 protected:

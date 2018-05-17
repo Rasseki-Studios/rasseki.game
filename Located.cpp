@@ -2,6 +2,8 @@
 
 coord::coord(int x, int y) : x(x), y(y) {}
 
+coord::coord() : x(0), y(0) {}
+
 Located::Located(coord coordinates) : coordinates(coordinates) {}
 
 void Located::SetCoord(coord coordinates) {

@@ -6,7 +6,7 @@
 struct coord {
     int x;
     int y;
-    coord() = default;
+    coord();
     coord(int, int);
 };
 

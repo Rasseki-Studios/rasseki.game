@@ -2,6 +2,10 @@
 #include "gamewindow.h"
 #include "libAdapter.h"
 
+#include <thread>
+
+const int offset = 50;
+
 MapView::MapView(QWidget *parent)
     : QGraphicsView(parent)
 {
@@ -11,17 +15,20 @@ MapView::MapView(QWidget *parent)
     setAlignment(Qt::AlignCenter);                        //делаем привязку содержимого к центру
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);    //растягиваем содержимое по виджету
 
-    //растягиваем изображение по размеру объекта
-    QPixmap img(":/resources/img/testmap.bmp");
-    img.scaled(this->width(), this->height(), Qt::KeepAspectRatio);
+    mapScene = new QGraphicsScene(this);   //инициализируем сцену для отрисовки
 
-    mapScene = new QGraphicsScene();   //инициализируем сцену для отрисовки
+    QPixmap img(":/resources/img/testmap.bmp"); //карта
+    mapScene->setSceneRect(0, 0, width(), height());
     mapScene->setBackgroundBrush(QBrush(img));    //устанавливаем Background виджета (изображение карты)
 
-    setScene(mapScene);          //устанавливаем сцену в виджет
+    QPixmap img_h(":/resources/img/hero.png");  //герой
+    hero = mapScene->addPixmap(img_h.scaled(100, 100, Qt::KeepAspectRatio));
 
-    hero = new QGraphicsItemGroup(); //инициализируем первую группу элементов
-    mapScene->addItem(hero);         //добавляем первую группу в сцену
+    coord pos = Coords();   //установливаем положение героя
+    QPoint point(pos.x, pos.y);
+    hero->setPos(point);
+
+    setScene(mapScene); //устанавливаем сцену в виджет
 
     //необходимо некоторое время, чтобы родительский слой развернулся, чтобы принимать от него адекватные параметры ширины и высоты
     timer = new QTimer();   //инициализируем Таймер
@@ -31,6 +38,9 @@ MapView::MapView(QWidget *parent)
 
 MapView::~MapView()
 {
+    if (td.joinable()) {
+        td.join();
+    }
     delete mapScene;
     delete hero;
     delete timer;
@@ -38,14 +48,13 @@ MapView::~MapView()
 
 void MapView::slotAlarmTimer()
 {
-    deleteItemsFromGroup(hero); //удаляем все элементы со сцены, если они есть перед новой отрисовкой
-
     int width = this->width();      //определяем ширину нашего виджета
     int height = this->height();    //определяем высоту нашего виджета
-    mapScene->setSceneRect(0, 0, width, height);    //устанавливаем размер сцены по размеру виджет
+    mapScene->setSceneRect(0, 0, width, height);    //устанавливаем размер сцены по размеру виджета
 
-    QPixmap img(":/resources/img/hero.png");
-    hero->addToGroup(mapScene->addPixmap(img.scaled(100,100,Qt::KeepAspectRatio)));
+    coord pos = Coords();   //устанавливаем героя на актуальную позицию
+    QPoint point(pos.x - offset, pos.y - offset);
+    hero->setPos(point);
 }
 
 //этим методом перехватываем событие изменения размера виджет
@@ -69,9 +78,11 @@ void MapView::mousePressEvent(QMouseEvent *mousePressEvt)
 {
     qDebug() << "Mouse event worked";
     QPointF point = mousePressEvt->pos();
-
     qDebug() << point.x() << " and " << point.y();
-    qDebug() << Go(point.x(), point.y());
+    if (td.joinable()) {
+        td.join();
+    }
+    td = std::thread(Go, point.x(), point.y()); //в отдельном потоке запускаем движение
 
     emit passCoord(point);
 }

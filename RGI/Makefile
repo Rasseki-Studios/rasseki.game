@@ -14,7 +14,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -m64 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -m64 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -m64 -pipe -std=c++11 -pthread -g -std=c++0x -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I. -I../../rasseki.game -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -116,6 +116,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -212,6 +213,7 @@ Makefile: RGI.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf 
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -274,6 +276,7 @@ Makefile: RGI.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf:
+/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf:
@@ -411,11 +414,6 @@ loadwindow.o: loadwindow.cpp loadwindow.h \
 mapview.o: mapview.cpp mapview.h \
 		gamewindow.h \
 		../libAdapter.h \
-		../Storage.h \
-		../Artifact.h \
-		../Item.h \
-		../Hero.h \
-		../Creature.h \
 		../Movable.h \
 		../Located.h \
 		../SurfaceData.h

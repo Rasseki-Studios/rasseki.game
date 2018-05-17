@@ -7,7 +7,7 @@ SurfaceData SD(1000,1000);
 
 Movable::Movable(coord coordinates, short speed) : Located(coordinates), speed(speed) {}
 
-bool Movable::Move(coord destination) {
+int Movable::Move(coord destination) {
     path.clear();   //очищаем текущий маршрут для пересчета
     Wave alg(&SD);
     path = alg.Path(coordinates, destination);  //алгоритм поиска пути, формирует вектор path
@@ -82,7 +82,8 @@ std::vector<coord> Wave::Path(coord coordinates, coord destination) {
     std::vector<coord> path(len);  //выделяем место под шаги
     d = len;
     while (d > 0) {
-        path.push_back(place);   //записываем ячейку в путь
+        //path.push_back(place);   //записываем ячейку в путь
+        path[len - d] = place;
         d--;
         for (auto neighbor : neighbors) {
             coord step{place.x + neighbor.x, place.y + neighbor.y};

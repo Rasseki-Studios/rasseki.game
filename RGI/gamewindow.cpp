@@ -17,7 +17,7 @@ GameWindow::GameWindow(QWidget *parent) :
     br.setTextureImage(bg_window);
     QPalette plt = palette();
     plt.setBrush(QPalette::Background, br);
-    setPalette(plt);
+    setPalette(plt);    
 }
 
 GameWindow::~GameWindow()
