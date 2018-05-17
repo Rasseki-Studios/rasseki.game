@@ -63,14 +63,4 @@ private:
     };
 };
 
-class Storage {
-public:
-    Storage(short);
-    void AddArtifact(Artifact);
-    void RemoveArtifact(str);
-    Artifact* GetArtifact(str);
-private:
-    std::vector<Artifact> artifacts;
-};
-
 #endif //ARTIFACT

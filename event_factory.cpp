@@ -9,10 +9,6 @@ using std::endl;
 #include "session_data.h"
 #include "event_factory.h"
 
-// namespace SessionData {
-//     extern SurfaceData surfaceData;
-// }
-
 using namespace SessionData;
 
 bool EventFactory::isValid(EventData &ev_data) {
@@ -28,13 +24,13 @@ bool EventFactory::isValid(EventData &ev_data) {
     } else if (!surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)) {
         cout << "radius or coord are not valid" << endl; 
         return 0;
-    } //method RadiusIsValid is incorrect
+    }
     for (auto it : ev_data.actions) {
         if (it.subjectID != "hero") {
             cout << "subjectID is not valid" << endl;
             return 0;
-        } else if (/* checking object list */ !1) {
-            cout << "object list is not valid" << endl;
+        } else if (artifactsData.ArtifactExists(ev_data.ID)) {
+            cout << "object [artifact] is not valid" << endl;
             return 0;
         } else if (commandList.find(it.command) == commandList.end()) {
             cout << "command is not valid" << endl;
@@ -47,14 +43,29 @@ bool EventFactory::isValid(EventData &ev_data) {
             cout << "duration is not valid" << endl;
             return 0;
         }
-        /* checking Item */
     }
     return 1;
 }
 
 Event* EventFactory::Create(EventData &ev_data) {
-    // 5) проверка на приоритет 0-6
-    // ev_data->PrintEventData();
+    vector<Action> actions;
+    for (auto it : ev_data.actions) {
+        Action newAction(
+            &hero,
+            it.command,
+            artifactsData.getArtifact(it.objectID),
+            it.diaryNote,
+            it.condition,
+            it.duration
+        );
+        actions.push_back(newAction);
+    }
+    Event *ev = new Event(
+        ev_data.ID, ev_data.name, ev_data.level,
+        ev_data.coordinate, ev_data.radius, 
+        ev_data.priority, actions
+    );
+    return ev;
 }
 
 int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {

@@ -12,6 +12,6 @@ namespace SessionData {
     std::string name = "Hero";
     std::string id = "super_hero";
     coord start;
-    Hero hero(name, id, 1, 10, start, nullptr);
+    Hero hero(name, id, 1, 10, start);
 }
 

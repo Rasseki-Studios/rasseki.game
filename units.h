@@ -3,16 +3,17 @@
 
 #include <string>
 
-#include "artifact.h"
 #include "event.h"
 #include "movable.h"
+#include "storage.h"
 
 class Hero : public Item, public Movable {
 public:
-    Hero(str, str, short, short, coord, Storage*);
-    Storage* GetInventory() const;
-protected:
-    Storage *inventory;
+    Hero(str, str, short, short, coord);
+    void giveArtifact(str ID);
+    void takeArtifact(str ID);
+private:
+    Storage inventory;
 };
 
 // TEMPORARY

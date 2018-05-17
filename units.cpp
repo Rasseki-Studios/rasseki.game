@@ -1,12 +1,11 @@
 #include "units.h"
 
 Hero::Hero (
-    str name, str id, short level, 
-    short speed, coord coordinates, 
-    Storage *inventory
+    str name, str id, short level,
+    short speed, coord coordinates
 )
-: Item(name, id, level), Movable(coordinates, speed), inventory(inventory) {}
+: Item(name, id, level), Movable(coordinates, speed) {}
 
-Storage* Hero::GetInventory() const {
-    return inventory;
+void Hero::giveArtifact(str ID) {
+    inventory.AddArtifact(ID);
 }
