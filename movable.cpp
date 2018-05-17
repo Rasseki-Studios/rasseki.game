@@ -1,18 +1,16 @@
 #include "movable.h"
+#include "session_data.h"
 
 #define WALL -1    //непроходимая ячейка
 #define BLANK -2   //свободная непомеченная ячейка
 
-namespace SessionData {
-    extern SurfaceData surfaceData;
-}
 using namespace SessionData;
 
 Movable::Movable(coord coordinates, short speed) 
 :
 Located(coordinates), speed(speed) {}
 
-bool Movable::Move(coord destination) {
+int Movable::Move(coord destination) {
     path.clear();   //очищаем текущий маршрут для пересчета
     Wave alg;
     path = alg.Path(coordinates, destination);  //алгоритм поиска пути, формирует вектор path
@@ -34,20 +32,19 @@ short Movable::GetSpeed() const {
 Wave::Wave() {
     width = surfaceData.getWidth();
     height = surfaceData.getHeight();
-    map.reserve(width);
-    for (auto line : map) {
-        line.reserve(height);
-    }
     Reload();
 }
 
 void Wave::Reload() {
-    map.clear();
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
+    map.clear();    
+    for (int x = 0; x < width; x++) {
+        std::vector<short> temp(height);
+        for (int y = 0; y < height; y++) {
             coord point(x, y);
-            map[x][y] = (surfaceData.IsWalkable(point) ? BLANK : WALL);
+            short pixel = (surfaceData.IsWalkable(point) ? BLANK : WALL);
+            temp[y] = pixel;
         }
+        map.push_back(temp);
     }
 }
 
@@ -88,7 +85,8 @@ std::vector<coord> Wave::Path(coord coordinates, coord destination) {
     std::vector<coord> path(len);  //выделяем место под шаги
     d = len;
     while (d > 0) {
-        path.push_back(place);   //записываем ячейку в путь
+        // path.push_back(place);   //записываем ячейку в путь
+        path[len - d] = place;
         d--;
         for (auto neighbor : neighbors) {
             coord step{place.x + neighbor.x, place.y + neighbor.y};
