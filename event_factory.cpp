@@ -17,7 +17,7 @@ using std::endl;
 
 bool EventFactory::isValid(EventData &ev_data) {
     if (/* checking if such event already exists */0) {
-        cout << "such event is already exists" << endl;
+        cout << "such event already exists" << endl;
         return 0;
     } else if (ev_data.level <= 0) {
         cout << "level is not valid" << endl;
@@ -25,7 +25,7 @@ bool EventFactory::isValid(EventData &ev_data) {
     }/*  else if (!surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)) {
         cout << "radius or coord are not valid" << endl; 
         return 0;
-    } method RadiusIsValid is incorrect */
+    } */ //method RadiusIsValid is incorrect
     for (auto it : ev_data.actions) {
         if (it.subjectID != "hero") {
             cout << "subjectID is not valid" << endl;
@@ -65,7 +65,7 @@ int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
                 if (isValid(it)) {
                     cout << "event <" << it.ID << "> read." << endl;
                     // Event* ev = Create(it);
-                    // eventsMap[ev->getID()] = *ev;
+                    // eventsMap[it.ID] = *ev;
                     eventCount++;
                 } else {
                     cout << "event <" << it.ID << "> not read." << endl;
