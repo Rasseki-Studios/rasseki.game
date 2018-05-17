@@ -1,6 +1,5 @@
 #include "surface.h"
 #include "mapscanner.h"
-// #include "session_data.h"
 
 //---------------------------------------------------------
 //---------------- SurfaceData ----------------------------
@@ -10,7 +9,7 @@ bool SurfaceData::Init() {
     // open map, read it
     // asign map pointers
     // init factories
-    str locationName = "testmap.bmp";
+    str locationName = "map.bmp";
     MapScanner scanner;
     MapData data = scanner.getMap(locationName);
     surfaceMatrix = data.surfaceMatrix;
