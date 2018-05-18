@@ -4,14 +4,8 @@
 *.txt
 *.out
 *.exe
-<<<<<<< HEAD
-<<<<<<< HEAD
 *tests*
-
-=======
-*test*
->>>>>>> 0a156fa5514e37e79de57de8392c45cf7794cef8
-=======
 *test*
 *.gch
->>>>>>> 615791cf416b68688ddef09d9a93308574f6eb36
+.idea
+RGI/RGI
