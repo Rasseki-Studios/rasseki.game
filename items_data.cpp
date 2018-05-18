@@ -5,6 +5,7 @@
 #include <vector>
 
 using std::vector;
+using namespace SessionData;
 
 //---------------------------------------------------------
 //----------------- EventsData ----------------------------
@@ -12,7 +13,7 @@ using std::vector;
 
 bool EventsData::Init() {
     EventFactory eFactory;
-    str path = "resources/events";
+    str path = SessionData::systemData.resourcesDirectory + "events";
     eFactory.InitAll(path, currentEventList); // hardcoded just for debugging
     // using unique_ptr for two-dim array isn't a good idea though
     // std::unique_ptr<Event[][]> eventMatrix (nullptr); 
@@ -37,8 +38,8 @@ add event to map
     for (auto i : list) {
         Event event = i.second;
         
-        int width = SessionData::gameData.mapWidth;
-        int height = SessionData::gameData.mapHeight;
+        int width = gameData.mapWidth;
+        int height = gameData.mapHeight;
 
         coord eventCenter = event.GetCoord();
         if (eventCenter.x > width || eventCenter.y > height) throw "coordinates are out of range";
@@ -61,24 +62,37 @@ add event to map
                 eventMatrix[eventCenter.x][eventCenter.y]->push_back(event);
                 }
                 else {
-                    eventMatrix[eventCenter.x][eventCenter.y]->push_back(event);            
-                    // here'll be sorting function
-                    // SortEventVector(eventMatrix[eventCenter.x][eventCenter.y]);
+                    eventMatrix[eventCenter.x][eventCenter.y]->push_back(event);  
 
+                    std::push_heap( // SIC! that wasn't tested
+                        eventMatrix[eventCenter.x][eventCenter.y]->begin(),
+                        eventMatrix[eventCenter.x][eventCenter.y]->end(),
+                        [](Event& a, Event& b) {
+                            return a.getPriority() < b.getPriority();
+                            }
+                        );
                 }
             }
         }
     }
 }
-void EventsData::SortEventVector(std::vector<Event> * vector) {
-    std::sort(vector->begin(), vector->end(), 
-    [](Event& a, Event& b) -> bool {
-        return a.getPriority() > b.getPriority();
-    });
-}
 
 void EventsData::RemoveFrontEvent(coord point) {
+    Event* event = getEvent(point);
+    coord center = event->GetCoord();
+    int radius = event->getRadius();
 
+    for (int i = center.x - radius ; i < center.x + radius; i++) {
+        for (int j = center.y - radius ; j < center.y + radius; j++) {
+            if ( surfaceData.CoordIsValid( {i, j} ) ) {
+                std::pop_heap(eventMatrix[i][j]->begin(), 
+                eventMatrix[i][j]->end(),
+                [](Event& a, Event& b) {
+                    return a.getPriority() < b.getPriority();
+                } );
+            };
+        }
+    }
 }
 
 bool EventsData::EventExists(str ID) {
@@ -91,7 +105,7 @@ bool EventsData::EventExists(str ID) {
 
 bool ArtifactsData::Init() {
     ArtifactFactory aFactory;
-    str path = "resources/artifacts";
+    str path = SessionData::systemData.resourcesDirectory + "artifacts";
     aFactory.InitAll(path, currentArtifactsList);
     return true;
 }
@@ -110,6 +124,12 @@ bool ArtifactsData::ArtifactExists(str ID) {
 
 bool GameData::Init() {
     using namespace SessionData;
+    systemData.resourcesDirectory = "resources/";
+    locationID = "map";
     return surfaceData.Init() && eventsData.Init() && artifactsData.Init();
 }
+
+//---------------------------------------------------------
+//--------------------- SystemData ------------------------
+//---------------------------------------------------------
 

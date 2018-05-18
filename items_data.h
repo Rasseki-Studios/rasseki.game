@@ -11,7 +11,8 @@
 #include "surface.h" //here is SurfaceData, temporary solution.
 
 class SystemData {
-    // coming soon
+public:
+    str resourcesDirectory;
 };
 
 class GameData {
@@ -32,13 +33,11 @@ public:
     void RemoveFrontEvent(coord); // no realization yet
     // more methods coming in future
 private:
-    void SortEventVector(std::vector<Event>*);
     void PulverizeEvents(std::unordered_map<str, Event>&); //pulverizes events from eventList
     std::vector<Event> ***eventMatrix;
     // std::unique_ptr<Event[][]> eventMatrix;
     std::unordered_map<str, Event> currentEventList;
     // std::unordered_map<str, Event> globalEventList;
-
 };
 
 class ArtifactsData {
