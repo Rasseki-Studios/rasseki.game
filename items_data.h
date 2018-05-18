@@ -12,16 +12,19 @@
 
 class SystemData {
 public:
-    str resourcesDirectory;
+    str resourcesDirectory; // directory with all the resources
+    str nextLocationName; // ID of a map going to be loaded
+    str currentLocationName; // ID of a map loaded
+    str mapName; // name of the .bmp file
 };
 
 class GameData {
 // stores finished events and other stuff
 public:
     bool Init(); 
+    bool Init(str);
     int mapHeight;
     int mapWidth;
-    str locationID; // ID of a map going to be loaded
 };
 
 class EventsData {

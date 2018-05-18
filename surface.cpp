@@ -1,6 +1,9 @@
 #include "surface.h"
 #include "mapscanner.h"
 #include "session_data.h"
+
+using namespace SessionData;
+
 //---------------------------------------------------------
 //---------------- SurfaceData ----------------------------
 //---------------------------------------------------------
@@ -11,8 +14,9 @@ bool SurfaceData::Init() {
     // init factories
     MapScanner scanner;
     MapData data = scanner.getMap(
-        SessionData::systemData.resourcesDirectory +
-        SessionData::gameData.locationID + ".bmp");
+        systemData.resourcesDirectory +
+        systemData.nextLocationName + "/" +
+        systemData.mapName + ".bmp");
     surfaceMatrix = data.surfaceMatrix;
     mapHeight = data.mapHeight;
     mapWidth = data.mapWidth;

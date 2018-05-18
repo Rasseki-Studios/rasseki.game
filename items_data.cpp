@@ -13,7 +13,7 @@ using namespace SessionData;
 
 bool EventsData::Init() {
     EventFactory eFactory;
-    str path = SessionData::systemData.resourcesDirectory + "events";
+    str path = systemData.resourcesDirectory + systemData.nextLocationName + "/events";
     eFactory.InitAll(path, currentEventList); // hardcoded just for debugging
     // using unique_ptr for two-dim array isn't a good idea though
     // std::unique_ptr<Event[][]> eventMatrix (nullptr); 
@@ -105,7 +105,7 @@ bool EventsData::EventExists(str ID) {
 
 bool ArtifactsData::Init() {
     ArtifactFactory aFactory;
-    str path = SessionData::systemData.resourcesDirectory + "artifacts";
+    str path = systemData.resourcesDirectory + systemData.nextLocationName + "/artifacts";
     aFactory.InitAll(path, currentArtifactsList);
     return true;
 }
@@ -122,11 +122,26 @@ bool ArtifactsData::ArtifactExists(str ID) {
 //--------------------- GameData --------------------------
 //---------------------------------------------------------
 
-bool GameData::Init() {
-    using namespace SessionData;
+bool GameData::Init() { // first initialization, using default values
     systemData.resourcesDirectory = "resources/";
-    locationID = "map";
-    return surfaceData.Init() && eventsData.Init() && artifactsData.Init();
+    systemData.nextLocationName = "default";
+    systemData.mapName = "map";
+
+    bool status = surfaceData.Init() && eventsData.Init() && artifactsData.Init();
+    if (status) systemData.currentLocationName = "default";
+
+    return status;
+}
+
+bool GameData::Init(str nextLocation) { // repeated initialization of new location
+    systemData.resourcesDirectory = "resources/";
+    systemData.nextLocationName = nextLocation;
+    systemData.mapName = "map";
+
+    bool status = surfaceData.Init() && eventsData.Init() && artifactsData.Init();
+    if (status) systemData.currentLocationName = "default";
+
+    return status;
 }
 
 //---------------------------------------------------------
