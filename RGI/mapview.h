@@ -11,6 +11,7 @@
 
 #include <QPoint>
 #include <QDebug>
+#include <thread>
 
 
 //расширение класса QGraphicsView
@@ -30,9 +31,10 @@ public slots:
 
 private:
     QGraphicsScene *mapScene;       //объявляем сцену для отрисовки
-    QGraphicsItemGroup *hero;    //объявляем первую группу элементов
+    QGraphicsItem *hero;    //объявляем первую группу элементов
     //QGraphicsItemGroup *group_2;    //объявляем вторую группу элементов
     QTimer *timer;  //таймер для задержки отрисовки.
+    std::thread td;
 
 private:
     void resizeEvent(QResizeEvent *event);  //перегружаем событие изменения размера окна, чтобы перехватывать его
