@@ -1,14 +1,11 @@
 #include "movable.h"
-#include "session_data.h"
 
 #define WALL -1    //непроходимая ячейка
 #define BLANK -2   //свободная непомеченная ячейка
 
 using namespace SessionData;
 
-Movable::Movable(coord coordinates, short speed) 
-:
-Located(coordinates), speed(speed) {}
+Movable::Movable(coord coordinates, short speed) : Located(coordinates), speed(speed) {}
 
 int Movable::Move(coord destination) {
     path.clear();   //очищаем текущий маршрут для пересчета
@@ -36,7 +33,7 @@ Wave::Wave() {
 }
 
 void Wave::Reload() {
-    map.clear();    
+    map.clear();
     for (int x = 0; x < width; x++) {
         std::vector<short> temp(height);
         for (int y = 0; y < height; y++) {

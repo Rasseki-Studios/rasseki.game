@@ -1,10 +1,10 @@
-#ifndef MOVABLE
-#define MOVABLE
+#ifndef MOVABLE_H
+#define MOVABLE_H
 
 #include <vector>
-#include "surface.h"
 
-// using namespace SessionData;
+#include "session_data.h"
+#include "surface.h"
 
 class Movable : public virtual Located {
 public:
@@ -28,4 +28,4 @@ private:
     std::vector<std::vector<short>> map;
 };
 
-#endif
+#endif //MOVABLE_H

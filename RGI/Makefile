@@ -14,7 +14,11 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -m64 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+<<<<<<< HEAD
 CXXFLAGS      = -m64 -pipe -std=c++17 -pthread -lstdc++fs -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+=======
+CXXFLAGS      = -m64 -pipe -std=c++11 -pthread -g -std=c++0x -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+>>>>>>> salman
 INCPATH       = -I. -I../../rasseki.game -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -36,7 +40,11 @@ DISTNAME      = RGI1.0.0
 DISTDIR = /home/moleque/rasseki.game/RGI/.tmp/RGI1.0.0
 LINK          = g++
 LFLAGS        = -m64
+<<<<<<< HEAD
 LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -L/home/moleque/rasseki.game/RGI/../ -lAdapter -lstdc++fs -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
+=======
+LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -L/home/moleque/rasseki.game/RGI/../ -lAdapter -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
+>>>>>>> salman
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -116,6 +124,10 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
+<<<<<<< HEAD
+=======
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
+>>>>>>> salman
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -212,6 +224,10 @@ Makefile: RGI.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf 
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf \
+<<<<<<< HEAD
+=======
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf \
+>>>>>>> salman
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf \
@@ -274,6 +290,10 @@ Makefile: RGI.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64/qmake.conf 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resolve_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_post.prf:
+<<<<<<< HEAD
+=======
+/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/c++11.prf:
+>>>>>>> salman
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/warn_on.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/resources.prf:
@@ -411,6 +431,7 @@ loadwindow.o: loadwindow.cpp loadwindow.h \
 mapview.o: mapview.cpp mapview.h \
 		gamewindow.h \
 		../libAdapter.h \
+<<<<<<< HEAD
 		../movable.h \
 		../surface.h \
 		../item.h \
@@ -422,6 +443,11 @@ mapview.o: mapview.cpp mapview.h \
 		../storage.h \
 		../artifact.h \
 		../event_factory.h
+=======
+		../Movable.h \
+		../Located.h \
+		../SurfaceData.h
+>>>>>>> salman
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mapview.o mapview.cpp
 
 savewindow.o: savewindow.cpp savewindow.h \

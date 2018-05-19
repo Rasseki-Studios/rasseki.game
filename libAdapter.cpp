@@ -3,6 +3,7 @@
 
 using namespace SessionData;
 
+
 void Moving(int count) {
     for (int i =0 ; i< count; i++) {
         hero.Step();

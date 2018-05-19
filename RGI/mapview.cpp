@@ -9,8 +9,11 @@ const int offset = 50;
 MapView::MapView(QWidget *parent)
     : QGraphicsView(parent)
 {
+<<<<<<< HEAD
     Game();
 
+=======
+>>>>>>> salman
     //настройка отображения виджета и его содержимого
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //отключим скроллбар по горизонтали
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);   //отключим скроллбар по вертикали
@@ -27,7 +30,10 @@ MapView::MapView(QWidget *parent)
     hero = mapScene->addPixmap(img_h.scaled(100, 100, Qt::KeepAspectRatio));
 
     coord pos = Coords();   //установливаем положение героя
+<<<<<<< HEAD
     qDebug() << pos.x << " | " << pos.y;
+=======
+>>>>>>> salman
     QPoint point(pos.x, pos.y);
     hero->setPos(point);
 

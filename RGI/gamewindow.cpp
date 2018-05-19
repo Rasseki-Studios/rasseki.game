@@ -17,7 +17,11 @@ GameWindow::GameWindow(QWidget *parent) :
     br.setTextureImage(bg_window);
     QPalette plt = palette();
     plt.setBrush(QPalette::Background, br);
+<<<<<<< HEAD
     setPalette(plt);
+=======
+    setPalette(plt);    
+>>>>>>> salman
 }
 
 GameWindow::~GameWindow()

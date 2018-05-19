@@ -1,22 +1,20 @@
 #include "artifact.h"
 
-Artifact::Artifact(
-    str _ID, str _name, short _level,
-    str _type, short _power)
-    :
-    Item(_ID, _name, _level),
-    type(_type), power(_power) {
+Artifact::Artifact(std::string id, std::string name, short level, std::string type, short power) : Item(id, name, level), type(type), power(power) {}
+
+std::string Artifact::GetType() const {
+    return type;
 }
 
-str Artifact::getID() const {
-    return ID;
+short Artifact::GetPower() const {
+    return power;
 }
 
 void ArtifactData::set(
     str _ID, str _name, short _level,
     str _type, short _power) {
 
-    ID= _ID;
+    ID = _ID;
     name = _name;
     level = _level;
     type = _type;
