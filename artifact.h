@@ -18,11 +18,11 @@ using std::make_shared;
 //                 ...sometimes...
 class Artifact : public Item {
 public:
-    Artifact(std::string, std::string, short, std::string, short);
-    std::string GetType() const;
+    Artifact(str, str, short, str, short);
+    str GetType() const;
     short GetPower() const ;
 private:
-    str::string type;
+    str type;
     short power;
 };
 

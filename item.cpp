@@ -1,15 +1,16 @@
 #include "item.h"
 
-Item::Item(std::string id, std::string name, short level) : id(id), name(name), level(level) {}
+Item::Item(str id, str name, short level) : id(id), name(name), level(level) {}
 
-std::string Item::getId() const {
+str Item::GetId() const {
     return id;
 }
 
-std::string Item::getName() const {
+str Item::GetName() const {
     return name;
 }
 
-short Item::getLevel() const {
+short Item::GetLevel() const {
     return level;
 }
+

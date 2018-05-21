@@ -7,13 +7,13 @@ using str = std::string;
 
 class Item {
 public:
-    Item(std::string, std::string, short);
-    std::string GetId() const;
-    std::string GetName() const;
+    Item(str, str, short);
+    str GetId() const;
+    str GetName() const;
     short GetLevel() const;
 protected:
-    std::string id;
-    std::string name;
+    str id;
+    str name;
     short level;
 };
 

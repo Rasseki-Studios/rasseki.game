@@ -1,8 +1,8 @@
 #include "artifact.h"
 
-Artifact::Artifact(std::string id, std::string name, short level, std::string type, short power) : Item(id, name, level), type(type), power(power) {}
+Artifact::Artifact(str id, str name, short level, str type, short power) : Item(id, name, level), type(type), power(power) {}
 
-std::string Artifact::GetType() const {
+str Artifact::GetType() const {
     return type;
 }
 

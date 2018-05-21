@@ -4,11 +4,10 @@
 #include <memory>
 
 #include "artifact.h"
-#include "session_data.h"
 
 class Storage {
 public:
-    Storage(short);
+    //Storage(short);
     void AddArtifact(std::string);
     void RemoveArtifact(std::string);
     std::shared_ptr<Artifact> GetArtifact(std::string);

@@ -3,14 +3,14 @@
 
 #include <string>
 
-#include "event.h"
+//#include "event.h"
 #include "movable.h"
 #include "storage.h"
 
 class Hero : public Item, public Movable {
 public:
-    Hero(std::string, std::string, short, short, coord, Storage*);
-    Storage* GetInventory() const;
+    Hero(str, str, short, short, coord);
+    Storage* GetInventory();
 protected:
     Storage inventory;
 };

@@ -33,7 +33,6 @@ FORMS    += menuwindow.ui \
 RESOURCES += \
     resource.qrc
 
-<<<<<<< HEAD
 CONFIG += C++17
 QMAKE_CXXFLAGS += -std=c++17 -pthread -lstdc++fs
 QMAKE_CXX = g++
@@ -42,15 +41,6 @@ QMAKE_CXX = g++
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../release/ -lAdapter -lstdc++fs
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../debug/ -lAdapter -lstdc++fs
 else:unix: LIBS += -L$$PWD/../ -lAdapter -lstdc++fs
-=======
-CONFIG += C++11
-QMAKE_CXXFLAGS += -std=c++11 -pthread
-
-#Добавление статической библиотеки (адаптер)
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../release/ -lAdapter
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../debug/ -lAdapter
-else:unix: LIBS += -L$$PWD/../ -lAdapter
->>>>>>> salman
 
 INCLUDEPATH += $$PWD/../
 DEPENDPATH += $$PWD/../

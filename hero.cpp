@@ -1,7 +1,11 @@
 #include "hero.h"
 
-Hero::Hero(std::string id, std::string name, short level, short speed, coord coordinates, Storage *inventory) : Creature(name, id, level, speed, coordinates), inventory(inventory) {}
+const unsigned int storage_size = 5;
 
-Storage* Hero::GetInventory() const {
-    return inventory;
+Hero::Hero(str id, str name, short level, short speed, coord coordinates) : Item(id, name, level), Movable(coordinates, speed) {
+    //inventory = Storage(storage_size);
+}
+
+Storage* Hero::GetInventory() {
+    return &inventory;
 }

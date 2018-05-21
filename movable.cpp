@@ -1,5 +1,7 @@
 #include "movable.h"
 
+#include "session_data.h"
+
 #define WALL -1    //непроходимая ячейка
 #define BLANK -2   //свободная непомеченная ячейка
 

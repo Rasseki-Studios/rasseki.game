@@ -3,7 +3,6 @@
 
 #include <vector>
 
-#include "session_data.h"
 #include "surface.h"
 
 class Movable : public virtual Located {
