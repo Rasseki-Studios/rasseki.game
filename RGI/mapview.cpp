@@ -9,8 +9,6 @@ const int offset = 50;
 MapView::MapView(QWidget *parent)
     : QGraphicsView(parent)
 {
-    Game();
-
     //настройка отображения виджета и его содержимого
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //отключим скроллбар по горизонтали
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);   //отключим скроллбар по вертикали
@@ -19,7 +17,8 @@ MapView::MapView(QWidget *parent)
 
     mapScene = new QGraphicsScene(this);   //инициализируем сцену для отрисовки
 
-    QPixmap img(":/resources/img/testmap.bmp"); //карта
+    QPixmap img(":/resources/img/map.jpg"); //карта
+    img.scaled(width(), height(), Qt::KeepAspectRatio);
     mapScene->setSceneRect(0, 0, width(), height());
     mapScene->setBackgroundBrush(QBrush(img));    //устанавливаем Background виджета (изображение карты)
 

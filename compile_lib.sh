@@ -2,5 +2,5 @@ g++ -g -O2 $1 --std=c++17 -c libAdapter.cpp surface.cpp location.cpp item.cpp ev
 
 ar rcs libAdapter.a libAdapter.o surface.o location.o item.o event.o event_factory.o event_parser.o artifact.o storage.o artifact_factory.o artifact_parser.o mapscanner.o movable.o hero.o EasyBMP.o items_data.o session_data.o
 
-rm libAdapter.o surface.o location.o item.o event.o event_factory.o event_parser.o artifact.o storage.o artifact_factory.o artifact_parser.o mapscanner.o movable.o hore.o EasyBMP.o items_data.o session_data.o
+rm libAdapter.o surface.o location.o item.o event.o event_factory.o event_parser.o artifact.o storage.o artifact_factory.o artifact_parser.o mapscanner.o movable.o hero.o EasyBMP.o items_data.o session_data.o
 

@@ -4,12 +4,15 @@
 #include "savewindow.h"
 
 #include <QMessageBox>
+#include "libAdapter.h"
 
 GameWindow::GameWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
+
+    Game();
 
     //установка фона и размеров окна загрузки игры
     QImage bg_window(":/resources/img/bground.png");
@@ -18,6 +21,8 @@ GameWindow::GameWindow(QWidget *parent) :
     QPalette plt = palette();
     plt.setBrush(QPalette::Background, br);
     setPalette(plt);
+
+    ui->nameHero->setText(Name().c_str());
 }
 
 GameWindow::~GameWindow()

@@ -1,18 +1,30 @@
 #include "libAdapter.h"
 #include <unistd.h>
 
-using namespace SessionData;
+#include "session_data.h"
+#include "items_data.h"
 
+using namespace SessionData;
 
 void Moving(int count) {
     for (int i =0 ; i< count; i++) {
-        hero.Step();
+        Event *event = eventsData.getEvent(hero.Step());
+        if (event != nullptr) {
+            event->runEvent();
+        }
+        /*try {
+            event.runEvent();
+        }
+        catch () {
+
+        }*/
         usleep(10000);
     }
 }
 
 int Game() {
     gameData.Init();
+    hero.SetCoord({637, 712});
     return 0;
 }
 
@@ -25,12 +37,21 @@ coord Coords() {
     return p;
 }
 
+std::string Name() {
+    return hero.GetName();
+}
+
 bool Save(std::string file) {
     return true;
 }
 
 void Load(std::string file) {
 
+}
+
+std::string Write() {
+    //while (!message);
+    return "ok";//message;
 }
 
 std::vector<std::string> GetSavedNames() {

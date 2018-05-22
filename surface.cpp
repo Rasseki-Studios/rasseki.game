@@ -1,5 +1,8 @@
 #include "surface.h"
 #include "mapscanner.h"
+#include "session_data.h"
+
+using namespace SessionData;
 
 //---------------------------------------------------------
 //---------------- SurfaceData ----------------------------
@@ -9,9 +12,11 @@ bool SurfaceData::Init() {
     // open map, read it
     // asign map pointers
     // init factories
-    str locationName = "img/testmap.bmp";
     MapScanner scanner;
-    MapData data = scanner.getMap(locationName);
+    MapData data = scanner.getMap(
+        systemData.resourcesDirectory +
+        systemData.nextLocationName + "/" +
+        systemData.mapName + ".bmp");
     surfaceMatrix = data.surfaceMatrix;
     mapHeight = data.mapHeight;
     mapWidth = data.mapWidth;
@@ -26,19 +31,19 @@ int SurfaceData::getHeight() {
     return mapHeight;
 }
 
-short SurfaceData::getSurface(coord& point) {
+short SurfaceData::getSurface(coord point) {
     if ((point.x <= 0 || point.x >= mapWidth) || (point.y <= 0 || point.y >= mapHeight))
         return -1;
     return surfaceMatrix[point.x][point.y];
 }
 
-bool SurfaceData::CoordIsValid(coord& point) {
+bool SurfaceData::CoordIsValid(coord point) {
     if ((point.x < 0 || point.x > mapWidth) || (point.y < 0 || point.y > mapHeight))
         return false;
     return true;
 }
 
-bool SurfaceData::RadiusIsValid(coord& point, short radius) {
+bool SurfaceData::RadiusIsValid(coord point, short radius) {
     if (
         (point.x - radius <= 0) || 
         (point.x + radius >= mapWidth) || 
@@ -59,8 +64,7 @@ bool SurfaceData::RadiusIsValid(coord& point, short radius) {
     return flag;
 }
 
-bool SurfaceData::IsWalkable(coord& point) {
+bool SurfaceData::IsWalkable(coord point) {
     if (getSurface(point)) return true;
     return false;
 }
-

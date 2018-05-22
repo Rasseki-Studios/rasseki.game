@@ -11,16 +11,20 @@
 #include "surface.h" //here is SurfaceData, temporary solution.
 
 class SystemData {
-    // coming soon
+public:
+    str resourcesDirectory; // directory with all the resources
+    str nextLocationName; // ID of a map going to be loaded
+    str currentLocationName; // ID of a map loaded
+    str mapName; // name of the .bmp file
 };
 
 class GameData {
 // stores finished events and other stuff
 public:
     bool Init(); 
+    bool Init(str);
     int mapHeight;
     int mapWidth;
-    str locationID; // ID of a map going to be loaded
 };
 
 class EventsData {
@@ -32,13 +36,11 @@ public:
     void RemoveFrontEvent(coord); // no realization yet
     // more methods coming in future
 private:
-    void SortEventVector(std::vector<Event>*);
     void PulverizeEvents(std::unordered_map<str, Event>&); //pulverizes events from eventList
     std::vector<Event> ***eventMatrix;
     // std::unique_ptr<Event[][]> eventMatrix;
     std::unordered_map<str, Event> currentEventList;
     // std::unordered_map<str, Event> globalEventList;
-
 };
 
 class ArtifactsData {
