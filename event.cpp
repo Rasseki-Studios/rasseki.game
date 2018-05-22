@@ -25,7 +25,7 @@ void Action::run() const {
         // "fight",        // fight
         // "die"
     if (command == "give") {
-        hero.giveArtifact(objectID);
+        hero.GetInventory()->AddArtifact(objectID);
         //   giveArtifact()
         
     }
