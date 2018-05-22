@@ -25,6 +25,7 @@ public:
     bool Init(str);
     int mapHeight;
     int mapWidth;
+    str diaryString;
 };
 
 class EventsData {
@@ -33,7 +34,7 @@ public:
     Event* getEvent(const str);
     Event* getEvent(coord);
     bool EventExists(str);
-    void RemoveFrontEvent(coord); // no realization yet
+    void RemoveFrontEvent(coord);
     // more methods coming in future
 private:
     void PulverizeEvents(std::unordered_map<str, Event>&); //pulverizes events from eventList
