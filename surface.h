@@ -21,6 +21,7 @@ private:
     short modFactor;
 };
 
+
 class SurfaceData {
 public:
     bool Init();
@@ -38,5 +39,32 @@ private:
     // std::unordered_map<str, Surface> currentSurfaceList; // currently useless
     // std::unordered_map<str, Surface> globalSurfaceList; //will be added in future
 };
+
+class AccessMap {
+public:
+    AccessMap(coord, coord);
+    ~AccessMap();
+    char** getMatrix() {return matrix;};
+    int getHeight() {return height;};
+    int getWidth() {return width;};
+private:
+    char** matrix;
+    int height;
+    int width;
+};
+
+/* template<class T>
+class Matrix {
+public:
+    Matrix();
+    Matrix(T**);
+    ~Matrix();
+
+
+private:
+    T **matrixPointer;
+    int width;
+    int height;
+}; */
 
 #endif 

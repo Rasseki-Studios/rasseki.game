@@ -1,6 +1,8 @@
 #include "surface.h"
 #include "mapscanner.h"
 #include "session_data.h"
+#define ACCESSIBLE 1
+#define NONACCESSIBLE 0
 
 using namespace SessionData;
 
@@ -32,7 +34,7 @@ int SurfaceData::getHeight() {
 }
 
 short SurfaceData::getSurface(coord point) {
-    if ((point.x <= 0 || point.x >= mapWidth) || (point.y <= 0 || point.y >= mapHeight))
+    if ((point.x < 0 || point.x > mapWidth) || (point.y < 0 || point.y > mapHeight))
         return -1;
     return surfaceMatrix[point.x][point.y];
 }
@@ -67,4 +69,38 @@ bool SurfaceData::RadiusIsValid(coord point, short radius) {
 bool SurfaceData::IsWalkable(coord point) {
     if (getSurface(point)) return true;
     return false;
+}
+
+AccessMap::AccessMap(coord start, coord end) {
+    // start.x--; end.y++;
+    width = abs(start.y - end.y);
+    height = abs(start.x - end.x);
+
+    int frame = 2; // hardcoded for a while
+    int k = 0, n = 0;
+    matrix = new char* [height];
+    
+    for (int i = 0; i < height; i++) { 
+        matrix[i] = new char [width];
+    }
+
+    for (int i = start.x; i < end.x; i++) {
+        for (int j = start.y; j < end.y; j++) {
+            if (surfaceData.CoordIsValid( {i, j} )) {
+                if (surfaceData.getSurface( (coord){i, j} ) != 0) matrix[n][k] = 1;
+            else matrix[k][n] = 0;                
+            }
+            else matrix[k][n] = 0;
+            n++;
+        }
+        n = 0;
+        k++;
+    }
+}
+
+AccessMap::~AccessMap() {
+    for (int i = 0; i < height; i++) {
+        delete [] matrix[i];
+    }
+    delete [] matrix;
 }
