@@ -4,7 +4,7 @@
 #include <string>
 #include <unordered_map>
 
-#include "units.h"
+#include "hero.h"
 #include "event_factory.h"
 #include "artifact.h"
 // #include "artifact_factory.h"
