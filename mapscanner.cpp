@@ -4,16 +4,27 @@
 
 // enumeration representing uniqe color on the bmp file
 enum rgbColor {
-    black_color = 0, 
+/*
     red_color = 255000000, 
     yellow_color = 255255000, 
-    blue_color = 255, 
     green_color = 255000, 
-    white_color = 255255255
+    white_color = 255255255,
+*/
+
+    blue_color = 255, 
+    black_color = 0,
+    bloody_color = 128000,
+    brown_color = 128128000,
+    cyan_color = 128128,
+    gold_color = 255255000,
+    light_grey_color = 192192192,
+    grey_color = 128128128
 };
 
 // simple enumeration for storing map in memory
-enum mapColor {black, red, yellow, blue, green, white};
+// enum mapColor {black, red, yellow, blue, green, white};
+enum mapColor {black, field, road};
+
 
 bool MapScanner::InitMatrix(const std::string filename) {
     std::unordered_set<int> set;
@@ -37,29 +48,25 @@ bool MapScanner::InitMatrix(const std::string filename) {
             tempPixel = map.GetPixel(i,j);
             intColor = tempPixel.Red * 1000000 + tempPixel.Green * 1000 + tempPixel.Blue;
             switch (intColor) {
-                case black_color:             //black
+                case black_color:             
                     tempMatrix[j][i] = black;
                     break;
-                case red_color:               //red
-                    tempMatrix[j][i] = red;
+                case bloody_color:               
+                    tempMatrix[j][i] = black;
                     break;
-                case yellow_color:            //yellow
-                    tempMatrix[j][i] = yellow;
+                case blue_color:            
+                    tempMatrix[j][i] = black;
                     break;
-                case blue_color:              //blue
-                    tempMatrix[j][i] = blue;
+                case gold_color:              
+                    tempMatrix[j][i] = road;
                     break;
-                case green_color:             //green
-                    tempMatrix[j][i] = green;
-                    break;
-                case white_color:             //white
-                    tempMatrix[j][i] = white;
-                    break;
+                default: 
+                    tempMatrix[j][i] = field;
             }
         set.insert(intColor);
         }
     }
-      for (auto it = set.begin(); it != set.end(); ++it) {
+    for (auto it = set.begin(); it != set.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
