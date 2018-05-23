@@ -4,16 +4,17 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
+QT       += core gui multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+QT_DEBUG_PLUGINS += G_DEBUG
 
 TARGET = RGI
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        menuwindow.cpp \
+    menuwindow.cpp \
     gamewindow.cpp \
     loadwindow.cpp \
     mapview.cpp \

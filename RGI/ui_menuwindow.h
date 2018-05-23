@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'menuwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.2.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -29,8 +29,8 @@ public:
     QWidget *centralWidget;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
-    QLabel *label;
     QLabel *logo;
+    QLabel *label;
     QVBoxLayout *verticalLayout;
     QPushButton *newGame;
     QPushButton *loadGame;
@@ -42,7 +42,7 @@ public:
     {
         if (MenuWindow->objectName().isEmpty())
             MenuWindow->setObjectName(QStringLiteral("MenuWindow"));
-        MenuWindow->resize(611, 488);
+        MenuWindow->resize(682, 488);
         MenuWindow->setStyleSheet(QLatin1String("QWidget {\n"
 "	color: white;\n"
 "	font-weight: bold\n"
@@ -68,25 +68,25 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayoutWidget = new QWidget(centralWidget);
         gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(60, 90, 528, 385));
+        gridLayoutWidget->setGeometry(QRect(60, 90, 565, 385));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setHorizontalSpacing(60);
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(gridLayoutWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setMaximumSize(QSize(16777215, 750));
-
-        gridLayout->addWidget(label, 0, 1, 1, 1);
-
         logo = new QLabel(gridLayoutWidget);
         logo->setObjectName(QStringLiteral("logo"));
         logo->setMinimumSize(QSize(250, 350));
         logo->setPixmap(QPixmap(QString::fromUtf8("img/archer.png")));
 
         gridLayout->addWidget(logo, 0, 0, 3, 1);
+
+        label = new QLabel(gridLayoutWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setMaximumSize(QSize(16777215, 750));
+
+        gridLayout->addWidget(label, 0, 1, 1, 1);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
@@ -135,6 +135,7 @@ public:
         gridLayout->addLayout(verticalLayout, 1, 1, 2, 1);
 
         MenuWindow->setCentralWidget(centralWidget);
+        gridLayoutWidget->raise();
 
         retranslateUi(MenuWindow);
 
@@ -144,8 +145,8 @@ public:
     void retranslateUi(QMainWindow *MenuWindow)
     {
         MenuWindow->setWindowTitle(QApplication::translate("MenuWindow", "Rasseki Game", 0));
-        label->setText(QApplication::translate("MenuWindow", "<html><head/><body><p><br/></p><p><span style=\" font-size:24pt;\">Rasseki Game</span></p></body></html>", 0));
         logo->setText(QString());
+        label->setText(QApplication::translate("MenuWindow", "<html><head/><body><p><br/></p><p><span style=\" font-size:24pt;\">Rasseki Game</span></p></body></html>", 0));
         newGame->setText(QApplication::translate("MenuWindow", "\320\235\320\276\320\262\320\260\321\217 \320\270\320\263\321\200\320\260", 0));
         loadGame->setText(QApplication::translate("MenuWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \320\270\320\263\321\200\321\203", 0));
         settingGame->setText(QApplication::translate("MenuWindow", "\320\235\320\260\321\201\321\202\321\200\320\276\320\271\320\272\320\270", 0));

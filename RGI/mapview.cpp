@@ -4,6 +4,7 @@
 
 #include <thread>
 
+using namespace SessionData;
 const int offset = 50;
 
 MapView::MapView(QWidget *parent)
@@ -19,7 +20,7 @@ MapView::MapView(QWidget *parent)
 
     mapScene = new QGraphicsScene(this);   //инициализируем сцену для отрисовки
 
-    QPixmap img(":/resources/img/testmap.bmp"); //карта
+    QPixmap img("img/map.jpg"); //карта
     mapScene->setSceneRect(0, 0, width(), height());
     mapScene->setBackgroundBrush(QBrush(img));    //устанавливаем Background виджета (изображение карты)
 
@@ -45,7 +46,7 @@ MapView::~MapView()
         td.join();
     }
     delete mapScene;
-    delete hero;
+//    delete hero;
     delete timer;
 }
 

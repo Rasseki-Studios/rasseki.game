@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>611</width>
+    <width>682</width>
     <height>488</height>
    </rect>
   </property>
@@ -42,7 +42,7 @@ QMessageBox {
      <rect>
       <x>60</x>
       <y>90</y>
-      <width>528</width>
+      <width>565</width>
       <height>385</height>
      </rect>
     </property>
@@ -59,19 +59,6 @@ QMessageBox {
      <property name="horizontalSpacing">
       <number>60</number>
      </property>
-     <item row="0" column="1">
-      <widget class="QLabel" name="label">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>750</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Rasseki Game&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0" rowspan="3">
       <widget class="QLabel" name="logo">
        <property name="minimumSize">
@@ -85,6 +72,19 @@ QMessageBox {
        </property>
        <property name="pixmap">
         <pixmap>img/archer.png</pixmap>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="label">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>750</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;Rasseki Game&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>
@@ -177,6 +177,8 @@ QMessageBox {
      </item>
     </layout>
    </widget>
+   <zorder>gridLayoutWidget</zorder>
+   <zorder></zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

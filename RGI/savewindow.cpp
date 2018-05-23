@@ -27,5 +27,7 @@ SaveWindow::~SaveWindow()
 
 void SaveWindow::on_backSaving_clicked()
 {   //закрыть окно сохранения игры
+//    parentWidget()->show();
+
     close();
 }

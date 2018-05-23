@@ -32,5 +32,6 @@ void LoadWindow::on_loadLoading_2_clicked()
 
 void LoadWindow::on_backLoading_2_clicked()
 {   //закрыть окно загрузки игры
+//    parentWidget()->show();
     close();
 }
