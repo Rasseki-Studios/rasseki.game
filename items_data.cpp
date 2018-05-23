@@ -26,6 +26,7 @@ Event* EventsData::getEvent(const str key) {
 }
 
 Event* EventsData::getEvent(coord point) {
+    if (!surfaceData.CoordIsValid(point)) return NULL;
     if (!eventMatrix[point.x][point.y]->empty()) 
         return &eventMatrix[point.x][point.y]->front();
     else return NULL;
