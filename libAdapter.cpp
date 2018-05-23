@@ -13,6 +13,7 @@ void Moving(int count) {
 
 int Game() {
     gameData.Init();
+    SessionData::hero.SetCoord( {200, 200} );
     return 0;
 }
 

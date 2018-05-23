@@ -1,5 +1,6 @@
 #include "mapscanner.h"
 #include "libs/EasyBMP/EasyBMP.h"
+#include <unordered_set>
 
 // enumeration representing uniqe color on the bmp file
 enum rgbColor {
@@ -15,6 +16,7 @@ enum rgbColor {
 enum mapColor {black, red, yellow, blue, green, white};
 
 bool MapScanner::InitMatrix(const std::string filename) {
+    std::unordered_set<int> set;
     BMP map;
     if (!map.ReadFromFile(filename.c_str())) return false; 
     data.mapWidth = map.TellWidth();
@@ -54,8 +56,13 @@ bool MapScanner::InitMatrix(const std::string filename) {
                     tempMatrix[j][i] = white;
                     break;
             }
+        set.insert(intColor);
         }
     }
+      for (auto it = set.begin(); it != set.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
     data.surfaceMatrix = tempMatrix;
     return true;
 }

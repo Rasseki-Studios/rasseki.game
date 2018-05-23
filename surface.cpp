@@ -71,6 +71,7 @@ bool SurfaceData::IsWalkable(coord point) {
     return false;
 }
 
+// DO NOT use this! It's full of bugs
 AccessMap::AccessMap(coord start, coord end) {
     // start.x--; end.y++;
     width = abs(start.y - end.y);
