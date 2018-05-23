@@ -6,9 +6,9 @@
 
 using namespace SessionData;
 
-Movable::Movable(coord coordinates, short speed) 
-:
-Located(coordinates), speed(speed) {}
+Movable::Movable(coord coordinates, short speed)
+        :
+        Located(coordinates), speed(speed) {}
 
 int Movable::Move(coord destination) {
     path.clear();   //очищаем текущий маршрут для пересчета
@@ -36,7 +36,7 @@ Wave::Wave() {
 }
 
 void Wave::Reload() {
-    map.clear();    
+    map.clear();
     for (int x = 0; x < width; x++) {
         std::vector<short> temp(height);
         for (int y = 0; y < height; y++) {
@@ -53,7 +53,10 @@ std::vector<coord> Wave::Path(coord start, coord dest) {
         return std::vector<coord>(0);   //если стартовая или конечная ячейка непроходима
     }
     const int offset = 4;
-    coord neighbors[offset] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};   //смещения, соответствующие соседям ячейки
+    coord neighbors[offset] = {{1,  0},
+                               {0,  1},
+                               {-1, 0},
+                               {0,  -1}};   //смещения, соответствующие соседям ячейки
     bool stop = false;
     int d = 0;
     map[start.x][start.y] = 0;  //стартовая ячейка помечена 0
@@ -64,10 +67,8 @@ std::vector<coord> Wave::Path(coord start, coord dest) {
                 if (map[x][y] == d) {   //ячейка (x, y) помечена числом d
                     for (auto neighbor : neighbors) {   //проходим по всем непомеченным соседям
                         coord step{x + neighbor.x, y + neighbor.y};
-                        if ((step.x != 0 && step.x != width) && 
-                            (step.y != 0 && step.y != height) && 
-                            map[step.x][step.y] == BLANK
-                        ) {
+                        if ((step.x >= 0 && step.x < width) && (step.y >= 0 && step.y < height) &&
+                            map[step.x][step.y] == BLANK) {
                             stop = false;   //найдены непомеченные клетки
                             map[step.x][step.y] = d + 1;    //распространяем волну
                         }
@@ -83,9 +84,9 @@ std::vector<coord> Wave::Path(coord start, coord dest) {
     }
 
     //восстановление пути
-    int len = map[dest.x][dest.y];    //длина кратчайшего пути из coordinates в dest
-    coord place(dest.x, dest.y);  //текущее место рассчета
-    std::vector<coord> path(len);  //выделяем место под шаги
+    int len = map[destination.x][destination.y];    //длина кратчайшего пути из coordinates в destination
+    coord place(destination.x, destination.y);  //текущее место рассчета
+    std::vector <coord> path(len);  //выделяем место под шаги
     d = len;
     coord allNeighbours[] = {
         { 1,  0}, { 1, -1}, { 0, -1}, {-1, -1},

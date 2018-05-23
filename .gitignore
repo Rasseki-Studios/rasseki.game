@@ -6,3 +6,9 @@
 *.exe
 *test*
 *.pro.user
+*tests*
+*test*
+*.gch
+.idea
+RGI/RGI
+*.pro.user*

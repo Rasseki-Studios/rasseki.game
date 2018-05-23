@@ -19,11 +19,9 @@ using std::make_shared;
 class Artifact : public Item {
 public:
     Artifact(str, str, short, str, short);
-    str getID() const;
-    short GetPower() const;
+    str GetType() const;
+    short GetPower() const ;
 private:
-    // some kind of effect description
-    // effect can be applied with function GetPower()
     str type;
     short power;
 };

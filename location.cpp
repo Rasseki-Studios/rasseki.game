@@ -1,19 +1,10 @@
 #include "location.h"
 
+coord::coord(int x, int y) : x(x), y(y) {}
 
-//---coord---
-coord::coord(int _x, int _y) : 
-    x(_x),
-    y(_y) {
-}
+Located::Located() {}
 
-
-//---LOCATED---
-Located::Located(coord _coord) : 
-    coordinates(_coord) {
-}
-
-Located::Located() { }
+Located::Located(coord coordinates) : coordinates(coordinates) {}
 
 void Located::SetCoord(coord coordinates) {
     this->coordinates = coordinates;
