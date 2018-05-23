@@ -4,10 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui multimedia
+QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-QT_DEBUG_PLUGINS += G_DEBUG
 
 TARGET = RGI
 TEMPLATE = app

@@ -3,8 +3,6 @@
 #include "loadwindow.h"
 
 #include <QMessageBox>
-#include <QMediaPlaylist>
-#include <QMediaPlayer>
 
 MenuWindow::MenuWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,20 +26,6 @@ MenuWindow::MenuWindow(QWidget *parent) :
     int width = ui->logo->width();
     int height = ui->logo->height();
     ui->logo->setPixmap(img.scaled(width, height, Qt::KeepAspectRatio));
-
-//    QMediaPlaylist *playlist = new QMediaPlaylist();
-//    playlist->addMedia(QUrl(":resources/sound.mp3"));
-//    playlist->setPlaybackMode(QMediaPlaylist::Loop);
-
-//    QMediaPlayer *music = new QMediaPlayer();
-
-    QMediaPlayer* player = new QMediaPlayer;
-    player->setMedia(QUrl::fromLocalFile("resources/sound.mp3"));
-    player->setVolume(50);
-    player->play();
-
-//    music->setPlaylist(playlist);
-//    music->play();
 
 }
 
