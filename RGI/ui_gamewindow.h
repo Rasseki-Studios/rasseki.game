@@ -33,9 +33,6 @@ public:
     QGridLayout *gridLayout_2;
     MapView *map;
     QHBoxLayout *horizontalLayout;
-    QPushButton *save;
-    QPushButton *load;
-    QPushButton *setting;
     QPushButton *exit;
     QGridLayout *gridLayout;
     QLabel *logoHero;
@@ -90,45 +87,15 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        save = new QPushButton(centralwidget);
-        save->setObjectName(QStringLiteral("save"));
+        exit = new QPushButton(centralwidget);
+        exit->setObjectName(QStringLiteral("exit"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(save->sizePolicy().hasHeightForWidth());
-        save->setSizePolicy(sizePolicy1);
-        save->setMinimumSize(QSize(50, 50));
-        save->setMaximumSize(QSize(105, 16777215));
-        save->setAutoDefault(true);
-
-        horizontalLayout->addWidget(save);
-
-        load = new QPushButton(centralwidget);
-        load->setObjectName(QStringLiteral("load"));
-        sizePolicy1.setHeightForWidth(load->sizePolicy().hasHeightForWidth());
-        load->setSizePolicy(sizePolicy1);
-        load->setMinimumSize(QSize(50, 50));
-        load->setMaximumSize(QSize(105, 16777215));
-        load->setAutoDefault(true);
-
-        horizontalLayout->addWidget(load);
-
-        setting = new QPushButton(centralwidget);
-        setting->setObjectName(QStringLiteral("setting"));
-        sizePolicy1.setHeightForWidth(setting->sizePolicy().hasHeightForWidth());
-        setting->setSizePolicy(sizePolicy1);
-        setting->setMinimumSize(QSize(50, 50));
-        setting->setMaximumSize(QSize(105, 16777215));
-        setting->setAutoDefault(true);
-
-        horizontalLayout->addWidget(setting);
-
-        exit = new QPushButton(centralwidget);
-        exit->setObjectName(QStringLiteral("exit"));
         sizePolicy1.setHeightForWidth(exit->sizePolicy().hasHeightForWidth());
         exit->setSizePolicy(sizePolicy1);
         exit->setMinimumSize(QSize(50, 50));
-        exit->setMaximumSize(QSize(105, 16777215));
+        exit->setMaximumSize(QSize(16777215, 16777215));
         exit->setAutoDefault(true);
 
         horizontalLayout->addWidget(exit);
@@ -193,10 +160,7 @@ public:
     void retranslateUi(QMainWindow *GameWindow)
     {
         GameWindow->setWindowTitle(QApplication::translate("GameWindow", "MainWindow", 0));
-        save->setText(QApplication::translate("GameWindow", "PushButton", 0));
-        load->setText(QApplication::translate("GameWindow", "PushButton", 0));
-        setting->setText(QApplication::translate("GameWindow", "PushButton", 0));
-        exit->setText(QApplication::translate("GameWindow", "PushButton", 0));
+        exit->setText(QApplication::translate("GameWindow", "\320\222\321\213\321\205\320\276\320\264", 0));
         logoHero->setText(QString());
         groupBox->setTitle(QString());
         label->setText(QApplication::translate("GameWindow", "\320\243\321\200\320\276\320\262\320\265\320\275\321\214:", 0));

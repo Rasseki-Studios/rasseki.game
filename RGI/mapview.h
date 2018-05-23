@@ -29,8 +29,8 @@ public slots:
     void slotAlarmTimer();  //таймер для перерисовки виджета
 
 private:
-    int width_end = 0;
-    int height_end = 0;
+    int width_end;
+    int height_end;
     QGraphicsScene *mapScene;       //объявляем сцену для отрисовки
     QGraphicsItem *hero;    //объявляем первую группу элементов
     //QGraphicsItemGroup *group_2;    //объявляем вторую группу элементов

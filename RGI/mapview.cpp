@@ -16,8 +16,9 @@ MapView::MapView(QWidget *parent)
     //setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);    //растягиваем содержимое по виджету
 
     coord end = EndOfMap();
-    width_end = end.x;
-    height_end = end.y;
+    width_end = 1000; //end.x;
+    height_end = 1000; //end.y;
+    qDebug() << width_end << " - - - " << height_end;
 
     mapScene = new QGraphicsScene(this);   //инициализируем сцену для отрисовки
 
@@ -39,8 +40,14 @@ MapView::MapView(QWidget *parent)
     if (x < 0) {
         x = 0;
     }
+    if (x > width_end - width) {
+        x = width_end - width;
+    }
     if (y < 0) {
         y = 0;
+    }
+    if (y > height_end - height) {
+        y = height_end - height;
     }
     mapScene->setSceneRect(x, y, width, height);
 
@@ -77,8 +84,14 @@ void MapView::slotAlarmTimer()
     if (x < 0) {
         x = 0;
     }
+    if (x > width_end - width) {
+        x = width_end - width;
+    }
     if (y < 0) {
         y = 0;
+    }
+    if (y > height_end - height) {
+        y = height_end - height;
     }
     mapScene->setSceneRect(x, y, width, height);
 }
@@ -94,11 +107,13 @@ void MapView::mousePressEvent(QMouseEvent *mousePressEvt)
 {
     qDebug() << "Mouse event worked";
     QPointF point = mousePressEvt->pos();
-    qDebug() << point.x() << " and " << point.y();
     if (td.joinable()) {
         td.join();
     }
-    td = std::thread(Go, point.x(), point.y()); //в отдельном потоке запускаем движение
+    int go_x = point.x() + mapScene->sceneRect().topLeft().x();
+    int go_y = point.y() + mapScene->sceneRect().topLeft().y();
+    qDebug() << go_x << " and " << go_y;
+    td = std::thread(Go, go_x, go_y); //в отдельном потоке запускаем движение
 
     emit passCoord(point);
 }

@@ -8,7 +8,6 @@
 #include "surface.h"
 
 int Game();
-void Exit();
 void Moving(int);
 bool Save(std::string);
 void Load(std::string);

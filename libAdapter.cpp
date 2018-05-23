@@ -7,7 +7,7 @@
 using namespace SessionData;
 
 void Moving(int count) {
-    for (int i =0 ; i< count; i++) {
+    for (int i = 0 ; i < count; i++) {
         hero.Step();
         /*Event *event = eventsData.getEvent(hero.GetCoord());
         if (event != nullptr) {
@@ -21,10 +21,6 @@ int Game() {
     gameData.Init();
     hero.SetCoord({676, 508});
     return 0;
-}
-
-void Exit() {
-
 }
 
 coord Coords() {
