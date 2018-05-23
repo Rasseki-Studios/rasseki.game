@@ -12,14 +12,17 @@ MapView::MapView(QWidget *parent)
     //настройка отображения виджета и его содержимого
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //отключим скроллбар по горизонтали
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);   //отключим скроллбар по вертикали
-    setAlignment(Qt::AlignCenter);                        //делаем привязку содержимого к центру
-    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);    //растягиваем содержимое по виджету
+    //setAlignment(Qt::AlignCenter);                        //делаем привязку содержимого к центру
+    //setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);    //растягиваем содержимое по виджету
+
+    coord end = EndOfMap();
+    width_end = end.x;
+    height_end = end.y;
 
     mapScene = new QGraphicsScene(this);   //инициализируем сцену для отрисовки
 
     QPixmap img(":/resources/img/map.jpg"); //карта
     img.scaled(width(), height(), Qt::KeepAspectRatio);
-    mapScene->setSceneRect(0, 0, width(), height());
     mapScene->setBackgroundBrush(QBrush(img));    //устанавливаем Background виджета (изображение карты)
 
     QPixmap img_h(":/resources/img/hero.png");  //герой
@@ -29,6 +32,17 @@ MapView::MapView(QWidget *parent)
     qDebug() << pos.x << " | " << pos.y;
     QPoint point(pos.x, pos.y);
     hero->setPos(point);
+    int width = this->width();
+    int height = this->height();
+    int x = pos.x - width / 2;
+    int y = pos.y - height / 2;
+    if (x < 0) {
+        x = 0;
+    }
+    if (y < 0) {
+        y = 0;
+    }
+    mapScene->setSceneRect(x, y, width, height);
 
     setScene(mapScene); //устанавливаем сцену в виджет
 
@@ -50,13 +64,23 @@ MapView::~MapView()
 
 void MapView::slotAlarmTimer()
 {
-    int width = this->width();      //определяем ширину нашего виджета
-    int height = this->height();    //определяем высоту нашего виджета
-    mapScene->setSceneRect(0, 0, width, height);    //устанавливаем размер сцены по размеру виджета
+    //mapScene->setSceneRect(0, 0, width, height);    //устанавливаем размер сцены по размеру виджета
 
     coord pos = Coords();   //устанавливаем героя на актуальную позицию
     QPoint point(pos.x - offset, pos.y - offset);
     hero->setPos(point);
+
+    int width = this->width();      //определяем ширину нашего виджета
+    int height = this->height();    //определяем высоту нашего виджета
+    int x = pos.x - width / 2;
+    int y = pos.y - height / 2;
+    if (x < 0) {
+        x = 0;
+    }
+    if (y < 0) {
+        y = 0;
+    }
+    mapScene->setSceneRect(x, y, width, height);
 }
 
 //этим методом перехватываем событие изменения размера виджет
@@ -64,16 +88,6 @@ void MapView::resizeEvent(QResizeEvent *event)
 {
     timer->start(50);   //как только событие произошло стартуем таймер для отрисовки
     QGraphicsView::resizeEvent(event);  //запускаем событие родителького класса
-}
-
-//метод для удаления всех элементов из группы
-void MapView::deleteItemsFromGroup(QGraphicsItemGroup *group)
-{
-    foreach(QGraphicsItem *item, mapScene->items(group->boundingRect())) {  //перебираем все элементы сцены
-       if(item->group() == group ) {    //если они принадлежат группе, удаляем
-          delete item;
-       }
-    }
 }
 
 void MapView::mousePressEvent(QMouseEvent *mousePressEvt)

@@ -1,5 +1,4 @@
 #include "movable.h"
-
 #include "session_data.h"
 
 #define WALL -1    //непроходимая ячейка
@@ -7,7 +6,9 @@
 
 using namespace SessionData;
 
-Movable::Movable(coord coordinates, short speed) : Located(coordinates), speed(speed) {}
+Movable::Movable(coord coordinates, short speed)
+        :
+        Located(coordinates), speed(speed) {}
 
 int Movable::Move(coord destination) {
     path.clear();   //очищаем текущий маршрут для пересчета
@@ -52,7 +53,10 @@ std::vector<coord> Wave::Path(coord coordinates, coord destination) {
         return std::vector<coord>(0);   //если стартовая или конечная ячейка непроходима
     }
     const int offset = 4;
-    coord neighbors[offset] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};   //смещения, соответствующие соседям ячейки
+    coord neighbors[offset] = {{1,  0},
+                               {0,  1},
+                               {-1, 0},
+                               {0,  -1}};   //смещения, соответствующие соседям ячейки
     bool stop = false;
     int d = 0;
     map[coordinates.x][coordinates.y] = 0;  //стартовая ячейка помечена 0
@@ -63,7 +67,8 @@ std::vector<coord> Wave::Path(coord coordinates, coord destination) {
                 if (map[x][y] == d) {   //ячейка (x, y) помечена числом d
                     for (auto neighbor : neighbors) {   //проходим по всем непомеченным соседям
                         coord step{x + neighbor.x, y + neighbor.y};
-                        if ((step.x >= 0 && step.x < width) && (step.y >= 0 && step.y < height) && map[step.x][step.y] == BLANK) {
+                        if ((step.x >= 0 && step.x < width) && (step.y >= 0 && step.y < height) &&
+                            map[step.x][step.y] == BLANK) {
                             stop = false;   //найдены непомеченные клетки
                             map[step.x][step.y] = d + 1;    //распространяем волну
                         }
@@ -81,7 +86,7 @@ std::vector<coord> Wave::Path(coord coordinates, coord destination) {
     //восстановление пути
     int len = map[destination.x][destination.y];    //длина кратчайшего пути из coordinates в destination
     coord place(destination.x, destination.y);  //текущее место рассчета
-    std::vector<coord> path(len);  //выделяем место под шаги
+    std::vector <coord> path(len);  //выделяем место под шаги
     d = len;
     while (d > 0) {
         // path.push_back(place);   //записываем ячейку в путь

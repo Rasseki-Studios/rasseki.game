@@ -23,13 +23,14 @@ public:
     ~MapView();
 
 signals:
-    //void mousePressEvent(QMouseEvent *releaseEvent);
     void passCoord(const QPointF& point);
 
 public slots:
     void slotAlarmTimer();  //таймер для перерисовки виджета
 
 private:
+    int width_end = 0;
+    int height_end = 0;
     QGraphicsScene *mapScene;       //объявляем сцену для отрисовки
     QGraphicsItem *hero;    //объявляем первую группу элементов
     //QGraphicsItemGroup *group_2;    //объявляем вторую группу элементов
@@ -38,8 +39,6 @@ private:
 
 private:
     void resizeEvent(QResizeEvent *event);  //перегружаем событие изменения размера окна, чтобы перехватывать его
-
-    void deleteItemsFromGroup(QGraphicsItemGroup *hero); //метод для удаления всех элементов из группы элементов
 
     void mousePressEvent(QMouseEvent *mousePressEvt);   //метод для отлавливания нажатий игрока мышкой на карту
 };

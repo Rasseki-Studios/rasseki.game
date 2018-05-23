@@ -8,8 +8,11 @@ namespace SessionData {
     EventsData eventsData;
     ArtifactsData artifactsData;
 
+    str diaryString;
+    str writer;
+
     // hero initialization
-    std::string name = "Hero";
+    std::string name = "Moleque";
     std::string id = "super_hero";
     coord start(200, 200);
     Hero hero(id, name, 1, 10, start);

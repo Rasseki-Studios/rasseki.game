@@ -22,7 +22,8 @@ namespace SessionData {
     extern EventsData eventsData;
     // hero initialization
     extern Hero hero;
-    extern str message;
+    extern str diaryString;
+    extern str writer;
 }
 
 #endif // SESSIONDATA
