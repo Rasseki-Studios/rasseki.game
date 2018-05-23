@@ -12,13 +12,13 @@ MAKEFILE      = Makefile
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_QML_DEBUG -DQT_DECLARATIVE_DEBUG -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_NETWORK_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_QML_DEBUG -DQT_DECLARATIVE_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIE $(DEFINES)
 CXXFLAGS      = -pipe -std=c++17 -pthread -lstdc++fs -g -Wall -W -D_REENTRANT -fPIE $(DEFINES)
-INCPATH       = -I../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/linux-g++ -I. -I../../rasseki.game -I../../../Qt5.2.0/5.2.0/gcc_64/include -I../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia -I../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets -I../../../Qt5.2.0/5.2.0/gcc_64/include/QtNetwork -I../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui -I../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore -I. -I.
+INCPATH       = -I../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/linux-g++ -I. -I../../rasseki.game -I../../../Qt5.2.0/5.2.0/gcc_64/include -I../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets -I../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui -I../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore -I. -I.
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/artem/Qt5.2.0/5.2.0/gcc_64 -Wl,-rpath,/home/artem/Qt5.2.0/5.2.0/gcc_64/lib
-LIBS          = $(SUBLIBS) -L/home/artem/scr/rasseki.game/RGI/../ -lAdapter -lstdc++fs -L/home/artem/Qt5.2.0/5.2.0/gcc_64/lib -lQt5Multimedia -lQt5Widgets -lQt5Network -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/home/artem/scr/rasseki.game/RGI/../ -lAdapter -lstdc++fs -L/home/artem/Qt5.2.0/5.2.0/gcc_64/lib -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 QMAKE         = /home/artem/Qt5.2.0/5.2.0/gcc_64/bin/qmake
@@ -314,11 +314,9 @@ Makefile: RGI.pro ../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/linux-g++/qmake.conf ../
 		../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/features/lex.prf \
 		RGI.pro \
 		resource.qrc \
-		/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Multimedia.prl \
+		/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Widgets.prl \
 		/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Gui.prl \
-		/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Core.prl \
-		/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Network.prl \
-		/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Widgets.prl
+		/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Core.prl
 	$(QMAKE) -spec linux-g++ CONFIG+=debug CONFIG+=declarative_debug CONFIG+=qml_debug -o Makefile RGI.pro
 ../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/features/spec_pre.prf:
 ../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/common/shell-unix.conf:
@@ -426,11 +424,9 @@ Makefile: RGI.pro ../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/linux-g++/qmake.conf ../
 ../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/features/lex.prf:
 RGI.pro:
 resource.qrc:
-/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Multimedia.prl:
+/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Widgets.prl:
 /home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Gui.prl:
 /home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Core.prl:
-/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Network.prl:
-/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Widgets.prl:
 qmake: FORCE
 	@$(QMAKE) -spec linux-g++ CONFIG+=debug CONFIG+=declarative_debug CONFIG+=qml_debug -o Makefile RGI.pro
 
@@ -464,11 +460,11 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resource.cpp
 qrc_resource.cpp: resource.qrc \
 		img/menu.png \
-		img/metal.jpg \
+		img/bground.png \
 		img/hero.png \
 		img/testmap.bmp \
-		img/bground.png \
-		img/archer.png
+		img/archer.png \
+		img/metal.jpg
 	/home/artem/Qt5.2.0/5.2.0/gcc_64/bin/rcc -name resource resource.qrc -o qrc_resource.cpp
 
 compiler_moc_header_make_all: moc_menuwindow.cpp moc_gamewindow.cpp moc_loadwindow.cpp moc_mapview.cpp moc_savewindow.cpp
@@ -1496,24 +1492,7 @@ menuwindow.o: menuwindow.cpp menuwindow.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qdialog.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QMessageBox \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qmessagebox.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/QMediaPlaylist \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/qmediaplaylist.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/qmediacontent.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/qmediaresource.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtNetwork/qnetworkrequest.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QSharedDataPointer \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QString \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QUrl \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/qtmultimediadefs.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/qmediaobject.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/qmultimedia.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/qmediabindableinterface.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/qmediaenumdebug.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qmetaobject.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/QMediaPlayer \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtMultimedia/qmediaplayer.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtNetwork/qnetworkconfiguration.h
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o menuwindow.o menuwindow.cpp
 
 gamewindow.o: gamewindow.cpp gamewindow.h \
