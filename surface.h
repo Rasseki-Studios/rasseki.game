@@ -60,12 +60,10 @@ public:
     Matrix();
     Matrix(T**);
     ~Matrix();
-
-
 private:
     T **matrixPointer;
     int width;
     int height;
 }; */
 
-#endif 
+#endif
