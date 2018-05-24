@@ -5,6 +5,9 @@
 
 int main() {
     SessionData::gameData.Init();
+
+    coord point(677,508);
+    Event* ev = SessionData::eventsData.getEvent(point);
   /*   EventFactory ev_factory;
     str path = "resources/events";
     unordered_map<str, Event> events;

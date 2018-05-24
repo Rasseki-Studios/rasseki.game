@@ -10,10 +10,10 @@ using namespace SessionData;
 void Moving(int count) {
     for (int i = 0 ; i < count; i++) {
         hero.Step();
-        /*Event *event = eventsData.getEvent(hero.GetCoord());
-        if (event != nullptr) {
+        Event *event = eventsData.getEvent(hero.GetCoord());
+        if (event) {
             event->runEvent();
-        }*/
+        }
         usleep(10000);
     }
 }

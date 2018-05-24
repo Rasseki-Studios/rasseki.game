@@ -1,6 +1,7 @@
 #include "mapview.h"
 #include "gamewindow.h"
 #include "libAdapter.h"
+#include "session_data.h"
 
 #include <thread>
 

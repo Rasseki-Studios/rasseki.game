@@ -17,6 +17,15 @@ bool EventsData::Init() {
     eFactory.InitAll(path, currentEventList); // hardcoded just for debugging
     // using unique_ptr for two-dim array isn't a good idea though
     // std::unique_ptr<Event[][]> eventMatrix (nullptr); 
+    
+    eventMatrix = new std::vector<Event>** [gameData.mapHeight];
+    for (int i = 0; i != gameData.mapHeight; i++) {
+        eventMatrix[i] = new std::vector<Event>*;
+        for (int j = 0; j != gameData.mapWidth; j++) {
+        eventMatrix[i][j] = NULL;
+        }
+    }
+
     PulverizeEvents(currentEventList); 
     return true;
 }
@@ -27,6 +36,8 @@ Event* EventsData::getEvent(const str key) {
 
 Event* EventsData::getEvent(coord point) {
     if (!surfaceData.CoordIsValid(point)) return NULL;
+    if (!eventMatrix[point.x][point.y]) return NULL;
+    auto ev = eventMatrix[point.x][point.y];
     if (!eventMatrix[point.x][point.y]->empty()) 
         return &eventMatrix[point.x][point.y]->front();
     else return NULL;
