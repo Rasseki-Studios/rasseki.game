@@ -318,9 +318,9 @@ Makefile: RGI.pro ../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/linux-g++/qmake.conf ../
 		../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/features/lex.prf \
 		RGI.pro \
 		resource.qrc \
-		/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Widgets.prl \
-		/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Gui.prl \
-		/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Core.prl
+		/home/stanford/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Widgets.prl \
+		/home/stanford/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Gui.prl \
+		/home/stanford/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Core.prl
 	$(QMAKE) -spec linux-g++ CONFIG+=debug CONFIG+=declarative_debug CONFIG+=qml_debug -o Makefile RGI.pro
 ../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/features/spec_pre.prf:
 ../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/common/shell-unix.conf:
@@ -428,9 +428,9 @@ Makefile: RGI.pro ../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/linux-g++/qmake.conf ../
 ../../../Qt5.2.0/5.2.0/gcc_64/mkspecs/features/lex.prf:
 RGI.pro:
 resource.qrc:
-/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Widgets.prl:
-/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Gui.prl:
-/home/artem/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Core.prl:
+/home/stanford/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Widgets.prl:
+/home/stanford/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Gui.prl:
+/home/stanford/Qt5.2.0/5.2.0/gcc_64/lib/libQt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec linux-g++ CONFIG+=debug CONFIG+=declarative_debug CONFIG+=qml_debug -o Makefile RGI.pro
 
@@ -463,6 +463,7 @@ compiler_rcc_make_all: qrc_resource.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resource.cpp
 qrc_resource.cpp: resource.qrc \
+<<<<<<< HEAD
 		img/metal.jpg \
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -478,12 +479,16 @@ qrc_resource.cpp: resource.qrc \
 	/home/artem/Qt5.2.0/5.2.0/gcc_64/bin/rcc -name resource resource.qrc -o qrc_resource.cpp
 =======
 		img/bground.png \
-		img/menu.png \
+=======
+		img/map.jpg \
+		img/metal.jpg \
 		img/archer.png \
-		img/hero.png \
-		img/testmap.bmp
+>>>>>>> 9efd7b23a11d1a17d3ca1c4e9162d3c0f2c68978
+		img/menu.png \
+		img/testmap.bmp \
+		img/bground.png \
+		img/hero.png
 	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/rcc -name resource resource.qrc -o qrc_resource.cpp
->>>>>>> Stashed changes
 
 compiler_moc_header_make_all: moc_menuwindow.cpp moc_gamewindow.cpp moc_loadwindow.cpp moc_mapview.cpp moc_savewindow.cpp moc_journal.cpp
 compiler_moc_header_clean:
@@ -1079,10 +1084,14 @@ moc_savewindow.cpp: ../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QDialog \
 	/home/artem/Qt5.2.0/5.2.0/gcc_64/bin/moc $(DEFINES) $(INCPATH) savewindow.h -o moc_savewindow.cpp
 >>>>>>> Stashed changes
 
+<<<<<<< HEAD
 moc_journal.cpp: ../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QTextEdit \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qtextedit.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qframe.h \
+=======
+moc_loadwindow.cpp: ../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qdialog.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qwidget.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qwindowdefs.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qglobal.h \
@@ -1190,34 +1199,10 @@ moc_journal.cpp: ../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QTextEdit \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtouchdevice.h \
-<<<<<<< Updated upstream
 		loadwindow.h
 	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/moc $(DEFINES) $(INCPATH) loadwindow.h -o moc_loadwindow.cpp
-=======
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextdocument.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextoption.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextcursor.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextformat.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpen.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QTimer \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtimer.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbasictimer.h \
-		journal.h
-	/home/artem/Qt5.2.0/5.2.0/gcc_64/bin/moc $(DEFINES) $(INCPATH) journal.h -o moc_journal.cpp
->>>>>>> Stashed changes
 
-compiler_moc_source_make_all:
-compiler_moc_source_clean:
-compiler_uic_make_all: ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h ui_savewindow.h
-compiler_uic_clean:
-	-$(DEL_FILE) ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h ui_savewindow.h
-ui_menuwindow.h: menuwindow.ui
-	/home/artem/Qt5.2.0/5.2.0/gcc_64/bin/uic menuwindow.ui -o ui_menuwindow.h
-
-ui_gamewindow.h: gamewindow.ui \
-		mapview.h \
-		journal.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QWidget \
+moc_mapview.cpp: ../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qwidget.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qwindowdefs.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qglobal.h \
@@ -1345,18 +1330,12 @@ ui_gamewindow.h: gamewindow.ui \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QPoint \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QDebug \
-<<<<<<< Updated upstream
 		mapview.h
 	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/moc $(DEFINES) $(INCPATH) mapview.h -o moc_mapview.cpp
 
 moc_savewindow.cpp: ../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qdialog.h \
-=======
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QTextEdit \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qtextedit.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qframe.h \
->>>>>>> Stashed changes
+>>>>>>> 9efd7b23a11d1a17d3ca1c4e9162d3c0f2c68978
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qwidget.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qwindowdefs.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qglobal.h \
@@ -1464,6 +1443,302 @@ moc_savewindow.cpp: ../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtouchdevice.h \
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+		loadwindow.h
+	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/moc $(DEFINES) $(INCPATH) loadwindow.h -o moc_loadwindow.cpp
+=======
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextdocument.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextcursor.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextformat.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpen.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QTimer \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtimer.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbasictimer.h \
+		journal.h
+	/home/artem/Qt5.2.0/5.2.0/gcc_64/bin/moc $(DEFINES) $(INCPATH) journal.h -o moc_journal.cpp
+>>>>>>> Stashed changes
+
+compiler_moc_source_make_all:
+compiler_moc_source_clean:
+compiler_uic_make_all: ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h ui_savewindow.h
+compiler_uic_clean:
+	-$(DEL_FILE) ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h ui_savewindow.h
+ui_menuwindow.h: menuwindow.ui
+	/home/artem/Qt5.2.0/5.2.0/gcc_64/bin/uic menuwindow.ui -o ui_menuwindow.h
+
+ui_gamewindow.h: gamewindow.ui \
+		mapview.h \
+		journal.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QWidget \
+=======
+		savewindow.h
+	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/moc $(DEFINES) $(INCPATH) savewindow.h -o moc_savewindow.cpp
+
+moc_journal.cpp: ../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QTextEdit \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qtextedit.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qframe.h \
+>>>>>>> 9efd7b23a11d1a17d3ca1c4e9162d3c0f2c68978
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qfeatures.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_integrity.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qoldbasicatomic.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_vxworks.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_power.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_alpha.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_bfin.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_s390.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_sh4a.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_sparc.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qflags.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtypetraits.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qobject.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qstring.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qchar.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qlist.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qisenum.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qrect.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qsize.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qpair.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qvector.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qregion.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qline.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qimage.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qhash.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qfont.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qevent.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qmap.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qset.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qurl.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qfile.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextdocument.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextcursor.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextformat.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpen.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QTimer \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtimer.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbasictimer.h \
+<<<<<<< HEAD
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/QMouseEvent \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QPoint \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QDebug \
+<<<<<<< Updated upstream
+		mapview.h
+	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/moc $(DEFINES) $(INCPATH) mapview.h -o moc_mapview.cpp
+
+moc_savewindow.cpp: ../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qdialog.h \
+=======
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QTextEdit \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qtextedit.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qframe.h \
+>>>>>>> Stashed changes
+=======
+		journal.h
+	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/moc $(DEFINES) $(INCPATH) journal.h -o moc_journal.cpp
+
+compiler_moc_source_make_all:
+compiler_moc_source_clean:
+compiler_uic_make_all: ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h ui_savewindow.h
+compiler_uic_clean:
+	-$(DEL_FILE) ui_menuwindow.h ui_gamewindow.h ui_loadwindow.h ui_savewindow.h
+ui_menuwindow.h: menuwindow.ui
+	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/uic menuwindow.ui -o ui_menuwindow.h
+
+ui_gamewindow.h: gamewindow.ui \
+		mapview.h \
+		journal.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QWidget \
+>>>>>>> 9efd7b23a11d1a17d3ca1c4e9162d3c0f2c68978
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qfeatures.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_integrity.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qoldbasicatomic.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_vxworks.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_power.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_alpha.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_bfin.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_s390.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_sh4a.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_sparc.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qflags.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtypetraits.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qobject.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qstring.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qchar.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qlist.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qisenum.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qrect.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qsize.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qpair.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qvector.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qregion.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qline.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qimage.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qhash.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qfont.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qevent.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qmap.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qset.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qurl.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qfile.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtouchdevice.h \
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 		savewindow.h
 	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/moc $(DEFINES) $(INCPATH) savewindow.h -o moc_savewindow.cpp
@@ -1486,6 +1761,32 @@ ui_gamewindow.h: gamewindow.ui \
 	/usr/lib/x86_64-linux-gnu/qt5/bin/uic gamewindow.ui -o ui_gamewindow.h
 =======
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QWidget \
+=======
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QGraphicsView \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qgraphicsview.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpen.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qscrollarea.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qframe.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QGraphicsScene \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QGraphicsItemGroup \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QTimer \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtimer.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbasictimer.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/QMouseEvent \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QPoint \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QDebug \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QTextEdit \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qtextedit.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qframe.h \
+>>>>>>> 9efd7b23a11d1a17d3ca1c4e9162d3c0f2c68978
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qwidget.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qwindowdefs.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qglobal.h \
@@ -1593,27 +1894,16 @@ ui_gamewindow.h: gamewindow.ui \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtouchdevice.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QGraphicsView \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qgraphicsview.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpainter.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextdocument.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextoption.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextcursor.h \
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextformat.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qpen.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qscrollarea.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qframe.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QGraphicsScene \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QGraphicsItemGroup \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QTimer \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qtimer.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbasictimer.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/QMouseEvent \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QPoint \
-		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/QDebug
+		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbasictimer.h
 	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/uic gamewindow.ui -o ui_gamewindow.h
+<<<<<<< HEAD
 >>>>>>> Stashed changes
 =======
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtGui/qtextdocument.h \
@@ -1626,6 +1916,8 @@ ui_gamewindow.h: gamewindow.ui \
 		../../../Qt5.2.0/5.2.0/gcc_64/include/QtCore/qbasictimer.h
 	/home/artem/Qt5.2.0/5.2.0/gcc_64/bin/uic gamewindow.ui -o ui_gamewindow.h
 >>>>>>> Stashed changes
+=======
+>>>>>>> 9efd7b23a11d1a17d3ca1c4e9162d3c0f2c68978
 
 ui_loadwindow.h: loadwindow.ui
 	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/uic loadwindow.ui -o ui_loadwindow.h
