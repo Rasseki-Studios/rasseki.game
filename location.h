@@ -6,6 +6,7 @@ struct coord {
     int y;
     coord() = default;
     coord(int, int);
+    friend bool operator==(const coord& left, const coord& right);
 };
 
 class Located {

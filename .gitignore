@@ -4,17 +4,9 @@
 *.txt
 *.out
 *.exe
-<<<<<<< HEAD
-*.pro.user*
-*test*
-*.gch
-=======
-*test*
-*.pro.user
-*tests*
 *test*
 *.gch
 .idea
 RGI/RGI
 *.pro.user*
->>>>>>> 369b1e6a5c14d14c911469bd5a2182404b69bcbf
+RGI/Makefile
