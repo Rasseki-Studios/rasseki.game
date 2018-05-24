@@ -1,6 +1,7 @@
 #include "mapview.h"
 #include "gamewindow.h"
 #include "libAdapter.h"
+#include "session_data.h"
 
 #include <thread>
 
@@ -23,7 +24,7 @@ MapView::MapView(QWidget *parent)
 
     mapScene = new QGraphicsScene(this);   //инициализируем сцену для отрисовки
 
-    QPixmap img(":/resources/img/map.jpg"); //карта
+    QPixmap img("../resources/default/map.bmp"); //карта
     img.scaled(width(), height(), Qt::KeepAspectRatio);
     mapScene->setBackgroundBrush(QBrush(img));    //устанавливаем Background виджета (изображение карты)
 
