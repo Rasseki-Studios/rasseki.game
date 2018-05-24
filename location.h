@@ -11,7 +11,7 @@ struct coord {
 
 class Located {
 public:
-    Located();
+    Located() {};
     Located(coord);
     void SetCoord(coord);
     coord GetCoord() const;
