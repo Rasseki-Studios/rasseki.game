@@ -32,6 +32,7 @@ public:
     bool CoordIsValid(coord);
     short getSurface(coord);
     Surface& getSurface(str);
+    const short** getMap();
 private:
     int mapWidth;
     int mapHeight;

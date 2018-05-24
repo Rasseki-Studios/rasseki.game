@@ -71,6 +71,10 @@ bool SurfaceData::IsWalkable(coord point) {
     return false;
 }
 
+const short** SurfaceData::getMap() {
+    return const_cast<const short**>(surfaceMatrix);
+}
+
 // DO NOT use this! It's full of bugs
 AccessMap::AccessMap(coord start, coord end) {
     // start.x--; end.y++;
