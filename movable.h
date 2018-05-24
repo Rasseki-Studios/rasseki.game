@@ -17,15 +17,21 @@ protected:
     std::vector<coord> path;
 };
 
-class Wave {
+class WaveAlgorithm {
 public:
-    Wave();
+    WaveAlgorithm();
     void Reload();  //метод обновления информации о проходимости
-    std::vector<coord> Path(coord, coord);  //составление вектора шагод
+    std::vector<coord> GetPath(coord, coord);  //составление вектора шагов
 private:
     int width;
     int height;
-    std::vector<std::vector<short>> map;
+    short **waveMap;
+    const short **dataMap;
+    const coord neighbours[8] = {
+        { 1,  0}, { 1, -1}, { 0, -1}, {-1, -1},
+        {-1,  0}, {-1,  1}, { 0,  1}, { 1, -1}
+    };
+    std::vector<coord> GetBackPath(coord, coord);
 };
 
 #endif
