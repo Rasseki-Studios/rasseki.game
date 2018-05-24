@@ -1,9 +1,9 @@
-#ifndef LOCATION
-#define LOCATION
+#ifndef LOCATION_H
+#define LOCATION_H
 
 struct coord {
-    int x = 0;
-    int y = 0;
+    int x;
+    int y;
     coord() = default;
     coord(int, int);
 };
@@ -18,4 +18,4 @@ protected:
     coord coordinates;
 };
 
-#endif  // LOCATION
+#endif //LOCATION_H

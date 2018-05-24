@@ -4,12 +4,19 @@
 #include "savewindow.h"
 
 #include <QMessageBox>
+#include "libAdapter.h"
 
 GameWindow::GameWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GameWindow)
 {
     ui->setupUi(this);
+
+    Game();
+
+    coord max = EndOfMap();
+    ui->map->setMaximumWidth(max.x);
+    ui->map->setMaximumHeight(max.y);
 
     //установка фона и размеров окна загрузки игры
     QImage bg_window(":/resources/img/bground.png");
@@ -18,6 +25,17 @@ GameWindow::GameWindow(QWidget *parent) :
     QPalette plt = palette();
     plt.setBrush(QPalette::Background, br);
     setPalette(plt);
+
+    QPixmap hero(":/resources/img/hero.png");
+    int width = ui->logoHero->width();
+    int height = ui->logoHero->height();
+    ui->logoHero->setPixmap(hero.scaled(width, height, Qt::KeepAspectRatio));
+
+    std::vector<std::string> data;
+    data = Data();
+    ui->nameHero->setText(data[0].c_str());
+    ui->level->setText(data[1].c_str());
+    ui->speed->setText(data[2].c_str());
 }
 
 GameWindow::~GameWindow()

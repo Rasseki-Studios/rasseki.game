@@ -25,7 +25,8 @@ public:
     bool Init(str);
     int mapHeight;
     int mapWidth;
-    str diaryString;
+    str diaryString; // what we are writin'
+    str character;  // who is writin'
 };
 
 class EventsData {

@@ -66,7 +66,7 @@ int ArtifactFactory::InitAll(str folder, unordered_map<str, Artifact> &artifactM
         }
     }
     for (auto it : artifactMap) {
-        cout << "artifact <" << it.second.getID() << "> read." << endl;
+        cout << "artifact <" << it.second.GetId() << "> read." << endl;
     }
     // delete tempData;
     return artifactCount;

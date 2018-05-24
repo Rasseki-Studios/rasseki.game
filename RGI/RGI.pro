@@ -16,13 +16,15 @@ SOURCES += main.cpp\
     gamewindow.cpp \
     loadwindow.cpp \
     mapview.cpp \
-    savewindow.cpp
+    savewindow.cpp \
+    journal.cpp
 
 HEADERS  += menuwindow.h \
     gamewindow.h \
     loadwindow.h \
     mapview.h \
-    savewindow.h
+    savewindow.h \
+    journal.h
 
 FORMS    += menuwindow.ui \
     gamewindow.ui \

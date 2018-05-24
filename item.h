@@ -2,16 +2,17 @@
 #define ITEM_H
 
 #include <string>
+
 using str = std::string;
 
 class Item {
 public:
     Item(str, str, short);
-    str getID() const;
-    str getName() const;
-    short getLevel() const;
+    str GetId() const;
+    str GetName() const;
+    short GetLevel() const;
 protected:
-    str ID;
+    str id;
     str name;
     short level;
 };

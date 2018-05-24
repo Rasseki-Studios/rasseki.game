@@ -14,13 +14,14 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
+#include <journal.h>
 #include "mapview.h"
 
 QT_BEGIN_NAMESPACE
@@ -32,16 +33,16 @@ public:
     QGridLayout *gridLayout_2;
     MapView *map;
     QHBoxLayout *horizontalLayout;
-    QPushButton *save;
-    QPushButton *load;
-    QPushButton *setting;
     QPushButton *exit;
     QGridLayout *gridLayout;
     QLabel *logoHero;
-    QLabel *label_3;
-    QLabel *label_4;
+    QGroupBox *groupBox;
+    QLabel *label;
+    QLabel *label_2;
+    QLabel *level;
+    QLabel *speed;
     QLabel *nameHero;
-    QTextEdit *textEdit;
+    Journal *book;
 
     void setupUi(QMainWindow *GameWindow)
     {
@@ -86,45 +87,15 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        save = new QPushButton(centralwidget);
-        save->setObjectName(QStringLiteral("save"));
+        exit = new QPushButton(centralwidget);
+        exit->setObjectName(QStringLiteral("exit"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(save->sizePolicy().hasHeightForWidth());
-        save->setSizePolicy(sizePolicy1);
-        save->setMinimumSize(QSize(50, 50));
-        save->setMaximumSize(QSize(105, 16777215));
-        save->setAutoDefault(true);
-
-        horizontalLayout->addWidget(save);
-
-        load = new QPushButton(centralwidget);
-        load->setObjectName(QStringLiteral("load"));
-        sizePolicy1.setHeightForWidth(load->sizePolicy().hasHeightForWidth());
-        load->setSizePolicy(sizePolicy1);
-        load->setMinimumSize(QSize(50, 50));
-        load->setMaximumSize(QSize(105, 16777215));
-        load->setAutoDefault(true);
-
-        horizontalLayout->addWidget(load);
-
-        setting = new QPushButton(centralwidget);
-        setting->setObjectName(QStringLiteral("setting"));
-        sizePolicy1.setHeightForWidth(setting->sizePolicy().hasHeightForWidth());
-        setting->setSizePolicy(sizePolicy1);
-        setting->setMinimumSize(QSize(50, 50));
-        setting->setMaximumSize(QSize(105, 16777215));
-        setting->setAutoDefault(true);
-
-        horizontalLayout->addWidget(setting);
-
-        exit = new QPushButton(centralwidget);
-        exit->setObjectName(QStringLiteral("exit"));
         sizePolicy1.setHeightForWidth(exit->sizePolicy().hasHeightForWidth());
         exit->setSizePolicy(sizePolicy1);
         exit->setMinimumSize(QSize(50, 50));
-        exit->setMaximumSize(QSize(105, 16777215));
+        exit->setMaximumSize(QSize(16777215, 16777215));
         exit->setAutoDefault(true);
 
         horizontalLayout->addWidget(exit);
@@ -136,41 +107,48 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         logoHero = new QLabel(centralwidget);
         logoHero->setObjectName(QStringLiteral("logoHero"));
-        logoHero->setMinimumSize(QSize(80, 80));
-        logoHero->setMaximumSize(QSize(80, 80));
+        logoHero->setMinimumSize(QSize(120, 120));
+        logoHero->setMaximumSize(QSize(120, 120));
         logoHero->setPixmap(QPixmap(QString::fromUtf8(":/resources/img/hero.png")));
 
         gridLayout->addWidget(logoHero, 0, 0, 1, 1);
 
-        label_3 = new QLabel(centralwidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
-
-        gridLayout->addWidget(label_3, 0, 1, 1, 1);
-
-        label_4 = new QLabel(centralwidget);
-        label_4->setObjectName(QStringLiteral("label_4"));
-
-        gridLayout->addWidget(label_4, 1, 1, 1, 1);
-
-        nameHero = new QLabel(centralwidget);
+        groupBox = new QGroupBox(centralwidget);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        label = new QLabel(groupBox);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 60, 81, 17));
+        label_2 = new QLabel(groupBox);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(10, 80, 81, 17));
+        level = new QLabel(groupBox);
+        level->setObjectName(QStringLiteral("level"));
+        level->setGeometry(QRect(90, 60, 67, 17));
+        speed = new QLabel(groupBox);
+        speed->setObjectName(QStringLiteral("speed"));
+        speed->setGeometry(QRect(90, 80, 67, 17));
+        nameHero = new QLabel(groupBox);
         nameHero->setObjectName(QStringLiteral("nameHero"));
+        nameHero->setGeometry(QRect(10, 20, 120, 17));
+        nameHero->setStyleSheet(QStringLiteral("text-align: center"));
 
-        gridLayout->addWidget(nameHero, 1, 0, 1, 1);
+        gridLayout->addWidget(groupBox, 0, 1, 2, 1);
 
 
         gridLayout_2->addLayout(gridLayout, 1, 1, 1, 1);
 
-        textEdit = new QTextEdit(centralwidget);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
+        book = new Journal(centralwidget);
+        book->setObjectName(QStringLiteral("book"));
         QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Expanding);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(textEdit->sizePolicy().hasHeightForWidth());
-        textEdit->setSizePolicy(sizePolicy2);
-        textEdit->setMinimumSize(QSize(350, 0));
-        textEdit->setMaximumSize(QSize(440, 16777215));
+        sizePolicy2.setHeightForWidth(book->sizePolicy().hasHeightForWidth());
+        book->setSizePolicy(sizePolicy2);
+        book->setMinimumSize(QSize(350, 0));
+        book->setMaximumSize(QSize(440, 16777215));
+        book->setStyleSheet(QStringLiteral("color: black"));
 
-        gridLayout_2->addWidget(textEdit, 2, 1, 1, 1);
+        gridLayout_2->addWidget(book, 2, 1, 1, 1);
 
         GameWindow->setCentralWidget(centralwidget);
 
@@ -182,14 +160,19 @@ public:
     void retranslateUi(QMainWindow *GameWindow)
     {
         GameWindow->setWindowTitle(QApplication::translate("GameWindow", "MainWindow", 0));
-        save->setText(QApplication::translate("GameWindow", "PushButton", 0));
-        load->setText(QApplication::translate("GameWindow", "PushButton", 0));
-        setting->setText(QApplication::translate("GameWindow", "PushButton", 0));
-        exit->setText(QApplication::translate("GameWindow", "PushButton", 0));
+        exit->setText(QApplication::translate("GameWindow", "\320\222\321\213\321\205\320\276\320\264", 0));
         logoHero->setText(QString());
-        label_3->setText(QApplication::translate("GameWindow", "TextLabel", 0));
-        label_4->setText(QApplication::translate("GameWindow", "TextLabel", 0));
-        nameHero->setText(QApplication::translate("GameWindow", "Name", 0));
+        groupBox->setTitle(QString());
+        label->setText(QApplication::translate("GameWindow", "\320\243\321\200\320\276\320\262\320\265\320\275\321\214:", 0));
+        label_2->setText(QApplication::translate("GameWindow", "\320\241\320\272\320\276\321\200\320\276\321\201\321\202\321\214:", 0));
+        level->setText(QApplication::translate("GameWindow", "0", 0));
+        speed->setText(QApplication::translate("GameWindow", "0", 0));
+        nameHero->setText(QApplication::translate("GameWindow", "<html><head/><body><p>\320\230\320\274\321\217</p></body></html>", 0));
+        book->setHtml(QApplication::translate("GameWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Ubuntu'; font-size:11pt; font-weight:600; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", 0));
     } // retranslateUi
 
 };

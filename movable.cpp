@@ -6,9 +6,9 @@
 
 using namespace SessionData;
 
-Movable::Movable(coord coordinates, short speed) 
-:
-Located(coordinates), speed(speed) {}
+Movable::Movable(coord coordinates, short speed)
+        :
+        Located(coordinates), speed(speed) {}
 
 int Movable::Move(coord destination) {
     path.clear();   //очищаем текущий маршрут для пересчета
@@ -36,7 +36,7 @@ Wave::Wave() {
 }
 
 void Wave::Reload() {
-    map.clear();    
+    map.clear();
     for (int x = 0; x < width; x++) {
         std::vector<short> temp(height);
         for (int y = 0; y < height; y++) {
@@ -48,26 +48,27 @@ void Wave::Reload() {
     }
 }
 
-std::vector<coord> Wave::Path(coord start, coord dest) {
-    if (map[start.x][start.y] == WALL || map[dest.x][dest.y] == WALL) {
+std::vector<coord> Wave::Path(coord coordinates, coord destination) {
+    if (map[coordinates.x][coordinates.y] == WALL || map[destination.x][destination.y] == WALL) {
         return std::vector<coord>(0);   //если стартовая или конечная ячейка непроходима
     }
     const int offset = 4;
-    coord neighbors[offset] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};   //смещения, соответствующие соседям ячейки
+    coord neighbors[offset] = {{1,  0},
+                               {0,  1},
+                               {-1, 0},
+                               {0,  -1}};   //смещения, соответствующие соседям ячейки
     bool stop = false;
     int d = 0;
-    map[start.x][start.y] = 0;  //стартовая ячейка помечена 0
+    map[coordinates.x][coordinates.y] = 0;  //стартовая ячейка помечена 0
     do {
         stop = true;    //предполагаем, что все свободные клетки уже помечены
-        for (int x = 0; x != height; x++) {
-            for (int y = 0; y != width; y++) {
+        for (int x = 0; x < height; x++) {
+            for (int y = 0; y < width; y++) {
                 if (map[x][y] == d) {   //ячейка (x, y) помечена числом d
                     for (auto neighbor : neighbors) {   //проходим по всем непомеченным соседям
                         coord step{x + neighbor.x, y + neighbor.y};
-                        if ((step.x != 0 && step.x != width) && 
-                            (step.y != 0 && step.y != height) && 
-                            map[step.x][step.y] == BLANK
-                        ) {
+                        if ((step.x >= 0 && step.x < width) && (step.y >= 0 && step.y < height) &&
+                            map[step.x][step.y] == BLANK) {
                             stop = false;   //найдены непомеченные клетки
                             map[step.x][step.y] = d + 1;    //распространяем волну
                         }
@@ -76,27 +77,23 @@ std::vector<coord> Wave::Path(coord start, coord dest) {
             }
         }
         d++;
-    } while (!stop && map[dest.x][dest.y] == BLANK);
+    } while (!stop && map[destination.x][destination.y] == BLANK);
 
-    if (map[dest.x][dest.y] == BLANK) {
+    if (map[destination.x][destination.y] == BLANK) {
         return std::vector<coord>(0);   //путь не найден
     }
 
     //восстановление пути
-    int len = map[dest.x][dest.y];    //длина кратчайшего пути из coordinates в dest
-    coord place(dest.x, dest.y);  //текущее место рассчета
-    std::vector<coord> path(len);  //выделяем место под шаги
+    int len = map[destination.x][destination.y];    //длина кратчайшего пути из coordinates в destination
+    coord place(destination.x, destination.y);  //текущее место рассчета
+    std::vector <coord> path(len);  //выделяем место под шаги
     d = len;
-    coord allNeighbours[] = {
-        { 1,  0}, { 1, -1}, { 0, -1}, {-1, -1},
-        {-1,  0}, {-1,  1}, { 0,  1}, { 1, -1}
-    }; //смещения, соответствующие соседям ячейки (в том числе и диагональным)
-    while (d != 0) {
+    while (d > 0) {
         // path.push_back(place);   //записываем ячейку в путь
         path[len - d] = place;
         d--;
-        for (auto neighbour : allNeighbours) {
-            coord step{place.x + neighbour.x, place.y + neighbour.y};
+        for (auto neighbor : neighbors) {
+            coord step{place.x + neighbor.x, place.y + neighbor.y};
             if ((step.x >= 0 && step.x < width) && (step.y >= 0 && step.y < height) && map[step.x][step.y] == d) {
                 place = step;   //переходим в ячейку, которая на 1 ближе к старту
                 break;
