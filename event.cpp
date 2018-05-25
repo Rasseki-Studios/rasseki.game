@@ -9,7 +9,7 @@ using std::cout;
 using std::endl;
 
 Action::Action(/* Item *subj,  */str _command, str _obj,
-    str _note, str _cond, short _duration) : 
+    str _note, str _cond, short _duration) :
     // subject(subj),
     command(_command),
     objectID(_obj),
@@ -41,7 +41,7 @@ void Action::run() const {
     cout << "duration: " << duration << endl;
 } */
 
-Event::Event(str _ID, str _name, short _level, coord _coord,
+Event::Event(str _ID, str _name, short _level, Coord _coord,
     short _priority, short _radius, std::vector<Action> _actions) :
     Item(_ID, _name, _level),
     Located(_coord),

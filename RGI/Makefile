@@ -463,13 +463,13 @@ compiler_rcc_make_all: qrc_resource.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resource.cpp
 qrc_resource.cpp: resource.qrc \
-		img/map.jpg \
+		img/hero.png \
 		img/metal.jpg \
-		img/archer.png \
-		img/menu.png \
 		img/testmap.bmp \
+		img/archer.png \
 		img/bground.png \
-		img/hero.png
+		img/menu.png \
+		img/map.jpg
 	/home/stanford/Qt5.2.0/5.2.0/gcc_64/bin/rcc -name resource resource.qrc -o qrc_resource.cpp
 
 compiler_moc_header_make_all: moc_menuwindow.cpp moc_gamewindow.cpp moc_loadwindow.cpp moc_mapview.cpp moc_savewindow.cpp moc_journal.cpp
@@ -2232,7 +2232,14 @@ mapview.o: mapview.cpp mapview.h \
 		../movable.h \
 		../surface.h \
 		../item.h \
-		../location.h
+		../location.h \
+		../session_data.h \
+		../items_data.h \
+		../hero.h \
+		../storage.h \
+		../artifact.h \
+		../event_factory.h \
+		../event.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mapview.o mapview.cpp
 
 savewindow.o: savewindow.cpp savewindow.h \

@@ -8,30 +8,30 @@
 
 class Movable : public virtual Located {
 public:
-    Movable(coord, short);
-    int Move(coord);
-    coord Step();
+    Movable(Coord, short);
+    int Move(Coord);
+    Coord Step();
     short GetSpeed() const;
 protected:
     short speed;
-    std::vector<coord> path;
+    std::vector<Coord> path;
 };
 
 class WaveAlgorithm {
 public:
     WaveAlgorithm();
     void Reload();  //метод обновления информации о проходимости
-    std::vector<coord> GetPath(coord, coord);  //составление вектора шагов
+    std::vector<Coord> GetPath(Coord, Coord);  //составление вектора шагов
 private:
     int width;
     int height;
     short **waveMap;
     const short **dataMap;
-    const coord neighbours[8] = {
+    const Coord neighbours[8] = {
         { 1,  0}, { 1, -1}, { 0, -1}, {-1, -1},
         {-1,  0}, {-1,  1}, { 0,  1}, { 1, -1}
     };
-    std::vector<coord> GetBackPath(coord, coord);
+    std::vector<Coord> GetBackPath(Coord, Coord);
 };
 
 #endif

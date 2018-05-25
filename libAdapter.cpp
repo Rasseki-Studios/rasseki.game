@@ -24,12 +24,12 @@ int Game() {
     return 0;
 }
 
-coord Coords() {
-    coord p = hero.GetCoord();
+Coord Coords() {
+    Coord p = hero.GetCoord();
     return p;
 }
 
-coord EndOfMap() {
+Coord EndOfMap() {
     return {surfaceData.getWidth(), surfaceData.getHeight()};
 }
 

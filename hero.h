@@ -9,7 +9,7 @@
 
 class Hero : public Item, public Movable {
 public:
-    Hero(str, str, short, short, coord);
+    Hero(str, str, short, short, Coord);
     Storage* GetInventory();
 protected:
     Storage inventory;

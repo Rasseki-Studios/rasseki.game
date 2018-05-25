@@ -14,8 +14,8 @@ void Load(std::string);
 std::string Write(std::string *);
 std::vector<std::string> GetSavedNames();
 int Go(int x, int y);
-coord Coords();
-coord EndOfMap();
+Coord Coords();
+Coord EndOfMap();
 std::vector<str> Data();
 
 #endif //LIBADAPTER_H

@@ -30,7 +30,7 @@ public:
     /* DEBUG_FUNCTION */ void printEvent() const;
     friend EventFactory;
 private:
-    Event(str, str, short, coord, short, short, std::vector<Action>);
+    Event(str, str, short, Coord, short, short, std::vector<Action>);
     short radius, priority;
     std::vector<Action> actions;
 };

@@ -1,22 +1,22 @@
 #ifndef LOCATION_H
 #define LOCATION_H
 
-struct coord {
+struct Coord {
     int x;
     int y;
-    coord() = default;
-    coord(int, int);
-    friend bool operator==(const coord& left, const coord& right);
+    Coord() = default;
+    Coord(int, int);
+    friend bool operator==(const Coord& left, const Coord& right);
 };
 
 class Located {
 public:
     Located() = default;
-    Located(coord);
-    void SetCoord(coord);
-    coord GetCoord() const;
+    Located(Coord);
+    void SetCoord(Coord);
+    Coord GetCoord() const;
 protected:
-    coord coordinates;
+    Coord coordinates;
 };
 
 #endif //LOCATION_H

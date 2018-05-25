@@ -10,7 +10,7 @@ using std::endl;
 using json = nlohmann::json;
 using std::vector;
 
-void from_json(const json &j, coord &c) {
+void from_json(const json &j, Coord &c) {
     c.x = j.at("x").get<int>();
     c.y = j.at("y").get<int>();
 }
@@ -35,7 +35,7 @@ void from_json(const json &j, ActionData &action) {
 void from_json(const json &j, EventData &event) {
     auto id =  j.at("id").get<str>();
     auto name = j.at("name").get<str>();
-    auto coordinate = j.at("coord").get<coord>();
+    auto coordinate = j.at("Coord").get<Coord>();
     auto radius = j.at("radius").get<short>();
     auto priority = j.at("priority").get<short>();
     auto level = j.at("level").get<short>();

@@ -27,10 +27,10 @@ public:
     bool Init();
     int getWidth();
     int getHeight();
-    bool RadiusIsValid(coord, short);
-    bool IsWalkable(coord);
-    bool CoordIsValid(coord);
-    short getSurface(coord);
+    bool RadiusIsValid(Coord, short);
+    bool IsWalkable(Coord);
+    bool CoordIsValid(Coord);
+    short getSurface(Coord);
     Surface& getSurface(str);
     const short** getMap();
 private:
@@ -43,7 +43,7 @@ private:
 
 class AccessMap {
 public:
-    AccessMap(coord, coord);
+    AccessMap(Coord, Coord);
     ~AccessMap();
     char** getMatrix() {return matrix;};
     int getHeight() {return height;};

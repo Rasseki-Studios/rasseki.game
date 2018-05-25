@@ -14,7 +14,7 @@ GameWindow::GameWindow(QWidget *parent) :
 
     Game();
 
-    coord max = EndOfMap();
+    Coord max = EndOfMap();
     ui->map->setMaximumWidth(max.x);
     ui->map->setMaximumHeight(max.y);
 

@@ -17,7 +17,7 @@ MapView::MapView(QWidget *parent)
     //setAlignment(Qt::AlignCenter);                        //делаем привязку содержимого к центру
     //setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);    //растягиваем содержимое по виджету
 
-    coord end = EndOfMap();
+    Coord end = EndOfMap();
     width_end = 1000; //end.x;
     height_end = 1000; //end.y;
     qDebug() << width_end << " - - - " << height_end;
@@ -31,7 +31,7 @@ MapView::MapView(QWidget *parent)
     QPixmap img_h(":/resources/img/hero.png");  //герой
     hero = mapScene->addPixmap(img_h.scaled(100, 100, Qt::KeepAspectRatio));
 
-    coord pos = Coords();   //установливаем положение героя
+    Coord pos = Coords();   //установливаем положение героя
     qDebug() << pos.x << " | " << pos.y;
     QPoint point(pos.x, pos.y);
     hero->setPos(point);
@@ -75,7 +75,7 @@ void MapView::slotAlarmTimer()
 {
     //mapScene->setSceneRect(0, 0, width, height);    //устанавливаем размер сцены по размеру виджета
 
-    coord pos = Coords();   //устанавливаем героя на актуальную позицию
+    Coord pos = Coords();   //устанавливаем героя на актуальную позицию
     QPoint point(pos.x - offset, pos.y - offset);
     hero->setPos(point);
 

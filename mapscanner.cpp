@@ -13,7 +13,7 @@ enum rgbColor {
 
     blue_color = 255, 
     black_color = 0,
-    bloody_color = 128000,
+    bloody_color = 128000000,
     brown_color = 128128000,
     cyan_color = 128128,
     gold_color = 255255000,

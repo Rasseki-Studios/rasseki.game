@@ -25,7 +25,7 @@ Event* EventsData::getEvent(const str key) {
     return &currentEventList.at(key);
 }
 
-Event* EventsData::getEvent(coord point) {
+Event* EventsData::getEvent(Coord point) {
     if (!surfaceData.CoordIsValid(point)) return NULL;
     if (!eventMatrix[point.x][point.y]->empty()) 
         return &eventMatrix[point.x][point.y]->front();
@@ -44,7 +44,7 @@ add event to map
         int width = gameData.mapWidth;
         int height = gameData.mapHeight;
 
-        coord eventCenter = event.GetCoord();
+        Coord eventCenter = event.GetCoord();
         if (eventCenter.x > width || eventCenter.y > height) throw "coordinates are out of range";
         if (eventCenter.x < 0 || eventCenter.y < 0) throw "invalid coordinates";
 
@@ -80,9 +80,9 @@ add event to map
     }
 }
 
-void EventsData::RemoveFrontEvent(coord point) {
+void EventsData::RemoveFrontEvent(Coord point) {
     Event* event = getEvent(point);
-    coord center = event->GetCoord();
+    Coord center = event->GetCoord();
     int radius = event->getRadius();
 
     for (int i = center.x - radius ; i < center.x + radius; i++) {

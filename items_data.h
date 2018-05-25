@@ -33,9 +33,9 @@ class EventsData {
 public:
     bool Init();
     Event* getEvent(const str);
-    Event* getEvent(coord);
+    Event* getEvent(Coord);
     bool EventExists(str);
-    void RemoveFrontEvent(coord);
+    void RemoveFrontEvent(Coord);
     // more methods coming in future
 private:
     void PulverizeEvents(std::unordered_map<str, Event>&); //pulverizes events from eventList

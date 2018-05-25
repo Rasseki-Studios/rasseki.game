@@ -4,7 +4,7 @@
         "id": "test_event",
         "name": "The first event ever",
         "level": 1,
-        "coord": {
+        "Coord": {
             "x": 500,
             "y": 500
         },
