@@ -39,8 +39,8 @@ QMAKE_CXXFLAGS += -std=c++17 -pthread -lstdc++fs
 QMAKE_CXX = g++
 
 #Добавление статической библиотеки (адаптер)
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../release/ -lAdapter -lstdc++fs
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../debug/ -lAdapter -lstdc++fs
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../release/ -lAdapter
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../debug/ -lAdapter
 else:unix: LIBS += -L$$PWD/../ -lAdapter -lstdc++fs
 
 INCLUDEPATH += $$PWD/../
