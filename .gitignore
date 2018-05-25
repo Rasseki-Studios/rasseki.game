@@ -10,3 +10,6 @@
 RGI/RGI
 *.pro.user*
 RGI/Makefile
+libAdapter.a
+*Makefile
+

@@ -6,9 +6,9 @@
         "level": 1,
         "Coord": {
             "x": 500,
-            "y": 500
+            "y": 700
         },
-        "radius": 2,
+        "radius": 100,
         "priority": 6,
         "actions": [
             {
