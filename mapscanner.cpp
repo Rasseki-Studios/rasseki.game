@@ -5,15 +5,15 @@
 // enumeration representing uniqe color on the bmp file
 enum rgbColor {
 /*
+*/
     red_color = 255000000, 
     yellow_color = 255255000, 
     green_color = 255000, 
     white_color = 255255255,
-*/
 
     blue_color = 255, 
     black_color = 0,
-    bloody_color = 128000,
+    bloody_color = 128000000,
     brown_color = 128128000,
     cyan_color = 128128,
     gold_color = 255255000,
@@ -49,19 +49,23 @@ bool MapScanner::InitMatrix(const std::string filename) {
             intColor = tempPixel.Red * 1000000 + tempPixel.Green * 1000 + tempPixel.Blue;
             switch (intColor) {
                 case black_color:             
-                    tempMatrix[j][i] = black;
+                    tempMatrix[i][j] = black;
                     break;
                 case bloody_color:               
-                    tempMatrix[j][i] = black;
+                    tempMatrix[i][j] = black;
                     break;
                 case blue_color:            
-                    tempMatrix[j][i] = black;
+                    tempMatrix[i][j] = black;
                     break;
                 case gold_color:              
-                    tempMatrix[j][i] = road;
+                    tempMatrix[i][j] = road;
                     break;
+                // case white_color:
+                //     tempMatrix[i][j] = black;
+                //     break;                    
                 default: 
-                    tempMatrix[j][i] = field;
+                    tempMatrix[i][j] = field;
+                    break;
             }
         set.insert(intColor);
         }
