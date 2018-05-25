@@ -51,3 +51,11 @@ void Matrix<T>::setValue(const Coord coord, T value) {
     }
     array[coord.x][coord.y] = value;
 }
+
+int Matrix<T>::getWidth() const {
+    return width;
+}
+
+int Matrix<T>::getHeight() const {
+    return height;
+}

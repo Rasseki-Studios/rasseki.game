@@ -10,6 +10,8 @@ public:
     T getValue(const Coord) const;
     void setValue(const Coord, T);
     bool CoordIsValid(const Coord) const;
+    int getWidth() const;
+    int getHeight() const;
 private:
     T **array;
     int height;
