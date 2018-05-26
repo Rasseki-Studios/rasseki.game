@@ -141,7 +141,7 @@ bool GameData::Init() { // first initialization, using default values
     systemData.nextLocationName = "default";
     systemData.mapName = "map";
 
-    bool status = surfaceData.Init() && eventsData.Init() && artifactsData.Init();
+    bool status = eventsData.Init() && artifactsData.Init();
     if (status) systemData.currentLocationName = "default";
 
     return status;
@@ -152,7 +152,7 @@ bool GameData::Init(str nextLocation) { // repeated initialization of new locati
     systemData.nextLocationName = nextLocation;
     systemData.mapName = "map";
 
-    bool status = surfaceData.Init() && eventsData.Init() && artifactsData.Init();
+    bool status = eventsData.Init() && artifactsData.Init();
     if (status) systemData.currentLocationName = "default";
 
     return status;

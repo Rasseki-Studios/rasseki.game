@@ -1,8 +1,6 @@
 #include "surface.h"
 #include "mapscanner.h"
 #include "session_data.h"
-#define ACCESSIBLE 1
-#define NONACCESSIBLE 0
 
 using namespace SessionData;
 
@@ -10,19 +8,15 @@ using namespace SessionData;
 //---------------- SurfaceData ----------------------------
 //---------------------------------------------------------
 
-bool SurfaceData::Init() {
-    // open map, read it
-    // asign map pointers
-    // init factories
+SurfaceData::SurfaceData()
+: mapHeight(1000), mapWidth(1000), surfaceMatrix(mapWidth, mapHeight, false) {
     MapScanner scanner;
-    MapData data = scanner.getMap(
+    scanner.FillMatrix(
         systemData.resourcesDirectory +
         systemData.nextLocationName + "/" +
-        systemData.mapName + ".bmp");
-    surfaceMatrix = data.surfaceMatrix;
-    mapHeight = data.mapHeight;
-    mapWidth = data.mapWidth;
-    return true;
+        systemData.mapName + ".bmp",
+        surfaceMatrix
+    );
 }
 
 int SurfaceData::getWidth() {
@@ -36,7 +30,7 @@ int SurfaceData::getHeight() {
 short SurfaceData::getSurface(Coord point) {
     if ((point.x < 0 || point.x > mapWidth) || (point.y < 0 || point.y > mapHeight))
         return -1;
-    return surfaceMatrix[point.x][point.y];
+    return surfaceMatrix.getValue(point);
 }
 
 bool SurfaceData::CoordIsValid(Coord point) {
@@ -71,8 +65,8 @@ bool SurfaceData::IsWalkable(Coord point) {
     return false;
 }
 
-const short** SurfaceData::getMap() {
-    return const_cast<const short**>(surfaceMatrix);
+const Matrix<char>& SurfaceData::getMap() {
+    return surfaceMatrix;
 }
 
 // DO NOT use this! It's full of bugs

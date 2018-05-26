@@ -2,21 +2,15 @@
 #define MAP_SCANNER
 
 #include <string>
+#include "matrix.h"
+
 
 using str = std::string;
 
-struct MapData {
-    int mapWidth;
-    int mapHeight;
-    short** surfaceMatrix;
-};
-
 class MapScanner { // scans the map
 public:
-    MapData& getMap(str);
-private:
-    MapData data;
-    bool InitMatrix(str);
+    MapScanner () {};
+    void FillMatrix(const str, Matrix<char>&);
 };
 
 #endif  // MAP_SCANNER

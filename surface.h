@@ -2,7 +2,7 @@
 #define SURFACE
 
 #include "item.h"
-#include "location.h"
+#include "matrix.h"
 
 
 /* 
@@ -17,14 +17,15 @@ class Surface : public Item {
 public:
     // surfaceModifier getModifier();
 private:
-    str modfier;
+    str modifier;
     short modFactor;
 };
 
 
 class SurfaceData {
 public:
-    bool Init();
+    SurfaceData();
+    // ~SurfaceData();
     int getWidth();
     int getHeight();
     bool RadiusIsValid(Coord, short);
@@ -32,11 +33,11 @@ public:
     bool CoordIsValid(Coord);
     short getSurface(Coord);
     Surface& getSurface(str);
-    const short** getMap();
+    const Matrix<char>& getMap();
 private:
     int mapWidth;
     int mapHeight;
-    short** surfaceMatrix;    
+    Matrix<char> surfaceMatrix;
     // std::unordered_map<str, Surface> currentSurfaceList; // currently useless
     // std::unordered_map<str, Surface> globalSurfaceList; //will be added in future
 };

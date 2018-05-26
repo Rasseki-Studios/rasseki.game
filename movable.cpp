@@ -6,6 +6,7 @@ using std::cout;
 using std::endl;
 // hardcode defines. will be removed soon
 
+// /*
 #define WALL 10    //непроходимая ячейка
 #define DIRT 1    //затруднённая проходимость (грязь)
 #define ROAD 2   //отличная проходимость (дорога)
@@ -42,7 +43,7 @@ WaveAlgorithm::WaveAlgorithm()
 void WaveAlgorithm::Reload() {
     width = surfaceData.getWidth();
     height = surfaceData.getHeight();
-    dataMap = surfaceData.getMap();
+    // dataMap = surfaceData.getMap();
     waveMap = new short*[width];
     for (int i = 0; i < height; i++) {
         waveMap[i] = new short[width]();
@@ -136,3 +137,5 @@ std::vector<Coord> WaveAlgorithm::GetBackPath(Coord start, Coord dest) {
 
     return path;
 }
+
+// */
