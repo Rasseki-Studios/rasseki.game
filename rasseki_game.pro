@@ -14,20 +14,20 @@ SOURCES += main.cpp \
     mapview.cpp \
     journal.cpp \
     libs/EasyBMP/EasyBMP.cpp \
-    artifact.cpp \
-    artifact_factory.cpp \
-    artifact_parser.cpp \
     hero.cpp \
-    item.cpp \
     items_data.cpp \
     libAdapter.cpp \
-    location.cpp \
     mapscanner.cpp \
-    matrix.cpp \
     movable.cpp \
     session_data.cpp \
     storage.cpp \
     surface.cpp \
+    base/location.cpp \
+    base/item.cpp \
+    base/matrix.cpp \
+    artifacts/artifact.cpp \
+    artifacts/artifact_parser.cpp \
+    artifacts/artifact_factory.cpp \
     events/event.cpp \
     events/event_factory.cpp \
     events/event_parser.cpp \
@@ -42,18 +42,18 @@ HEADERS += windows/menuwindow.h \
     windows/loadwindow.h \
     events/event.h \
     events/event_factory.h \
+    base/matrix.h \
+    base/item.h \
+    base/location.h \
+    artifacts/artifact.h \
     mapview.h \
     journal.h \
     libs/EasyBMP/EasyBMP.h \
     libs/json.hpp \
-    artifact.h \
     hero.h \
-    item.h \
     items_data.h \
     libAdapter.h \
-    location.h \
     mapscanner.h \
-    matrix.h \
     movable.h \
     session_data.h \
     storage.h \
@@ -65,7 +65,9 @@ FORMS += windows/menuwindow.ui \
     windows/savewindow.ui
 
 INCLUDEPATH += windows \
-    events
+    events \
+    artifacts \
+    base
 
 RESOURCES += resources/resource.qrc
 
