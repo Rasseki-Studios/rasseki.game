@@ -2,10 +2,8 @@
 #include <unistd.h>
 
 #include "session_data.h"
-#include "items_data.h"
 
 using namespace SessionData;
-
 
 void Moving(int count) {
     for (int i = 0 ; i < count; i++) {
