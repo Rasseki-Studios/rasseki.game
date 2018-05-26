@@ -144,7 +144,7 @@ bool ArtifactsData::ArtifactExists(str ID) {
 
 SystemData::SystemData(str _nextLocationName)
 : 
-resourcesDirectory(":/"), 
+resourcesDirectory("resources/"), 
 nextLocationName(_nextLocationName), 
 mapName("map") {
 
