@@ -12,6 +12,7 @@
 
 class SystemData {
 public:
+    SystemData(str nextLocationName = "default_location");
     str resourcesDirectory; // directory with all the resources
     str nextLocationName; // ID of a map going to be loaded
     str currentLocationName; // ID of a map loaded
@@ -21,8 +22,6 @@ public:
 class GameData {
 // stores finished events and other stuff
 public:
-    bool Init(); 
-    bool Init(str);
     int mapHeight;
     int mapWidth;
     str diaryString; // what we are writin'

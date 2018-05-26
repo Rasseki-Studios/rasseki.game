@@ -30,7 +30,7 @@ void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
     std::unordered_set<int> set;
     BMP map;
     if (!map.ReadFromFile(filename.c_str())) {
-        throw std::invalid_argument( "File " + filename  + " does not exist\n");
+        throw std::invalid_argument( "File \"" + filename  + "\" does not exist\n");
     }
 
     int mapWidth = map.TellWidth();

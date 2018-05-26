@@ -136,29 +136,16 @@ bool ArtifactsData::ArtifactExists(str ID) {
 //--------------------- GameData --------------------------
 //---------------------------------------------------------
 
-bool GameData::Init() { // first initialization, using default values
-    systemData.resourcesDirectory = "resources/";
-    systemData.nextLocationName = "default";
-    systemData.mapName = "map";
 
-    bool status = eventsData.Init() && artifactsData.Init();
-    if (status) systemData.currentLocationName = "default";
-
-    return status;
-}
-
-bool GameData::Init(str nextLocation) { // repeated initialization of new location
-    systemData.resourcesDirectory = "resources/";
-    systemData.nextLocationName = nextLocation;
-    systemData.mapName = "map";
-
-    bool status = eventsData.Init() && artifactsData.Init();
-    if (status) systemData.currentLocationName = "default";
-
-    return status;
-}
 
 //---------------------------------------------------------
 //--------------------- SystemData ------------------------
 //---------------------------------------------------------
 
+SystemData::SystemData(str _nextLocationName)
+: 
+resourcesDirectory(":/"), 
+nextLocationName(_nextLocationName), 
+mapName("map") {
+
+}

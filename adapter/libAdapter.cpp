@@ -17,7 +17,6 @@ void Moving(int count) {
 }
 
 int Game() {
-    gameData.Init();
     hero.SetCoord({812, 354});
     return 0;
 }
