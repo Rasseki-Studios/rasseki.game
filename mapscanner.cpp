@@ -1,5 +1,5 @@
 #include "mapscanner.h"
-#include "matrix.h"
+#include "matrix.hpp"
 #include "libs/EasyBMP/EasyBMP.h"
 #include <unordered_set>
 
@@ -29,7 +29,9 @@ enum mapColor {black, field, road};
 void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
     std::unordered_set<int> set;
     BMP map;
-    map.ReadFromFile(filename.c_str());
+    if (!map.ReadFromFile(filename.c_str())) {
+        throw std::invalid_argument( "File " + filename  + " does not exist\n");
+    }
 
     int mapWidth = map.TellWidth();
     int mapHeight = map.TellHeight();
