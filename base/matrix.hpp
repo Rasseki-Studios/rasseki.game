@@ -48,14 +48,14 @@ template <typename T>
 bool Matrix<T>::CoordIsValid(const Coord coord) const {
     return
         (coord.x < width && coord.x >= 0) &&
-        (coord.y < height && coord.y > 0);
+        (coord.y < height && coord.y >= 0);
 }
 
 template <typename T>
 T Matrix<T>::getValue(const Coord coord) const {
     if (!CoordIsValid(coord)) {
-        cerr << "coord is " << coord.x << "," << coord.y << endl;
-        cerr << "max coord is " << width << "," << height << endl;
+        cerr << "reading coordinate " << coord.x - 1 << "," << coord.y - 1 << endl;
+        cerr << "max coordinate is " << width - 1 << "," << height - 1 << endl;
         throw std::out_of_range( "wrong matrix coordinate" );
     }
     return array[coord.x][coord.y];
@@ -64,8 +64,8 @@ T Matrix<T>::getValue(const Coord coord) const {
 template <typename T>
 void Matrix<T>::setValue(const Coord coord, T value) {
     if (!CoordIsValid(coord)) {
-        cerr << "coord is " << coord.x << "," << coord.y << endl;
-        cerr << "max coord is " << width << "," << height << endl;
+        cerr << "writing coordinate " << coord.x - 1 << "," << coord.y - 1 << endl;
+        cerr << "max coordinate is " << width - 1 << "," << height - 1 << endl;
         throw std::out_of_range( "wrong matrix coordinate" );
     }
     array[coord.x][coord.y] = value;
