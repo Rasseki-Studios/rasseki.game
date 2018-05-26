@@ -1,4 +1,5 @@
 #include "mapscanner.h"
+#include "matrix.h"
 #include "libs/EasyBMP/EasyBMP.h"
 #include <unordered_set>
 
@@ -25,46 +26,47 @@ enum rgbColor {
 // enum mapColor {black, red, yellow, blue, green, white};
 enum mapColor {black, field, road};
 
-
-bool MapScanner::InitMatrix(const std::string filename) {
+void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
     std::unordered_set<int> set;
     BMP map;
-    if (!map.ReadFromFile(filename.c_str())) return false; 
-    data.mapWidth = map.TellWidth();
-    data.mapHeight = map.TellHeight();
+    map.ReadFromFile(filename.c_str());
+
+    int mapWidth = map.TellWidth();
+    int mapHeight = map.TellHeight();
     int intColor; // 9-digit RGB representation
     RGBApixel tempPixel;
 
-    //allocating memory
-    int i = 0, j = 0;
-    short** tempMatrix = new short* [data.mapHeight];
-    for (i = 0; i < data.mapHeight; i++) {
-        tempMatrix[i] = new short [data.mapWidth];   
-    }
+    // //allocating memory
+    // short** tempMatrix = new short* [mapHeight];
+    // for (i = 0; i < data.mapHeight; i++) {
+    //     tempMatrix[i] = new short [data.mapWidth];   
+    // }
+
+    // Matrix<char> matrix (mapWidth, mapHeight);
 
     //row by row scanning of bmp file and transformation colours to surface types
-    for (i = 0; i < data.mapHeight; i++) {
-        for (j = 0; j < data.mapWidth; j++) {
+    for (int i = 0; i < mapHeight; i++) {
+        for (int j = 0; j < mapWidth; j++) {
             tempPixel = map.GetPixel(i,j);
             intColor = tempPixel.Red * 1000000 + tempPixel.Green * 1000 + tempPixel.Blue;
             switch (intColor) {
-                case black_color:             
-                    tempMatrix[i][j] = black;
+                case black_color:
+                    matrix.setValue({i, j}, black);
                     break;
                 case bloody_color:               
-                    tempMatrix[i][j] = black;
+                    matrix.setValue({i, j}, black);
                     break;
                 case blue_color:            
-                    tempMatrix[i][j] = black;
+                    matrix.setValue({i, j}, black);
                     break;
                 case gold_color:              
-                    tempMatrix[i][j] = road;
+                    matrix.setValue({i, j}, road);
                     break;
                 // case white_color:
-                //     tempMatrix[i][j] = black;
+                //     matrix.setValue({i, j}, black);
                 //     break;                    
                 default: 
-                    tempMatrix[i][j] = field;
+                    matrix.setValue({i, j}, field);                    
                     break;
             }
         set.insert(intColor);
@@ -74,17 +76,6 @@ bool MapScanner::InitMatrix(const std::string filename) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
-    data.surfaceMatrix = tempMatrix;
-    return true;
-}
-
-MapData& MapScanner::getMap(str filename) {
-    if (InitMatrix(filename)) return data;
-    else {
-        throw "error during file scanning";
-        abort();
-        data.mapHeight = -1;
-        data.mapWidth = -1;
-        return data;
-    } 
+    // surfaceMatrix = tempMatrix;
+    // return matrix;
 }
