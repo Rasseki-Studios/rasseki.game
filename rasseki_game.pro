@@ -71,6 +71,9 @@ INCLUDEPATH += windows \
 
 RESOURCES += resources/resource.qrc
 
+OBJECTS_DIR=temp
+MOC_DIR=temp
+
 CONFIG += C++17
 QMAKE_CXXFLAGS += -g -std=c++17 -pthread
 QMAKE_CXX = g++

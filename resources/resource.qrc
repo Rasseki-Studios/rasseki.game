@@ -1,11 +1,11 @@
 <RCC>
     <qresource>
-        <file alias="metal.jpg">img/metal.jpg</file>
-        <file alias="menu.png">img/menu.png</file>
-        <file alias="map.jpg">img/map.jpg</file>
-        <file alias="map.bmp">img/map.bmp</file>
-        <file alias="hero.png">img/hero.png</file>
-        <file alias="bground.png">img/bground.png</file>
-        <file alias="archer.png">img/archer.png</file>
+        <file alias="metal.jpg">ui/metal.jpg</file>
+        <file alias="menu.png">ui/menu.png</file>
+        <file>default_location/map.jpg</file>
+        <file>default_location/map.bmp</file>
+        <file alias="hero.png">ui/hero.png</file>
+        <file alias="bground.png">ui/bground.png</file>
+        <file alias="archer.png">ui/archer.png</file>
     </qresource>
 </RCC>
