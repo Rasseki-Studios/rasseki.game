@@ -1,0 +1,12 @@
+<RCC>
+    <qresource>
+        <file alias="testmap.bmp">img/testmap.bmp</file>
+        <file alias="metal.jpg">img/metal.jpg</file>
+        <file alias="menu.png">img/menu.png</file>
+        <file alias="map.jpg">img/map.jpg</file>
+        <file alias="map.bmp">img/map.bmp</file>
+        <file alias="hero.png">img/hero.png</file>
+        <file alias="bground.png">img/bground.png</file>
+        <file alias="archer.png">img/archer.png</file>
+    </qresource>
+</RCC>
