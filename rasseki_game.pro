@@ -73,7 +73,7 @@ INCLUDEPATH += windows \
 RESOURCES += resources/resource.qrc
 
 CONFIG += C++17
-QMAKE_CXXFLAGS += -std=c++17 -pthread
+QMAKE_CXXFLAGS += -g -std=c++17 -pthread
 QMAKE_CXX = g++
 
 LIBS += -lstdc++fs
