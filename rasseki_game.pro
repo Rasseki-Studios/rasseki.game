@@ -13,12 +13,11 @@ TEMPLATE = app
 SOURCES += main.cpp \
     libs/EasyBMP/EasyBMP.cpp \
     hero.cpp \
-    items_data.cpp \
-    mapscanner.cpp \
     movable.cpp \
-    session_data.cpp \
-    storage.cpp \
-    surface.cpp \
+    surfaces/mapscanner.cpp \
+    surfaces/surface.cpp \
+    database/items_data.cpp \
+    database/session_data.cpp \
     adapter/mapview.cpp \
     adapter/journal.cpp \
     adapter/libAdapter.cpp \
@@ -27,6 +26,7 @@ SOURCES += main.cpp \
     artifacts/artifact.cpp \
     artifacts/artifact_parser.cpp \
     artifacts/artifact_factory.cpp \
+    artifacts/storage.cpp \
     events/event.cpp \
     events/event_factory.cpp \
     events/event_parser.cpp \
@@ -45,18 +45,18 @@ HEADERS += windows/menuwindow.h \
     basic/item.h \
     basic/location.h \
     artifacts/artifact.h \
+    artifacts/storage.h \
     adapter/mapview.h \
     adapter/journal.h \
     adapter/libAdapter.h \
     libs/EasyBMP/EasyBMP.h \
     libs/json.hpp \
+    database/items_data.h \
+    database/session_data.h \
+    surfaces/mapscanner.h \
+    surfaces/surface.h \
     hero.h \
-    items_data.h \
-    mapscanner.h \
-    movable.h \
-    session_data.h \
-    storage.h \
-    surface.h
+    movable.h
 
 FORMS += windows/menuwindow.ui \
     windows/gamewindow.ui \
@@ -67,7 +67,9 @@ INCLUDEPATH += windows \
     events \
     artifacts \
     basic \
-    adapter
+    adapter \
+    database \
+    surfaces
 
 RESOURCES += resources/resource.qrc
 
