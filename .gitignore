@@ -7,9 +7,10 @@
 *test*
 *.gch
 .idea
-RGI/RGI
 *.pro.user*
-RGI/Makefile
 libAdapter.a
 *Makefile
-
+*debug*
+*Debug*
+*qmake*
+rasseki_game
