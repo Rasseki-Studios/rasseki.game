@@ -1,6 +1,5 @@
 <RCC>
     <qresource>
-        <file alias="testmap.bmp">img/testmap.bmp</file>
         <file alias="metal.jpg">img/metal.jpg</file>
         <file alias="menu.png">img/menu.png</file>
         <file alias="map.jpg">img/map.jpg</file>
