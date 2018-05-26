@@ -11,17 +11,17 @@ TARGET = rasseki_game
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    mapview.cpp \
-    journal.cpp \
     libs/EasyBMP/EasyBMP.cpp \
     hero.cpp \
     items_data.cpp \
-    libAdapter.cpp \
     mapscanner.cpp \
     movable.cpp \
     session_data.cpp \
     storage.cpp \
     surface.cpp \
+    adapter/mapview.cpp \
+    adapter/journal.cpp \
+    adapter/libAdapter.cpp \
     base/location.cpp \
     base/item.cpp \
     base/matrix.cpp \
@@ -46,13 +46,13 @@ HEADERS += windows/menuwindow.h \
     base/item.h \
     base/location.h \
     artifacts/artifact.h \
-    mapview.h \
-    journal.h \
+    adapter/mapview.h \
+    adapter/journal.h \
+    adapter/libAdapter.h \
     libs/EasyBMP/EasyBMP.h \
     libs/json.hpp \
     hero.h \
     items_data.h \
-    libAdapter.h \
     mapscanner.h \
     movable.h \
     session_data.h \
@@ -67,7 +67,8 @@ FORMS += windows/menuwindow.ui \
 INCLUDEPATH += windows \
     events \
     artifacts \
-    base
+    base \
+    adapter
 
 RESOURCES += resources/resource.qrc
 
