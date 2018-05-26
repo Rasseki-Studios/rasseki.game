@@ -2,8 +2,6 @@
     <qresource>
         <file alias="metal.jpg">ui/metal.jpg</file>
         <file alias="menu.png">ui/menu.png</file>
-        <file>default_location/map.jpg</file>
-        <file>default_location/map.bmp</file>
         <file alias="hero.png">ui/hero.png</file>
         <file alias="bground.png">ui/bground.png</file>
         <file alias="archer.png">ui/archer.png</file>
