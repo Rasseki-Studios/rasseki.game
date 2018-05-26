@@ -1,4 +1,7 @@
-/* by stanford */
+/* by stanford & Co*/
+
+#ifndef MATRIX
+#define MATRIX
 
 #include "location.h"
 
@@ -17,3 +20,5 @@ private:
     int height;
     int width;
 };
+
+#endif
