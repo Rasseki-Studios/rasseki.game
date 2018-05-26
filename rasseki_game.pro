@@ -22,8 +22,8 @@ SOURCES += main.cpp \
     adapter/mapview.cpp \
     adapter/journal.cpp \
     adapter/libAdapter.cpp \
-    base/location.cpp \
-    base/item.cpp \
+    basic/location.cpp \
+    basic/item.cpp \
     artifacts/artifact.cpp \
     artifacts/artifact_parser.cpp \
     artifacts/artifact_factory.cpp \
@@ -41,9 +41,9 @@ HEADERS += windows/menuwindow.h \
     windows/loadwindow.h \
     events/event.h \
     events/event_factory.h \
-    base/matrix.hpp \
-    base/item.h \
-    base/location.h \
+    basic/matrix.hpp \
+    basic/item.h \
+    basic/location.h \
     artifacts/artifact.h \
     adapter/mapview.h \
     adapter/journal.h \
@@ -66,7 +66,7 @@ FORMS += windows/menuwindow.ui \
 INCLUDEPATH += windows \
     events \
     artifacts \
-    base \
+    basic \
     adapter
 
 RESOURCES += resources/resource.qrc
