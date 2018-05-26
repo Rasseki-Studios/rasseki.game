@@ -22,8 +22,8 @@ public:
     int getHeight() const;
 private:
     T **array;
-    int height;
     int width;
+    int height;
 };
 
 template <typename T>

@@ -9,7 +9,8 @@ using namespace SessionData;
 //---------------------------------------------------------
 
 SurfaceData::SurfaceData()
-: mapHeight(1000), mapWidth(1000), surfaceMatrix(mapWidth, mapHeight, false) {
+:
+mapWidth(1000), mapHeight(1000), surfaceMatrix(mapWidth, mapHeight, false) {
     MapScanner scanner;
     scanner.FillMatrix(
         systemData.resourcesDirectory +

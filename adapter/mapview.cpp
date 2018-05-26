@@ -17,7 +17,7 @@ MapView::MapView(QWidget *parent)
     //setAlignment(Qt::AlignCenter);                        //делаем привязку содержимого к центру
     //setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);    //растягиваем содержимое по виджету
 
-    Coord end = EndOfMap();
+    // Coord end = EndOfMap();
     width_end = 1000; //end.x;
     height_end = 1000; //end.y;
     qDebug() << width_end << " - - - " << height_end;

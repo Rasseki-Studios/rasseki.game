@@ -14,12 +14,15 @@ using std::endl;
 using namespace SessionData;
 
 Movable::Movable(Coord coordinates, short speed)
-: Located(coordinates), speed(speed) {}
+:
+Located(coordinates), speed(speed) {}
 
 int Movable::Move(Coord destination) {
-    path.clear();   //очищаем текущий маршрут для пересчета
+    //очищаем текущий маршрут для пересчета
+    path.clear();
     WaveAlgorithm alg; 
-    path = alg.GetPath(coordinates, destination);  //алгоритм поиска пути, формирует вектор path
+    // алгоритм поиска пути, формирует вектор path
+    path = alg.GetPath(coordinates, destination);
     return path.size();
 }
 
@@ -35,8 +38,9 @@ short Movable::GetSpeed() const {
     return speed;
 }
 
-WaveAlgorithm::WaveAlgorithm() 
-: dataMap(nullptr), waveMap(nullptr) {
+WaveAlgorithm::WaveAlgorithm()
+:
+waveMap(nullptr), dataMap(nullptr) {
     Reload();
 }
 
@@ -73,14 +77,11 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     short waveIndex = 1;
     waveMap[start.x][start.y] = waveIndex;
 
-    long long int terechovEffect = 0;
-
     while(waveEdge->size() != 0) {
         auto newEdge = new std::vector<Coord>();
         waveIndex++;
         for (auto edge : *waveEdge) {
             for (auto neighbour : neighbours) {
-                terechovEffect++;
                 Coord current(edge.x + neighbour.x, edge.y + neighbour.y);
                 if (!surfaceData.CoordIsValid(current)) continue;
                 if (waveMap[current.x][current.y] != 0) continue;
@@ -88,8 +89,7 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
                     waveMap[current.x][current.y] = waveIndex;
                     delete newEdge;
                     delete waveEdge;
-                    std::cout << "terechovEffect: " << terechovEffect << std::endl;
-                    return GetBackPath(start, dest);
+                    return GetBackPath(/* start,  */dest);
                 } else if (dataMap[current.x][current.y] != WALL) {
                     newEdge->push_back(current);
                     waveMap[current.x][current.y] = waveIndex;
@@ -109,7 +109,7 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     return emptyVector;
 }
 
-std::vector<Coord> WaveAlgorithm::GetBackPath(Coord start, Coord dest) {
+std::vector<Coord> WaveAlgorithm::GetBackPath(/* Coord start,  */Coord dest) {
     //восстановление пути
 
     int length = waveMap[dest.x][dest.y]; 

@@ -31,7 +31,7 @@ private:
         { 1,  0}, { 1, -1}, { 0, -1}, {-1, -1},
         {-1,  0}, {-1,  1}, { 0,  1}, { 1, -1}
     };
-    std::vector<Coord> GetBackPath(Coord, Coord);
+    std::vector<Coord> GetBackPath(/* Coord,  */Coord);
 };
 
 #endif
