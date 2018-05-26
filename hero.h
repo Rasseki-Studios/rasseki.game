@@ -3,7 +3,6 @@
 
 #include <string>
 
-//#include "event.h"
 #include "movable.h"
 #include "storage.h"
 
