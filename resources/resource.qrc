@@ -5,5 +5,7 @@
         <file alias="hero.png">ui/hero.png</file>
         <file alias="bground.png">ui/bground.png</file>
         <file alias="archer.png">ui/archer.png</file>
+        <file alias="map.bmp">default_location/map.bmp</file>
+        <file alias="map.jpg">default_location/map.jpg</file>
     </qresource>
 </RCC>
