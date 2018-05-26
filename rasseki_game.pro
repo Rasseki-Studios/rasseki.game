@@ -12,8 +12,7 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     libs/EasyBMP/EasyBMP.cpp \
-    hero.cpp \
-    movable.cpp \
+    creatures/hero.cpp \
     surfaces/mapscanner.cpp \
     surfaces/surface.cpp \
     database/items_data.cpp \
@@ -21,6 +20,7 @@ SOURCES += main.cpp \
     adapter/mapview.cpp \
     adapter/journal.cpp \
     adapter/libAdapter.cpp \
+    basic/movable.cpp \
     basic/location.cpp \
     basic/item.cpp \
     artifacts/artifact.cpp \
@@ -44,6 +44,7 @@ HEADERS += windows/menuwindow.h \
     basic/matrix.hpp \
     basic/item.h \
     basic/location.h \
+    basic/movable.h \
     artifacts/artifact.h \
     artifacts/storage.h \
     adapter/mapview.h \
@@ -55,8 +56,7 @@ HEADERS += windows/menuwindow.h \
     database/session_data.h \
     surfaces/mapscanner.h \
     surfaces/surface.h \
-    hero.h \
-    movable.h
+    creatures/hero.h
 
 FORMS += windows/menuwindow.ui \
     windows/gamewindow.ui \
@@ -69,7 +69,8 @@ INCLUDEPATH += windows \
     basic \
     adapter \
     database \
-    surfaces
+    surfaces \
+    creatures
 
 RESOURCES += resources/resource.qrc
 
