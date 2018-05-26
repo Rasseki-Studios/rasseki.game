@@ -67,7 +67,7 @@ FORMS += windows/menuwindow.ui \
 INCLUDEPATH += windows \
     events
 
-RESOURCES += resource.qrc
+RESOURCES += resources/resource.qrc
 
 CONFIG += C++17
 QMAKE_CXXFLAGS += -std=c++17 -pthread
