@@ -2,8 +2,7 @@
 #define SURFACE
 
 #include "item.h"
-#include "matrix.h"
-
+#include "matrix.hpp"
 
 /* 
 // struct for terrain modifiers, contains name and power factor

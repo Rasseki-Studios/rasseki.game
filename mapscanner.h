@@ -2,7 +2,7 @@
 #define MAP_SCANNER
 
 #include <string>
-#include "matrix.h"
+#include "matrix.hpp"
 
 
 using str = std::string;

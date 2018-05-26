@@ -1,11 +1,30 @@
 /* by stanford */
 
+#ifndef MATRIX
+#define MATRIX
+
 #include <stdexcept>
 #include <iostream>
 using std::cerr;
 using std::endl;
 
-#include "matrix.h"
+#include "location.h"
+
+template <typename T>
+class Matrix {
+public:
+    Matrix(const int _width, const int _height, const bool defaultInit = false);
+    ~Matrix();
+    T getValue(const Coord) const;
+    void setValue(const Coord, T);
+    bool CoordIsValid(const Coord) const;
+    int getWidth() const;
+    int getHeight() const;
+private:
+    T **array;
+    int height;
+    int width;
+};
 
 template <typename T>
 Matrix<T>::Matrix(const int _width, const int _height, const bool defaultInit)
@@ -61,3 +80,5 @@ template <typename T>
 int Matrix<T>::getHeight() const {
     return height;
 }
+
+#endif

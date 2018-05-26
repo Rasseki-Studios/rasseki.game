@@ -24,7 +24,6 @@ SOURCES += main.cpp \
     adapter/libAdapter.cpp \
     base/location.cpp \
     base/item.cpp \
-    base/matrix.cpp \
     artifacts/artifact.cpp \
     artifacts/artifact_parser.cpp \
     artifacts/artifact_factory.cpp \
@@ -42,7 +41,7 @@ HEADERS += windows/menuwindow.h \
     windows/loadwindow.h \
     events/event.h \
     events/event_factory.h \
-    base/matrix.h \
+    base/matrix.hpp \
     base/item.h \
     base/location.h \
     artifacts/artifact.h \
