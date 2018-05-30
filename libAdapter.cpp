@@ -1,58 +1,60 @@
 #include "libAdapter.h"
 #include <unistd.h>
 
-coord c(200, 200);
-short a = 5;
-Movable hero(c,a);
-bool run_flag = true;
+#include "session_data.h"
 
-//std::thread td;
-//Storage Inventory(5);
-//Hero hero("MLQ", "Moleque", 5, 4, {1,1}, &Inventory);
+using namespace SessionData;
 
-#include <iostream>
-void Moving(int count) {
-    for (int i =0 ; i< count; i++) {
-        hero.Step();
-        usleep(10000);
-        //std::cout << hero.GetCoord().x << " | " << hero.GetCoord().y << "\n";
-        //sleep();
+int const time_delay = 10000;
+
+void Moving(int count) {    //перемещение на count шагов
+        Event *event = eventsData.getEvent(hero.GetCoord());    //попытка получения события в данной точке
+        if (event) {
+            event->runEvent();
+        }
+        usleep(time_delay);  //временая задержка
     }
 }
 
 int Game() {
-    //std::thread td(Moving);
-    return 5;
+    Init(); //инициализация данных игры
+    return 0;
 }
 
-void Exit() {
-    run_flag = false;
-    //td.join();
+Coord Coords() {    //получение позиции героя
+    Coord place = hero.GetCoord();
+    return place;
 }
 
-coord Coords() {
-    coord p = hero.GetCoord();
-    return p;
+Coord EndOfMap() {  //получение границ карты
+    return {surfaceData.getWidth(), surfaceData.getHeight()};
 }
 
-bool Save(std::string file) {
-    return true;
+std::vector<str> Data() {   //отправка данных о герое
+    std::vector<str> data;
+    data.push_back(hero.GetName());
+    data.push_back(std::to_string(hero.GetLevel()));
+    data.push_back(std::to_string(hero.GetSpeed()));
+    return data;
 }
 
-void Load(std::string file) {
-
+std::string Write(std::string *msg) {   //получение записей для игрового журнала
+    if (diaryString != "") {
+        *msg = diaryString; //сообщение
+        diaryString = "";
+    }
+    return writer;  //автор сообщения
 }
 
-std::vector<std::string> GetSavedNames() {
-
-}
-
-int Go(int x, int y) {
+int Go(int x, int y) {  //перемещение героя
     int count = 0;
+    writer = hero.GetName();
     if ((count = hero.Move({x, y}))) {
+        diaryString = "Я иду...";
         Moving(count);
-        //std::thread td(Moving, count);
-        //td.join();
+    }
+    else {
+        diaryString = "Не знаю как туда попасть=(";
     }
     return count;
 }

@@ -1,7 +1,7 @@
 #include "hero.h"
 
-Hero::Hero(std::string id, std::string name, short level, short speed, coord coordinates, Storage *inventory) : Creature(name, id, level, speed, coordinates), inventory(inventory) {}
+Hero::Hero(std::string id, std::string name, short level, short speed, Coord coordinates) : Item(id, name, level), Movable(coordinates, speed) {}
 
-Storage* Hero::GetInventory() const {
-    return inventory;
+Storage* Hero::GetInventory() {
+    return &inventory;
 }

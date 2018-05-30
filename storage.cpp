@@ -1,5 +1,7 @@
 #include "storage.h"
 
+#include "session_data.h"
+
 using namespace SessionData;
 
 Storage::Storage(short count) {

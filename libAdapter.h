@@ -3,18 +3,16 @@
 
 #include <vector>
 #include <string>
-#include <thread>
 
-#include "movable.h"
-
+#include "location.h"
+#include "surface.h"
 
 int Game();
-void Exit();
 void Moving(int);
-bool Save(std::string);
-void Load(std::string);
-std::vector<std::string> GetSavedNames();
+std::string Write(std::string *);
 int Go(int x, int y);
-coord Coords();
+Coord Coords();
+Coord EndOfMap();
+std::vector<str> Data();
 
 #endif //LIBADAPTER_H

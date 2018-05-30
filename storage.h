@@ -4,7 +4,6 @@
 #include <memory>
 
 #include "artifact.h"
-#include "session_data.h"
 
 class Storage {
 public:

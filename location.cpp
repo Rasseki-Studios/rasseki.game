@@ -1,15 +1,19 @@
 #include "location.h"
 
-coord::coord(int x, int y) : x(x), y(y) {}
+//---Coord---
+Coord::Coord(int x, int y) : x(x), y(y) {}
 
-Located::Located() {}
+bool operator==(const Coord& left, const Coord& right) {
+    return left.x == right.x && left.y == right.y;
+}
 
-Located::Located(coord coordinates) : coordinates(coordinates) {}
+//---Located---
+Located::Located(Coord coordinates) : coordinates(coordinates) {}
 
-void Located::SetCoord(coord coordinates) {
+void Located::SetCoord(Coord coordinates) {
     this->coordinates = coordinates;
 }
 
-coord Located::GetCoord() const {
+Coord Located::GetCoord() const {
     return coordinates;
 }
