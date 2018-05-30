@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     gamewindow.cpp \
     loadwindow.cpp \
     mapview.cpp \
-    savewindow.cpp
+    savewindow.cpp \
+    journal.cpp
 
 HEADERS  += menuwindow.h \
     gamewindow.h \
     loadwindow.h \
     mapview.h \
-    savewindow.h
+    savewindow.h \
+    journal.h
 
 FORMS    += menuwindow.ui \
     gamewindow.ui \
@@ -33,13 +35,14 @@ FORMS    += menuwindow.ui \
 RESOURCES += \
     resource.qrc
 
-CONFIG += C++11
-QMAKE_CXXFLAGS += -std=c++11 -pthread
+CONFIG += C++17
+QMAKE_CXXFLAGS += -std=c++17 -pthread -lstdc++fs
+QMAKE_CXX = g++
 
 #Добавление статической библиотеки (адаптер)
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../release/ -lAdapter
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../debug/ -lAdapter
-else:unix: LIBS += -L$$PWD/../ -lAdapter
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../release/ -lAdapter -lstdc++fs
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../debug/ -lAdapter -lstdc++fs
+else:unix: LIBS += -L$$PWD/../ -lAdapter -lstdc++fs
 
 INCLUDEPATH += $$PWD/../
 DEPENDPATH += $$PWD/../
