@@ -39,16 +39,14 @@ short Movable::GetSpeed() const {
 
 WaveAlgorithm::WaveAlgorithm()
 :
-waveMap(nullptr), dataMap(nullptr) {
-    Reload();
-}
+width( surfaceData.getWidth() ),
+height( surfaceData.getHeight() ),
+dataMap( surfaceData.getMap() ),
+waveMap(width, height, true) {}
 
-void WaveAlgorithm::Reload() {
-    width = surfaceData.getWidth();
-    height = surfaceData.getHeight();
-    // dataMap = surfaceData.getMap();
-    waveMap = new Matrix<short>(width, height, true);
-}
+    // Reload();
+// void WaveAlgorithm::Reload() {
+// }
 
 std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     std::vector<Coord> emptyVector(0);
@@ -59,79 +57,75 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     // cout << "dest by getSurf: " << surfaceData.getSurface(dest) << endl;
     // cout << "start surf is " << dataMap[start.x][start.y] << endl;
     // cout << "dest surf is " << dataMap[dest.x][dest.y] << endl;
-    // if (dataMap[start.x][start.y] == WALL
-    // || dataMap[dest.x][dest.y] == WALL) {
+    if (dataMap[start] == WALL
+    || dataMap[dest] == WALL) {
         cout << "Check at algorithm start failed" << endl;
     // + сюда добавить проверку на валидность конечной координаты
         //если стартовая или конечная ячейка непроходима
         return emptyVector;
-    // }
+    }
 
     auto waveEdge = new std::vector<Coord>();
-    // waveEdge->push_back(start);
+    waveEdge->push_back(start);
 
     short waveIndex = 1;
-    // waveMap[start.x][start.y] = waveIndex;
+    waveMap[start] = waveIndex;
 
-    // while(waveEdge->size() != 0) {
-    //     auto newEdge = new std::vector<Coord>();
-    //     waveIndex++;
-    //     for (auto edge : *waveEdge) {
-    //         for (auto neighbour : neighbours) {
-    //             Coord current(edge.x + neighbour.x, edge.y + neighbour.y);
-    //             if (!surfaceData.CoordIsValid(current)) continue;
-    //             if (waveMap[current.x][current.y] != 0) continue;
-    //             if (current == dest) {
-    //                 waveMap[current.x][current.y] = waveIndex;
-    //                 delete newEdge;
-    //                 delete waveEdge;
-    //                 return GetBackPath(/* start,  */dest);
-    //             } else if (dataMap[current.x][current.y] != WALL) {
-    //                 newEdge->push_back(current);
-    //                 waveMap[current.x][current.y] = waveIndex;
-    //             }
-    //         }
-    //     }
-    //     delete waveEdge;
-    //     waveEdge = newEdge;
-    // }
+    while(waveEdge->size() != 0) {
+        auto newEdge = new std::vector<Coord>();
+        waveIndex++;
+        for (auto edge : *waveEdge) {
+            for (auto neighbour : neighbours) {
+                Coord current(edge.x + neighbour.x, edge.y + neighbour.y);
+                if (!waveMap.CoordIsValid(current)) continue;
+                cout << current.x << " " << current.y << endl;
+                int a = (int)waveMap[current];
+                cout << (int)waveMap[current] << endl;
+                cout << "AM I HERE???" << endl;
+                if (/* waveMap[current] *//* a != 0 */1) {
+                    cout << "i am alive" << endl;
+                    continue;
+                }
+                if (current == dest) {
+                    waveMap[current] = waveIndex;
+                    delete newEdge;
+                    delete waveEdge;
+                    return GetBackPath(/* start,  */dest);
+                } else if (dataMap[current] != WALL) {
+                    newEdge->push_back(current);
+                    waveMap[current] = waveIndex;
+                }
+            }
+        }
+        delete waveEdge;
+        waveEdge = newEdge;
+    }
 
-    // for (int i = 0; i < height; i++) {
-    //     delete waveMap[i];
-    // } delete waveMap;
-
-    // cout << "no path found" << endl;
-    // // no path found
-    // return emptyVector;
+    cout << "no path found" << endl;
+    // no path found
+    return emptyVector;
 }
 
-// std::vector<Coord> WaveAlgorithm::GetBackPath(/* Coord start,  */Coord dest) {
-//     //восстановление пути
+std::vector<Coord> WaveAlgorithm::GetBackPath(/* Coord start,  */Coord dest) {
+    //восстановление пути
 
-//     int length = waveMap[dest.x][dest.y]; 
-//     //длина кратчайшего пути из dest в dest
+    int length = waveMap[dest];
+    //длина кратчайшего пути из dest в dest
 
-//     Coord step(dest.x, dest.y);  //текущий шаг
-//     std::vector<Coord> path(length);  //выделяем место под шаги
+    Coord step(dest.x, dest.y);  //текущий шаг
+    std::vector<Coord> path(length);  //выделяем место под шаги
 
-//     for (int i = length; i != 1; i--) {
-//         for (auto it : neighbours) {
-//             Coord current(step.x + it.x, step.y + it.y);
-//             if (!surfaceData.CoordIsValid(current)) continue;
-//             if (waveMap[current.x][current.y] == i - 1) {
-//                 step.x = current.x;
-//                 step.y = current.y;
-//                 break;
-//             }
-//         }
-//         path.at(length - i) = step;
-//     }
+    for (int i = length; i != 1; i--) {
+        for (auto it : neighbours) {
+            Coord current(step.x + it.x, step.y + it.y);
+            if (!surfaceData.CoordIsValid(current)) continue;
+            if (waveMap[current] == i - 1) {
+                step = current;
+                break;
+            }
+        }
+        path.at(length - i) = step;
+    }
 
-//     // for (int i = 0; i < height; i++) {
-//     //     delete waveMap[i];
-//     // } delete waveMap;
-
-//     return path;
-// }
-
-// */
+    return path;
+}

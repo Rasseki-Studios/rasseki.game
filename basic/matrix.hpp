@@ -12,9 +12,12 @@ struct Coord {
     int x;
     int y;
     Coord() = default;
+    inline Coord(const Coord &coord);
     inline Coord(int, int);
     inline friend bool operator==(const Coord& left, const Coord& right);
 };
+
+Coord::Coord(const Coord &coord) : x(coord.x), y(coord.y) {}
 
 Coord::Coord(int _x, int _y) :
     x(_x),
@@ -51,18 +54,18 @@ template <typename T>
 Matrix<T>::Matrix(const int _width, const int _height, const bool defaultInit)
 : width(_width), height(_height) {
     array = new T*[width];
-    if (defaultInit) {
-        for (int i = 0; i < width; i++) array[i] = new T[height];
+    if (!defaultInit) {
+        for (int i = 0; i != width; i++) array[i] = new T[height];
     } else {
-        for (int i = 0; i < width; i++) array[i] = new T[height]();
+        for (int i = 0; i != width; i++) array[i] = new T[height]();
     }
 }
 
 template <typename T>
 Matrix<T>::~Matrix() {
-    for (int i = 0; i < width; i++)
-        delete array[i];
-    delete array;
+    for (int i = 0; i != width; i++)
+        delete [] array[i];
+    delete [] array;
 }
 
 template <typename T>
@@ -75,7 +78,7 @@ bool Matrix<T>::CoordIsValid(const Coord &coord) const {
 template <typename T>
 T& Matrix<T>::operator[](const Coord &coord) {
     if (!CoordIsValid(coord)) {
-        cerr << "writing coordinate " << coord.x - 1 << "," << coord.y - 1 << endl;
+        cerr << "writing coordinate " << coord.x << "," << coord.y << endl;
         cerr << "max coordinate is " << width - 1 << "," << height - 1 << endl;
         throw std::out_of_range( " writing failed " );
     }
