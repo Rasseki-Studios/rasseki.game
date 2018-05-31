@@ -3,8 +3,8 @@
 
 #include <vector>
 #include "surface.h"
-
-// using namespace SessionData;
+#include "matrix.hpp"
+#include "location.h"
 
 class Movable : public virtual Located {
 public:
@@ -25,8 +25,8 @@ public:
 private:
     int width;
     int height;
-    short **waveMap;
-    const short **dataMap;
+    Matrix<short> *waveMap;
+    const Matrix<short> *dataMap;
     const Coord neighbours[8] = {
         { 1,  0}, { 1, -1}, { 0, -1}, {-1, -1},
         {-1,  0}, {-1,  1}, { 0,  1}, { 1, -1}

@@ -1,13 +1,7 @@
 #ifndef LOCATION_H
 #define LOCATION_H
 
-struct Coord {
-    int x;
-    int y;
-    Coord() = default;
-    Coord(int, int);
-    friend bool operator==(const Coord& left, const Coord& right);
-};
+#include "matrix.hpp"
 
 class Located {
 public:
