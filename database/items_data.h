@@ -54,6 +54,4 @@ private:
     // std::unordered_map<str, Artifact> globalArtifactsList;
 };
 
-
-
 #endif //SESSION

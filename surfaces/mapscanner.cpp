@@ -41,7 +41,7 @@ void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
     // //allocating memory
     // short** tempMatrix = new short* [mapHeight];
     // for (i = 0; i < data.mapHeight; i++) {
-    //     tempMatrix[i] = new short [data.mapWidth];   
+    //     tempMatrix[i] = new short [data.mapWidth];
     // }
 
     // Matrix<char> matrix (mapWidth, mapHeight);
@@ -53,22 +53,22 @@ void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
             intColor = tempPixel.Red * 1000000 + tempPixel.Green * 1000 + tempPixel.Blue;
             switch (intColor) {
                 case black_color:
-                    matrix.setValue({i, j}, black);
+                    matrix[{i, j}] = black;
                     break;
-                case bloody_color:               
-                    matrix.setValue({i, j}, black);
+                case bloody_color:
+                    matrix[{i, j}] = black;
                     break;
-                case blue_color:            
-                    matrix.setValue({i, j}, black);
+                case blue_color:
+                    matrix[{i, j}] = black;
                     break;
-                case gold_color:              
-                    matrix.setValue({i, j}, road);
+                case gold_color:
+                    matrix[{i, j}] = road;
                     break;
                 // case white_color:
-                //     matrix.setValue({i, j}, black);
-                //     break;                    
+                //     matrix[{i, j}] = black)
+                //     break;
                 default: 
-                    matrix.setValue({i, j}, field);                    
+                    matrix[{i, j}] = field;
                     break;
             }
         set.insert(intColor);

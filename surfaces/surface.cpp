@@ -31,7 +31,7 @@ int SurfaceData::getHeight() {
 short SurfaceData::getSurface(Coord point) {
     if ((point.x < 0 || point.x > mapWidth) || (point.y < 0 || point.y > mapHeight))
         return -1;
-    return surfaceMatrix.getValue(point);
+    return surfaceMatrix[point];
 }
 
 bool SurfaceData::CoordIsValid(Coord point) {

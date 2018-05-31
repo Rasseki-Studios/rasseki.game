@@ -12,8 +12,8 @@ struct Coord {
     int x;
     int y;
     Coord() = default;
-    Coord(int, int);
-    friend bool operator==(const Coord& left, const Coord& right);
+    inline Coord(int, int);
+    inline friend bool operator==(const Coord& left, const Coord& right);
 };
 
 Coord::Coord(int _x, int _y) :
