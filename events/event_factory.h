@@ -16,17 +16,17 @@ using std::unordered_map;
 
 struct ActionData {
     // Action is not an Item and has no own factory or parser
-    str subjectID, command, objectID, diaryNote, condition;
+    str /* subjectID,  */command, objectID, diaryNote, condition;
     short duration;
-    void set(str, str, str, str, str, short);
+    void set(/* str,  */str, str, str, str, short);
     /* DEBUG */ void PrintActionData();
 };
 
 struct EventData : public ItemData {
-    coord coordinate;
-    short radius;
+    Coord coordinate;
+    short radius, priority;
     std::vector<ActionData> actions;
-    void set(str, str, coord, short, short, std::vector<ActionData>);
+    void set(str, str, short, Coord, short, short, std::vector<ActionData>);
     /* DEBUG */ void PrintEventData();
 };
 

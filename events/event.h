@@ -13,10 +13,10 @@ public:
     /* DEBUG_FUNCTION */ void printAction();
     friend EventFactory;
 private:
-    Action(Item*, str, Item*, str, str, short);
-    Item *subject;
+    Action(/* Item*,  */str, str, str, str, short);
+    // Item *subject;
     str command;  // Converts to function in run()
-    Item *object;
+    str objectID;
     str diaryNote;
     str condition;  // Converts to if { ... } in run()
     short duration;
@@ -30,7 +30,7 @@ public:
     /* DEBUG_FUNCTION */ void printEvent() const;
     friend EventFactory;
 private:
-    Event(str, str, short, coord, short, short, std::vector<Action>);
+    Event(str, str, short, Coord, short, short, std::vector<Action>);
     short radius, priority;
     std::vector<Action> actions;
 };

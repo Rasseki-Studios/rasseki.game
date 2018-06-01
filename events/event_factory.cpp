@@ -9,11 +9,7 @@ using std::endl;
 #include "session_data.h"
 #include "event_factory.h"
 
-// namespace SessionData {
-//     extern SurfaceData surfaceData;
-// }
-
-// using namespace SessionData;
+using namespace SessionData;
 
 bool EventFactory::isValid(EventData &ev_data) {
     if (/* checking if such event already exists */0) {
@@ -22,16 +18,19 @@ bool EventFactory::isValid(EventData &ev_data) {
     } else if (ev_data.level <= 0) {
         cout << "level is not valid" << endl;
         return 0;
-    }/*  else if (!surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)) {
-        cout << "radius or coord are not valid" << endl; 
+    } else if (ev_data.priority > 6 && ev_data.priority <= 0) {
+        cout << "level is not valid" << endl;
         return 0;
-    } */ //method RadiusIsValid is incorrect
+    } else if (!surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)) {
+        cout << "radius or Coord are not valid" << endl; 
+        return 0;
+    }
     for (auto it : ev_data.actions) {
-        if (it.subjectID != "hero") {
-            cout << "subjectID is not valid" << endl;
-            return 0;
-        } else if (/* checking object list */ !1) {
-            cout << "object list is not valid" << endl;
+        // if (it.subjectID != "hero") {
+        //     cout << "subjectID is not valid" << endl;
+        //     return 0;
+        /* } else  */if (artifactsData.ArtifactExists(ev_data.ID)) {
+            cout << "object [artifact] is not valid" << endl;
             return 0;
         } else if (commandList.find(it.command) == commandList.end()) {
             cout << "command is not valid" << endl;
@@ -44,14 +43,29 @@ bool EventFactory::isValid(EventData &ev_data) {
             cout << "duration is not valid" << endl;
             return 0;
         }
-        /* checking Item */
     }
     return 1;
 }
 
 Event* EventFactory::Create(EventData &ev_data) {
-    // 5) проверка на приоритет 0-6
-    // ev_data->PrintEventData();
+    vector<Action> actions;
+    for (auto it : ev_data.actions) {
+        Action newAction(
+            // &hero,
+            it.command,
+            it.objectID,
+            it.diaryNote,
+            it.condition,
+            it.duration
+        );
+        actions.push_back(newAction);
+    }
+    Event *ev = new Event(
+        ev_data.ID, ev_data.name, ev_data.level,
+        ev_data.coordinate, ev_data.radius, 
+        ev_data.priority, actions
+    );
+    return ev;
 }
 
 int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
@@ -78,10 +92,10 @@ int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
 }
 
 void ActionData::set(
-    str _subjectID, str _command, str _objectID,
+    /* str _subjectID,  */str _command, str _objectID,
     str _toDiary, str _condition, short _duration) {
 
-    subjectID = _subjectID;
+    // subjectID = _subjectID;
     command = _command;
     objectID = _objectID;
     diaryNote = _toDiary;
@@ -92,7 +106,7 @@ void ActionData::set(
 /* DEBUG_FUNCTION */
 void ActionData::PrintActionData() {
     cout << "condition: " << condition << endl;
-    cout << "subjectID: " << subjectID << endl;
+    // cout << "subjectID: " << subjectID << endl;
     cout << "command: " << command << endl;  // Converts in function in run()
     cout << "objectID: " << objectID << endl;  // Item *object in future
     cout << "diaryNote: " << diaryNote << endl;
@@ -100,12 +114,13 @@ void ActionData::PrintActionData() {
 }
 
 void EventData::set(
-    str _ID, str _name, coord _coord, short _rad,
-    short _level, std::vector<ActionData> _actions) {
+    str _ID, str _name, short _level, Coord _coord,
+    short _rad, short _priority, std::vector<ActionData> _actions) {
 
     ID =_ID;
     name = _name;
     level = _level;
+    priority = _priority;
     coordinate = _coord;
     radius = _rad;
     actions = _actions;

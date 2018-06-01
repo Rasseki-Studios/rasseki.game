@@ -1,18 +1,34 @@
 #include "event.h"
+#include "session_data.h"
+
+using namespace SessionData;
 
 //for error printing, should be changed to QT error printer
 #include <iostream>
 using std::cout;
 using std::endl;
 
-Action::Action(Item *subj, str _command, Item *obj,
-    str _note, str _cond, short _duration) : 
-    subject(subj),
+Action::Action(/* Item *subj,  */str _command, str _obj,
+    str _note, str _cond, short _duration) :
+    // subject(subj),
     command(_command),
-    object(obj),
+    objectID(_obj),
     diaryNote(_note),
     condition(_cond),
     duration(_duration) {
+}
+
+void Action::run() const {
+        // "give",         // give artifact
+        // "take_away",    // remove artifact
+        // "wait",         // nothing
+        // "fight",        // fight
+        // "die"
+    if (command == "give") {
+        hero.GetInventory()->AddArtifact(objectID);
+        //   giveArtifact()
+        
+    }
 }
 
 /* DEBUG_FUNCTION */
@@ -25,12 +41,12 @@ Action::Action(Item *subj, str _command, Item *obj,
     cout << "duration: " << duration << endl;
 } */
 
-Event::Event(str _ID, str _name, short _level, coord _coord,
+Event::Event(str _ID, str _name, short _level, Coord _coord,
     short _priority, short _radius, std::vector<Action> _actions) :
-    Item(_ID, _name, _level),
     Located(_coord),
-    priority(_priority),
+    Item(_ID, _name, _level),
     radius(_radius),
+    priority(_priority),
     actions(_actions) {
 }
 
@@ -40,6 +56,10 @@ short Event::getRadius() {
 
 short Event::getPriority() {
     return priority;
+}
+
+void Event::runEvent() const {
+
 }
 
 /* DEBUG_FUNCTION */

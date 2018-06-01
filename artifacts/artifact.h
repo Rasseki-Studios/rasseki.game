@@ -19,11 +19,9 @@ using std::make_shared;
 class Artifact : public Item {
 public:
     Artifact(str, str, short, str, short);
-    str getID() const;
-    short GetPower() const;
+    str GetType() const;
+    short GetPower() const ;
 private:
-    // some kind of effect description
-    // effect can be applied with function GetPower()
     str type;
     short power;
 };
@@ -61,16 +59,6 @@ private:
         "speed_booster",
         "throw_weapon"
     };
-};
-
-class Storage {
-public:
-    Storage(short);
-    void AddArtifact(Artifact);
-    void RemoveArtifact(str);
-    Artifact* GetArtifact(str);
-private:
-    std::vector<Artifact> artifacts;
 };
 
 #endif //ARTIFACT

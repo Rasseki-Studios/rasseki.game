@@ -10,14 +10,14 @@ using std::endl;
 using json = nlohmann::json;
 using std::vector;
 
-void from_json(const json &j, coord &c) {
+void from_json(const json &j, Coord &c) {
     c.x = j.at("x").get<int>();
     c.y = j.at("y").get<int>();
 }
 
 void from_json(const json &j, ActionData &action) {
     str object_id = "", condition = "";
-    auto subject_id = j.at("subject_id").get<str>();
+    // auto subject_id = j.at("subject_id").get<str>();
     auto command = j.at("command").get<str>();
     auto toDiary = j.at("toDiary").get<str>();
     auto duration = j.at("duration").get<short>();
@@ -29,18 +29,19 @@ void from_json(const json &j, ActionData &action) {
     try { condition = j.at("condition").get<str>();
     } catch(nlohmann::detail::out_of_range) {}
 
-    action.set(subject_id, command, object_id, toDiary, condition, duration);
+    action.set(/* subject_id,  */command, object_id, toDiary, condition, duration);
 }
 
 void from_json(const json &j, EventData &event) {
     auto id =  j.at("id").get<str>();
     auto name = j.at("name").get<str>();
-    auto coordinate = j.at("coord").get<coord>();
+    auto coordinate = j.at("Coord").get<Coord>();
     auto radius = j.at("radius").get<short>();
+    auto priority = j.at("priority").get<short>();
     auto level = j.at("level").get<short>();
     auto actions = j.at("actions").get<std::vector<ActionData>>();
 
-    event.set(id, name, coordinate, radius, level, actions);
+    event.set(id, name, level, coordinate, radius, priority, actions);
 }
 
 shared_ptr<vector<EventData>> EventParser::getData(str filename) {
