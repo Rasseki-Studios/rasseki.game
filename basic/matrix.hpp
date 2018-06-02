@@ -5,6 +5,7 @@
 
 #include <stdexcept>
 #include <iostream>
+
 using std::ostream;
 using std::cerr;
 using std::endl;
@@ -20,11 +21,7 @@ struct Coord {
 };
 
 Coord::Coord(const Coord &coord) : x(coord.x), y(coord.y) {}
-
-Coord::Coord(int _x, int _y) :
-    x(_x),
-    y(_y) {
-}
+Coord::Coord(int _x, int _y) : x(_x), y(_y) {}
 
 bool operator==(const Coord &left, const Coord &right) {
     return left.x == right.x && left.y == right.y;
@@ -36,6 +33,9 @@ ostream& operator<<(ostream &stream, const Coord &coord) {
 }
 
 /* ************************************************************************* */
+
+template <typename T> class Matrix;
+template <typename T> ostream& operator<<(ostream&, const Matrix<T>&);
 
 template <typename T>
 class Matrix {
@@ -50,6 +50,9 @@ public:
 
     T& operator[](const Coord &coord);
     const T& operator[](const Coord &coord) const;
+
+    /* usefull for debug */
+    friend ostream& operator<< <T>(ostream& stream, const Matrix<T> &matrix);
 
 private:
     T **array;
@@ -102,25 +105,14 @@ const T& Matrix<T>::operator[](const Coord &coord) const {
     return array[coord.x][coord.y];
 }
 
-// template <typename T>
-// T Matrix<T>::getValue(const Coord coord) const {
-//     if (!CoordIsValid(coord)) {
-//         cerr << "reading coordinate " << coord.x - 1 << "," << coord.y - 1 << endl;
-//         cerr << "max coordinate is " << width - 1 << "," << height - 1 << endl;
-//         throw std::out_of_range( "wrong matrix coordinate" );
-//     }
-//     return array[coord.x][coord.y];
-// }
-
-// template <typename T>
-// void Matrix<T>::setValue(const Coord coord, T value) {
-//     if (!CoordIsValid(coord)) {
-//         cerr << "writing coordinate " << coord.x - 1 << "," << coord.y - 1 << endl;
-//         cerr << "max coordinate is " << width - 1 << "," << height - 1 << endl;
-//         throw std::out_of_range( "wrong matrix coordinate" );
-//     }
-//     array[coord.x][coord.y] = value;
-// }
+template <typename T>
+ostream& operator<<(ostream &stream, const Matrix<T> &matrix) {
+    for (auto height : matrix.array) {
+        for (auto width : height) stream << width << " ";
+        stream << endl;
+    }
+    return stream;
+}
 
 template <typename T>
 int Matrix<T>::getWidth() const {
