@@ -3,17 +3,18 @@
 #include "loadwindow.h"
 
 #include <QMessageBox>
+#include "paths.h"
+#include "russian.h"
 
 MenuWindow::MenuWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MenuWindow)
 {
     ui->setupUi(this);
-
     Game = NULL;
 
     //установка фона и размеров окна меню
-    QImage bg_menu(":/resources/img/menu.png");
+    QImage bg_menu(img_menu);
     setFixedSize(bg_menu.width(), bg_menu.height());
     QBrush br;
     br.setTextureImage(bg_menu);
@@ -22,7 +23,7 @@ MenuWindow::MenuWindow(QWidget *parent) :
     setPalette(plt);
 
     //растягиваем изображение по размеру объекта
-    QPixmap img(":/resources/img/archer.png");
+    QPixmap img(img_archer);
     int width = ui->logo->width();
     int height = ui->logo->height();
     ui->logo->setPixmap(img.scaled(width, height, Qt::KeepAspectRatio));
@@ -50,7 +51,7 @@ void MenuWindow::on_loadGame_clicked()
 
 void MenuWindow::on_exitGame_clicked()
 {   //закрытие игры
-    QMessageBox::StandardButton reply = QMessageBox::question(this, "Выход", "Вы действительно хотите выйти из игры?", QMessageBox::Yes | QMessageBox::No);
+    QMessageBox::StandardButton reply = QMessageBox::question(this, exit, is_exit, QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         QApplication::quit();
     }

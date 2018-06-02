@@ -25,7 +25,8 @@ HEADERS  += menuwindow.h \
     loadwindow.h \
     mapview.h \
     savewindow.h \
-    journal.h
+    journal.h \
+    style.h
 
 FORMS    += menuwindow.ui \
     gamewindow.ui \

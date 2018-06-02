@@ -4,18 +4,19 @@
 #include <QTextEdit>
 #include <QTimer>
 
+#include <memory>
+
 class Journal : public QTextEdit
 {
     Q_OBJECT
 public:
     explicit Journal(QWidget *parent = 0);
-    ~Journal();
 
 public slots:
     void slotWrite();
 
 private:
-    QTimer *timer;
+    std::shared_ptr<QTimer> timer;
 
 };
 
