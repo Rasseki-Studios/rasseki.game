@@ -77,8 +77,8 @@ RESOURCES += resources/resource.qrc
 OBJECTS_DIR=temp
 MOC_DIR=temp
 
+QMAKE_CXX = g++
 CONFIG += C++17
 QMAKE_CXXFLAGS += -g -std=c++17 -pthread
-QMAKE_CXX = g++
 
 LIBS += -lstdc++fs
