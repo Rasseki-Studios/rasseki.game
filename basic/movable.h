@@ -20,17 +20,16 @@ protected:
 class WaveAlgorithm {
 public:
     WaveAlgorithm();
-    void Reload();  //метод обновления информации о проходимости
     std::vector<Coord> GetPath(Coord, Coord);  //составление вектора шагов
 private:
     int width;
     int height;
-    const Matrix<char> dataMap;
+    const Matrix<char> &dataMap;
     const Coord neighbours[8] = {
         { 1,  0}, { 1, -1}, { 0, -1}, {-1, -1},
         {-1,  0}, {-1,  1}, { 0,  1}, { 1, -1}
     };
-    Matrix<char> waveMap;
+    Matrix<short> waveMap;
     std::vector<Coord> GetBackPath(/* Coord,  */Coord);
 };
 
