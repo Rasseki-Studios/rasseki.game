@@ -5,8 +5,8 @@ namespace SessionData {
     SystemData systemData;
     GameData gameData;
     SurfaceData surfaceData;
-    EventsData eventsData;
     ArtifactsData artifactsData;
+    EventsData eventsData;
 
     str diaryString;
     str writer;

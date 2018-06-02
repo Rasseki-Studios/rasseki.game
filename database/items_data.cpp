@@ -11,13 +11,14 @@ using namespace SessionData;
 //----------------- EventsData ----------------------------
 //---------------------------------------------------------
 
-bool EventsData::Init() {
+/* bool EventsData::Init() {
     EventFactory eFactory;
     str path = systemData.resourcesDirectory + systemData.nextLocationName + "/events";
     eFactory.InitAll(path, currentEventList); // hardcoded just for debugging
     // using unique_ptr for two-dim array isn't a good idea though
     // std::unique_ptr<Event[][]> eventMatrix (nullptr); 
     
+    /* 
     eventMatrix = new std::vector<Event>** [gameData.mapHeight];
     for (int i = 0; i != gameData.mapHeight; i++) {
         eventMatrix[i] = new std::vector<Event>*;
@@ -25,9 +26,21 @@ bool EventsData::Init() {
         eventMatrix[i][j] = NULL;
         }
     }
+    */
 
-    PulverizeEvents(currentEventList); 
+ /*    PulverizeEvents(currentEventList); 
     return true;
+}
+  */
+
+EventsData::EventsData() : eventMatrix(gameData.mapWidth, gameData.mapHeight, true)
+{
+    EventFactory eFactory;
+    str path = systemData.resourcesDirectory + systemData.nextLocationName + "/events";
+    eFactory.InitAll(path, currentEventList); 
+    
+    
+    PulverizeEvents(currentEventList);     
 }
 
 Event* EventsData::getEvent(const str key) {
@@ -36,10 +49,10 @@ Event* EventsData::getEvent(const str key) {
 
 Event* EventsData::getEvent(Coord point) {
     if (!surfaceData.CoordIsValid(point)) return NULL;
-    if (!eventMatrix[point.x][point.y]) return NULL;
-    auto ev = eventMatrix[point.x][point.y];
-    if (!eventMatrix[point.x][point.y]->empty()) 
-        return &eventMatrix[point.x][point.y]->front();
+    if (!eventMatrix[point]) return NULL;
+    auto ev = eventMatrix[point];
+    if (!eventMatrix[point]->empty()) 
+        return &eventMatrix[point]->front();
     else return NULL;
 }
 
@@ -71,16 +84,16 @@ add event to map
 
                 // if (!SurfaceMap::getSurface(eventCenter)) break;
 
-                if (!eventMatrix[eventCenter.x][eventCenter.y]) {
-                    eventMatrix[eventCenter.x][eventCenter.y] = new std::vector<Event>;
-                eventMatrix[eventCenter.x][eventCenter.y]->push_back(event);
+                if (!eventMatrix[eventCenter]) {
+                    eventMatrix[eventCenter] = new std::vector<Event>;
+                eventMatrix[eventCenter]->push_back(event);
                 }
                 else {
-                    eventMatrix[eventCenter.x][eventCenter.y]->push_back(event);  
+                    eventMatrix[eventCenter]->push_back(event);  
 
                     std::push_heap( // SIC! that wasn't tested
-                        eventMatrix[eventCenter.x][eventCenter.y]->begin(),
-                        eventMatrix[eventCenter.x][eventCenter.y]->end(),
+                        eventMatrix[eventCenter]->begin(),
+                        eventMatrix[eventCenter]->end(),
                         [](Event& a, Event& b) {
                             return a.getPriority() < b.getPriority();
                             }
@@ -95,12 +108,13 @@ void EventsData::RemoveFrontEvent(Coord point) {
     Event* event = getEvent(point);
     Coord center = event->GetCoord();
     int radius = event->getRadius();
+    Coord startPos (center.x - radius, center.y - radius);
 
-    for (int i = center.x - radius ; i < center.x + radius; i++) {
-        for (int j = center.y - radius ; j < center.y + radius; j++) {
-            if ( surfaceData.CoordIsValid( {i, j} ) ) {
-                std::pop_heap(eventMatrix[i][j]->begin(), 
-                eventMatrix[i][j]->end(),
+    for (; startPos.x < center.x + radius; startPos.x++) {
+        for (; startPos.y < center.y + radius; startPos.y++) {
+            if ( surfaceData.CoordIsValid( startPos ) ) {
+                std::pop_heap(eventMatrix[startPos]->begin(), 
+                eventMatrix[startPos]->end(),
                 [](Event& a, Event& b) {
                     return a.getPriority() < b.getPriority();
                 } );
@@ -110,18 +124,25 @@ void EventsData::RemoveFrontEvent(Coord point) {
 }
 
 bool EventsData::EventExists(str ID) {
-    return currentEventList.count(ID);
+    return true;
+    // currentEventList.count(ID);
 }
 
 //---------------------------------------------------------
 //---------------- ArtifactsData --------------------------
 //---------------------------------------------------------
 
-bool ArtifactsData::Init() {
+/* bool ArtifactsData::Init() {
     ArtifactFactory aFactory;
     str path = systemData.resourcesDirectory + systemData.nextLocationName + "/artifacts";
     aFactory.InitAll(path, currentArtifactsList);
     return true;
+} */
+
+ArtifactsData::ArtifactsData() {
+    ArtifactFactory aFactory;
+    str path = systemData.resourcesDirectory + systemData.nextLocationName + "/artifacts";
+    aFactory.InitAll(path, currentArtifactsList); 
 }
 
 Artifact* ArtifactsData::getArtifact(const str key) {
@@ -129,7 +150,10 @@ Artifact* ArtifactsData::getArtifact(const str key) {
 }
 
 bool ArtifactsData::ArtifactExists(str ID) {
-    return currentArtifactsList.count(ID);
+    // currentArtifactsList.count(ID);
+    // return my_map[k1].find(k2) != my_map[k1].end();
+    return currentArtifactsList.find(ID) != currentArtifactsList.end();
+    // return false;
 }
 
 //---------------------------------------------------------
