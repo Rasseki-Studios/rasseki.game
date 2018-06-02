@@ -15,3 +15,5 @@ libAdapter.a
 *qmake*
 rasseki_game
 temp
+ui_*.h
+qrc_resource.cpp
