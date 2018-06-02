@@ -1,12 +1,13 @@
 #include "movable.h"
 #include "session_data.h"
 
+#include <fstream>
 #include <iostream>
 using std::cout;
 using std::endl;
 
 // hardcode defines. will be removed soon
-#define WALL 10    //непроходимая ячейка
+#define WALL 0    //непроходимая ячейка
 #define DIRT 1    //затруднённая проходимость (грязь)
 #define ROAD 2   //отличная проходимость (дорога)
 
@@ -47,11 +48,22 @@ waveMap(width, height, true) {}
 std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     std::vector<Coord> emptyVector(0);
 
+    cout << "start coord is " << start << " " << endl;
+    cout << "terrain index there is " << (int)dataMap[start] << endl;
+
+    cout << "dest coord is " << dest << " " << endl;
+    cout << "terrain index there is " << (int)dataMap[dest] << endl;
+
     if (!dataMap.CoordIsValid(start) 
     || !dataMap.CoordIsValid(dest)) {
         cout << "invalid start or destination coordinate" << endl;
     }
 
+    // std::ofstream file("algomatrix");
+    // file << dataMap << endl;
+    // file.close();
+    // cout << "matrix printed to file" << endl;
+    // return emptyVector;
 
     if (dataMap[start] == WALL
     || dataMap[dest] == WALL) {
@@ -74,15 +86,15 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
                 if (!waveMap.CoordIsValid(current)) continue;
                 if (waveMap[current] != 0) continue;
                 if (dataMap[current] != WALL) {
-                    cout << "wave number " << waveIndex << endl;
+                    // cout << "wave number " << waveIndex << endl;
                     newEdge->push_back(current);
                     waveMap[current] = waveIndex;
-                    cout << "waveIndex " << waveIndex << " was written to " << current << endl;
-                    cout << "confirm: waveindex in " << current << " is " << waveMap[current] << endl;
+                    // cout << "waveIndex " << waveIndex << " was written to " << current << endl;
+                    // cout << "confirm: waveindex in " << current << " is " << waveMap[current] << endl;
                 } else continue;
                 if (current == dest) {
-                    cout << "current is " << current << endl;
-                    cout << "dest is " << dest << endl;
+                    // cout << "current is " << current << endl;
+                    // cout << "dest is " << dest << endl;
                     delete newEdge;
                     delete waveEdge;
                     return GetBackPath(/* start,  */dest);
