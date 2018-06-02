@@ -17,7 +17,7 @@ void Moving(int count) {
 }
 
 int Game() {
-    hero.SetCoord({812, 354});
+    hero.SetCoord({651, 414});
     return 0;
 }
 
