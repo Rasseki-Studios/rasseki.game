@@ -107,8 +107,9 @@ const T& Matrix<T>::operator[](const Coord &coord) const {
 
 template <typename T>
 ostream& operator<<(ostream &stream, const Matrix<T> &matrix) {
-    for (auto height : matrix.array) {
-        for (auto width : height) stream << width << " ";
+    for (int i = 0; i != matrix.width; i++) {
+        for (int j = 0; j != matrix.height; j++)
+            stream << (int)matrix.array[i][j] << " ";
         stream << endl;
     }
     return stream;
