@@ -5,6 +5,7 @@
 
 #include <stdexcept>
 #include <iostream>
+using std::ostream;
 using std::cerr;
 using std::endl;
 
@@ -15,6 +16,7 @@ struct Coord {
     inline Coord(const Coord &coord);
     inline Coord(int, int);
     inline friend bool operator==(const Coord& left, const Coord& right);
+    inline friend ostream& operator<<(ostream&, const Coord &coord);
 };
 
 Coord::Coord(const Coord &coord) : x(coord.x), y(coord.y) {}
@@ -24,8 +26,13 @@ Coord::Coord(int _x, int _y) :
     y(_y) {
 }
 
-bool operator==(const Coord& left, const Coord& right) {
+bool operator==(const Coord &left, const Coord &right) {
     return left.x == right.x && left.y == right.y;
+}
+
+ostream& operator<<(ostream &stream, const Coord &coord) {
+    stream << coord.x << "," << coord.y;
+    return stream;
 }
 
 /* ************************************************************************* */
