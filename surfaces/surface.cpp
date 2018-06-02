@@ -18,6 +18,8 @@ mapWidth(1000), mapHeight(1000), surfaceMatrix(mapWidth, mapHeight, false) {
         systemData.mapName + ".bmp",
         surfaceMatrix
     );
+    gameData.mapWidth = mapWidth;
+    gameData.mapHeight = mapHeight;
 }
 
 int SurfaceData::getWidth() {
