@@ -7,3 +7,5 @@ cmake-build-debug/
 *Makefile
 RGI/RGI
 *.pro.user
+temp/
+rasseki_game
