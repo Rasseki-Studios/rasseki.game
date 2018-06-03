@@ -3,19 +3,30 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 
 #include "location.h"
 #include "surface.h"
+#include "game_settings.h"
+#include "russian.h"
+
+struct Message {
+    std::string writer;
+    std::string text;
+};
+
+struct HeroData {
+    std::string name;
+    int level;
+    int speed;
+};
 
 int Game();
-void Moving(int);
-bool Save(std::string);
-void Load(std::string);
-std::string Write(std::string *);
-std::vector<std::string> GetSavedNames();
+void Moving();
+Message Write();
 int Go(int x, int y);
 Coord Coords();
 Coord EndOfMap();
-std::vector<str> Data();
+HeroData Data();
 
 #endif //LIBADAPTER_H

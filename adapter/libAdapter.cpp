@@ -5,68 +5,57 @@
 
 using namespace SessionData;
 
-void Moving(int count) {
-    for (int i = 0 ; i < count; i++) {
-        hero.Step();
-        // Event *event = eventsData.getEvent(hero.GetCoord());
-        // if (event) {
-        //     event->runEvent();
-        // }
-        usleep(10000);
+void Moving() {    //перемещение шагов
+    Coord current = hero.GetCoord();
+    for (Coord step = hero.Step(); current == step; step = hero.Step()) {
+        std::shared_ptr <Event> event = eventsData.getEvent();    //попытка получения события в данной точке
+        if (event) {
+            event->runEvent();
+        }
+        usleep(step_delay);  //временая задержка
     }
 }
 
 int Game() {
-    hero.SetCoord({651, 414});
+    Init(); //инициализация данных игры
     return 0;
 }
 
-Coord Coords() {
-    Coord p = hero.GetCoord();
-    return p;
+Coord Coords() {    //получение позиции героя
+    Coord place = hero.GetCoord();
+    return place;
 }
 
-Coord EndOfMap() {
+Coord EndOfMap() {  //получение границ карты
     return {surfaceData.getWidth(), surfaceData.getHeight()};
 }
 
-std::vector<str> Data() {
-    std::vector<str> data;
-    data.push_back(hero.GetName());
-    data.push_back(std::to_string(hero.GetLevel()));
-    data.push_back(std::to_string(hero.GetSpeed()));
+HeroData Data() {   //отправка данных о герое
+    HeroData data;
+    data.name = hero.GetName();
+    data.level = hero.GetLevel();
+    data.speed = hero.GetSpeed();
     return data;
 }
 
-bool Save(std::string file) {
-    return true;
-}
-
-void Load(std::string file) {
-
-}
-
-std::string Write(std::string *msg) {
+Message Write() {   //получение записей для игрового журнала
+    Message post;
     if (diaryString != "") {
-        *msg = diaryString;
+        post.text = diaryString; //сообщение
         diaryString = "";
+        post.writer = character;
     }
-    return writer;
+    return post;  //автор сообщения
 }
 
-std::vector<std::string> GetSavedNames() {
-
-}
-
-int Go(int x, int y) {
-    int count = 0;
+int Go(int x, int y) {  //перемещение героя
     writer = hero.GetName();
-    if ((count = hero.Move({x, y}))) {
-        diaryString = "Я иду...";
-        Moving(count);
+    if (hero.Move({x, y})) {
+        diaryString = say_go;
+        Moving();
     }
     else {
-        diaryString = "Не знаю как туда попасть=(";
+        diaryString = say_cant_go;
     }
     return count;
 }

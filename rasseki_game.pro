@@ -56,7 +56,10 @@ HEADERS += windows/menuwindow.h \
     database/session_data.h \
     surfaces/mapscanner.h \
     surfaces/surface.h \
-    creatures/hero.h
+    creatures/hero.h \
+    configs/russian.h \
+    configs/paths.h \
+    configs/game_settings.h
 
 FORMS += windows/menuwindow.ui \
     windows/gamewindow.ui \
@@ -70,7 +73,8 @@ INCLUDEPATH += windows \
     adapter \
     database \
     surfaces \
-    creatures
+    creatures \
+    configs
 
 RESOURCES += resources/resource.qrc
 

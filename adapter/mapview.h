@@ -10,7 +10,7 @@
 #include <QGraphicsSceneMouseEvent>
 
 #include <QPoint>
-#include <QDebug>
+#include <memory>
 #include <thread>
 
 
@@ -31,16 +31,17 @@ public slots:
 private:
     int width_end;
     int height_end;
-    QGraphicsScene *mapScene;       //объявляем сцену для отрисовки
-    QGraphicsItem *hero;    //объявляем первую группу элементов
-    //QGraphicsItemGroup *group_2;    //объявляем вторую группу элементов
-    QTimer *timer;  //таймер для задержки отрисовки.
+    std::shared_ptr<QGraphicsScene> mapScene;       //объявляем сцену для отрисовки
+    std::shared_ptr<QGraphicsItem> hero;    //объявляем первую группу элементов
+    std::shared_ptr<QTimer> timer;  //таймер для задержки отрисовки.
     std::thread td;
 
 private:
     void resizeEvent(QResizeEvent *event);  //перегружаем событие изменения размера окна, чтобы перехватывать его
 
     void mousePressEvent(QMouseEvent *mousePressEvt);   //метод для отлавливания нажатий игрока мышкой на карту
+
+    int border(int, int, int);
 };
 
 #endif // MAPVIEW_H
