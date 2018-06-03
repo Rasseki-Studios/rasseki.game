@@ -47,7 +47,7 @@ bool EventFactory::isValid(EventData &ev_data) {
     return 1;
 }
 
-Event* EventFactory::Create(EventData &ev_data) {
+Event& EventFactory::Create(EventData &ev_data) {
     vector<Action> actions;
     for (auto it : ev_data.actions) {
         Action newAction(
@@ -65,7 +65,8 @@ Event* EventFactory::Create(EventData &ev_data) {
         ev_data.coordinate, ev_data.radius, 
         ev_data.priority, actions
     );
-    return ev;
+
+    return *ev;
 }
 
 int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
@@ -78,8 +79,8 @@ int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
                 if (eventsMap.find(it.ID) != eventsMap.end()) continue;
                 if (isValid(it)) {
                     cout << "event <" << it.ID << "> read." << endl;
-                    // Event* ev = Create(it);
-                    // eventsMap[it.ID] = *ev;
+                    Event &ev = Create(it);
+                    eventsMap.emplace(it.ID, ev);
                     eventCount++;
                 } else {
                     cout << "event <" << it.ID << "> not read." << endl;

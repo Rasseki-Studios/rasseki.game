@@ -26,7 +26,7 @@ class Event : public Item, public virtual Located {
 public:
     short getRadius();
     short getPriority();
-    void runEvent() const;
+    void run() const;
     /* DEBUG_FUNCTION */ void printEvent() const;
     friend EventFactory;
 private:

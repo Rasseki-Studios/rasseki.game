@@ -29,17 +29,8 @@ void Action::run() const {
         //   giveArtifact()
         
     }
+    // if (diaryNote != "") 
 }
-
-/* DEBUG_FUNCTION */
-/* void Action::printAction() {
-    cout << "condition: " << condition << endl;
-    cout << "subjectID: " << subjectID << endl;
-    cout << "command: " << command << endl;
-    cout << "objectID: " << objectID << endl;
-    cout << "diaryNote: " << diaryNote << endl;
-    cout << "duration: " << duration << endl;
-} */
 
 Event::Event(str _ID, str _name, short _level, Coord _coord,
     short _priority, short _radius, std::vector<Action> _actions) :
@@ -58,19 +49,6 @@ short Event::getPriority() {
     return priority;
 }
 
-void Event::runEvent() const {
-
+void Event::run() const {
+    for (auto it : actions) it.run();
 }
-
-/* DEBUG_FUNCTION */
-/* void Event::printEvent() const {
-    cout << "ID: " << ID << endl;
-    cout << "name: " << name << endl;
-    cout << "level: " << level << endl;
-    cout << "coords: " << coordinates.x << ", " << coordinates.y << endl;
-    cout << "radius: " << radius << endl;
-    for (int i = 0; i < (int)actions.size(); i++) {
-        actions[i].printAction();
-        cout << endl;
-    }
-} */

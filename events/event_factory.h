@@ -48,7 +48,7 @@ private:
     // needs when there are several artifacts in one file
 
     bool isValid(EventData&);
-    Event* Create(EventData&);
+    Event& Create(EventData&);
     unordered_set<str> commandList {
         "give",         // give artifact
         "take_away",    // remove artifact
