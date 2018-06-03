@@ -48,24 +48,12 @@ waveMap(width, height, true) {}
 std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     std::vector<Coord> emptyVector(0);
 
-    cout << "start coord is " << start << " " << endl;
-    cout << "terrain index there is " << (int)dataMap[start] << endl;
-
     cout << "dest coord is " << dest << " " << endl;
     cout << "terrain index there is " << (int)dataMap[dest] << endl;
 
-    if (!dataMap.CoordIsValid(start) 
-    || !dataMap.CoordIsValid(dest)) {
-        cout << "invalid start or destination coordinate" << endl;
-    }
-
-    // std::ofstream file("algomatrix");
-    // file << dataMap << endl;
-    // file.close();
-    // cout << "matrix printed to file" << endl;
-    // return emptyVector;
-
-    if (dataMap[start] == WALL
+    if (!dataMap.CoordIsValid(start)
+    || !dataMap.CoordIsValid(dest)
+    || dataMap[start] == WALL
     || dataMap[dest] == WALL) {
         cout << "Check at algorithm start failed" << endl;
         return emptyVector;
@@ -86,19 +74,14 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
                 if (!waveMap.CoordIsValid(current)) continue;
                 if (waveMap[current] != 0) continue;
                 if (dataMap[current] != WALL) {
-                    // cout << "wave number " << waveIndex << endl;
                     newEdge->push_back(current);
                     waveMap[current] = waveIndex;
-                    // cout << "waveIndex " << waveIndex << " was written to " << current << endl;
-                    // cout << "confirm: waveindex in " << current << " is " << waveMap[current] << endl;
                 } else continue;
                 if (current == dest) {
-                    // cout << "current is " << current << endl;
-                    // cout << "dest is " << dest << endl;
                     delete newEdge;
                     delete waveEdge;
-                    return GetBackPath(/* start,  */dest);
-                } 
+                    return GetBackPath(dest);
+                }
             }
         }
         delete waveEdge;
@@ -110,7 +93,7 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     return emptyVector;
 }
 
-std::vector<Coord> WaveAlgorithm::GetBackPath(/* Coord start,  */Coord dest) {
+std::vector<Coord> WaveAlgorithm::GetBackPath(Coord dest) {
     //восстановление пути
 
     int length = waveMap[dest];
