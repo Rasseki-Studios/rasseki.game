@@ -39,6 +39,7 @@ HEADERS += windows/menuwindow.h \
     windows/savewindow.h \
     windows/gamewindow.h \
     windows/loadwindow.h \
+    windows/style.h \
     events/event.h \
     events/event_factory.h \
     basic/matrix.hpp \
