@@ -5,8 +5,10 @@
 
 using namespace SessionData;
 
-void Moving(int count) {    //перемещение на count шагов
-        std::shared_ptr<Event> event = eventsData.getEvent(hero.GetCoord());    //попытка получения события в данной точке
+void Moving() {    //перемещение шагов
+    Coord current = hero.GetCoord();
+    for (Coord step = hero.Step(); current == step; step = hero.Step()) {
+        std::shared_ptr <Event> event = eventsData.getEvent();    //попытка получения события в данной точке
         if (event) {
             event->runEvent();
         }
@@ -47,11 +49,10 @@ Message Write() {   //получение записей для игрового 
 }
 
 int Go(int x, int y) {  //перемещение героя
-    int count = 0;
     writer = hero.GetName();
-    if ((count = hero.Move({x, y}))) {
+    if (hero.Move({x, y})) {
         diaryString = say_go;
-        Moving(count);
+        Moving();
     }
     else {
         diaryString = say_cant_go;

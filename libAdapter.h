@@ -22,7 +22,7 @@ struct HeroData {
 };
 
 int Game();
-void Moving(int);
+void Moving();
 Message Write();
 int Go(int x, int y);
 Coord Coords();
