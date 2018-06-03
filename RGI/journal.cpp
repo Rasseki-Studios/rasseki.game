@@ -2,10 +2,12 @@
 
 #include "libAdapter.h"
 #include "game_settings.h"
+#include "style.h"
 #include <QDebug>
 
 Journal::Journal(QWidget *parent) : QTextEdit(parent)
 {
+    this->setStyleSheet(css_journal);
     timer = new QTimer();   //инициализируем Таймер
     connect(timer, SIGNAL(timeout()), this, SLOT(slotWrite()));    //подключаем cлот для отрисовки к таймеру
     timer->start(timer_delay);   //стартуем таймер

@@ -7,6 +7,7 @@
 #include "libAdapter.h"
 #include "russian.h"
 #include "paths.h"
+#include "style.h"
 
 GameWindow::GameWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -32,6 +33,9 @@ GameWindow::GameWindow(QWidget *parent) :
     int width = ui->logoHero->width();
     int height = ui->logoHero->height();
     ui->logoHero->setPixmap(hero.scaled(width, height, Qt::KeepAspectRatio));
+
+    //установка стилей
+    this->setStyleSheet(css_widget.c_str() + css_pushbutton.c_str() + css_messagebox.c_str());
 
     HeroData data = Data();
     ui->nameHero->setText(data.name.c_str());
