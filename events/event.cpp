@@ -33,7 +33,7 @@ void Action::run() const {
 }
 
 Event::Event(str _ID, str _name, short _level, Coord _coord,
-    short _priority, short _radius, std::vector<Action> _actions) :
+    short _radius, short _priority, std::vector<Action> _actions) :
     Located(_coord),
     Item(_ID, _name, _level),
     radius(_radius),
