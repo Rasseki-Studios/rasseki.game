@@ -41,9 +41,9 @@ HeroData Data() {   //отправка данных о герое
 
 Message Write() {   //получение записей для игрового журнала
     Message post;
-    if (gamedata.diaryString != "") {
-        post.text = gamedata.diaryString; //сообщение
-        gamedata.diaryString = "";
+    if (gameData.diaryString != "") {
+        post.text = gameData.diaryString; //сообщение
+        gameData.diaryString = "";
         post.writer = gameData.writer;
     }
     return post;  //автор сообщения
@@ -52,11 +52,11 @@ Message Write() {   //получение записей для игрового 
 int Go(int x, int y) {  //перемещение героя
     gameData.writer = hero.GetName();
     if (hero.Move({x, y})) {
-        gamedata.diaryString = say_go;
+        gameData.diaryString = say_go;
         Moving();
     }
     else {
-        gamedata.diaryString = say_cant_go;
+        gameData.diaryString = say_cant_go;
     }
     return 0;
 }
