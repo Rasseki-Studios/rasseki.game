@@ -5,6 +5,7 @@
 
 #include <stdexcept>
 #include <iostream>
+#include <iomanip>
 
 using std::ostream;
 using std::cerr;
@@ -45,6 +46,7 @@ public:
     bool CoordIsValid(const Coord &coord) const;
     int getWidth() const;
     int getHeight() const;
+    // int getDistance(const Coord &first, const Coord &second) const;
 
     T& operator[](const Coord &coord);
     const T& operator[](const Coord &coord) const;
@@ -107,7 +109,7 @@ template <typename T>
 ostream& operator<<(ostream &stream, const Matrix<T> &matrix) {
     for (int i = 0; i != matrix.width; i++) {
         for (int j = 0; j != matrix.height; j++)
-            stream << (int)matrix.array[i][j] << " ";
+            stream << std::setw(3) << std::left << (int)matrix.array[i][j] << " ";
         stream << endl;
     }
     return stream;
