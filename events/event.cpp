@@ -27,9 +27,8 @@ void Action::run() const {
     if (command == "give") {
         hero.GetInventory()->AddArtifact(objectID);
         //   giveArtifact()
-        
     }
-    // if (diaryNote != "") 
+    // if (diaryNote != "")
 }
 
 Event::Event(str _ID, str _name, short _level, Coord _coord,
