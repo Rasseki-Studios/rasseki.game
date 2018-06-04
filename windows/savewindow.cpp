@@ -2,6 +2,7 @@
 #include "ui_savewindow.h"
 
 #include "paths.h"
+#include "style.h"
 
 SaveWindow::SaveWindow(QWidget *parent) :
     QDialog(parent),
@@ -17,6 +18,9 @@ SaveWindow::SaveWindow(QWidget *parent) :
     QPalette plt = palette();
     plt.setBrush(QPalette::Background, br);
     setPalette(plt);
+
+    //установка стилей
+    this->setStyleSheet((css_widget + css_pushbutton + css_messagebox).c_str());
 }
 
 SaveWindow::~SaveWindow()

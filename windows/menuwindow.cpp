@@ -4,6 +4,7 @@
 
 #include <QMessageBox>
 #include "paths.h"
+#include "style.h"
 #include "russian.h"
 
 MenuWindow::MenuWindow(QWidget *parent) :
@@ -11,7 +12,7 @@ MenuWindow::MenuWindow(QWidget *parent) :
     ui(new Ui::MenuWindow)
 {
     ui->setupUi(this);
-    Game = NULL;
+    Game = nullptr;
 
     //установка фона и размеров окна меню
     QImage bg_menu(img_menu.c_str());
@@ -27,6 +28,9 @@ MenuWindow::MenuWindow(QWidget *parent) :
     int width = ui->logo->width();
     int height = ui->logo->height();
     ui->logo->setPixmap(img.scaled(width, height, Qt::KeepAspectRatio));
+
+    //установка стилей
+    this->setStyleSheet((css_widget + css_pushbutton + css_messagebox).c_str());
 }
 
 MenuWindow::~MenuWindow()

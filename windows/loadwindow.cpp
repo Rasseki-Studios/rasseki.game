@@ -2,6 +2,7 @@
 #include "ui_loadwindow.h"
 
 #include "paths.h"
+#include "style.h"
 
 LoadWindow::LoadWindow(QWidget *parent) :
     QDialog(parent),
@@ -17,6 +18,9 @@ LoadWindow::LoadWindow(QWidget *parent) :
     QPalette plt = palette();
     plt.setBrush(QPalette::Background, br);
     setPalette(plt);
+
+    //установка стилей
+    this->setStyleSheet((css_widget + css_pushbutton + css_messagebox).c_str());
 }
 
 LoadWindow::~LoadWindow()

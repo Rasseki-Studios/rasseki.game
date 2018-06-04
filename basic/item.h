@@ -8,12 +8,12 @@ using str = std::string;
 class Item {
 public:
     Item(str, str, short);
-    str GetId() const;
-    str GetName() const;
+    std::string GetId() const;
+    std::string GetName() const;
     short GetLevel() const;
 protected:
-    str id;
-    str name;
+    std::string id;
+    std::string name;
     short level;
 };
 

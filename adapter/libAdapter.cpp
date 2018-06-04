@@ -1,14 +1,11 @@
 #include "libAdapter.h"
 #include <unistd.h>
 
-#include "session_data.h"
-#include "russian.h"
-
 using namespace SessionData;
 
 void Moving() {    //перемещение шагов
     Coord current = hero.GetCoord();
-    for (Coord step = hero.Step(); current == step; step = hero.Step()) {
+    for (Coord step = hero.Step(); !(current == step); step = hero.Step()) {
         /*std::shared_ptr<Event>*/Event* event = eventsData.getEvent(step);    //попытка получения события в данной точке
         current = step;
         if (event) {
@@ -20,10 +17,11 @@ void Moving() {    //перемещение шагов
 
 int Game() {
     //Init(); //инициализация данных игры
+    hero.SetCoord({651, 414});
     return 0;
 }
 
-Coord Coords() {    //получение позиции героя
+Coord HeroCoords() {    //получение позиции героя
     return hero.GetCoord();
 }
 

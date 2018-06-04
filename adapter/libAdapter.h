@@ -5,11 +5,10 @@
 #include <string>
 #include <memory>
 
-#include "location.h"
 #include "items_data.h"
-#include "surface.h"
-//#include "hero.h"
+#include "russian.h"
 #include "game_settings.h"
+#include "session_data.h"
 
 struct Message {
     std::string writer;
@@ -26,7 +25,7 @@ int Game();
 void Moving();
 Message Write();
 int Go(int x, int y);
-Coord Coords();
+Coord HeroCoords();
 Coord EndOfMap();
 HeroData Data();
 

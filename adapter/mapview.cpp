@@ -25,10 +25,10 @@ MapView::MapView(QWidget *parent)
 
     QPixmap img_h(img_hero.c_str());  //герой
 
-    QGraphicsItem *hero = mapScene->addPixmap(img_h.scaled(100, 100, Qt::KeepAspectRatio));
-    //hero = std::make_shared<QGraphicsItem>();
+    //QGraphicsItem *a = ;
+    hero = std::shared_ptr<QGraphicsItem>(mapScene->addPixmap(img_h.scaled(100, 100, Qt::KeepAspectRatio)));
 
-    Coord pos = Coords();   //установливаем положение героя
+    Coord pos = HeroCoords();   //установливаем положение героя
     QPoint point(pos.x, pos.y);
     hero->setPos(point);
     int width = this->width();
@@ -55,9 +55,9 @@ MapView::~MapView()
 
 void MapView::slotAlarmTimer()
 {
-    Coord pos = Coords();   //устанавливаем героя на актуальную позицию
+    Coord pos = HeroCoords();   //устанавливаем героя на актуальную позицию
     QPoint point(pos.x - hero_offset, pos.y - hero_offset);
-    hero->setPos(point);
+    hero.get()->setPos(point);
 
     int width = this->width();      //определяем ширину нашего виджета
     int height = this->height();    //определяем высоту нашего виджета
@@ -78,7 +78,7 @@ void MapView::mousePressEvent(QMouseEvent *mousePressEvt)
 {
     QPointF point = mousePressEvt->pos();
     if (td.joinable()) {
-        td.join();
+        td.detach();
     }
     int go_x = point.x() + mapScene->sceneRect().topLeft().x();
     int go_y = point.y() + mapScene->sceneRect().topLeft().y();
