@@ -5,17 +5,17 @@
 #include <string>
 #include <memory>
 
-#include "location.h"
-#include "surface.h"
-#include "game_settings.h"
+#include "items_data.h"
 #include "russian.h"
+#include "game_settings.h"
+#include "session_data.h"
 
-struct Message {
-    std::string writer;
-    std::string text;
+struct Message {    //структура для передачи сообщения
+    std::string writer; //автор
+    std::string text;   //текст
 };
 
-struct HeroData {
+struct HeroData {   //структура с данными о герое
     std::string name;
     int level;
     int speed;
@@ -25,7 +25,7 @@ int Game();
 void Moving();
 Message Write();
 int Go(int x, int y);
-Coord Coords();
+Coord HeroCoords();
 Coord EndOfMap();
 HeroData Data();
 

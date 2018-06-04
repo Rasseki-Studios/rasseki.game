@@ -9,3 +9,6 @@ RGI/RGI
 *.pro.user
 temp/
 rasseki_game
+ui_*.h
+qrc_resource.cpp
+moc_*

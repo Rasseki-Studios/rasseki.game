@@ -17,30 +17,30 @@ GameWindow::GameWindow(QWidget *parent) :
 
     Game();
 
-    coord max = EndOfMap();
+    Coord max = EndOfMap();
     ui->map->setMaximumWidth(max.x);
     ui->map->setMaximumHeight(max.y);
 
     //установка фона и размеров окна загрузки игры
-    QImage bg_window(img_bground);
+    QImage bg_window(img_bground.c_str());
     QBrush br;
     br.setTextureImage(bg_window);
     QPalette plt = palette();
     plt.setBrush(QPalette::Background, br);
     setPalette(plt);
 
-    QPixmap hero(img_hero);
+    QPixmap hero(img_hero.c_str());
     int width = ui->logoHero->width();
     int height = ui->logoHero->height();
     ui->logoHero->setPixmap(hero.scaled(width, height, Qt::KeepAspectRatio));
 
     //установка стилей
-    this->setStyleSheet(css_widget.c_str() + css_pushbutton.c_str() + css_messagebox.c_str());
+    this->setStyleSheet((css_widget + css_pushbutton + css_messagebox).c_str());
 
     HeroData data = Data();
     ui->nameHero->setText(data.name.c_str());
-    ui->level->setText(data.level.c_str());
-    ui->speed->setText(data.speed.c_str());
+    ui->level->setText(std::to_string(data.level).c_str());
+    ui->speed->setText(std::to_string(data.speed).c_str());
 }
 
 GameWindow::~GameWindow()
@@ -50,7 +50,7 @@ GameWindow::~GameWindow()
 
 void GameWindow::on_exit_clicked()
 {
-    QMessageBox::StandardButton reply = QMessageBox::question(this, exit, is_exit, QMessageBox::Yes | QMessageBox::No);
+    QMessageBox::StandardButton reply = QMessageBox::question(this, game_exit.c_str(), is_exit.c_str(), QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         hide();
         parentWidget()->show();

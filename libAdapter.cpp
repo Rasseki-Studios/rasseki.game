@@ -1,17 +1,16 @@
 #include "libAdapter.h"
 #include <unistd.h>
 
-#include "session_data.h"
-
 using namespace SessionData;
 
 void Moving() {    //перемещение шагов
     Coord current = hero.GetCoord();
-    for (Coord step = hero.Step(); current == step; step = hero.Step()) {
-        std::shared_ptr <Event> event = eventsData.getEvent();    //попытка получения события в данной точке
+    for (Coord step = hero.Step(); !(current == step); step = hero.Step()) {
+        std::shared_ptr<Event> event = eventsData.getEvent(step);    //попытка получения события в данной точке
         if (event) {
-            event->runEvent();
+            event->run();
         }
+        current = step;
         usleep(step_delay);  //временая задержка
     }
 }
@@ -21,9 +20,8 @@ int Game() {
     return 0;
 }
 
-Coord Coords() {    //получение позиции героя
-    Coord place = hero.GetCoord();
-    return place;
+Coord HeroCoords() {    //получение позиции героя
+    return hero.GetCoord();
 }
 
 Coord EndOfMap() {  //получение границ карты
@@ -43,7 +41,7 @@ Message Write() {   //получение записей для игрового 
     if (diaryString != "") {
         post.text = diaryString; //сообщение
         diaryString = "";
-        post.writer = character;
+        post.writer = writer;
     }
     return post;  //автор сообщения
 }
@@ -57,5 +55,5 @@ int Go(int x, int y) {  //перемещение героя
     else {
         diaryString = say_cant_go;
     }
-    return count;
+    return 0;
 }

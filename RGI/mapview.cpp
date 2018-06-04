@@ -13,34 +13,36 @@ MapView::MapView(QWidget *parent)
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //отключим скроллбар по горизонтали
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);   //отключим скроллбар по вертикали
 
-    coord end = EndOfMap();
+    Coord end = EndOfMap();
     width_end = end.x;
     height_end = end.y;
 
-    mapScene = new QGraphicsScene(this);   //инициализируем сцену для отрисовки
+    mapScene = std::shared_ptr<QGraphicsScene>(new QGraphicsScene(this));   //инициализируем сцену для отрисовки
 
-    QPixmap img_m(img_map); //карта
+    QPixmap img_m(img_map.c_str()); //карта
     img_m.scaled(width(), height(), Qt::KeepAspectRatio);
     mapScene->setBackgroundBrush(QBrush(img_m));    //устанавливаем Background виджета (изображение карты)
 
-    QPixmap img_h(img_hero);  //герой
-    hero = mapScene->addPixmap(img_h.scaled(100, 100, Qt::KeepAspectRatio));
+    QPixmap img_h(img_hero.c_str());  //герой
 
-    coord pos = Coords();   //установливаем положение героя
+    //QGraphicsItem *a = ;
+    hero = std::shared_ptr<QGraphicsItem>(mapScene->addPixmap(img_h.scaled(100, 100, Qt::KeepAspectRatio)));
+
+    Coord pos = HeroCoords();   //установливаем положение героя
     QPoint point(pos.x, pos.y);
     hero->setPos(point);
     int width = this->width();
     int height = this->height();
 
-    int x = (pos.x, width, width_end);
-    int y = (pos.y, height, height_end);
+    int x = border(pos.x, width, width_end);
+    int y = border(pos.y, height, height_end);
     mapScene->setSceneRect(x, y, width, height);
 
-    setScene(mapScene); //устанавливаем сцену в виджет
+    setScene(mapScene.get()); //устанавливаем сцену в виджет
 
     //необходимо некоторое время, чтобы родительский слой развернулся, чтобы принимать от него адекватные параметры ширины и высоты
-    timer = new QTimer();   //инициализируем Таймер
-    connect(timer, SIGNAL(timeout()), this, SLOT(slotAlarmTimer()));    //подключаем слот для отрисовки к таймеру
+    timer = std::shared_ptr<QTimer>(new QTimer());   //инициализируем Таймер
+    connect(timer.get(), SIGNAL(timeout()), this, SLOT(slotAlarmTimer()));    //подключаем слот для отрисовки к таймеру
     timer->start(timer_delay);   //стартуем таймер
 }
 
@@ -49,22 +51,19 @@ MapView::~MapView()
     if (td.joinable()) {
         td.join();
     }
-    delete mapScene;
-    delete hero;
-    delete timer;
 }
 
 void MapView::slotAlarmTimer()
 {
-    coord pos = Coords();   //устанавливаем героя на актуальную позицию
+    Coord pos = HeroCoords();   //устанавливаем героя на актуальную позицию
     QPoint point(pos.x - hero_offset, pos.y - hero_offset);
-    hero->setPos(point);
+    hero.get()->setPos(point);
 
     int width = this->width();      //определяем ширину нашего виджета
     int height = this->height();    //определяем высоту нашего виджета
 
-    int x = (pos.x, width, width_end);
-    int y = (pos.y, height, height_end);
+    int x = border(pos.x, width, width_end);
+    int y = border(pos.y, height, height_end);
     mapScene->setSceneRect(x, y, width, height);
 }
 
@@ -79,7 +78,7 @@ void MapView::mousePressEvent(QMouseEvent *mousePressEvt)
 {
     QPointF point = mousePressEvt->pos();
     if (td.joinable()) {
-        td.join();
+        td.detach();
     }
     int go_x = point.x() + mapScene->sceneRect().topLeft().x();
     int go_y = point.y() + mapScene->sceneRect().topLeft().y();

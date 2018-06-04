@@ -4,6 +4,7 @@
 
 #include <QMessageBox>
 #include "paths.h"
+#include "style.h"
 #include "russian.h"
 
 MenuWindow::MenuWindow(QWidget *parent) :
@@ -11,10 +12,10 @@ MenuWindow::MenuWindow(QWidget *parent) :
     ui(new Ui::MenuWindow)
 {
     ui->setupUi(this);
-    Game = NULL;
+    Game = nullptr;
 
     //установка фона и размеров окна меню
-    QImage bg_menu(img_menu);
+    QImage bg_menu(img_menu.c_str());
     setFixedSize(bg_menu.width(), bg_menu.height());
     QBrush br;
     br.setTextureImage(bg_menu);
@@ -23,10 +24,13 @@ MenuWindow::MenuWindow(QWidget *parent) :
     setPalette(plt);
 
     //растягиваем изображение по размеру объекта
-    QPixmap img(img_archer);
+    QPixmap img(img_archer.c_str());
     int width = ui->logo->width();
     int height = ui->logo->height();
     ui->logo->setPixmap(img.scaled(width, height, Qt::KeepAspectRatio));
+
+    //установка стилей
+    this->setStyleSheet((css_widget + css_pushbutton + css_messagebox).c_str());
 }
 
 MenuWindow::~MenuWindow()
@@ -51,7 +55,7 @@ void MenuWindow::on_loadGame_clicked()
 
 void MenuWindow::on_exitGame_clicked()
 {   //закрытие игры
-    QMessageBox::StandardButton reply = QMessageBox::question(this, exit, is_exit, QMessageBox::Yes | QMessageBox::No);
+    QMessageBox::StandardButton reply = QMessageBox::question(this, game_exit.c_str(), is_exit.c_str(), QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         QApplication::quit();
     }
