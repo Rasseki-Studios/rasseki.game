@@ -4,9 +4,9 @@
 #include <algorithm>
 #include <vector>
 
+using namespace SessionData;
 using std::vector;
 using std::cout;
-using namespace SessionData;
 
 //---------------------------------------------------------
 //----------------- EventsData ----------------------------
@@ -62,10 +62,8 @@ add event to map
             current.y++) 
                 {
 
-                // if (!SurfaceMap::getSurface(eventCenter)) break;
-                std::cout << "spraying event \"" << event.GetName() <<"\" at " 
-                << current.x << ", " << current.y 
-                 << endl;
+                // std::cout << "spraying event \"" << event.GetName() <<"\" at " 
+                // << current.x << ", " << current.y  << endl;
                 counter++;
 
                 if (!eventMatrix[current]) {
@@ -85,8 +83,7 @@ add event to map
                 }
             }
         }
-        cout << counter << " events were sparayed" << endl;
-        // cout << ev->GetName() << endl;
+        cout << "event " << event.GetName() << " was sprayed " << counter << " times" << endl;
     }
 }
 
@@ -107,7 +104,6 @@ void EventsData::RemoveFrontEvent(Coord point) {
                     return a.getPriority() < b.getPriority();
                 } );
                 eventMatrix[startPos]->pop_back();
-                // cout << "deleted event from " << startPos << endl;
                 counter++;
             };
         }
@@ -143,10 +139,8 @@ Artifact* ArtifactsData::getArtifact(const str key) {
 }
 
 bool ArtifactsData::ArtifactExists(str ID) {
-    // currentArtifactsList.count(ID);
-    // return my_map[k1].find(k2) != my_map[k1].end();
-    return currentArtifactsList.find(ID) != currentArtifactsList.end();
-    // return false;
+    return currentArtifactsList.count(ID);
+    // return currentArtifactsList.find(ID) != currentArtifactsList.end();
 }
 
 //---------------------------------------------------------
