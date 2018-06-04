@@ -69,11 +69,11 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
         auto newEdge = new std::vector<Coord>();
         waveIndex++;
         for (auto edge : *waveEdge) {
-            for (auto neighbour : neighbours) {
-                Coord current(edge.x + neighbour.x, edge.y + neighbour.y);
-                if (!waveMap.CoordIsValid(current)) continue;
-                if (waveMap[current] != 0) continue;
-                if (dataMap[current] != WALL) {
+            for (auto it : neighbours) {
+                Coord current(edge.x + it.x, edge.y + it.y);
+                if (waveMap.CoordIsValid(current)
+                && waveMap[current] == 0
+                && dataMap[current] != WALL) {
                     newEdge->push_back(current);
                     waveMap[current] = waveIndex;
                 } else continue;
@@ -100,7 +100,7 @@ std::vector<Coord> WaveAlgorithm::GetBackPath(Coord dest) {
     //длина кратчайшего пути из dest в dest
 
     Coord step(dest);  //текущий шаг
-    cout << length << endl;
+    cout << "shortest path length is " << length << endl;
     std::vector<Coord> path(length);  //выделяем место под шаги
 
     for (int i = length; i != 1; i--) {
@@ -108,11 +108,11 @@ std::vector<Coord> WaveAlgorithm::GetBackPath(Coord dest) {
             Coord current(step.x + it.x, step.y + it.y);
             if (!surfaceData.CoordIsValid(current)) continue;
             if (waveMap[current] == i - 1) {
+                path.at(length - i) = current;
                 step = current;
                 break;
             }
         }
-        path.at(length - i) = step;
     }
 
     return path;
