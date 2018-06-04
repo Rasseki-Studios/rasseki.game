@@ -5,41 +5,18 @@
 #include <vector>
 
 using std::vector;
+using std::cout;
 using namespace SessionData;
 
 //---------------------------------------------------------
 //----------------- EventsData ----------------------------
 //---------------------------------------------------------
 
-/* bool EventsData::Init() {
-    EventFactory eFactory;
-    str path = systemData.resourcesDirectory + systemData.nextLocationName + "/events";
-    eFactory.InitAll(path, currentEventList); // hardcoded just for debugging
-    // using unique_ptr for two-dim array isn't a good idea though
-    // std::unique_ptr<Event[][]> eventMatrix (nullptr); 
-    
-    /* 
-    eventMatrix = new std::vector<Event>** [gameData.mapHeight];
-    for (int i = 0; i != gameData.mapHeight; i++) {
-        eventMatrix[i] = new std::vector<Event>*;
-        for (int j = 0; j != gameData.mapWidth; j++) {
-        eventMatrix[i][j] = NULL;
-        }
-    }
-    */
-
- /*    PulverizeEvents(currentEventList); 
-    return true;
-}
-  */
-
 EventsData::EventsData() : eventMatrix(gameData.mapWidth, gameData.mapHeight, true)
 {
     EventFactory eFactory;
     str path = systemData.resourcesDirectory + systemData.nextLocationName + "/events";
     eFactory.InitAll(path, currentEventList); 
-    
-    
     PulverizeEvents(currentEventList);     
 }
 
@@ -50,7 +27,6 @@ Event* EventsData::getEvent(const str key) {
 Event* EventsData::getEvent(Coord point) {
     if (!surfaceData.CoordIsValid(point)) return NULL;
     if (!eventMatrix[point]) return NULL;
-    auto ev = eventMatrix[point];
     if (!eventMatrix[point]->empty()) 
         return &eventMatrix[point]->front();
     else return NULL;
@@ -64,36 +40,44 @@ add event to map
 */
     for (auto i : list) {
         Event event = i.second;
+        int counter = 0;
         
+
         int width = gameData.mapWidth;
         int height = gameData.mapHeight;
 
         Coord eventCenter = event.GetCoord();
-        if (eventCenter.x > width || eventCenter.y > height) throw "coordinates are out of range";
-        if (eventCenter.x < 0 || eventCenter.y < 0) throw "invalid coordinates";
+        Coord current;
+        if (eventCenter.x > width || eventCenter.y > height) 
+            throw "coordinates are out of range";
+        if (eventCenter.x < 0 || eventCenter.y < 0)
+            throw "invalid coordinates";
 
-        for (int i = eventCenter.x - event.getRadius(); i <= eventCenter.x + event.getRadius(); i++) {
-            for (int j = eventCenter.y - event.getRadius(); j <= eventCenter.y + event.getRadius(); j++) {
-                
-                if (
-                    eventCenter.y + event.getRadius() > height ||
-                    eventCenter.x + event.getRadius() > width  ||
-                    eventCenter.y - event.getRadius() < 0      ||
-                    eventCenter.x - event.getRadius() < 0      
-                ) break; //total size of event mark exceeded the map
+        for (current.x = eventCenter.x - event.getRadius();
+        current.x <= eventCenter.x + event.getRadius();
+        current.x++) 
+            {
+            for (current.y = eventCenter.y - event.getRadius(); 
+            current.y <= eventCenter.y + event.getRadius(); 
+            current.y++) 
+                {
 
                 // if (!SurfaceMap::getSurface(eventCenter)) break;
+                std::cout << "spraying event \"" << event.GetName() <<"\" at " 
+                << current.x << ", " << current.y 
+                 << endl;
+                counter++;
 
-                if (!eventMatrix[eventCenter]) {
-                    eventMatrix[eventCenter] = new std::vector<Event>;
-                eventMatrix[eventCenter]->push_back(event);
+                if (!eventMatrix[current]) {
+                    eventMatrix[current] = new std::vector<Event>;
+                eventMatrix[current]->push_back(event);
                 }
                 else {
-                    eventMatrix[eventCenter]->push_back(event);  
+                    eventMatrix[current]->push_back(event);  
 
                     std::push_heap( // SIC! that wasn't tested
-                        eventMatrix[eventCenter]->begin(),
-                        eventMatrix[eventCenter]->end(),
+                        eventMatrix[current]->begin(),
+                        eventMatrix[current]->end(),
                         [](Event& a, Event& b) {
                             return a.getPriority() < b.getPriority();
                             }
@@ -101,31 +85,40 @@ add event to map
                 }
             }
         }
+        cout << counter << " events were sparayed" << endl;
+        // cout << ev->GetName() << endl;
     }
 }
 
 void EventsData::RemoveFrontEvent(Coord point) {
     Event* event = getEvent(point);
+    if (!event) return;
     Coord center = event->GetCoord();
     int radius = event->getRadius();
-    Coord startPos (center.x - radius, center.y - radius);
+    int counter = 0;
+    Coord startPos;
 
-    for (; startPos.x < center.x + radius; startPos.x++) {
-        for (; startPos.y < center.y + radius; startPos.y++) {
+    for (startPos.x = center.x - radius; startPos.x <= center.x + radius; startPos.x++) {
+        for (startPos.y = center.y - radius; startPos.y <= center.y + radius; startPos.y++) {
             if ( surfaceData.CoordIsValid( startPos ) ) {
                 std::pop_heap(eventMatrix[startPos]->begin(), 
                 eventMatrix[startPos]->end(),
                 [](Event& a, Event& b) {
                     return a.getPriority() < b.getPriority();
                 } );
+                eventMatrix[startPos]->pop_back();
+                // cout << "deleted event from " << startPos << endl;
+                counter++;
             };
         }
     }
+    cout << counter<< " events were deleted" << endl;
 }
 
 bool EventsData::EventExists(str ID) {
+    currentEventList.count(ID);
     return true;
-    // currentEventList.count(ID);
+
 }
 
 //---------------------------------------------------------

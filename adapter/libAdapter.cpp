@@ -7,11 +7,15 @@ using namespace SessionData;
 
 void Moving(int count) {
     for (int i = 0 ; i < count; i++) {
-        hero.Step();
-        // Event *event = eventsData.getEvent(hero.GetCoord());
-        // if (event) {
-        //     event->runEvent();
-        // }
+        hero.Step(); // returns coord
+        Event *event = eventsData.getEvent(hero.GetCoord());
+        if (event) {
+            // event->runEvent();
+            std::cout << "event " << event->GetName() << " was found at " 
+            << hero.GetCoord() << std::endl;
+            eventsData.RemoveFrontEvent(hero.GetCoord());
+
+        }
         usleep(10000);
     }
 }
