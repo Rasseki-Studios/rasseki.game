@@ -1,30 +1,21 @@
 #include "journal.h"
 
 #include "libAdapter.h"
-
+#include "game_settings.h"
+#include "style.h"
 #include <QDebug>
 
 Journal::Journal(QWidget *parent) : QTextEdit(parent)
 {
-    //connect(this, &Journal::passLogBookEntry, this, &Journal::append);
-
-    timer = new QTimer();   //инициализируем Таймер
-    //подключаем СЛОТ для отрисовки к таймеру
-    connect(timer, SIGNAL(timeout()), this, SLOT(slotWrite()));
-    timer->start(50);   //стартуем таймер на 50 миллисекунд
-}
-
-Journal::~Journal()
-{
-    delete timer;
+    this->setStyleSheet(css_journal.c_str());
+    timer = std::shared_ptr<QTimer>(new QTimer());   //инициализируем Таймер
+    connect(timer.get(), SIGNAL(timeout()), this, SLOT(slotWrite()));    //подключаем cлот для отрисовки к таймеру
+    timer->start(timer_delay);   //стартуем таймер
 }
 
 void Journal::slotWrite() {
-    std::string message, writer;
-    writer = Write(&message);
-    if (message != "") {
-        writer += ": ";
-        writer += message;
-        append(writer.c_str());
+    Message post = Write();
+    if (post.text != "") {
+        append((post.writer + ": " + post.text).c_str());
     }
 }

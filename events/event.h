@@ -10,7 +10,6 @@ class EventFactory;  // forward declaration
 class Action {
 public:
     void run() const;
-    /* DEBUG_FUNCTION */ void printAction();
     friend EventFactory;
 private:
     Action(/* Item*,  */str, str, str, str, short);
@@ -27,7 +26,6 @@ public:
     short getRadius();
     short getPriority();
     void run() const;
-    /* DEBUG_FUNCTION */ void printEvent() const;
     friend EventFactory;
 private:
     Event(str, str, short, Coord, short, short, std::vector<Action>);

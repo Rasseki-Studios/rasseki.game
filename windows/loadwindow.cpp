@@ -1,6 +1,9 @@
 #include "loadwindow.h"
 #include "ui_loadwindow.h"
 
+#include "paths.h"
+#include "style.h"
+
 LoadWindow::LoadWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LoadWindow)
@@ -8,7 +11,7 @@ LoadWindow::LoadWindow(QWidget *parent) :
     ui->setupUi(this);
 
     //установка фона и размеров окна загрузки игры
-    QImage bg_window(":/bground.png");
+    QImage bg_window(img_bground.c_str());
     setFixedSize(width(), height());
     QBrush br;
     br.setTextureImage(bg_window);
@@ -16,8 +19,8 @@ LoadWindow::LoadWindow(QWidget *parent) :
     plt.setBrush(QPalette::Background, br);
     setPalette(plt);
 
-    ui->listWidget->addItem("save1");
-    ui->listWidget->addItem("save2");
+    //установка стилей
+    this->setStyleSheet((css_widget + css_pushbutton + css_messagebox).c_str());
 }
 
 LoadWindow::~LoadWindow()
@@ -32,6 +35,5 @@ void LoadWindow::on_loadLoading_2_clicked()
 
 void LoadWindow::on_backLoading_2_clicked()
 {   //закрыть окно загрузки игры
-//    parentWidget()->show();
     close();
 }

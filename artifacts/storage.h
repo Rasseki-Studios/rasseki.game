@@ -7,7 +7,8 @@
 
 class Storage {
 public:
-    //Storage(short);
+    Storage() = default;
+    Storage(short);
     void AddArtifact(std::string);
     void RemoveArtifact(std::string);
     std::shared_ptr<Artifact> GetArtifact(std::string);
@@ -16,4 +17,3 @@ private:
 };
 
 #endif //STORAGE_H
-

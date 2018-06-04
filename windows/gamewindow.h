@@ -26,7 +26,6 @@ private slots:
 
 private:
     Ui::GameWindow *ui;
-    std::thread *writing;
 };
 
 #endif // GAMEWINDOW_H
