@@ -6,9 +6,10 @@
 #include <memory>
 
 #include "location.h"
+#include "items_data.h"
 #include "surface.h"
+//#include "hero.h"
 #include "game_settings.h"
-#include "russian.h"
 
 struct Message {
     std::string writer;

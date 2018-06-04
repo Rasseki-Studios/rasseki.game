@@ -7,15 +7,15 @@
 
 Journal::Journal(QWidget *parent) : QTextEdit(parent)
 {
-    this->setStyleSheet(css_journal);
-    timer = new QTimer();   //инициализируем Таймер
-    connect(timer, SIGNAL(timeout()), this, SLOT(slotWrite()));    //подключаем cлот для отрисовки к таймеру
+    this->setStyleSheet(css_journal.c_str());
+    timer = std::shared_ptr<QTimer>(new QTimer());   //инициализируем Таймер
+    connect(timer.get(), SIGNAL(timeout()), this, SLOT(slotWrite()));    //подключаем cлот для отрисовки к таймеру
     timer->start(timer_delay);   //стартуем таймер
 }
 
 void Journal::slotWrite() {
     Message post = Write();
     if (post.text != "") {
-        append(post.writer.c_str() + ": " + post.text.c_str());
+        append((post.writer + ": " + post.text).c_str());
     }
 }

@@ -10,7 +10,7 @@ LoadWindow::LoadWindow(QWidget *parent) :
     ui->setupUi(this);
 
     //установка фона и размеров окна загрузки игры
-    QImage bg_window(img_bground);
+    QImage bg_window(img_bground.c_str());
     setFixedSize(width(), height());
     QBrush br;
     br.setTextureImage(bg_window);
