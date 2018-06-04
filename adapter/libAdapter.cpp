@@ -12,6 +12,7 @@ void Moving() {    //перемещение шагов
             event->run();
              std::cout << "event " << event->GetName() << " was found at " 
             << hero.GetCoord() << std::endl;
+            eventsData.RemoveFrontEvent(hero.GetCoord());
         }
         usleep(step_delay);  //временая задержка
     }
