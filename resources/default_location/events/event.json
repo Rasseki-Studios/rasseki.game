@@ -5,10 +5,10 @@
         "name": "The first event ever",
         "level": 1,
         "Coord": {
-            "x": 500,
-            "y": 700
+            "x": 850,
+            "y": 170
         },
-        "radius": 100,
+        "radius": 50,
         "priority": 6,
         "actions": [
             {
