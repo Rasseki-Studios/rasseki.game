@@ -10,7 +10,7 @@ void Moving(int count) {
         hero.Step(); // returns coord
         Event *event = eventsData.getEvent(hero.GetCoord());
         if (event) {
-            // event->runEvent();
+            event->run();
             std::cout << "event " << event->GetName() << " was found at " 
             << hero.GetCoord() << std::endl;
             eventsData.RemoveFrontEvent(hero.GetCoord());
@@ -51,11 +51,11 @@ void Load(std::string file) {
 }
 
 std::string Write(std::string *msg) {
-    if (diaryString != "") {
-        *msg = diaryString;
-        diaryString = "";
+    if (gameData.diaryString != "") {
+        *msg = gameData.diaryString;
+        gameData.diaryString = "";
     }
-    return writer;
+    return gameData.writer;
 }
 
 std::vector<std::string> GetSavedNames() {
@@ -64,13 +64,13 @@ std::vector<std::string> GetSavedNames() {
 
 int Go(int x, int y) {
     int count = 0;
-    writer = hero.GetName();
+    gameData.writer = hero.GetName();
     if ((count = hero.Move({x, y}))) {
-        diaryString = "Я иду...";
+        gameData.diaryString = "Я иду...";
         Moving(count);
     }
     else {
-        diaryString = "Не знаю как туда попасть=(";
+        gameData.diaryString = "Не знаю как туда попасть=(";
     }
     return count;
 }

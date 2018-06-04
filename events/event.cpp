@@ -1,5 +1,7 @@
 #include "event.h"
 #include "session_data.h"
+#include <unistd.h>
+
 
 using namespace SessionData;
 
@@ -27,8 +29,9 @@ void Action::run() const {
     if (command == "give") {
         hero.GetInventory()->AddArtifact(objectID);
         //   giveArtifact()
-        
     }
+    gameData.diaryString = diaryNote + "\n";
+    usleep(duration*100000);
     // if (diaryNote != "") 
 }
 

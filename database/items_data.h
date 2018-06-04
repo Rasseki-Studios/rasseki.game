@@ -26,7 +26,7 @@ public:
     int mapHeight;
     int mapWidth;
     str diaryString; // what we are writin'
-    str character;  // who is writin'
+    str writer;  // who is writin'
 };
 
 class EventsData {
