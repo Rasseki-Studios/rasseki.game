@@ -33,6 +33,7 @@ class EventsData {
 public:
     // bool Init();
     EventsData();
+    ~EventsData();
     Event* getEvent(const str);
     Event* getEvent(Coord);
     bool EventExists(str);
