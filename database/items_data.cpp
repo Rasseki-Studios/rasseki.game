@@ -20,6 +20,21 @@ EventsData::EventsData() : eventMatrix(gameData.mapWidth, gameData.mapHeight, tr
     PulverizeEvents(currentEventList);     
 }
 
+EventsData::~EventsData() {
+    Coord temp;
+    int counter = 0;
+    for (temp.y = 0; temp.y < eventMatrix.getHeight(); temp.y++) {
+        for (temp.x = 0; temp.x < eventMatrix.getHeight(); temp.x++) {
+            if (eventMatrix[temp]) {
+                // cout << "deleting event at " << temp << endl;   
+                counter++;
+                delete eventMatrix[temp];
+            }
+        }
+    }
+    cout << counter << " events were deleted by destructor" << endl;
+}
+
 Event* EventsData::getEvent(const str key) {
     return &currentEventList.at(key);
 }
@@ -148,7 +163,6 @@ bool ArtifactsData::ArtifactExists(str ID) {
 //---------------------------------------------------------
 
 
-
 //---------------------------------------------------------
 //--------------------- SystemData ------------------------
 //---------------------------------------------------------
@@ -158,5 +172,5 @@ SystemData::SystemData(str _nextLocationName)
 resourcesDirectory("resources/"), 
 nextLocationName(_nextLocationName), 
 mapName("map") {
-
+    cout << "systemData initialized" << endl;
 }
