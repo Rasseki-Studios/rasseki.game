@@ -16,6 +16,8 @@ Journal::Journal(QWidget *parent) : QTextEdit(parent)
 void Journal::slotWrite() {
     Message post = Write();
     if (post.text != "") {
-        append((post.writer + ": " + post.text).c_str());
+        // append((post.writer + ": " + post.text).c_str());
+        append(post.text.c_str()); // no author ver.
+
     }
 }

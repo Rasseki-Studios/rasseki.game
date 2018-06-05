@@ -30,7 +30,7 @@ void Action::run() const {
         hero.GetInventory()->AddArtifact(objectID);
         //   giveArtifact()
     }
-    gameData.diaryString = diaryNote + "\n";
+    gameData.diaryString = diaryNote;
     usleep(duration*100000);
     // if (diaryNote != "") 
 }
