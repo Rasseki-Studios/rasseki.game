@@ -41,7 +41,7 @@ public:
     // more methods coming in future
 private:
     void PulverizeEvents(std::unordered_map<str, Event>&); //pulverizes events from eventList
-    Matrix<std::vector<Event>*> eventMatrix;
+    Matrix<std::vector<Event*>*> eventMatrix;
     // std::vector<Event> ***eventMatrix;
     // std::unique_ptr<Event[][]> eventMatrix;
     std::unordered_map<str, Event> currentEventList;

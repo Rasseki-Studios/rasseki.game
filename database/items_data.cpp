@@ -43,7 +43,7 @@ Event* EventsData::getEvent(Coord point) {
     if (!surfaceData.CoordIsValid(point)) return NULL;
     if (!eventMatrix[point]) return NULL;
     if (!eventMatrix[point]->empty()) 
-        return &eventMatrix[point]->front();
+        return eventMatrix[point]->front();
     else return NULL;
 }
 
@@ -54,35 +54,32 @@ get event
 add event to map
 */
     for (auto i : list) {
-        Event event = i.second;
+        Event* event = &i.second;
         int counter = 0;
-        
 
         int width = gameData.mapWidth;
         int height = gameData.mapHeight;
 
-        Coord eventCenter = event.GetCoord();
+        Coord eventCenter = event->GetCoord();
         Coord current;
         if (eventCenter.x > width || eventCenter.y > height) 
             throw "coordinates are out of range";
         if (eventCenter.x < 0 || eventCenter.y < 0)
             throw "invalid coordinates";
 
-        for (current.x = eventCenter.x - event.getRadius();
-        current.x <= eventCenter.x + event.getRadius();
-        current.x++) 
-            {
-            for (current.y = eventCenter.y - event.getRadius(); 
-            current.y <= eventCenter.y + event.getRadius(); 
-            current.y++) 
-                {
+        for (current.x = eventCenter.x - event->getRadius();
+        current.x <= eventCenter.x + event->getRadius();
+        current.x++) {
+            for (current.y = eventCenter.y - event->getRadius(); 
+            current.y <= eventCenter.y + event->getRadius(); 
+            current.y++) {
 
-                // std::cout << "spraying event \"" << event.GetName() <<"\" at " 
+                // std::cout << "spraying event \"" << event->GetName() <<"\" at " 
                 // << current.x << ", " << current.y  << endl;
                 counter++;
 
                 if (!eventMatrix[current]) {
-                    eventMatrix[current] = new std::vector<Event>;
+                    eventMatrix[current] = new std::vector<Event*>;
                 eventMatrix[current]->push_back(event);
                 }
                 else {
@@ -91,14 +88,14 @@ add event to map
                     std::push_heap( // SIC! that wasn't tested
                         eventMatrix[current]->begin(),
                         eventMatrix[current]->end(),
-                        [](Event& a, Event& b) {
-                            return a.getPriority() < b.getPriority();
+                        [](Event *a, Event *b) {
+                            return a->getPriority() < b->getPriority();
                             }
                         );
                 }
             }
         }
-        cout << "event " << event.GetName() << " was sprayed " << counter << " times" << endl;
+        cout << "event " << event->GetName() << " was sprayed " << counter << " times" << endl;
     }
 }
 
@@ -115,9 +112,10 @@ void EventsData::RemoveFrontEvent(Coord point) {
             if ( surfaceData.CoordIsValid( startPos ) ) {
                 std::pop_heap(eventMatrix[startPos]->begin(), 
                 eventMatrix[startPos]->end(),
-                [](Event& a, Event& b) {
-                    return a.getPriority() < b.getPriority();
-                } );
+                    [](Event *a, Event *b) {
+                        return a->getPriority() < b->getPriority();
+                        }
+                    );
                 eventMatrix[startPos]->pop_back();
                 counter++;
             };
