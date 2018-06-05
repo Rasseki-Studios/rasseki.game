@@ -27,7 +27,7 @@ private:
     const Matrix<char> &dataMap;
     const Coord neighbours[8] = {
         { 1,  0}, { 1, -1}, { 0, -1}, {-1, -1},
-        {-1,  0}, {-1,  1}, { 0,  1}, { 1, -1}
+        {-1,  0}, {-1,  1}, { 0,  1}, { 1,  1}
     };
     Matrix<short> waveMap;
     std::vector<Coord> GetBackPath(/* Coord,  */Coord);
