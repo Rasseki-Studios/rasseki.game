@@ -26,7 +26,7 @@ MapView::MapView(QWidget *parent)
     QPixmap img_h(img_hero.c_str());  //герой
 
     //QGraphicsItem *a = ;
-    hero = std::shared_ptr<QGraphicsItem>(mapScene->addPixmap(img_h.scaled(100, 100, Qt::KeepAspectRatio)));
+    hero = std::shared_ptr<QGraphicsItem>(mapScene->addPixmap(img_h.scaled(70, 70, Qt::KeepAspectRatio)));
 
     Coord pos = HeroCoords();   //установливаем положение героя
     QPoint point(pos.x, pos.y);
