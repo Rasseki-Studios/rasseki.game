@@ -20,7 +20,7 @@ class Artifact : public Item {
 public:
     Artifact(str, str, short, str, short);
     str GetType() const;
-    short GetPower() const ;
+    virtual short ApplyModifier() const;
 private:
     str type;
     short power;
@@ -57,7 +57,8 @@ private:
     unordered_set<str> typeList {
         "weapon",
         "speed_booster",
-        "throw_weapon"
+        "throw_weapon",
+        "magic_weapon"
     };
 };
 

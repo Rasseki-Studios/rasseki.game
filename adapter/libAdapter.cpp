@@ -9,7 +9,7 @@ void Moving() {    //перемещение шагов
         /*std::shared_ptr<Event>*/Event* event = eventsData.getEvent(step);    //попытка получения события в данной точке
         current = step;
         if (event) {
-            event->run();
+            event->Run();
              std::cout << "event " << event->GetName() << " was found at " 
             << hero.GetCoord() << std::endl;
             eventsData.RemoveFrontEvent(hero.GetCoord());

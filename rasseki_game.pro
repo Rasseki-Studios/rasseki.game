@@ -27,6 +27,9 @@ SOURCES += main.cpp \
     artifacts/artifact_parser.cpp \
     artifacts/artifact_factory.cpp \
     artifacts/storage.cpp \
+    actions/action.cpp \
+    actions/action_factory.cpp \
+    actions/action_parser.cpp \
     events/event.cpp \
     events/event_factory.cpp \
     events/event_parser.cpp \
@@ -40,6 +43,9 @@ HEADERS += windows/menuwindow.h \
     windows/gamewindow.h \
     windows/loadwindow.h \
     windows/style.h \
+    actions/action.h \
+    actions/action_factory.h \
+    actions/actions_config.h \
     events/event.h \
     events/event_factory.h \
     basic/matrix.hpp \
@@ -68,6 +74,7 @@ FORMS += windows/menuwindow.ui \
     windows/savewindow.ui
 
 INCLUDEPATH += windows \
+    actions \
     events \
     artifacts \
     basic \
@@ -84,6 +91,6 @@ MOC_DIR=temp
 
 QMAKE_CXX = g++
 CONFIG += C++17
-QMAKE_CXXFLAGS += -g -std=c++17 -pthread
+QMAKE_CXXFLAGS += -O2 -g -std=c++17 -pthread
 
 LIBS += -lstdc++fs
