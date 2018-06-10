@@ -38,14 +38,6 @@ void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
     int intColor; // 9-digit RGB representation
     RGBApixel tempPixel;
 
-    // //allocating memory
-    // short** tempMatrix = new short* [mapHeight];
-    // for (i = 0; i < data.mapHeight; i++) {
-    //     tempMatrix[i] = new short [data.mapWidth];
-    // }
-
-    // Matrix<char> matrix (mapWidth, mapHeight);
-
     //row by row scanning of bmp file and transformation colours to surface types
     for (int i = 0; i < mapHeight; i++) {
         for (int j = 0; j < mapWidth; j++) {
@@ -64,9 +56,6 @@ void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
                 case gold_color:
                     matrix[{j, i}] = road;
                     break;
-                // case white_color:
-                //     matrix[{j, i}] = black)
-                //     break;
                 default: 
                     matrix[{j, i}] = field;
                     break;
@@ -78,6 +67,4 @@ void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
-    // surfaceMatrix = tempMatrix;
-    // return matrix;
 }
