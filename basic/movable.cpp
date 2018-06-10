@@ -1,15 +1,10 @@
 #include "movable.h"
 #include "session_data.h"
 
-#include <fstream>
 #include <iostream>
 using std::cout;
 using std::endl;
 
-// hardcode defines. will be removed soon
-#define WALL 0    //непроходимая ячейка
-#define DIRT 1    //затруднённая проходимость (грязь)
-#define ROAD 2   //отличная проходимость (дорога)
 
 using namespace SessionData;
 
@@ -38,6 +33,17 @@ short Movable::GetSpeed() const {
     return speed;
 }
 
+
+
+/* ************************** LEE  WAVE ALGORITHM ***************************** */
+/* ****************************** by stanford ********************************* */
+
+// hardcode defines. will be removed soon
+// waiting for mouseartiom's Surfaces...
+#define WALL 0    //непроходимая ячейка
+#define DIRT 1    //затруднённая проходимость
+#define ROAD 2    //отличная проходимость
+
 WaveAlgorithm::WaveAlgorithm()
 :
 width( surfaceData.getWidth() ),
@@ -48,13 +54,13 @@ waveMap(width, height, true) {}
 std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     std::vector<Coord> emptyVector(0);
 
-    cout << "dest coord is " << dest << " " << endl;
+    cout << "destination coord is " << dest << " " << endl;
     cout << "terrain index there is " << (int)dataMap[dest] << endl;
 
     if (!dataMap.CoordIsValid(start)
-    || !dataMap.CoordIsValid(dest)
-    || dataMap[start] == WALL
-    || dataMap[dest] == WALL) {
+    ||  !dataMap.CoordIsValid(dest)
+    ||  dataMap[start] == WALL
+    ||  dataMap[dest] == WALL) {
         cout << "Check at algorithm start failed" << endl;
         return emptyVector;
     }
@@ -94,14 +100,11 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
 }
 
 std::vector<Coord> WaveAlgorithm::GetBackPath(Coord dest) {
-    //восстановление пути
-
     int length = waveMap[dest];
-    //длина кратчайшего пути из dest в dest
 
-    Coord step(dest);  //текущий шаг
+    Coord step(dest);  // current step
     cout << "shortest path length is " << length << endl;
-    std::vector<Coord> path(length);  //выделяем место под шаги
+    std::vector<Coord> path(length);
 
     for (int i = length; i != 1; i--) {
         for (auto it : neighbours) {

@@ -1,3 +1,5 @@
+/*  by stanford */
+
 #include "event.h"
 #include "session_data.h"
 

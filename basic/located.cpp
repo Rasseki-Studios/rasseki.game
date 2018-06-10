@@ -1,4 +1,4 @@
-#include "location.h"
+#include "located.h"
 
 //---LOCATED---
 Located::Located(Coord _coord) : 

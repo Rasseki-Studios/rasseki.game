@@ -4,7 +4,7 @@
 #include <vector>
 #include "surface.h"
 #include "matrix.hpp"
-#include "location.h"
+#include "located.h"
 
 class Movable : public virtual Located {
 public:
@@ -18,9 +18,10 @@ protected:
 };
 
 class WaveAlgorithm {
+/* by stanford */
 public:
     WaveAlgorithm();
-    std::vector<Coord> GetPath(Coord, Coord);  //составление вектора шагов
+    std::vector<Coord> GetPath(Coord, Coord);
 private:
     int width;
     int height;
@@ -30,7 +31,7 @@ private:
         {-1,  0}, {-1,  1}, { 0,  1}, { 1,  1}
     };
     Matrix<short> waveMap;
-    std::vector<Coord> GetBackPath(/* Coord,  */Coord);
+    std::vector<Coord> GetBackPath(Coord dest);
 };
 
 #endif

@@ -1,8 +1,10 @@
+/*  by stanford */
+
 #ifndef EVENT
 #define EVENT
 
 #include "item.h"
-#include "location.h"
+#include "located.h"
 #include "action.h"
 
 #include <vector>

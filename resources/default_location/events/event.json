@@ -40,7 +40,7 @@
                 "successNote": "Где я? Что это было?",
                 "failureNote": "Где я? Что это было?",
                 "duration": 2,
-                "destination": {
+                "coordinate": {
                     "x": 850,
                     "y": 170
                 }

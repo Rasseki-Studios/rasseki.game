@@ -1,3 +1,5 @@
+/*  by stanford */
+
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
 
@@ -42,14 +44,8 @@ bool EventData::isValid() {
 Event& EventFactory::Create(EventData &ev_data) {
     vector<Action *> actions;
     for (auto it : ev_data.actions) {
-        if (it.isValid()) {
-            auto newAction = actionFactory.Create(it);
-            actions.push_back(newAction);
-        } else {
-            actions.clear();
-            /* null-action "looks like here was something important..." */
-            break;
-        }
+        auto newAction = actionFactory.Create(it);
+        actions.push_back(newAction);
     }
     Event *ev = new Event(
         ev_data.ID, ev_data.name, ev_data.level,
