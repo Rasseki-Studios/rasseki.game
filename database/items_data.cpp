@@ -130,8 +130,9 @@ ArtifactsData::ArtifactsData() {
     aFactory.InitAll(path, currentArtifactsList); 
 }
 
-Artifact* ArtifactsData::getArtifact(const str key) {
-    return &currentArtifactsList.at(key);
+std::shared_ptr<Artifact> ArtifactsData::getArtifact(const str key) {
+    std::shared_ptr<Artifact> temp = std::make_shared<Artifact> (currentArtifactsList.at(key));
+    return temp;
 }
 
 bool ArtifactsData::ArtifactExists(str ID) {

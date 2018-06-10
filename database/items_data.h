@@ -3,6 +3,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <memory>
 
 #include "hero.h"
 #include "event_factory.h"
@@ -49,7 +50,7 @@ class ArtifactsData {
 public:
     ArtifactsData();
     bool ArtifactExists(str);
-    Artifact* getArtifact(const str);
+    std::shared_ptr<Artifact> getArtifact(const str);
 private:
     std::unordered_map<str, Artifact> currentArtifactsList;
     // std::unordered_map<str, Artifact> globalArtifactsList;
