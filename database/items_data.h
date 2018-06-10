@@ -7,8 +7,7 @@
 #include "hero.h"
 #include "event_factory.h"
 #include "artifact.h"
-// #include "artifact_factory.h"
-#include "surface.h" //here is SurfaceData, temporary solution.
+#include "surface.h"    
 #include "matrix.hpp"
 
 class SystemData {
@@ -31,7 +30,6 @@ public:
 
 class EventsData {
 public:
-    // bool Init();
     EventsData();
     ~EventsData();
     Event* getEvent(const str);
@@ -41,9 +39,7 @@ public:
     // more methods coming in future
 private:
     void PulverizeEvents(std::unordered_map<str, Event>&); //pulverizes events from eventList
-    Matrix<std::vector<Event*>*> eventMatrix;
-    // std::vector<Event> ***eventMatrix;
-    // std::unique_ptr<Event[][]> eventMatrix;
+    Matrix<std::vector<str>*> eventMatrix;
     std::unordered_map<str, Event> currentEventList;
     // std::unordered_map<str, Event> globalEventList;
 };
@@ -51,7 +47,6 @@ private:
 class ArtifactsData {
 public:
     ArtifactsData();
-    // bool Init();
     bool ArtifactExists(str);
     Artifact* getArtifact(const str);
 private:
