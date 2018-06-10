@@ -1,3 +1,5 @@
+/*  by stanford */
+
 #include "artifact.h"
 
 Artifact::Artifact(str id, str name, short level, str type, short power)

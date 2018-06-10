@@ -1,3 +1,5 @@
+/*  by stanford */
+
 #ifndef ARTIFACT_FACTORY
 #define ARTIFACT_FACTORY
 

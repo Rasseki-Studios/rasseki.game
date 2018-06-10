@@ -1,3 +1,5 @@
+/*  by stanford */
+
 #ifndef ACTION_FACTORY
 #define ACTION_FACTORY
 
