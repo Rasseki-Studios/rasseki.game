@@ -24,6 +24,7 @@ class GameData {
 public:
     int mapHeight;
     int mapWidth;
+    void WriteToDiary(str);
     str diaryString; // what we are writin'
     str writer;  // who is writin'
 };
