@@ -63,8 +63,6 @@ add event to map
     for (auto i : list) {
         Event &event = i.second;
         int counter = 0;
-        int width = gameData.mapWidth;
-        int height = gameData.mapHeight;
 
         Coord eventCenter = event.GetCoord();
         Coord current;
