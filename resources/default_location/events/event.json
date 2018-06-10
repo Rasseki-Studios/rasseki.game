@@ -4,7 +4,7 @@
         "id": "test_event",
         "name": "The first event ever",
         "level": 1,
-        "Coord": {
+        "coord": {
             "x": 850,
             "y": 170
         },
@@ -12,54 +12,38 @@
         "priority": 6,
         "actions": [
             {
-                "subject_id": "hero",
-                "command": "give",
-                "object_id": "iron_sword",
-                "toDiary": "Неплохой меч валяется. И чего выбросили? Возьму себе",
-                "duration": 1
+                "type": "give",
+                "chance": 50,
+                "artifact_id": "iron_sword",
+                "successNote": "Неплохой меч валяется. И чего выбросили? Возьму себе",
+                "failureNote": "Только хотел поднять валяющийся на траве меч, как тысяча маленьких лапок, вылезших из земли, утянули его куда-то вниз",
+                "duration": 4
             },
             {
-                "subject_id": "hero",
-                "command": "take_away",
-                "object_id": "iron_sword",
-                "toDiary": "Где меч? Спёр кто, что ли?",
-                "duration": 1
+                "type": "take_away",
+                "chance": 100,
+                "artifact_id": "iron_sword",
+                "successNote": "Где меч? Спёр кто, что ли?",
+                "failureNote": "Где меч? Спёр кто, что ли?",
+                "duration": 4
             },
             {
-                "subject_id": "hero",
-                "command": "wait",
-                "toDiary": "Какой цветочек. Ну и красотища!",
-                "duration": 3
+                "type": "wait",
+                "chance": 50,
+                "successNote": "Какой цветочек. Ну и красотища!",
+                "failureNote": "Симпатичный цветочек глухо зарычал. Пойду найду другие лопухи.",
+                "duration": 10
             },
             {
-                "subject_id": "hero",
-                "command": "fight",
-                "object_id": "evil_wizard",
-                "toDiary": "Кажется, этот дедок настроен не слишком дружелюбно. Э, ты чего такой злой?",
-                "duration": 5
-            },
-            {
-                "condition": "win",
-                "subject_id": "hero",
-                "command": "give",
-                "object_id": "iron_sword",
-                "toDiary": "Было ваше - стало наше. Моя очередь махать этим посохом.",
-                "duration": 1
-            },
-            {
-                "condition": "lose",
-                "subject_id": "hero",
-                "command": "take_away",
-                "object_id": "iron_sword",
-                "toDiary": "Отдай меч! Отдай, гад!",
-                "duration": 1
-            },
-            {
-                "condition": "lose",
-                "subject_id": "hero",
-                "command": "die",
-                "toDiary": "Ну в глаз-то зачем было?..",
-                "duration": 1
+                "type": "teleport",
+                "chance": 0,
+                "successNote": "Где я? Что это было?",
+                "failureNote": "Где я? Что это было?",
+                "duration": 2,
+                "destination": {
+                    "x": 850,
+                    "y": 170
+                }
             }
         ]
     }

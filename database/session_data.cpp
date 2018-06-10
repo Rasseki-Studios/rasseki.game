@@ -14,4 +14,3 @@ namespace SessionData {
     Coord start(651, 414);
     Hero hero(id, name, 1, 10, start);
 }
-

@@ -1,3 +1,5 @@
+/* by stanford */
+
 #include "event_factory.h"
 #include "libs/json.hpp"
 #include <fstream>
@@ -10,38 +12,19 @@ using std::endl;
 using json = nlohmann::json;
 using std::vector;
 
-void from_json(const json &j, Coord &c) {
-    c.x = j.at("x").get<int>();
-    c.y = j.at("y").get<int>();
-}
+void from_json(const json &j, Coord &c);
+void from_json(const json &j, ActionData &action);
 
-void from_json(const json &j, ActionData &action) {
-    str object_id = "", condition = "";
-    // auto subject_id = j.at("subject_id").get<str>();
-    auto command = j.at("command").get<str>();
-    auto toDiary = j.at("toDiary").get<str>();
-    auto duration = j.at("duration").get<short>();
+void from_json(const json &j, EventData &eventData) {
+    auto id         = j.at("id").get<str>();
+    auto name       = j.at("name").get<str>();
+    auto coordinate = j.at("coord").get<Coord>();
+    auto radius     = j.at("radius").get<short>();
+    auto priority   = j.at("priority").get<short>();
+    auto level      = j.at("level").get<short>();
+    auto actions    = j.at("actions").get<vector<ActionData>>();
 
-    // fields 'object_id' and 'condition' can be empty
-    try { object_id = j.at("object_id").get<str>();
-    } catch(nlohmann::detail::out_of_range) {}
-
-    try { condition = j.at("condition").get<str>();
-    } catch(nlohmann::detail::out_of_range) {}
-
-    action.set(/* subject_id,  */command, object_id, toDiary, condition, duration);
-}
-
-void from_json(const json &j, EventData &event) {
-    auto id =  j.at("id").get<str>();
-    auto name = j.at("name").get<str>();
-    auto coordinate = j.at("Coord").get<Coord>();
-    auto radius = j.at("radius").get<short>();
-    auto priority = j.at("priority").get<short>();
-    auto level = j.at("level").get<short>();
-    auto actions = j.at("actions").get<std::vector<ActionData>>();
-
-    event.set(id, name, level, coordinate, radius, priority, actions);
+    eventData.set(id, name, level, coordinate, radius, priority, actions);
 }
 
 shared_ptr<vector<EventData>> EventParser::getData(str filename) {
@@ -59,5 +42,7 @@ shared_ptr<vector<EventData>> EventParser::getData(str filename) {
         cout << "Events from file " << filename << " are invalid." << endl;
         return nullptr;
     }
+
+
     return ev_data;
 }

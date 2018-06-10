@@ -112,9 +112,7 @@ void EventsData::RemoveFrontEvent(Coord point) {
 }
 
 bool EventsData::EventExists(str ID) {
-    currentEventList.count(ID);
-    return true;
-
+    return currentEventList.count(ID);
 }
 
 //---------------------------------------------------------
