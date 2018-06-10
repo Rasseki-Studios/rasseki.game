@@ -100,7 +100,7 @@ const T& Matrix<T>::operator[](const Coord &coord) const {
     if (!CoordIsValid(coord)) {
         cerr << "reading coordinate " << coord.x - 1 << "," << coord.y - 1 << endl;
         cerr << "max coordinate is " << width - 1 << "," << height - 1 << endl;
-        throw std::out_of_range( " reading filed " );
+        throw std::out_of_range( " reading failed " );
     }
     return array[coord.x][coord.y];
 }
