@@ -1,9 +1,8 @@
 #include "located.h"
 
 //---LOCATED---
-Located::Located(Coord _coord) : 
-    coordinates(_coord) {
-}
+Located::Located(Coord _coord)
+: coordinates(_coord) {}
 
 void Located::SetCoord(Coord coordinates) {
     this->coordinates = coordinates;
