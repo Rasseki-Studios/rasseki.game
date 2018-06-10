@@ -35,7 +35,7 @@ short Movable::GetSpeed() const {
 
 
 
-/* ************************** LEE  WAVE ALGORITHM ***************************** */
+/* ************************** LEE  WAVE  ALGORITHM **************************** */
 /* ****************************** by stanford ********************************* */
 
 // hardcode defines. will be removed soon
