@@ -9,8 +9,8 @@ Storage::Storage(short count) {
 }
 
 void Storage::AddArtifact(std::string id) {  //добавить проверку на размер емкости
-    // std::shared_ptr<Artifact> art = artifactsData.getArtifact(id);
-    // artifacts.push_back(art);
+    std::shared_ptr<Artifact> art = artifactsData.getArtifact(id);
+    artifacts.push_back(art);
 }
 
 void Storage::RemoveArtifact(std::string id) {
