@@ -86,8 +86,10 @@ INCLUDEPATH += windows \
 
 RESOURCES += resources/resource.qrc
 
-OBJECTS_DIR=temp
-MOC_DIR=temp
+OBJECTS_DIR = temp/.obj
+MOC_DIR = temp/.moc
+RCC_DIR = temp/.rcc
+UI_DIR = temp/.ui
 
 QMAKE_CXX = g++
 CONFIG += C++17
