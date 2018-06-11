@@ -36,8 +36,8 @@ bool Action::ThrowDice() const {
 
 void Action::PrintToDiary(bool success) const {
     // MUST BE CHANGED TO printToDiary() !!!
-    if (success) cout << successNote << endl;
-    else cout << failureNote << endl;
+    if (success) gameData.WriteToDiary(successNote);
+    else gameData.WriteToDiary(failureNote);
 }
 
 
