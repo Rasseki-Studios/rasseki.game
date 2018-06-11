@@ -13,8 +13,8 @@
         "actions": [
             {
                 "type": "give",
-                "chance": 50,
-                "artifact_id": "iron_sword",
+                "chance": 100,
+                "artifact_id": "wood_sword",
                 "successNote": "Неплохой меч валяется. И чего выбросили? Возьму себе",
                 "failureNote": "Только хотел поднять валяющийся на траве меч, как тысяча маленьких лапок, вылезших из земли, утянули его куда-то вниз",
                 "duration": 4
@@ -22,7 +22,7 @@
             {
                 "type": "take_away",
                 "chance": 100,
-                "artifact_id": "iron_sword",
+                "artifact_id": "wood_sword",
                 "successNote": "Где меч? Спёр кто, что ли?",
                 "failureNote": "Где меч? Спёр кто, что ли?",
                 "duration": 4
