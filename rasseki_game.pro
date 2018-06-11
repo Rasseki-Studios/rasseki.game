@@ -93,6 +93,6 @@ UI_DIR = temp/.ui
 
 QMAKE_CXX = g++
 CONFIG += C++17
-QMAKE_CXXFLAGS += -O2 -g -std=c++17 -pthread
+QMAKE_CXXFLAGS += -O2 -g -std=c++17
 
 LIBS += -lstdc++fs

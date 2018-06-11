@@ -2,7 +2,6 @@
 #include "gamewindow.h"
 #include "libAdapter.h"
 
-#include <thread>
 #include "paths.h"
 #include "game_settings.h"
 
