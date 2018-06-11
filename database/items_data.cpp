@@ -131,8 +131,7 @@ ArtifactsData::ArtifactsData() {
 }
 
 std::shared_ptr<Artifact> ArtifactsData::getArtifact(const str key) {
-    std::shared_ptr<Artifact> temp = std::make_shared<Artifact> (currentArtifactsList.at(key));
-    return temp;
+    return std::make_shared<Artifact> (currentArtifactsList.at(key));
 }
 
 bool ArtifactsData::ArtifactExists(str ID) {
