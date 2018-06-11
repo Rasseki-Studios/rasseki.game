@@ -14,7 +14,7 @@ void Moving() {    //перемещение шагов
             << hero.GetCoord() << std::endl;
             eventsData.RemoveFrontEvent(hero.GetCoord());
         }
-        usleep(step_delay);  //временая задержка
+        usleep(step_delay / surfaceData.getSurfSpeed(current));  //временая задержка
     }
 }
 

@@ -5,8 +5,6 @@
 
 // enumeration representing uniqe color on the bmp file
 enum rgbColor {
-/*
-*/
     red_color = 255000000, 
     yellow_color = 255255000, 
     green_color = 255000, 
@@ -24,7 +22,7 @@ enum rgbColor {
 
 // simple enumeration for storing map in memory
 // enum mapColor {black, red, yellow, blue, green, white};
-enum mapColor {black, field, road};
+enum mapColor {black, mountain, field, road};
 
 void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
     std::unordered_set<int> set;
@@ -48,7 +46,7 @@ void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
                     matrix[{j, i}] = black;
                     break;
                 case bloody_color:
-                    matrix[{j, i}] = black;
+                    matrix[{j, i}] = mountain;
                     break;
                 case blue_color:
                     matrix[{j, i}] = black;

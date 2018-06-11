@@ -1,6 +1,7 @@
 #include "surface.h"
 #include "mapscanner.h"
 #include "session_data.h"
+#include "database_config.h"
 
 using namespace SessionData;
 
@@ -10,7 +11,7 @@ using namespace SessionData;
 
 SurfaceData::SurfaceData()
 :
-mapWidth(1000), mapHeight(1000), surfaceMatrix(mapWidth, mapHeight, false) {
+mapWidth(definedMapHeight), mapHeight(definedMapHeight), surfaceMatrix(mapWidth, mapHeight, false) {
     MapScanner scanner;
     scanner.FillMatrix(
         systemData.resourcesDirectory +
@@ -20,6 +21,17 @@ mapWidth(1000), mapHeight(1000), surfaceMatrix(mapWidth, mapHeight, false) {
     );
     gameData.mapWidth = mapWidth;
     gameData.mapHeight = mapHeight;
+
+    // temporarily hardcoded, will be removed in the future
+    Surface Pathless((str)"Pathless", (str)"Pathless", 0, 1);
+    Surface Mountain((str)"Mountain", (str)"Mountain", 0, 10);    
+    Surface Field((str)"Field", (str)"Field", 0, 50);
+    Surface Road((str)"Road", (str)"Road", 0, 100);
+
+    surfaceList.push_back(Pathless);
+    surfaceList.push_back(Mountain);    
+    surfaceList.push_back(Field);
+    surfaceList.push_back(Road);
 }
 
 int SurfaceData::getWidth() {
@@ -32,6 +44,10 @@ int SurfaceData::getHeight() {
 
 short SurfaceData::getSurface(Coord point) {
     return surfaceMatrix[point];
+}
+
+short SurfaceData::getSurfSpeed(Coord point) {
+    return surfaceList.at(getSurface(point)).getSpeed();
 }
 
 bool SurfaceData::CoordIsValid(Coord point) {
@@ -60,10 +76,16 @@ bool SurfaceData::RadiusIsValid(Coord point, short radius) {
 }
 
 bool SurfaceData::IsWalkable(Coord point) {
-    if (getSurface(point)) return true;
-    return false;
+    return getSurface(point);
 }
 
 const Matrix<char>& SurfaceData::getMap() {
     return surfaceMatrix;
+}
+
+Surface::Surface(str _ID, str _name, int _level, int _speed) 
+: Item(_ID, _name, _level), speed(_speed) { } ;
+ 
+short Surface::getSpeed() {
+    return speed;
 }
