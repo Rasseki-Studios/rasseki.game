@@ -38,8 +38,8 @@ bool ActionData::isValid() {
              << endl;
     }
 
-    if (type == "give_artifact"
-    ||  type == "take_artifact_away") {
+    if (type == "give"
+    ||  type == "take_away") {
         if (!SessionData::artifactsData.ArtifactExists(artifactID)) {
             cout << "Artifact with ID " << artifactID
                  << " does not exist." << endl;
