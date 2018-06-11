@@ -26,6 +26,7 @@ Coord Movable::Step() {
         coordinates = path[path.size() - 1];
         path.pop_back();
     }
+    cout << coordinates << endl;
     return coordinates;
 }
 
@@ -54,6 +55,7 @@ waveMap(width, height, true) {}
 std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     std::vector<Coord> emptyVector(0);
 
+    cout << "start coord is " << start << " " << endl;
     cout << "destination coord is " << dest << " " << endl;
     cout << "terrain index there is " << (int)dataMap[dest] << endl;
 
@@ -104,19 +106,23 @@ std::vector<Coord> WaveAlgorithm::GetBackPath(Coord dest) {
 
     Coord step(dest);  // current step
     cout << "shortest path length is " << length << endl;
-    std::vector<Coord> path(length);
+    std::vector<Coord> path(length - 1);
+    path.at(0) = dest;
 
-    for (int i = length; i != 1; i--) {
+    for (int i = length; i != 2; i--) {
         for (auto it : neighbours) {
             Coord current(step.x + it.x, step.y + it.y);
             if (!surfaceData.CoordIsValid(current)) continue;
             if (waveMap[current] == i - 1) {
-                path.at(length - i) = current;
+                path.at(length - i + 1) = current;
                 step = current;
                 break;
             }
         }
     }
 
+    // for (auto it : path) {
+    //     cout << it << endl;
+    // }
     return path;
 }
