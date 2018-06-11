@@ -1,5 +1,6 @@
 #include "libAdapter.h"
-#include <unistd.h>
+#include <chrono>
+#include <thread>
 
 using namespace SessionData;
 
@@ -14,7 +15,8 @@ void Moving() {    //перемещение шагов
             << hero.GetCoord() << std::endl;
             eventsData.RemoveFrontEvent(hero.GetCoord());
         }
-        usleep(step_delay / surfaceData.getSurfSpeed(current));  //временая задержка
+        std::chrono::milliseconds ms(1000 / surfaceData.getSurfSpeed(current));
+        std::this_thread::sleep_for(ms);
     }
 }
 

@@ -2,9 +2,8 @@
 
 #include <action.h>
 #include <cstdlib>
-
-// temporary solution for usleep, will be removed soon
-#include <unistd.h>
+#include <chrono>
+#include <thread>
 
 #include "session_data.h"
 using namespace SessionData;
@@ -19,10 +18,15 @@ Action::Action(int chance, str sNote, str fNote, int dur)
 void Action::Run() const {
     bool result = ThrowDice();
     if (result) {
+        gameData.WriteToDiary(successNote);
         MakeAction();
-        usleep(duration * 10000);
+        /* IMPORTANT!!! */
+        /* ACTIONS ACCELERATED 10 TIMES! */
+        std::chrono::milliseconds ms(duration *  100 /* 1000 */);
+        std::this_thread::sleep_for(ms);
+    } else {
+        gameData.WriteToDiary(failureNote);
     }
-    PrintToDiary(result);
 }
 
 bool Action::CheckCondition() const {
@@ -32,12 +36,6 @@ bool Action::CheckCondition() const {
 bool Action::ThrowDice() const {
     srand(time(NULL));
     return (rand() % 100) < chance;
-}
-
-void Action::PrintToDiary(bool success) const {
-    // MUST BE CHANGED TO printToDiary() !!!
-    if (success) gameData.WriteToDiary(successNote);
-    else gameData.WriteToDiary(failureNote);
 }
 
 
