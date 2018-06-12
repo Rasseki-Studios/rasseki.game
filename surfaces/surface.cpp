@@ -14,9 +14,7 @@ SurfaceData::SurfaceData()
 mapWidth(definedMapHeight), mapHeight(definedMapHeight), surfaceMatrix(mapWidth, mapHeight, false) {
     MapScanner scanner;
     scanner.FillMatrix(
-        systemData.resourcesDirectory +
-        systemData.nextLocationName + "/" +
-        systemData.mapName + ".bmp",
+        systemData.mapPath.u8string(),
         surfaceMatrix
     );
     gameData.mapWidth = mapWidth;
@@ -25,7 +23,7 @@ mapWidth(definedMapHeight), mapHeight(definedMapHeight), surfaceMatrix(mapWidth,
     // temporarily hardcoded, will be removed in the future
     Surface Pathless((str)"Pathless", (str)"Pathless", 0, 1);
     Surface Mountain((str)"Mountain", (str)"Mountain", 0, 10);    
-    Surface Field((str)"Field", (str)"Field", 0, 50);
+    Surface Field((str)"Field", (str)"Field", 0, 30);
     Surface Road((str)"Road", (str)"Road", 0, 100);
 
     surfaceList.push_back(Pathless);
