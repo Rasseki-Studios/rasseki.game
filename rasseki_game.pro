@@ -86,6 +86,8 @@ INCLUDEPATH += windows \
 
 RESOURCES += resources/resource.qrc
 
+unix:LIBS += -lstdc++fs
+
 DESTDIR = $$PWD
 
 OBJECTS_DIR = $$PWD/temp/.obj
