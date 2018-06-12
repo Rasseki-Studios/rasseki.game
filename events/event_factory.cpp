@@ -60,7 +60,7 @@ int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
     int eventCount = 0;
     for (auto &it : fs::directory_iterator(folder)) {
         if (it.path().extension() == ".json") {
-            tempData = eventParser.getData(it.path());
+            tempData = eventParser.getData(it.path().string());
             if (!tempData) continue;
             for (auto it : *tempData) {
                 // checking if event with this ID is already read

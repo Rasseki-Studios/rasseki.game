@@ -53,7 +53,7 @@ int ArtifactFactory::InitAll(str folder, unordered_map<str, Artifact> &artifactM
     int artifactCount = 0;
     for (auto &it : fs::directory_iterator(folder)) {
         if (it.path().extension() == ".json") {
-            tempData = parser.getData(it.path());
+            tempData = parser.getData(it.path().string());
             if (!tempData) continue;
             for (auto it : *tempData) {
                 if (artifactMap.find(it.ID) != artifactMap.end()) continue;
