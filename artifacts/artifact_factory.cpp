@@ -62,7 +62,6 @@ int ArtifactFactory::InitAll(str folder, unordered_map<str, Artifact> &artifactM
         if (!tempData) continue;
         for (auto it : *tempData) {
             if (!it.isValid()) continue;
-            cout << "OK" << endl;
             Artifact &ar = Create(it);
             artifactMap.emplace(it.ID, ar);
             artifactCount++;

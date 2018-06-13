@@ -13,46 +13,60 @@ using std::stoi;
 
 bool ActionData::isValid() {
 
-    cout << "checking action with type " << type << "..." << endl;
+    if (/* typeList.find(type) == typeList.end() */0) {
+        cout << "FAIL" << endl;
+        cout << "Action type \"" << type << "\" is invalid." << endl;
+        return false;
+    }
 
     if (chance > MAX_CHANCE_PERCENT
     ||  chance < MIN_CHANCE_PERCENT) {
-        cout << "Chance is invalid." << endl;
-        return 0;
+        cout << "FAIL" << endl;
+        cout << "In action with type \"" << type
+             << "\": chance is invalid." << endl;
+        return false;
     }
 
     if (duration > MAX_ACTION_DURATION
     ||  duration < MIN_ACTION_DURATION) {
-        cout << "Invalid action duration, it can be "
-             << "from " << MIN_ACTION_DURATION
-             << " to " << MAX_ACTION_DURATION
+        cout << "FAIL" << endl;
+        cout << "In action with type \"" << type
+             << "\": invalid action duration, it can be between "
+             << MIN_ACTION_DURATION << " and " << MAX_ACTION_DURATION
              << " seconds." << endl;
-        return 0;
+        return false;
     }
 
     if (successNote.empty()
     ||  failureNote.empty()
     ) {
-        cout << "Diary notes can't be empty."
+        cout << "FAIL" << endl;
+        cout << "In action with type \"" << type
+             << "\": diary notes can't be empty."
             //  << ", write \"default\" to choose random default phrase"
              << endl;
+        return false;
     }
 
     if (type == "give"
     ||  type == "take_away") {
         if (!SessionData::artifactsData.ArtifactExists(artifactID)) {
-            cout << "Artifact with ID " << artifactID
+            cout << "FAIL" << endl;
+            cout << "In action with type \"" << type
+                 << "\": artifact with ID " << artifactID
                  << " does not exist." << endl;
-            return 0;
+            return false;
         }
     } else if (type == "teleport") {
         if (!SessionData::surfaceData.CoordIsValid(coord)) {
-            cout << "Invalid teleport destination for this location." << endl;
-            return 0;
+            cout << "FAIL" << endl;
+            cout << "In action with type \"" << type
+                 << "\": invalid teleport point for this location." << endl;
+            return false;
         }
     }
 
-    return 1;
+    return true;
 }
 
 Action* ActionFactory::Create(ActionData &a) {

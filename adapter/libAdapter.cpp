@@ -7,7 +7,8 @@ using namespace SessionData;
 void Moving() {    //перемещение шагов
     Coord current = hero.GetCoord();
     for (Coord step = hero.Step(); !(current == step); step = hero.Step()) {
-        /*std::shared_ptr<Event>*/Event* event = eventsData.getEvent(step);    //попытка получения события в данной точке
+        /*std::shared_ptr<Event>*/Event* event = eventsData.getEvent(step);    
+        //попытка получения события в данной точке
         current = step;
         if (event) {
             event->Run();

@@ -12,7 +12,7 @@
 #include "surface.h"
 #include "matrix.hpp"
 // #include "session_data.h"
-#include "database_config.h"
+#include "paths.h"
 
 namespace fs = std::experimental::filesystem;
 
