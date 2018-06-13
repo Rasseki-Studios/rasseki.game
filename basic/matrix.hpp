@@ -46,7 +46,6 @@ public:
     bool CoordIsValid(const Coord &coord) const;
     int getWidth() const;
     int getHeight() const;
-    // int getDistance(const Coord &first, const Coord &second) const;
 
     T& operator[](const Coord &coord);
     const T& operator[](const Coord &coord) const;

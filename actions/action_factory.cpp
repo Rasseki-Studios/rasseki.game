@@ -1,4 +1,4 @@
-/*  by stanford */
+/* by stanford */
 
 #include "action_factory.h"
 #include "actions_config.h"
@@ -13,7 +13,7 @@ using std::stoi;
 
 bool ActionData::isValid() {
 
-    if (/* typeList.find(type) == typeList.end() */0) {
+    if (actionList.find(type) == actionList.end()) {
         cout << "FAIL" << endl;
         cout << "Action type \"" << type << "\" is invalid." << endl;
         return false;
@@ -42,9 +42,7 @@ bool ActionData::isValid() {
     ) {
         cout << "FAIL" << endl;
         cout << "In action with type \"" << type
-             << "\": diary notes can't be empty."
-            //  << ", write \"default\" to choose random default phrase"
-             << endl;
+             << "\": diary notes can't be empty." << endl;
         return false;
     }
 
@@ -70,8 +68,6 @@ bool ActionData::isValid() {
 }
 
 Action* ActionFactory::Create(ActionData &a) {
-
-    // Action newAction;
     if (a.type == "give") {
         /* create GiveArtifact action */
         auto newAction = new GiveArtifact(
@@ -112,6 +108,6 @@ Action* ActionFactory::Create(ActionData &a) {
         );
         return newAction;
     }
-    
+
     return nullptr;
 }

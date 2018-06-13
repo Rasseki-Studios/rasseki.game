@@ -1,3 +1,5 @@
+/* by stanford */
+
 #include "item.h"
 
 Item::Item(str id, str name, short level) : id(id), name(name), level(level) {}

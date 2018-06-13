@@ -1,4 +1,4 @@
-/*  by stanford */
+/* by stanford */
 
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
@@ -27,7 +27,7 @@ bool ArtifactData::isValid() {
         cout << "FAIL" << endl;
         cout << "Level is not valid." << endl;
         return false;
-    } else if (/* typeList.find(type) == typeList.end() */0) {
+    } else if (typeList.find(type) == typeList.end()) {
         cout << "FAIL" << endl;
         cout << "Type is invalid." << endl;
         return false;

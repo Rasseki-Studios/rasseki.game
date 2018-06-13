@@ -17,8 +17,11 @@ protected:
     std::vector<Coord> path;
 };
 
+
+/* ************* LEE  WAVE  ALGORITHM ************** */
+/* ***************** by stanford ******************* */
+
 class WaveAlgorithm {
-/* by stanford */
 public:
     WaveAlgorithm();
     std::vector<Coord> GetPath(Coord, Coord);

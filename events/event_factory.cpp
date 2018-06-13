@@ -1,4 +1,4 @@
-/*  by stanford */
+/* by stanford */
 
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
@@ -17,7 +17,7 @@ using SessionData::surfaceData;
 
 bool EventData::isValid() {
     cout << "Checking event \"" << std::setw(28)
-            << std::left << ID + "\"... ";
+         << std::left << ID + "\"... ";
 
     if (eventsData.EventExists(ID)) {
         cout << "FAIL" << endl;
