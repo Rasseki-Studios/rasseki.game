@@ -7,7 +7,7 @@
 
 #include "items_data.h"
 #include "russian.h"
-#include "game_settings.h"
+#include "config.h"
 #include "session_data.h"
 
 struct Message {

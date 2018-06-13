@@ -1,5 +1,6 @@
 #include "session_data.h"
 // #include "event_factory.h"
+#include "artifact_factory.h"
 #include "mapscanner.h"
 #include <algorithm>
 #include <vector>
@@ -17,7 +18,7 @@ EventsData::EventsData() : eventMatrix(gameData.mapWidth, gameData.mapHeight, tr
     EventFactory eFactory;
     str path = systemData.resourcesDirectory + systemData.nextLocationName + "/events";
     eFactory.InitAll(path, currentEventList); 
-    PulverizeEvents(currentEventList);     
+    PulverizeEvents(currentEventList);
 }
 
 EventsData::~EventsData() {

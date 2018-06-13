@@ -10,7 +10,7 @@
 using std::cout;
 using std::endl;
 
-#include "artifact.h"
+#include "artifact_factory.h"
 
 #include "libs/json.hpp"
 using json = nlohmann::json;

@@ -21,8 +21,8 @@ struct EventData : public ItemData {
     Coord coordinate;
     short radius, priority;
     std::vector<ActionData> actions;
-    void set(str, str, short, Coord, short, short, std::vector<ActionData>);
     bool isValid();
+    void set(str, str, short, Coord, short, short, std::vector<ActionData>);
 };
 
 class EventParser {

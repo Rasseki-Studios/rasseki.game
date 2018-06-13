@@ -8,37 +8,43 @@ namespace fs = std::experimental::filesystem;
 using std::cout;
 using std::endl;
 
-#include "session_data.h"
 #include "event_factory.h"
+#include "events_config.h"
 
-using namespace SessionData;
+#include "session_data.h"
+using SessionData::eventsData;
+using SessionData::surfaceData;
 
 bool EventData::isValid() {
-
-    cout << "checking event with ID " << ID << "..." << endl;
+    cout << "Checking event \"" << std::setw(25)
+            << std::left << ID + "\"... ";
 
     if (eventsData.EventExists(ID)) {
-        cout << "event with ID " << ID 
-             << " already exists" << endl;
-        return 0;
+        cout << "FAIL" << endl;
+        cout << "Event with ID " << ID 
+             << " already exists." << endl;
+        return false;
     } else if (level <= 0) {
-        cout << "level is not valid" << endl;
-        return 0;
-    } else if (priority > 6 && priority <= 0) {
-        cout << "level is not valid" << endl;
-        return 0;
+        cout << "FAIL" << endl;
+        cout << "Level is not valid." << endl;
+        return false;
+    } else if (priority > MAX_EVENT_PRIORITY && priority <= MIN_EVENT_PRIORITY) {
+        cout << "FAIL" << endl;
+        cout << "" << endl;
+        return false;
     } else if (!surfaceData.RadiusIsValid(coordinate, radius)) {
-        cout << "radius or coord are not valid" << endl;
-        return 0;
+        cout << "FAIL" << endl;
+        cout << "Radius or coord are not valid." << endl;
+        return false;
     }
     for (auto it : actions) {
         if (!it.isValid()) {
             cout << "action in event " << ID << " is invalid" << endl;
             actions.clear();
-            return 0;
+            return false;
         }
     }
-    return 1;
+    return true;
 }
 
 Event& EventFactory::Create(EventData &ev_data) {
@@ -59,21 +65,16 @@ Event& EventFactory::Create(EventData &ev_data) {
 int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
     int eventCount = 0;
     for (auto &it : fs::directory_iterator(folder)) {
-        if (it.path().extension() == ".json") {
-            tempData = eventParser.getData(it.path().string());
-            if (!tempData) continue;
-            for (auto it : *tempData) {
-                // checking if event with this ID is already read
-                if (it.isValid()) {
-                    Event &ev = Create(it);
-                    eventsMap.emplace(it.ID, ev);
-                    eventCount++;
-                    cout << "event <" << it.ID << "> read." << endl;
-                } else {
-                    cout << "event <" << it.ID << "> not read." << endl;
-                    continue;
-                }
-            }
+        tempData = eventParser.getData(it.path().string());
+        if (!tempData) continue;
+        for (auto it : *tempData) {
+            cout << "Checking event \"" << std::setw(25)
+                 << std::left << it.ID + "\"... ";
+            if (!it.isValid()) continue;
+            cout << "OK" << endl;
+            Event &ev = Create(it);
+            eventsMap.emplace(it.ID, ev);
+            eventCount++;
         }
     }
     return eventCount;

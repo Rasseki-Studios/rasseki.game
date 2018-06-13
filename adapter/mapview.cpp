@@ -3,7 +3,7 @@
 #include "libAdapter.h"
 
 #include "paths.h"
-#include "game_settings.h"
+#include "config.h"
 
 MapView::MapView(QWidget *parent)
     : QGraphicsView(parent)

@@ -2,6 +2,7 @@
 #define STORAGE_H
 
 #include <memory>
+#include <vector>
 
 #include "artifact.h"
 

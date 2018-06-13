@@ -1,7 +1,7 @@
 #include "journal.h"
 
 #include "libAdapter.h"
-#include "game_settings.h"
+#include "config.h"
 #include "style.h"
 #include <QDebug>
 

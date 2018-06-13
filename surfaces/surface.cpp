@@ -1,7 +1,7 @@
 #include "surface.h"
 #include "mapscanner.h"
 #include "session_data.h"
-#include "database_config.h"
+#include "config.h"
 
 using namespace SessionData;
 

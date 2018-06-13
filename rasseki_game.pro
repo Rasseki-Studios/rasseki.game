@@ -48,6 +48,7 @@ HEADERS += windows/menuwindow.h \
     actions/actions_config.h \
     events/event.h \
     events/event_factory.h \
+    events/events_config.h \
     basic/matrix.hpp \
     basic/item.h \
     basic/located.h \
@@ -66,7 +67,7 @@ HEADERS += windows/menuwindow.h \
     creatures/hero.h \
     configs/russian.h \
     configs/paths.h \
-    configs/game_settings.h
+    configs/config.h
 
 FORMS += windows/menuwindow.ui \
     windows/gamewindow.ui \
@@ -87,6 +88,8 @@ INCLUDEPATH += windows \
 RESOURCES += resources/resource.qrc
 
 unix:LIBS += -lstdc++fs
+
+QMAKE_CXXFLAGS += -g
 
 DESTDIR = $$PWD
 

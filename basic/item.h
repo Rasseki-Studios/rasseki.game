@@ -20,6 +20,7 @@ protected:
 struct ItemData {
     str ID, name;
     short level;
+    virtual bool isValid() = 0;
     // consists of data of Items, written with strings and integers
     // can be easily written to a file, for example, .json or .xml
     // converts to Item object in factories
