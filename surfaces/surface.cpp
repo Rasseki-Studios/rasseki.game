@@ -1,6 +1,7 @@
 #include "surface.h"
 #include "mapscanner.h"
 #include "session_data.h"
+#include "database_config.h"
 
 using namespace SessionData;
 
@@ -10,14 +11,25 @@ using namespace SessionData;
 
 SurfaceData::SurfaceData()
 :
-mapWidth(1000), mapHeight(1000), surfaceMatrix(mapWidth, mapHeight, false) {
+mapWidth(definedMapHeight), mapHeight(definedMapHeight), surfaceMatrix(mapWidth, mapHeight, false) {
     MapScanner scanner;
     scanner.FillMatrix(
-        systemData.resourcesDirectory +
-        systemData.nextLocationName + "/" +
-        systemData.mapName + ".bmp",
+        systemData.mapPath.u8string(),
         surfaceMatrix
     );
+    gameData.mapWidth = mapWidth;
+    gameData.mapHeight = mapHeight;
+
+    // temporarily hardcoded, will be removed in the future
+    Surface Pathless((str)"Pathless", (str)"Pathless", 0, 1);
+    Surface Mountain((str)"Mountain", (str)"Mountain", 0, 10);    
+    Surface Field((str)"Field", (str)"Field", 0, 30);
+    Surface Road((str)"Road", (str)"Road", 0, 100);
+
+    surfaceList.push_back(Pathless);
+    surfaceList.push_back(Mountain);    
+    surfaceList.push_back(Field);
+    surfaceList.push_back(Road);
 }
 
 int SurfaceData::getWidth() {
@@ -29,15 +41,15 @@ int SurfaceData::getHeight() {
 }
 
 short SurfaceData::getSurface(Coord point) {
-    if ((point.x < 0 || point.x > mapWidth) || (point.y < 0 || point.y > mapHeight))
-        return -1;
     return surfaceMatrix[point];
 }
 
+short SurfaceData::getSurfSpeed(Coord point) {
+    return surfaceList.at(getSurface(point)).getSpeed();
+}
+
 bool SurfaceData::CoordIsValid(Coord point) {
-    if ((point.x < 0 || point.x > mapWidth) || (point.y < 0 || point.y > mapHeight))
-        return false;
-    return true;
+    return surfaceMatrix.CoordIsValid(point);
 }
 
 bool SurfaceData::RadiusIsValid(Coord point, short radius) {
@@ -62,45 +74,16 @@ bool SurfaceData::RadiusIsValid(Coord point, short radius) {
 }
 
 bool SurfaceData::IsWalkable(Coord point) {
-    if (getSurface(point)) return true;
-    return false;
+    return getSurface(point);
 }
 
 const Matrix<char>& SurfaceData::getMap() {
     return surfaceMatrix;
 }
 
-// DO NOT use this! It's full of bugs
-AccessMap::AccessMap(Coord start, Coord end) {
-    // start.x--; end.y++;
-    width = abs(start.y - end.y);
-    height = abs(start.x - end.x);
-
-    int frame = 2; // hardcoded for a while
-    int k = 0, n = 0;
-    matrix = new char* [height];
-    
-    for (int i = 0; i < height; i++) { 
-        matrix[i] = new char [width];
-    }
-
-    for (int i = start.x; i < end.x; i++) {
-        for (int j = start.y; j < end.y; j++) {
-            if (surfaceData.CoordIsValid( {i, j} )) {
-                if (surfaceData.getSurface( (Coord){i, j} ) != 0) matrix[n][k] = 1;
-            else matrix[k][n] = 0;                
-            }
-            else matrix[k][n] = 0;
-            n++;
-        }
-        n = 0;
-        k++;
-    }
-}
-
-AccessMap::~AccessMap() {
-    for (int i = 0; i < height; i++) {
-        delete [] matrix[i];
-    }
-    delete [] matrix;
+Surface::Surface(str _ID, str _name, int _level, int _speed) 
+: Item(_ID, _name, _level), speed(_speed) { } ;
+ 
+short Surface::getSpeed() {
+    return speed;
 }

@@ -2,21 +2,30 @@
 #define ITEMSDATA
 
 #include <string>
+#include <experimental/filesystem>
 #include <unordered_map>
+#include <memory>
 
 #include "hero.h"
 #include "event_factory.h"
 #include "artifact.h"
-// #include "artifact_factory.h"
-#include "surface.h" //here is SurfaceData, temporary solution.
+#include "surface.h"
+#include "matrix.hpp"
+// #include "session_data.h"
+#include "database_config.h"
+
+namespace fs = std::experimental::filesystem;
 
 class SystemData {
 public:
-    SystemData(str nextLocationName = "default_location");
-    str resourcesDirectory; // directory with all the resources
+    SystemData(str nextLocationName = defaultLocation);
+    fs::path resourcesPath;
+    fs::path artifactsPath;
+    fs::path eventsPath;
+    fs::path mapPath;
+
     str nextLocationName; // ID of a map going to be loaded
     str currentLocationName; // ID of a map loaded
-    str mapName; // name of the .bmp file
 };
 
 class GameData {
@@ -24,13 +33,15 @@ class GameData {
 public:
     int mapHeight;
     int mapWidth;
+    void WriteToDiary(str);
     str diaryString; // what we are writin'
-    str character;  // who is writin'
+    str writer;  // who is writin'
 };
 
 class EventsData {
 public:
-    bool Init();
+    EventsData();
+    ~EventsData();
     Event* getEvent(const str);
     Event* getEvent(Coord);
     bool EventExists(str);
@@ -38,20 +49,19 @@ public:
     // more methods coming in future
 private:
     void PulverizeEvents(std::unordered_map<str, Event>&); //pulverizes events from eventList
-    std::vector<Event> ***eventMatrix;
-    // std::unique_ptr<Event[][]> eventMatrix;
+    Matrix<std::vector<str>*> eventMatrix;
     std::unordered_map<str, Event> currentEventList;
     // std::unordered_map<str, Event> globalEventList;
 };
 
 class ArtifactsData {
 public:
-    bool Init();
+    ArtifactsData();
     bool ArtifactExists(str);
-    Artifact* getArtifact(const str);
+    std::shared_ptr<Artifact> getArtifact(const str);
 private:
     std::unordered_map<str, Artifact> currentArtifactsList;
     // std::unordered_map<str, Artifact> globalArtifactsList;
 };
 
-#endif //SESSION
+#endif 

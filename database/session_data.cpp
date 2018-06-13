@@ -5,16 +5,13 @@ namespace SessionData {
     SystemData systemData;
     GameData gameData;
     SurfaceData surfaceData;
-    EventsData eventsData;
     ArtifactsData artifactsData;
-
-    str diaryString;
-    str writer;
+    EventsData eventsData;
 
     // hero initialization
+    // temporarily solution
     std::string name = "Moleque";
     std::string id = "super_hero";
-    Coord start(200, 200);
+    Coord start(651, 414);
     Hero hero(id, name, 1, 10, start);
 }
-

@@ -1,33 +1,38 @@
-#include "session_data.h"
-// #include "event_factory.h"
-#include "mapscanner.h"
 #include <algorithm>
 #include <vector>
 
-using std::vector;
+#include "session_data.h"
+// #include "event_factory.h"
+#include "artifact_factory.h"
+#include "mapscanner.h"
+
 using namespace SessionData;
+using std::vector;
+using std::cout;
 
 //---------------------------------------------------------
 //----------------- EventsData ----------------------------
 //---------------------------------------------------------
 
-bool EventsData::Init() {
+EventsData::EventsData() 
+: eventMatrix(gameData.mapWidth, gameData.mapHeight, true) {
     EventFactory eFactory;
-    str path = systemData.resourcesDirectory + systemData.nextLocationName + "/events";
-    eFactory.InitAll(path, currentEventList); // hardcoded just for debugging
-    // using unique_ptr for two-dim array isn't a good idea though
-    // std::unique_ptr<Event[][]> eventMatrix (nullptr); 
-    
-    eventMatrix = new std::vector<Event>** [gameData.mapHeight];
-    for (int i = 0; i != gameData.mapHeight; i++) {
-        eventMatrix[i] = new std::vector<Event>*;
-        for (int j = 0; j != gameData.mapWidth; j++) {
-        eventMatrix[i][j] = NULL;
+    eFactory.InitAll(systemData.eventsPath.u8string(), currentEventList); 
+    PulverizeEvents(currentEventList);
+}
+
+EventsData::~EventsData() {
+    Coord temp;
+    int counter = 0;
+    for (temp.y = 0; temp.y < eventMatrix.getHeight(); temp.y++) {
+        for (temp.x = 0; temp.x < eventMatrix.getHeight(); temp.x++) {
+            if (eventMatrix[temp]) {
+                counter++;
+                delete eventMatrix[temp];
+            }
         }
     }
-
-    PulverizeEvents(currentEventList); 
-    return true;
+    cout << counter << " events were deleted by destructor" << endl;
 }
 
 Event* EventsData::getEvent(const str key) {
@@ -36,12 +41,18 @@ Event* EventsData::getEvent(const str key) {
 
 Event* EventsData::getEvent(Coord point) {
     if (!surfaceData.CoordIsValid(point)) return NULL;
-    if (!eventMatrix[point.x][point.y]) return NULL;
-    auto ev = eventMatrix[point.x][point.y];
-    if (!eventMatrix[point.x][point.y]->empty()) 
-        return &eventMatrix[point.x][point.y]->front();
+    if (!eventMatrix[point]) return NULL;
+    if (!eventMatrix[point]->empty()) 
+        // return eventMatrix[point]->front();
+        return getEvent(eventMatrix[point]->front());
     else return NULL;
 }
+
+bool ComparePriorities(str lvalue, str rvalue) {
+    Event* left = eventsData.getEvent(lvalue);
+    Event* right = eventsData.getEvent(rvalue);
+    return left->getPriority() < right->getPriority();
+};
 
 void EventsData::PulverizeEvents(std::unordered_map<str, Event>& list) {
 /* 
@@ -50,63 +61,57 @@ get event
 add event to map
 */
     for (auto i : list) {
-        Event event = i.second;
-        
-        int width = gameData.mapWidth;
-        int height = gameData.mapHeight;
+        Event &event = i.second;
+        int counter = 0;
 
         Coord eventCenter = event.GetCoord();
-        if (eventCenter.x > width || eventCenter.y > height) throw "coordinates are out of range";
-        if (eventCenter.x < 0 || eventCenter.y < 0) throw "invalid coordinates";
+        Coord current;
 
-        for (int i = eventCenter.x - event.getRadius(); i <= eventCenter.x + event.getRadius(); i++) {
-            for (int j = eventCenter.y - event.getRadius(); j <= eventCenter.y + event.getRadius(); j++) {
-                
-                if (
-                    eventCenter.y + event.getRadius() > height ||
-                    eventCenter.x + event.getRadius() > width  ||
-                    eventCenter.y - event.getRadius() < 0      ||
-                    eventCenter.x - event.getRadius() < 0      
-                ) break; //total size of event mark exceeded the map
-
-                // if (!SurfaceMap::getSurface(eventCenter)) break;
-
-                if (!eventMatrix[eventCenter.x][eventCenter.y]) {
-                    eventMatrix[eventCenter.x][eventCenter.y] = new std::vector<Event>;
-                eventMatrix[eventCenter.x][eventCenter.y]->push_back(event);
-                }
-                else {
-                    eventMatrix[eventCenter.x][eventCenter.y]->push_back(event);  
-
-                    std::push_heap( // SIC! that wasn't tested
-                        eventMatrix[eventCenter.x][eventCenter.y]->begin(),
-                        eventMatrix[eventCenter.x][eventCenter.y]->end(),
-                        [](Event& a, Event& b) {
-                            return a.getPriority() < b.getPriority();
-                            }
-                        );
+        for (current.x = eventCenter.x - event.getRadius();
+        current.x <= eventCenter.x + event.getRadius();
+        current.x++) {
+            for (current.y = eventCenter.y - event.getRadius(); 
+            current.y <= eventCenter.y + event.getRadius(); 
+            current.y++) {
+                counter++;
+                if (!eventMatrix[current]) {
+                    eventMatrix[current] = new std::vector<str>;
+                    eventMatrix[current]->push_back(event.GetId());
+                } else {
+                    eventMatrix[current]->push_back(event.GetId());  
+                    std::push_heap(
+                        eventMatrix[current]->begin(),
+                        eventMatrix[current]->end(),
+                        ComparePriorities
+                    );
                 }
             }
         }
+        cout << "event " << event.GetName() << " was sprayed " << counter << " times" << endl;
     }
 }
 
 void EventsData::RemoveFrontEvent(Coord point) {
     Event* event = getEvent(point);
+    if (!event) return;
     Coord center = event->GetCoord();
     int radius = event->getRadius();
+    int counter = 0;
+    Coord startPos;
 
-    for (int i = center.x - radius ; i < center.x + radius; i++) {
-        for (int j = center.y - radius ; j < center.y + radius; j++) {
-            if ( surfaceData.CoordIsValid( {i, j} ) ) {
-                std::pop_heap(eventMatrix[i][j]->begin(), 
-                eventMatrix[i][j]->end(),
-                [](Event& a, Event& b) {
-                    return a.getPriority() < b.getPriority();
-                } );
+    for (startPos.x = center.x - radius; startPos.x <= center.x + radius; startPos.x++) {
+        for (startPos.y = center.y - radius; startPos.y <= center.y + radius; startPos.y++) {
+            if ( surfaceData.CoordIsValid( startPos ) ) {
+                std::pop_heap(eventMatrix[startPos]->begin(), 
+                    eventMatrix[startPos]->end(),
+                    ComparePriorities 
+                );
+                eventMatrix[startPos]->pop_back();
+                counter++;
             };
         }
     }
+    cout << counter << " events were deleted" << endl;
 }
 
 bool EventsData::EventExists(str ID) {
@@ -117,35 +122,36 @@ bool EventsData::EventExists(str ID) {
 //---------------- ArtifactsData --------------------------
 //---------------------------------------------------------
 
-bool ArtifactsData::Init() {
+ArtifactsData::ArtifactsData() {
     ArtifactFactory aFactory;
-    str path = systemData.resourcesDirectory + systemData.nextLocationName + "/artifacts";
-    aFactory.InitAll(path, currentArtifactsList);
-    return true;
+    aFactory.InitAll(systemData.artifactsPath.u8string(), currentArtifactsList); 
 }
 
-Artifact* ArtifactsData::getArtifact(const str key) {
-    return &currentArtifactsList.at(key);
+std::shared_ptr<Artifact> ArtifactsData::getArtifact(const str key) {
+    return std::make_shared<Artifact> (currentArtifactsList.at(key));
 }
 
 bool ArtifactsData::ArtifactExists(str ID) {
-    return currentArtifactsList.count(ID);
+    return currentArtifactsList.find(ID) != currentArtifactsList.end();
 }
 
 //---------------------------------------------------------
 //--------------------- GameData --------------------------
 //---------------------------------------------------------
 
-
+void GameData::WriteToDiary(str note) {
+    diaryString = note;
+}
 
 //---------------------------------------------------------
 //--------------------- SystemData ------------------------
 //---------------------------------------------------------
 
 SystemData::SystemData(str _nextLocationName)
-: 
-resourcesDirectory("resources/"), 
-nextLocationName(_nextLocationName), 
-mapName("map") {
-
+: nextLocationName(_nextLocationName) {
+    cout << "systemData initialized" << endl;
+    resourcesPath = resourcesDirectory;
+    artifactsPath = resourcesPath / nextLocationName / "artifacts";
+    eventsPath = resourcesPath / nextLocationName / "events";
+    mapPath = resourcesPath / nextLocationName / mapName;
 }

@@ -3,6 +3,8 @@
 
 #include "item.h"
 #include "matrix.hpp"
+#include <vector>
+
 
 /* 
 // struct for terrain modifiers, contains name and power factor
@@ -15,9 +17,12 @@ struct surfaceModifier {
 class Surface : public Item {
 public:
     // surfaceModifier getModifier();
+    Surface(str, str, int, int);
+    short getSpeed();
 private:
-    str modifier;
+    // str modifier;
     short modFactor;
+    short speed;
 };
 
 
@@ -31,12 +36,14 @@ public:
     bool IsWalkable(Coord);
     bool CoordIsValid(Coord);
     short getSurface(Coord);
+    short getSurfSpeed(Coord);
     Surface& getSurface(str);
     const Matrix<char>& getMap();
 private:
     int mapWidth;
     int mapHeight;
     Matrix<char> surfaceMatrix;
+    std::vector<Surface> surfaceList;
     // std::unordered_map<str, Surface> currentSurfaceList; // currently useless
     // std::unordered_map<str, Surface> globalSurfaceList; //will be added in future
 };

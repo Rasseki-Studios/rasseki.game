@@ -5,8 +5,6 @@
 
 // enumeration representing uniqe color on the bmp file
 enum rgbColor {
-/*
-*/
     red_color = 255000000, 
     yellow_color = 255255000, 
     green_color = 255000, 
@@ -38,37 +36,27 @@ void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
     int intColor; // 9-digit RGB representation
     RGBApixel tempPixel;
 
-    // //allocating memory
-    // short** tempMatrix = new short* [mapHeight];
-    // for (i = 0; i < data.mapHeight; i++) {
-    //     tempMatrix[i] = new short [data.mapWidth];
-    // }
-
-    // Matrix<char> matrix (mapWidth, mapHeight);
-
     //row by row scanning of bmp file and transformation colours to surface types
     for (int i = 0; i < mapHeight; i++) {
         for (int j = 0; j < mapWidth; j++) {
-            tempPixel = map.GetPixel(i,j);
+            tempPixel = map.GetPixel(j, i);
             intColor = tempPixel.Red * 1000000 + tempPixel.Green * 1000 + tempPixel.Blue;
             switch (intColor) {
+                // as for now we mark several surfaces as unwalkable
                 case black_color:
-                    matrix[{i, j}] = black;
+                    matrix[{j, i}] = black; 
                     break;
                 case bloody_color:
-                    matrix[{i, j}] = black;
+                    matrix[{j, i}] = black;
                     break;
                 case blue_color:
-                    matrix[{i, j}] = black;
+                    matrix[{j, i}] = black;
                     break;
                 case gold_color:
-                    matrix[{i, j}] = road;
+                    matrix[{j, i}] = road;
                     break;
-                // case white_color:
-                //     matrix[{i, j}] = black)
-                //     break;
                 default: 
-                    matrix[{i, j}] = field;
+                    matrix[{j, i}] = field;
                     break;
             }
         set.insert(intColor);
@@ -78,6 +66,4 @@ void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
-    // surfaceMatrix = tempMatrix;
-    // return matrix;
 }
