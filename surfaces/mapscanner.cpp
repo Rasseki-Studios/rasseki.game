@@ -22,7 +22,7 @@ enum rgbColor {
 
 // simple enumeration for storing map in memory
 // enum mapColor {black, red, yellow, blue, green, white};
-enum mapColor {black, mountain, field, road};
+enum mapColor {black, field, road};
 
 void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
     std::unordered_set<int> set;
@@ -42,11 +42,12 @@ void MapScanner::FillMatrix(const str filename, Matrix<char>& matrix) {
             tempPixel = map.GetPixel(j, i);
             intColor = tempPixel.Red * 1000000 + tempPixel.Green * 1000 + tempPixel.Blue;
             switch (intColor) {
+                // as for now we mark several surfaces as unwalkable
                 case black_color:
-                    matrix[{j, i}] = black;
+                    matrix[{j, i}] = black; 
                     break;
                 case bloody_color:
-                    matrix[{j, i}] = mountain;
+                    matrix[{j, i}] = black;
                     break;
                 case blue_color:
                     matrix[{j, i}] = black;

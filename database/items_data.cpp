@@ -1,9 +1,10 @@
+#include <algorithm>
+#include <vector>
+
 #include "session_data.h"
 // #include "event_factory.h"
 #include "artifact_factory.h"
 #include "mapscanner.h"
-#include <algorithm>
-#include <vector>
 
 using namespace SessionData;
 using std::vector;
@@ -13,11 +14,10 @@ using std::cout;
 //----------------- EventsData ----------------------------
 //---------------------------------------------------------
 
-EventsData::EventsData() : eventMatrix(gameData.mapWidth, gameData.mapHeight, true)
-{
+EventsData::EventsData() 
+: eventMatrix(gameData.mapWidth, gameData.mapHeight, true) {
     EventFactory eFactory;
-    str path = systemData.resourcesDirectory + systemData.nextLocationName + "/events";
-    eFactory.InitAll(path, currentEventList); 
+    eFactory.InitAll(systemData.eventsPath.u8string(), currentEventList); 
     PulverizeEvents(currentEventList);
 }
 
@@ -27,7 +27,6 @@ EventsData::~EventsData() {
     for (temp.y = 0; temp.y < eventMatrix.getHeight(); temp.y++) {
         for (temp.x = 0; temp.x < eventMatrix.getHeight(); temp.x++) {
             if (eventMatrix[temp]) {
-                // cout << "deleting event at " << temp << endl;   
                 counter++;
                 delete eventMatrix[temp];
             }
@@ -74,8 +73,6 @@ add event to map
             for (current.y = eventCenter.y - event.getRadius(); 
             current.y <= eventCenter.y + event.getRadius(); 
             current.y++) {
-                // std::cout << "spraying event \"" << event.GetName() <<"\" at " 
-                // << current.x << ", " << current.y  << endl;
                 counter++;
                 if (!eventMatrix[current]) {
                     eventMatrix[current] = new std::vector<str>;
@@ -114,7 +111,7 @@ void EventsData::RemoveFrontEvent(Coord point) {
             };
         }
     }
-    cout << counter<< " events were deleted" << endl;
+    cout << counter << " events were deleted" << endl;
 }
 
 bool EventsData::EventExists(str ID) {
@@ -127,8 +124,7 @@ bool EventsData::EventExists(str ID) {
 
 ArtifactsData::ArtifactsData() {
     ArtifactFactory aFactory;
-    str path = systemData.resourcesDirectory + systemData.nextLocationName + "/artifacts";
-    aFactory.InitAll(path, currentArtifactsList); 
+    aFactory.InitAll(systemData.artifactsPath.u8string(), currentArtifactsList); 
 }
 
 std::shared_ptr<Artifact> ArtifactsData::getArtifact(const str key) {
@@ -136,8 +132,7 @@ std::shared_ptr<Artifact> ArtifactsData::getArtifact(const str key) {
 }
 
 bool ArtifactsData::ArtifactExists(str ID) {
-    return currentArtifactsList.count(ID);
-    // return currentArtifactsList.find(ID) != currentArtifactsList.end();
+    return currentArtifactsList.find(ID) != currentArtifactsList.end();
 }
 
 //---------------------------------------------------------
@@ -153,9 +148,10 @@ void GameData::WriteToDiary(str note) {
 //---------------------------------------------------------
 
 SystemData::SystemData(str _nextLocationName)
-: 
-resourcesDirectory("resources/"), 
-nextLocationName(_nextLocationName), 
-mapName("map") {
+: nextLocationName(_nextLocationName) {
     cout << "systemData initialized" << endl;
+    resourcesPath = resourcesDirectory;
+    artifactsPath = resourcesPath / nextLocationName / "artifacts";
+    eventsPath = resourcesPath / nextLocationName / "events";
+    mapPath = resourcesPath / nextLocationName / mapName;
 }

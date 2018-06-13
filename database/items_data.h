@@ -2,22 +2,30 @@
 #define ITEMSDATA
 
 #include <string>
+#include <experimental/filesystem>
 #include <unordered_map>
 #include <memory>
 
 #include "hero.h"
 #include "event_factory.h"
 #include "artifact.h"
-#include "surface.h"    
+#include "surface.h"
 #include "matrix.hpp"
+// #include "session_data.h"
+#include "database_config.h"
+
+namespace fs = std::experimental::filesystem;
 
 class SystemData {
 public:
-    SystemData(str nextLocationName = "default_location");
-    str resourcesDirectory; // directory with all the resources
+    SystemData(str nextLocationName = defaultLocation);
+    fs::path resourcesPath;
+    fs::path artifactsPath;
+    fs::path eventsPath;
+    fs::path mapPath;
+
     str nextLocationName; // ID of a map going to be loaded
     str currentLocationName; // ID of a map loaded
-    str mapName; // name of the .bmp file
 };
 
 class GameData {
