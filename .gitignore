@@ -5,3 +5,16 @@
 *.out
 *.exe
 *test*
+*.gch
+.idea
+*.pro.user*
+libAdapter.a
+*Makefile
+*debug*
+*Debug*
+*qmake*
+rasseki_game
+temp
+ui_*.h
+qrc_resource.cpp
+*.yaml

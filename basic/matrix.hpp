@@ -5,6 +5,9 @@
 
 #include <stdexcept>
 #include <iostream>
+#include <iomanip>
+
+using std::ostream;
 using std::cerr;
 using std::endl;
 
@@ -15,34 +18,40 @@ struct Coord {
     inline Coord(const Coord &coord);
     inline Coord(int, int);
     inline friend bool operator==(const Coord& left, const Coord& right);
+    inline friend ostream& operator<<(ostream&, const Coord &coord);
 };
 
 Coord::Coord(const Coord &coord) : x(coord.x), y(coord.y) {}
+Coord::Coord(int _x, int _y) : x(_x), y(_y) {}
 
-Coord::Coord(int _x, int _y) :
-    x(_x),
-    y(_y) {
-}
-
-bool operator==(const Coord& left, const Coord& right) {
+bool operator==(const Coord &left, const Coord &right) {
     return left.x == right.x && left.y == right.y;
 }
 
+ostream& operator<<(ostream &stream, const Coord &coord) {
+    stream << coord.x << "," << coord.y;
+    return stream;
+}
+
 /* ************************************************************************* */
+
+template <typename T> class Matrix;
+template <typename T> ostream& operator<<(ostream&, const Matrix<T>&);
 
 template <typename T>
 class Matrix {
 public:
     Matrix(const int _width, const int _height, const bool defaultInit = false);
     ~Matrix();
-    // T getValue(const Coord) const;
-    // void setValue(const Coord, T);
     bool CoordIsValid(const Coord &coord) const;
     int getWidth() const;
     int getHeight() const;
 
     T& operator[](const Coord &coord);
     const T& operator[](const Coord &coord) const;
+
+    /* useful for debug */
+    friend ostream& operator<< <T>(ostream& stream, const Matrix<T> &matrix);
 
 private:
     T **array;
@@ -90,30 +99,20 @@ const T& Matrix<T>::operator[](const Coord &coord) const {
     if (!CoordIsValid(coord)) {
         cerr << "reading coordinate " << coord.x - 1 << "," << coord.y - 1 << endl;
         cerr << "max coordinate is " << width - 1 << "," << height - 1 << endl;
-        throw std::out_of_range( " reading filed " );
+        throw std::out_of_range( " reading failed " );
     }
     return array[coord.x][coord.y];
 }
 
-// template <typename T>
-// T Matrix<T>::getValue(const Coord coord) const {
-//     if (!CoordIsValid(coord)) {
-//         cerr << "reading coordinate " << coord.x - 1 << "," << coord.y - 1 << endl;
-//         cerr << "max coordinate is " << width - 1 << "," << height - 1 << endl;
-//         throw std::out_of_range( "wrong matrix coordinate" );
-//     }
-//     return array[coord.x][coord.y];
-// }
-
-// template <typename T>
-// void Matrix<T>::setValue(const Coord coord, T value) {
-//     if (!CoordIsValid(coord)) {
-//         cerr << "writing coordinate " << coord.x - 1 << "," << coord.y - 1 << endl;
-//         cerr << "max coordinate is " << width - 1 << "," << height - 1 << endl;
-//         throw std::out_of_range( "wrong matrix coordinate" );
-//     }
-//     array[coord.x][coord.y] = value;
-// }
+template <typename T>
+ostream& operator<<(ostream &stream, const Matrix<T> &matrix) {
+    for (int i = 0; i != matrix.width; i++) {
+        for (int j = 0; j != matrix.height; j++)
+            stream << std::setw(3) << std::left << (int)matrix.array[i][j] << " ";
+        stream << endl;
+    }
+    return stream;
+}
 
 template <typename T>
 int Matrix<T>::getWidth() const {

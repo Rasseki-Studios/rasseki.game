@@ -1,3 +1,5 @@
+/* by stanford */
+
 #ifndef ARTIFACT_PARSER
 #define ARTIFACT_PARSER
 
@@ -8,16 +10,16 @@
 using std::cout;
 using std::endl;
 
-#include "artifact.h"
+#include "artifact_factory.h"
 
 #include "libs/json.hpp"
 using json = nlohmann::json;
 
 void from_json(const json &j, ArtifactData &artifact) {
-    auto id =  j.at("id").get<str>();
-    auto name = j.at("name").get<str>();
+    auto id    = j.at("id").get<str>();
+    auto name  = j.at("name").get<str>();
     auto level = j.at("level").get<short>();
-    auto type = j.at("type").get<str>();
+    auto type  = j.at("type").get<str>();
     auto power = j.at("power").get<short>();
 
     artifact.set(id, name, level, type, power);

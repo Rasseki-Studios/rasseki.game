@@ -1,75 +1,73 @@
-#ifndef ARTIFACT_FACTORY
-#define ARTIFACT_FACTORY
+/* by stanford */
 
-#include <fstream>
-#include <utility>
-#include "artifact.h"
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
 
 //for error printing, should be changed to QT error printer
 #include <iostream>
 using std::cout;
 using std::endl;
 
-#include <experimental/filesystem>
-namespace fs = std::experimental::filesystem::v1;
+#include "artifact_factory.h"
+#include "artifacts_config.h"
 
-using std::make_pair;
+#include "session_data.h"
+using SessionData::artifactsData;
 
-/* DEBUG_FUNCTION */
-void ArtifactData::PrintArtifactData() {
-    cout << "ID: " << ID << endl;
-    cout << "name: " << name << endl;
-    cout << "level: " << level << endl;
-    cout << "type: " << type << endl;
-    cout << "powers: " << power << endl;
-}
+bool ArtifactData::isValid() {
+    cout << "Checking artifact \"" << std::setw(25)
+        << std::left << ID + "\"... ";
 
-bool ArtifactFactory::isValid(ArtifactData &ar_data) {
-    if (/* checking if such artifact already exists */0) {
-        cout << "such artifact already exists" << endl;
-        return 0;
-    } else if (ar_data.level <= 0) {
-        cout << "level is not valid" << endl;
-        return 0;
-    } else if (typeList.find(ar_data.type) == typeList.end()) {
-        cout << "type is invalid" << endl;
-        return 0;
-    } else {
-        return 1;
+    if (artifactsData.ArtifactExists(ID)) {
+        cout << "FAIL" << endl;
+        cout << "Artifact with ID " << ID
+             << " already exists." << endl;
+        return false;
+    } else if (level <= 0) {
+        cout << "FAIL" << endl;
+        cout << "Level is not valid." << endl;
+        return false;
+    } else if (typeList.find(type) == typeList.end()) {
+        cout << "FAIL" << endl;
+        cout << "Type is invalid." << endl;
+        return false;
     }
+    cout << "OK" << endl;
+    return true;
 }
 
-Artifact* ArtifactFactory::Create(ArtifactData &ar_data) {
+void ArtifactData::set(
+    str _ID, str _name, short _level,
+    str _type, short _power) {
+
+    ID = _ID;
+    name = _name;
+    level = _level;
+    type = _type;
+    power = _power;
+}
+
+Artifact& ArtifactFactory::Create(ArtifactData &ar_data) {
     Artifact *artifact = new Artifact(
         ar_data.ID, ar_data.name, ar_data.level,
         ar_data.type, ar_data.power
     );
-    return artifact;
+    return *artifact;
 }
 
 int ArtifactFactory::InitAll(str folder, unordered_map<str, Artifact> &artifactMap) {
     int artifactCount = 0;
     for (auto &it : fs::directory_iterator(folder)) {
-        if (it.path().extension() == ".json") {
-            tempData = parser.getData(it.path());
-            if (!tempData) continue;
-            for (auto it : *tempData) {
-                if (artifactMap.find(it.ID) != artifactMap.end()) continue;
-                if (!isValid(it)) {
-                    cout << "artifact <" << it.ID << "> not read." << endl;
-                    continue;
-                }
-                Artifact *ar = Create(it);
-                artifactMap.insert(make_pair(it.ID, *ar));
-                artifactCount++;
-            }
+        tempData = parser.getData(it.path().string());
+        if (!tempData) continue;
+        for (auto it : *tempData) {
+            if (!it.isValid()) continue;
+            Artifact &ar = Create(it);
+            artifactMap.emplace(it.ID, ar);
+            artifactCount++;
         }
     }
-    for (auto it : artifactMap) {
-        cout << "artifact <" << it.second.GetId() << "> read." << endl;
-    }
-    // delete tempData;
+    tempData->clear();
+    tempData->shrink_to_fit();
     return artifactCount;
 }
-
-#endif  // ARTIFACT_FACTORY

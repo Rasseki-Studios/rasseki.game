@@ -5,10 +5,6 @@
 using std::cout;
 using std::endl;
 
-// hardcode defines. will be removed soon
-#define WALL 10    //непроходимая ячейка
-#define DIRT 1    //затруднённая проходимость (грязь)
-#define ROAD 2   //отличная проходимость (дорога)
 
 using namespace SessionData;
 
@@ -30,12 +26,20 @@ Coord Movable::Step() {
         coordinates = path[path.size() - 1];
         path.pop_back();
     }
+    cout << coordinates << endl;
     return coordinates;
 }
 
 short Movable::GetSpeed() const {
     return speed;
 }
+
+
+
+/* ************************** LEE  WAVE  ALGORITHM **************************** */
+/* ****************************** by stanford ********************************* */
+
+#define WALL 0    //непроходимая ячейка
 
 WaveAlgorithm::WaveAlgorithm()
 :
@@ -44,24 +48,18 @@ height( surfaceData.getHeight() ),
 dataMap( surfaceData.getMap() ),
 waveMap(width, height, true) {}
 
-    // Reload();
-// void WaveAlgorithm::Reload() {
-// }
-
 std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     std::vector<Coord> emptyVector(0);
 
-    // cout << "start:" << start.x << " " << start.y << endl;
-    // cout << "dest:" << dest.x << " " << dest.y << endl;
-    // cout << "start by getSurf: " << surfaceData.getSurface(start) << endl;
-    // cout << "dest by getSurf: " << surfaceData.getSurface(dest) << endl;
-    // cout << "start surf is " << dataMap[start.x][start.y] << endl;
-    // cout << "dest surf is " << dataMap[dest.x][dest.y] << endl;
-    if (dataMap[start] == WALL
-    || dataMap[dest] == WALL) {
+    cout << "start coord is " << start << " " << endl;
+    cout << "destination coord is " << dest << " " << endl;
+    cout << "terrain index there is " << (int)dataMap[dest] << endl;
+
+    if (!dataMap.CoordIsValid(start)
+    ||  !dataMap.CoordIsValid(dest)
+    ||  dataMap[start] == WALL
+    ||  dataMap[dest] == WALL) {
         cout << "Check at algorithm start failed" << endl;
-    // + сюда добавить проверку на валидность конечной координаты
-        //если стартовая или конечная ячейка непроходима
         return emptyVector;
     }
 
@@ -75,25 +73,18 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
         auto newEdge = new std::vector<Coord>();
         waveIndex++;
         for (auto edge : *waveEdge) {
-            for (auto neighbour : neighbours) {
-                Coord current(edge.x + neighbour.x, edge.y + neighbour.y);
-                if (!waveMap.CoordIsValid(current)) continue;
-                cout << current.x << " " << current.y << endl;
-                int a = (int)waveMap[current];
-                cout << (int)waveMap[current] << endl;
-                cout << "AM I HERE???" << endl;
-                if (/* waveMap[current] *//* a != 0 */1) {
-                    cout << "i am alive" << endl;
-                    continue;
-                }
-                if (current == dest) {
-                    waveMap[current] = waveIndex;
-                    delete newEdge;
-                    delete waveEdge;
-                    return GetBackPath(/* start,  */dest);
-                } else if (dataMap[current] != WALL) {
+            for (auto it : neighbours) {
+                Coord current(edge.x + it.x, edge.y + it.y);
+                if (waveMap.CoordIsValid(current)
+                && waveMap[current] == 0
+                && dataMap[current] != WALL) {
                     newEdge->push_back(current);
                     waveMap[current] = waveIndex;
+                } else continue;
+                if (current == dest) {
+                    delete newEdge;
+                    delete waveEdge;
+                    return GetBackPath(dest);
                 }
             }
         }
@@ -106,25 +97,24 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     return emptyVector;
 }
 
-std::vector<Coord> WaveAlgorithm::GetBackPath(/* Coord start,  */Coord dest) {
-    //восстановление пути
-
+std::vector<Coord> WaveAlgorithm::GetBackPath(Coord dest) {
     int length = waveMap[dest];
-    //длина кратчайшего пути из dest в dest
 
-    Coord step(dest.x, dest.y);  //текущий шаг
-    std::vector<Coord> path(length);  //выделяем место под шаги
+    Coord step(dest);  // current step
+    cout << "shortest path length is " << length << endl;
+    std::vector<Coord> path(length - 1);
+    path.at(0) = dest;
 
-    for (int i = length; i != 1; i--) {
+    for (int i = length; i != 2; i--) {
         for (auto it : neighbours) {
             Coord current(step.x + it.x, step.y + it.y);
             if (!surfaceData.CoordIsValid(current)) continue;
             if (waveMap[current] == i - 1) {
+                path.at(length - i + 1) = current;
                 step = current;
                 break;
             }
         }
-        path.at(length - i) = step;
     }
 
     return path;

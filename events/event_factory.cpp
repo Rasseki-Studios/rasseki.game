@@ -1,3 +1,5 @@
+/* by stanford */
+
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
 
@@ -6,58 +8,51 @@ namespace fs = std::experimental::filesystem;
 using std::cout;
 using std::endl;
 
-#include "session_data.h"
 #include "event_factory.h"
+#include "events_config.h"
 
-using namespace SessionData;
+#include "session_data.h"
+using SessionData::eventsData;
+using SessionData::surfaceData;
 
-bool EventFactory::isValid(EventData &ev_data) {
-    if (/* checking if such event already exists */0) {
-        cout << "such event already exists" << endl;
-        return 0;
-    } else if (ev_data.level <= 0) {
-        cout << "level is not valid" << endl;
-        return 0;
-    } else if (ev_data.priority > 6 && ev_data.priority <= 0) {
-        cout << "level is not valid" << endl;
-        return 0;
-    } else if (!surfaceData.RadiusIsValid(ev_data.coordinate, ev_data.radius)) {
-        cout << "radius or Coord are not valid" << endl; 
-        return 0;
+bool EventData::isValid() {
+    cout << "Checking event \"" << std::setw(28)
+         << std::left << ID + "\"... ";
+
+    if (eventsData.EventExists(ID)) {
+        cout << "FAIL" << endl;
+        cout << "Event with ID " << ID 
+             << " already exists." << endl;
+        return false;
+    } else if (level <= 0) {
+        cout << "FAIL" << endl;
+        cout << "Level is not valid." << endl;
+        return false;
+    } else if (priority > MAX_EVENT_PRIORITY && priority <= MIN_EVENT_PRIORITY) {
+        cout << "FAIL" << endl;
+        cout << "Invalid priority. It can be between " 
+             << MIN_EVENT_PRIORITY << " and "
+             << MAX_EVENT_PRIORITY << endl;
+        return false;
+    } else if (!surfaceData.RadiusIsValid(coordinate, radius)) {
+        cout << "FAIL" << endl;
+        cout << "Radius or coord are not valid." << endl;
+        return false;
     }
-    for (auto it : ev_data.actions) {
-        // if (it.subjectID != "hero") {
-        //     cout << "subjectID is not valid" << endl;
-        //     return 0;
-        /* } else  */if (artifactsData.ArtifactExists(ev_data.ID)) {
-            cout << "object [artifact] is not valid" << endl;
-            return 0;
-        } else if (commandList.find(it.command) == commandList.end()) {
-            cout << "command is not valid" << endl;
-            return 0;
-        } else if (conditionList.find(it.condition) == conditionList.end() 
-            && it.condition != "") {
-            cout << "condition is not valid" << endl;
-            return 0;
-        } else if (it.duration < 0 || it.duration > 10) {
-            cout << "duration is not valid" << endl;
-            return 0;
+    for (auto it : actions) {
+        if (!it.isValid()) {
+            actions.clear();
+            return false;
         }
     }
-    return 1;
+    cout << "OK" << endl;
+    return true;
 }
 
-Event* EventFactory::Create(EventData &ev_data) {
-    vector<Action> actions;
+Event& EventFactory::Create(EventData &ev_data) {
+    vector<Action *> actions;
     for (auto it : ev_data.actions) {
-        Action newAction(
-            // &hero,
-            it.command,
-            it.objectID,
-            it.diaryNote,
-            it.condition,
-            it.duration
-        );
+        auto newAction = actionFactory.Create(it);
         actions.push_back(newAction);
     }
     Event *ev = new Event(
@@ -65,52 +60,23 @@ Event* EventFactory::Create(EventData &ev_data) {
         ev_data.coordinate, ev_data.radius, 
         ev_data.priority, actions
     );
-    return ev;
+
+    return *ev;
 }
 
 int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
     int eventCount = 0;
     for (auto &it : fs::directory_iterator(folder)) {
-        if (it.path().extension() == ".json") {
-            tempData = parser.getData(it.path());
-            if (!tempData) continue;
-            for (auto it : *tempData) {
-                if (eventsMap.find(it.ID) != eventsMap.end()) continue;
-                if (isValid(it)) {
-                    cout << "event <" << it.ID << "> read." << endl;
-                    // Event* ev = Create(it);
-                    // eventsMap[it.ID] = *ev;
-                    eventCount++;
-                } else {
-                    cout << "event <" << it.ID << "> not read." << endl;
-                    continue;
-                }
-            }
+        tempData = eventParser.getData(it.path().string());
+        if (!tempData) continue;
+        for (auto it : *tempData) {
+            if (!it.isValid()) continue;
+            Event &ev = Create(it);
+            eventsMap.emplace(it.ID, ev);
+            eventCount++;
         }
     }
     return eventCount;
-}
-
-void ActionData::set(
-    /* str _subjectID,  */str _command, str _objectID,
-    str _toDiary, str _condition, short _duration) {
-
-    // subjectID = _subjectID;
-    command = _command;
-    objectID = _objectID;
-    diaryNote = _toDiary;
-    condition = _condition;
-    duration = _duration;
-}
-
-/* DEBUG_FUNCTION */
-void ActionData::PrintActionData() {
-    cout << "condition: " << condition << endl;
-    // cout << "subjectID: " << subjectID << endl;
-    cout << "command: " << command << endl;  // Converts in function in run()
-    cout << "objectID: " << objectID << endl;  // Item *object in future
-    cout << "diaryNote: " << diaryNote << endl;
-    cout << "duration: " << duration << endl;
 }
 
 void EventData::set(
@@ -124,17 +90,4 @@ void EventData::set(
     coordinate = _coord;
     radius = _rad;
     actions = _actions;
-}
-
-/* DEBUG_FUNCTION */
-void EventData::PrintEventData() {
-    cout << "ID: " << ID << endl;
-    cout << "name: " << name << endl;
-    cout << "level: " << level << endl;
-    cout << "coords: " << coordinate.x << ", " << coordinate.y << endl;
-    cout << "radius: " << radius << endl;
-    for (int i = 0; i < (int)actions.size(); i++) {
-        cout << endl;
-        actions[i].PrintActionData();
-    }
 }

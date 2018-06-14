@@ -1,3 +1,5 @@
+/* by stanford */
+
 #ifndef EVENT_FACTORY
 #define EVENT_FACTORY
 
@@ -7,6 +9,7 @@
 #include <unordered_map>
 
 #include "event.h"
+#include "action_factory.h"
 
 using std::vector;
 using std::shared_ptr;
@@ -14,20 +17,12 @@ using std::make_shared;
 using std::unordered_set;
 using std::unordered_map;
 
-struct ActionData {
-    // Action is not an Item and has no own factory or parser
-    str /* subjectID,  */command, objectID, diaryNote, condition;
-    short duration;
-    void set(/* str,  */str, str, str, str, short);
-    /* DEBUG */ void PrintActionData();
-};
-
 struct EventData : public ItemData {
     Coord coordinate;
     short radius, priority;
     std::vector<ActionData> actions;
+    bool isValid();
     void set(str, str, short, Coord, short, short, std::vector<ActionData>);
-    /* DEBUG */ void PrintEventData();
 };
 
 class EventParser {
@@ -40,27 +35,14 @@ public:
 
 class EventFactory {
 public:
-    // EventFactory();
     int InitAll(str folder, unordered_map<str, Event>&);
 private:
-    EventParser parser;
+    EventParser eventParser;
+    ActionFactory actionFactory;
     shared_ptr<vector<EventData>> tempData;
-    // needs when there are several artifacts in one file
+    // needs when there are several events in one file
 
-    bool isValid(EventData&);
-    Event* Create(EventData&);
-    unordered_set<str> commandList {
-        "give",         // give artifact
-        "take_away",    // remove artifact
-        "wait",         // nothing
-        "fight",        // fight
-        "die"           // respawn
-    };
-    unordered_set<str> conditionList {
-        "",             // no condition
-        "win",          // win fight
-        "lose"          // lose fight
-    };
+    Event& Create(EventData&);
 };
 
 #endif

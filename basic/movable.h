@@ -4,7 +4,7 @@
 #include <vector>
 #include "surface.h"
 #include "matrix.hpp"
-#include "location.h"
+#include "located.h"
 
 class Movable : public virtual Located {
 public:
@@ -17,21 +17,24 @@ protected:
     std::vector<Coord> path;
 };
 
+
+/* ************* LEE  WAVE  ALGORITHM ************** */
+/* ***************** by stanford ******************* */
+
 class WaveAlgorithm {
 public:
     WaveAlgorithm();
-    void Reload();  //метод обновления информации о проходимости
-    std::vector<Coord> GetPath(Coord, Coord);  //составление вектора шагов
+    std::vector<Coord> GetPath(Coord, Coord);
 private:
     int width;
     int height;
-    const Matrix<char> dataMap;
+    const Matrix<char> &dataMap;
     const Coord neighbours[8] = {
         { 1,  0}, { 1, -1}, { 0, -1}, {-1, -1},
-        {-1,  0}, {-1,  1}, { 0,  1}, { 1, -1}
+        {-1,  0}, {-1,  1}, { 0,  1}, { 1,  1}
     };
-    Matrix<char> waveMap;
-    std::vector<Coord> GetBackPath(/* Coord,  */Coord);
+    Matrix<short> waveMap;
+    std::vector<Coord> GetBackPath(Coord dest);
 };
 
 #endif
