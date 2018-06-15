@@ -34,12 +34,32 @@ Coord EndOfMap() {  //получение границ карты
     return {surfaceData.getWidth(), surfaceData.getHeight()};
 }
 
-HeroData Data() {   //отправка данных о герое
+HeroData HData() {   //отправка данных о герое
     HeroData data;
     data.name = hero.GetName();
     data.level = hero.GetLevel();
     data.speed = hero.GetSpeed();
     return data;
+}
+
+bool IData(std::vector<InventoryData> &pack) {
+    if (gameData.changeInventory) {
+        //std::vector<InventoryData> pack;
+        auto artifacts = hero.GetInventory()->GetArtifacts();
+        for (auto artifact : artifacts) {
+            InventoryData note;
+            note.name = artifact->GetName();
+            note.level = artifact->GetLevel();
+            note.power = artifact->ApplyModifier(); //GetPower();
+            note.type = artifact->GetType();
+            pack.push_back(note);
+        }
+        gameData.changeInventory = false;
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 Message Write() {   //получение записей для игрового журнала

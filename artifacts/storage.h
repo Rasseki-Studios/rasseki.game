@@ -12,7 +12,9 @@ public:
     Storage(short);
     void AddArtifact(std::string);
     void RemoveArtifact(std::string);
+    int GetCount();
     std::shared_ptr<Artifact> GetArtifact(std::string);
+    std::vector<std::shared_ptr<Artifact>> GetArtifacts();
 private:
     std::vector<std::shared_ptr<Artifact>> artifacts;
 };

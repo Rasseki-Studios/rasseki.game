@@ -3,7 +3,6 @@
 #include "libAdapter.h"
 #include "config.h"
 #include "style.h"
-#include <QDebug>
 
 Journal::Journal(QWidget *parent) : QTextEdit(parent)
 {
@@ -13,7 +12,8 @@ Journal::Journal(QWidget *parent) : QTextEdit(parent)
     timer->start(timer_delay);   //стартуем таймер
 }
 
-void Journal::slotWrite() {
+void Journal::slotWrite()
+{
     Message post = Write();
     if (post.text != "") {
         // append((post.writer + ": " + post.text).c_str());

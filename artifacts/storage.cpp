@@ -24,6 +24,10 @@ void Storage::RemoveArtifact(std::string id) {
     artifacts.erase(deleted);
 }
 
+int Storage::GetCount() {
+    return artifacts.size();
+}
+
 std::shared_ptr<Artifact> Storage::GetArtifact(std::string id) {
     std::shared_ptr<Artifact> searched;
     for (auto artifact : artifacts) {
@@ -33,4 +37,8 @@ std::shared_ptr<Artifact> Storage::GetArtifact(std::string id) {
         }
     }
     return searched;
+}
+
+std::vector<std::shared_ptr<Artifact>> Storage::GetArtifacts() {
+    return artifacts;
 }

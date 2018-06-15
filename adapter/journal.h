@@ -17,7 +17,6 @@ public slots:
 
 private:
     std::shared_ptr<QTimer> timer;
-
 };
 
 #endif // JOURNAL_H

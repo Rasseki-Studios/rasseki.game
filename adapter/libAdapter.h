@@ -21,12 +21,20 @@ struct HeroData {
     int speed;
 };
 
+struct InventoryData {
+    std::string name;
+    int level;
+    int power;
+    std::string type;
+};
+
 int Game();
 void Moving();
 Message Write();
 int Go(int x, int y);
 Coord HeroCoords();
 Coord EndOfMap();
-HeroData Data();
+HeroData HData();
+bool IData(std::vector<InventoryData>&);
 
 #endif //LIBADAPTER_H

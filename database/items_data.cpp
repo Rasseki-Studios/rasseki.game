@@ -141,6 +141,7 @@ bool ArtifactsData::ArtifactExists(str ID) {
 
 void GameData::WriteToDiary(str note) {
     diaryString = note;
+    changeInventory = false;
 }
 
 //---------------------------------------------------------

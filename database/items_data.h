@@ -36,6 +36,7 @@ public:
     void WriteToDiary(str);
     str diaryString; // what we are writin'
     str writer;  // who is writin'
+    bool changeInventory;
 };
 
 class EventsData {

@@ -36,7 +36,8 @@ SOURCES += main.cpp \
     windows/menuwindow.cpp \
     windows/savewindow.cpp \
     windows/gamewindow.cpp \
-    windows/loadwindow.cpp
+    windows/loadwindow.cpp \
+    adapter/artifactlist.cpp
 
 HEADERS += windows/menuwindow.h \
     windows/savewindow.h \
@@ -67,7 +68,8 @@ HEADERS += windows/menuwindow.h \
     creatures/hero.h \
     configs/russian.h \
     configs/paths.h \
-    configs/config.h
+    configs/config.h \
+    adapter/artifactlist.h
 
 FORMS += windows/menuwindow.ui \
     windows/gamewindow.ui \
