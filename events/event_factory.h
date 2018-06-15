@@ -1,4 +1,4 @@
-/*  by stanford */
+/* by stanford */
 
 #ifndef EVENT_FACTORY
 #define EVENT_FACTORY

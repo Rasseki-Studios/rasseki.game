@@ -1,4 +1,4 @@
-/*  by stanford */
+/* by stanford */
 
 #ifndef ARTIFACT_PARSER
 #define ARTIFACT_PARSER

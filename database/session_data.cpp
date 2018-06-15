@@ -9,6 +9,7 @@ namespace SessionData {
     EventsData eventsData;
 
     // hero initialization
+    // temporarily solution
     std::string name = "Moleque";
     std::string id = "super_hero";
     Coord start(651, 414);

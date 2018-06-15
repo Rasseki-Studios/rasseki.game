@@ -1,4 +1,4 @@
-/*  by stanford */
+/* by stanford */
 
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
@@ -27,7 +27,7 @@ bool ArtifactData::isValid() {
         cout << "FAIL" << endl;
         cout << "Level is not valid." << endl;
         return false;
-    } else if (/* typeList.find(type) == typeList.end() */0) {
+    } else if (typeList.find(type) == typeList.end()) {
         cout << "FAIL" << endl;
         cout << "Type is invalid." << endl;
         return false;
@@ -62,7 +62,6 @@ int ArtifactFactory::InitAll(str folder, unordered_map<str, Artifact> &artifactM
         if (!tempData) continue;
         for (auto it : *tempData) {
             if (!it.isValid()) continue;
-            cout << "OK" << endl;
             Artifact &ar = Create(it);
             artifactMap.emplace(it.ID, ar);
             artifactCount++;

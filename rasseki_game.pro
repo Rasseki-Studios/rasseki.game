@@ -56,6 +56,7 @@ HEADERS += windows/menuwindow.h \
     basic/movable.h \
     artifacts/artifact.h \
     artifacts/storage.h \
+    artifacts/artifacts_config.h \
     adapter/mapview.h \
     adapter/journal.h \
     adapter/libAdapter.h \

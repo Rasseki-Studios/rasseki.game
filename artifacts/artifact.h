@@ -1,4 +1,4 @@
-/*  by stanford */
+/* by stanford */
 
 #ifndef ARTIFACT
 #define ARTIFACT

@@ -39,11 +39,7 @@ short Movable::GetSpeed() const {
 /* ************************** LEE  WAVE  ALGORITHM **************************** */
 /* ****************************** by stanford ********************************* */
 
-// hardcode defines. will be removed soon
-// waiting for mouseartiom's Surfaces...
 #define WALL 0    //непроходимая ячейка
-#define DIRT 1    //затруднённая проходимость
-#define ROAD 2    //отличная проходимость
 
 WaveAlgorithm::WaveAlgorithm()
 :
@@ -121,8 +117,5 @@ std::vector<Coord> WaveAlgorithm::GetBackPath(Coord dest) {
         }
     }
 
-    // for (auto it : path) {
-    //     cout << it << endl;
-    // }
     return path;
 }

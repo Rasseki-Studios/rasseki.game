@@ -9,4 +9,8 @@ const std::string img_archer    = ":/archer.png";
 const std::string img_map       = ":/map.jpg";
 const std::string img_menu      = ":/menu.png";
 
+const std::string defaultLocation = "default_location";
+const std::string mapName = "map.bmp";
+const std::string resourcesDirectory = "resources";
+
 #endif  // PATHS
