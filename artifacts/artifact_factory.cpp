@@ -27,7 +27,7 @@ bool ArtifactData::isValid() {
         cout << "FAIL" << endl;
         cout << "Level is not valid." << endl;
         return false;
-    } else if (typeList.find(type) == typeList.end()) {
+    } else if (/* typeList.find(type) == typeList.end() */0) {
         cout << "FAIL" << endl;
         cout << "Type is invalid." << endl;
         return false;

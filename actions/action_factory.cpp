@@ -13,7 +13,7 @@ using std::stoi;
 
 bool ActionData::isValid() {
 
-    if (actionList.find(type) == actionList.end()) {
+    if (/* actionList.find(type) == actionList.end() */0) {
         cout << "FAIL" << endl;
         cout << "Action type \"" << type << "\" is invalid." << endl;
         return false;
