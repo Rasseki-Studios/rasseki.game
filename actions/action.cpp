@@ -49,6 +49,7 @@ GiveArtifact::GiveArtifact(
 void GiveArtifact::MakeAction() const {
     /* by salman */
     hero.GetInventory()->AddArtifact(artifactID);
+    gameData.changeInventory = true;
 
     // prepared for best times, when artifact modifiers will be added
     // artifact.ApplyModifier()
