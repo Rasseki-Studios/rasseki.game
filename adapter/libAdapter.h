@@ -36,5 +36,6 @@ Coord HeroCoords();
 Coord EndOfMap();
 HeroData HData();
 bool IData(std::vector<InventoryData>&);
+void StopThread();
 
 #endif //LIBADAPTER_H

@@ -37,6 +37,7 @@ public:
     str diaryString; // what we are writin'
     str writer;  // who is writin'
     bool changeInventory = true;
+    bool tdWorking = false;
 };
 
 class EventsData {

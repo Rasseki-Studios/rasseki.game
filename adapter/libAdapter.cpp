@@ -6,7 +6,7 @@ using namespace SessionData;
 
 void Moving() {    //перемещение шагов
     Coord current = hero.GetCoord();
-    for (Coord step = hero.Step(); !(current == step); step = hero.Step()) {
+    for (Coord step = hero.Step(); !(current == step) && gameData.tdWorking; step = hero.Step()) {
         /*std::shared_ptr<Event>*/Event* event = eventsData.getEvent(step);    
         //попытка получения события в данной точке
         current = step;
@@ -74,6 +74,7 @@ Message Write() {   //получение записей для игрового 
 }
 
 int Go(int x, int y) {  //перемещение героя
+    gameData.tdWorking = true;
     gameData.writer = hero.GetName();
     if (hero.Move({x, y})) {
         gameData.diaryString = say_go;
@@ -83,4 +84,8 @@ int Go(int x, int y) {  //перемещение героя
         gameData.diaryString = say_cant_go;
     }
     return 0;
+}
+
+void StopThread() {
+    gameData.tdWorking = false;
 }

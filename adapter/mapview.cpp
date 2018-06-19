@@ -77,7 +77,8 @@ void MapView::mousePressEvent(QMouseEvent *mousePressEvt)
 {
     QPointF point = mousePressEvt->pos();
     if (td.joinable()) {
-        td.detach();
+        StopThread();
+        td.join();
     }
     int go_x = point.x() + mapScene->sceneRect().topLeft().x();
     int go_y = point.y() + mapScene->sceneRect().topLeft().y();

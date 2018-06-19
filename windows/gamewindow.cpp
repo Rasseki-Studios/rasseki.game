@@ -35,7 +35,7 @@ GameWindow::GameWindow(QWidget *parent) :
     ui->logoHero->setPixmap(hero.scaled(width, height, Qt::KeepAspectRatio));
 
     //установка стилей
-    this->setStyleSheet((css_widget + css_pushbutton + css_messagebox + css_table).c_str());
+    this->setStyleSheet((css_widget + css_pushbutton + css_messagebox + css_list + css_journal).c_str());
 
     HeroData data = HData();
     ui->nameHero->setText(data.name.c_str());
