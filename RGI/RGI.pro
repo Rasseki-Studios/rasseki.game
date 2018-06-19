@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     loadwindow.cpp \
     mapview.cpp \
     savewindow.cpp \
-    journal.cpp
+    journal.cpp \
+    artifactlist.cpp
 
 HEADERS  += menuwindow.h \
     gamewindow.h \
@@ -26,7 +27,8 @@ HEADERS  += menuwindow.h \
     mapview.h \
     savewindow.h \
     journal.h \
-    style.h
+    style.h \
+    artifactlist.h
 
 FORMS    += menuwindow.ui \
     gamewindow.ui \

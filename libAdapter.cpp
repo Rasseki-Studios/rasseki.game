@@ -5,13 +5,14 @@ using namespace SessionData;
 
 void Moving() {    //перемещение шагов
     Coord current = hero.GetCoord();
-    for (Coord step = hero.Step(); !(current == step); step = hero.Step()) {
+    for (Coord step = hero.Step(); !(current == step) && gameData.tdWorking; step = hero.Step()) {
         std::shared_ptr<Event> event = eventsData.getEvent(step);    //попытка получения события в данной точке
         if (event) {
-            event->run();
+            event->Run();
+            eventsData.RemoveFrontEvent(hero.GetCoord());
         }
-        current = step;
-        usleep(step_delay);  //временая задержка
+        std::chrono::milliseconds ms(step_delay / surfaceData.getSurfSpeed(current));
+        std::this_thread::sleep_for(ms);  //временая задержка
     }
 }
 
@@ -28,12 +29,31 @@ Coord EndOfMap() {  //получение границ карты
     return {surfaceData.getWidth(), surfaceData.getHeight()};
 }
 
-HeroData Data() {   //отправка данных о герое
+HeroData HData() {   //отправка данных о герое
     HeroData data;
     data.name = hero.GetName();
     data.level = hero.GetLevel();
     data.speed = hero.GetSpeed();
     return data;
+}
+
+bool IData(std::vector<InventoryData> &pack) {
+    if (gameData.changeInventory) { //если содержимое инвентаря изменилось
+        auto artifacts = hero.GetInventory()->GetArtifacts();
+        for (auto artifact : artifacts) {
+            InventoryData note;
+            note.name = artifact->GetName();
+            note.level = artifact->GetLevel();
+            note.power = artifact->GetPower();
+            note.type = artifact->GetType();
+            pack.push_back(note);
+        }
+        gameData.changeInventory = false;
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 Message Write() {   //получение записей для игрового журнала
@@ -47,13 +67,18 @@ Message Write() {   //получение записей для игрового 
 }
 
 int Go(int x, int y) {  //перемещение героя
-    writer = hero.GetName();
+    gameData.tdWorking = true;
+    gameData.writer = hero.GetName();
     if (hero.Move({x, y})) {
-        diaryString = say_go;
+        gameData.diaryString = say_go;
         Moving();
     }
     else {
-        diaryString = say_cant_go;
+        gameData.diaryString = say_cant_go;
     }
     return 0;
+}
+
+void StopThread() { //остановка потока теремещения
+    gameData.tdWorking = false;
 }

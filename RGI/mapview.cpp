@@ -2,7 +2,6 @@
 #include "gamewindow.h"
 #include "libAdapter.h"
 
-#include <thread>
 #include "paths.h"
 #include "game_settings.h"
 
@@ -25,8 +24,7 @@ MapView::MapView(QWidget *parent)
 
     QPixmap img_h(img_hero.c_str());  //герой
 
-    //QGraphicsItem *a = ;
-    hero = std::shared_ptr<QGraphicsItem>(mapScene->addPixmap(img_h.scaled(100, 100, Qt::KeepAspectRatio)));
+    hero = std::shared_ptr<QGraphicsItem>(mapScene->addPixmap(img_h.scaled(hero_icon_size, hero_icon_size, Qt::KeepAspectRatio)));
 
     Coord pos = HeroCoords();   //установливаем положение героя
     QPoint point(pos.x, pos.y);
@@ -49,6 +47,7 @@ MapView::MapView(QWidget *parent)
 MapView::~MapView()
 {
     if (td.joinable()) {
+        StopThread();
         td.join();
     }
 }
@@ -78,7 +77,8 @@ void MapView::mousePressEvent(QMouseEvent *mousePressEvt)
 {
     QPointF point = mousePressEvt->pos();
     if (td.joinable()) {
-        td.detach();
+        StopThread();
+        td.join();
     }
     int go_x = point.x() + mapScene->sceneRect().topLeft().x();
     int go_y = point.y() + mapScene->sceneRect().topLeft().y();
