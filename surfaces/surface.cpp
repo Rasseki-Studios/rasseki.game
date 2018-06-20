@@ -12,13 +12,10 @@ using namespace SessionData;
 SurfaceData::SurfaceData()
 :
 mapWidth(1000), mapHeight(1000), surfaceMatrix(mapWidth, mapHeight, false) {
-    MapScanner scanner;
-    scanner.FillMatrix(
-        systemData.mapPath.u8string(),
-        surfaceMatrix
-    );
-    gameData.mapWidth = mapWidth;
-    gameData.mapHeight = mapHeight;
+    MapScanner scanner(systemData.mapPath.u8string());
+    scanner.FillMatrix(surfaceMatrix);
+    // gameData.mapWidth = mapWidth;
+    // gameData.mapHeight = mapHeight;
 
     // temporarily hardcoded, will be removed in the future
     Surface Pathless((str)"Pathless", (str)"Pathless", 0, 1);
