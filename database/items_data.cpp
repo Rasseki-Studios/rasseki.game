@@ -139,6 +139,11 @@ bool ArtifactsData::ArtifactExists(str ID) {
 //--------------------- GameData --------------------------
 //---------------------------------------------------------
 
+GameData::GameData() {
+    mapHeight = surfaceData.getHeight();
+    mapWidth = surfaceData.getWidth();   
+}
+
 void GameData::WriteToDiary(str note) {
     diaryString = note;
 }

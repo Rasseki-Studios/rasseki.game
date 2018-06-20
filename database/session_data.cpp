@@ -3,8 +3,8 @@
 
 namespace SessionData {
     SystemData systemData;
-    GameData gameData;
     SurfaceData surfaceData;
+    GameData gameData;
     ArtifactsData artifactsData;
     EventsData eventsData;
 
