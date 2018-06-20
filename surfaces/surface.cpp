@@ -1,7 +1,7 @@
 #include "surface.h"
 #include "mapscanner.h"
 #include "session_data.h"
-#include "database_config.h"
+#include "config.h"
 
 using namespace SessionData;
 
@@ -11,14 +11,11 @@ using namespace SessionData;
 
 SurfaceData::SurfaceData()
 :
-mapWidth(definedMapHeight), mapHeight(definedMapHeight), surfaceMatrix(mapWidth, mapHeight, false) {
-    MapScanner scanner;
-    scanner.FillMatrix(
-        systemData.mapPath.u8string(),
-        surfaceMatrix
-    );
-    gameData.mapWidth = mapWidth;
-    gameData.mapHeight = mapHeight;
+mapWidth(definedMapWidth), mapHeight(definedMapHeight), surfaceMatrix(mapWidth, mapHeight, false) {
+    MapScanner scanner(systemData.mapPath.u8string());
+    scanner.FillMatrix(surfaceMatrix);
+    // gameData.mapWidth = mapWidth;
+    // gameData.mapHeight = mapHeight;
 
     // temporarily hardcoded, will be removed in the future
     Surface Pathless((str)"Pathless", (str)"Pathless", 0, 1);

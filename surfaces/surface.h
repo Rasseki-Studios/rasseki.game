@@ -44,8 +44,6 @@ private:
     int mapHeight;
     Matrix<char> surfaceMatrix;
     std::vector<Surface> surfaceList;
-    // std::unordered_map<str, Surface> currentSurfaceList; // currently useless
-    // std::unordered_map<str, Surface> globalSurfaceList; //will be added in future
 };
 
 class AccessMap {
