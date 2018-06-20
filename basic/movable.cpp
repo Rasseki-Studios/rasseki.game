@@ -59,7 +59,7 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     ||  !dataMap.CoordIsValid(dest)
     ||  dataMap[start] == WALL
     ||  dataMap[dest] == WALL) {
-        cout << "Check at algorithm start failed" << endl;
+        // cout << "Check at algorithm start failed" << endl;
         return emptyVector;
     }
 
