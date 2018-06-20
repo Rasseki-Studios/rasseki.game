@@ -26,7 +26,6 @@ Coord Movable::Step() {
         coordinates = path[path.size() - 1];
         path.pop_back();
     }
-    cout << coordinates << endl;
     return coordinates;
 }
 
@@ -51,15 +50,16 @@ waveMap(width, height, true) {}
 std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     std::vector<Coord> emptyVector(0);
 
-    cout << "start coord is " << start << " " << endl;
-    cout << "destination coord is " << dest << " " << endl;
-    cout << "terrain index there is " << (int)dataMap[dest] << endl;
+    /* Debug log */
+    // cout << "start coord is " << start << " " << endl;
+    // cout << "destination coord is " << dest << " " << endl;
+    // cout << "terrain index there is " << (int)dataMap[dest] << endl;
 
     if (!dataMap.CoordIsValid(start)
     ||  !dataMap.CoordIsValid(dest)
     ||  dataMap[start] == WALL
     ||  dataMap[dest] == WALL) {
-        cout << "Check at algorithm start failed" << endl;
+        // cout << "Check at algorithm start failed" << endl;
         return emptyVector;
     }
 
@@ -92,7 +92,7 @@ std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
         waveEdge = newEdge;
     }
 
-    cout << "no path found" << endl;
+    // cout << "no path found" << endl;
     // no path found
     return emptyVector;
 }
@@ -101,7 +101,7 @@ std::vector<Coord> WaveAlgorithm::GetBackPath(Coord dest) {
     int length = waveMap[dest];
 
     Coord step(dest);  // current step
-    cout << "shortest path length is " << length << endl;
+    // cout << "shortest path length is " << length << endl;
     std::vector<Coord> path(length - 1);
     path.at(0) = dest;
 
