@@ -12,6 +12,12 @@ const int MAX_CHANCE_PERCENT = 100;
 const int MAX_ACTION_DURATION = 30;  // in seconds
 const int MIN_ACTION_DURATION = 2;   // in seconds
 
+
+/* IMPORTANT!!! */
+/* ACTIONS ACCELERATED 10 TIMES! */
+/* CHANGE TO 1000 FOR PRODUCTION (kek) */
+const int DURATION_FACTOR = 100;
+
 const std::unordered_set<std::string> actionList {
     "give",
     "take_away",
