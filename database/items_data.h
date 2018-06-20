@@ -11,7 +11,6 @@
 #include "artifact.h"
 #include "surface.h"
 #include "matrix.hpp"
-// #include "session_data.h"
 #include "paths.h"
 
 namespace fs = std::experimental::filesystem;
@@ -32,6 +31,7 @@ class GameData {
 // stores finished events and other stuff
 public:
     GameData();
+    Hero hero;
     void WriteToDiary(str);
     int mapHeight;
     int mapWidth;

@@ -5,6 +5,7 @@
 // #include "event_factory.h"
 #include "artifact_factory.h"
 #include "mapscanner.h"
+#include "config.h"
 
 using namespace SessionData;
 using std::vector;
@@ -139,7 +140,7 @@ bool ArtifactsData::ArtifactExists(str ID) {
 //--------------------- GameData --------------------------
 //---------------------------------------------------------
 
-GameData::GameData() {
+GameData::GameData() : hero(heroID, heroName, 1, 10, heroStart) {
     mapHeight = surfaceData.getHeight();
     mapWidth = surfaceData.getWidth();   
 }

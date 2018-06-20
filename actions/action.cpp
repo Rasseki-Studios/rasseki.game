@@ -8,6 +8,7 @@
 #include "actions_config.h"
 
 #include "session_data.h"
+#include "libAdapter.h"
 using namespace SessionData;
 
 #include <iostream>
@@ -48,7 +49,7 @@ GiveArtifact::GiveArtifact(
 
 void GiveArtifact::MakeAction() const {
     /* by salman */
-    hero.GetInventory()->AddArtifact(artifactID);
+    gameData.hero.GetInventory()->AddArtifact(artifactID);
     gameData.changeInventory = true;
 
     // prepared for best times, when artifact modifiers will be added
@@ -65,6 +66,8 @@ TakeAwayArtifact::TakeAwayArtifact(
 
 void TakeAwayArtifact::MakeAction() const {
     /* by salman */
+    // gameData.hero.GetInventory()->RemoveArtifact(artifactID);
+    // gameData.changeInventory = true;
 }
 
 

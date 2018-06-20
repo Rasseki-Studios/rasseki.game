@@ -8,10 +8,7 @@ namespace SessionData {
     extern GameData gameData;
     extern SystemData systemData;
     extern ArtifactsData artifactsData;
-    // extern CreatureData creatureData;
     extern EventsData eventsData;
-    // hero initialization
-    extern Hero hero;
 }
 
 #endif // SESSIONDATA

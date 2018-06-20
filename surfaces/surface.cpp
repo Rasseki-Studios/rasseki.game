@@ -11,7 +11,7 @@ using namespace SessionData;
 
 SurfaceData::SurfaceData()
 :
-mapWidth(1000), mapHeight(1000), surfaceMatrix(mapWidth, mapHeight, false) {
+mapWidth(definedMapWidth), mapHeight(definedMapHeight), surfaceMatrix(mapWidth, mapHeight, false) {
     MapScanner scanner(systemData.mapPath.u8string());
     scanner.FillMatrix(surfaceMatrix);
     // gameData.mapWidth = mapWidth;

@@ -11,4 +11,8 @@ const int hero_offset = hero_icon_size/2;
 const int definedMapHeight = 1000;
 const int definedMapWidth = 1000;
 
+const std::string heroName = "Moleque";
+const std::string heroID = "super_hero";
+const Coord heroStart(651, 414);
+
 #endif  // CONFIGURATION
