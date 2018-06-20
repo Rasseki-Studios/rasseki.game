@@ -1,0 +1,51 @@
+{
+    "events": [
+    {
+        "id": "test_event",
+        "name": "The first event ever",
+        "level": 1,
+        "coord": {
+            "x": 850,
+            "y": 170
+        },
+        "radius": 50,
+        "priority": 6,
+        "actions": [
+            {
+                "type": "give",
+                "chance": 100,
+                "artifact_id": "wood_sword",
+                "successNote": "Неплохой меч валяется. И чего выбросили? Возьму себе",
+                "failureNote": "Только хотел поднять валяющийся на траве меч, как тысяча маленьких лапок, вылезших из земли, утянули его куда-то вниз",
+                "duration": 4
+            },
+            {
+                "type": "take_away",
+                "chance": 100,
+                "artifact_id": "wood_sword",
+                "successNote": "Где меч? Спёр кто, что ли?",
+                "failureNote": "Где меч? Спёр кто, что ли?",
+                "duration": 4
+            },
+            {
+                "type": "wait",
+                "chance": 100,
+                "successNote": "Какой цветочек. Ну и красотища!",
+                "failureNote": "Симпатичный цветочек глухо зарычал. Пойду найду другие лопухи.",
+                "duration": 10
+            },
+            {
+                "type": "teleport",
+                "chance": 0,
+                "successNote": "Где я? Что это было?",
+                "failureNote": "Где я? Что это было?",
+                "duration": 2,
+                "coordinate": {
+                    "x": 850,
+                    "y": 170
+                }
+            }
+        ]
+    }
+    ]
+}

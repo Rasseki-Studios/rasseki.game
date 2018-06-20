@@ -1,0 +1,39 @@
+{
+    "artifacts": [
+    {
+        "id": "wood_stick",
+        "name": "палка",
+        "level": 1,
+        "type": "weapon",
+        "power": 1
+    },
+    {
+        "id": "wood_sword",
+        "name": "деревянный меч",
+        "level": 5,
+        "type": "weapon",
+        "power": 5
+    },
+    {
+        "id": "magic_wand",
+        "name": "магический посох",
+        "level": 25,
+        "type": "magic_weapon",
+        "power": 20
+    },
+    {
+        "id": "speed_boots",
+        "name": "ботинки скорости",
+        "level": 10,
+        "type": "speed_booster",
+        "power": 5
+    },
+    {
+        "id": "freezed_poo",
+        "name": "замёрзшая какаха",
+        "level": 1,
+        "type": "throw_weapon",
+        "power": 1
+    }
+    ]
+}
