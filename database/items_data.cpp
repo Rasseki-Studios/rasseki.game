@@ -17,7 +17,7 @@ using std::cout;
 EventsData::EventsData() 
 : eventMatrix(gameData.mapWidth, gameData.mapHeight, true) {
     EventFactory eFactory;
-    eFactory.InitAll(systemData.eventsPath.u8string(), currentEventList); 
+    eFactory.InitAll(systemData.eventsPath.u8string(), currentEventList);
     PulverizeEvents(currentEventList);
 }
 
@@ -60,8 +60,8 @@ parsing map - getting event and spraying it at the map.
 get event
 add event to map
 */
-    for (auto i : list) {
-        Event &event = i.second;
+    for (auto const &i : list) {
+        const Event &event = i.second;
         int counter = 0;
 
         Coord eventCenter = event.GetCoord();

@@ -1,5 +1,8 @@
+#include <iostream>
 #include "menuwindow.h"
 #include <QApplication>
+
+
 
 int main(int argc, char *argv[])
 {

@@ -50,10 +50,10 @@ bool EventData::isValid() {
 }
 
 Event& EventFactory::Create(EventData &ev_data) {
-    vector<Action *> actions;
+    vector<unique_ptr<Action>> actions;
     for (auto it : ev_data.actions) {
         auto newAction = actionFactory.Create(it);
-        actions.push_back(newAction);
+        actions.push_back( move(newAction) );
     }
     Event *ev = new Event(
         ev_data.ID, ev_data.name, ev_data.level,
@@ -72,7 +72,7 @@ int EventFactory::InitAll(str folder, unordered_map<str, Event> &eventsMap) {
         for (auto it : *tempData) {
             if (!it.isValid()) continue;
             Event &ev = Create(it);
-            eventsMap.emplace(it.ID, ev);
+            eventsMap.emplace(it.ID, move(ev));
             eventCount++;
         }
     }
