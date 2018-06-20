@@ -1,9 +1,11 @@
 /* by stanford */
 
-#include <action.h>
 #include <cstdlib>
 #include <chrono>
 #include <thread>
+
+#include "action.h"
+#include "actions_config.h"
 
 #include "session_data.h"
 #include "libAdapter.h"
@@ -21,9 +23,7 @@ void Action::Run() const {
     if (result) {
         gameData.WriteToDiary(successNote);
         MakeAction();
-        /* IMPORTANT!!! */
-        /* ACTIONS ACCELERATED 10 TIMES! */
-        std::chrono::milliseconds ms(duration *  100 /* 1000 */);
+        std::chrono::milliseconds ms(duration * DURATION_FACTOR);
         std::this_thread::sleep_for(ms);
     } else {
         gameData.WriteToDiary(failureNote);
@@ -36,7 +36,7 @@ bool Action::CheckCondition() const {
 
 bool Action::ThrowDice() const {
     srand(time(NULL));
-    return (rand() % 100) < chance;
+    return (rand() % MAX_CHANCE_PERCENT) < chance;
 }
 
 
