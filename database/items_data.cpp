@@ -142,7 +142,7 @@ bool ArtifactsData::ArtifactExists(str ID) {
 
 GameData::GameData() : hero(heroID, heroName, 1, 10, heroStart) {
     mapHeight = surfaceData.getHeight();
-    mapWidth = surfaceData.getWidth();   
+    mapWidth = surfaceData.getWidth();
 }
 
 void GameData::WriteToDiary(str note) {
