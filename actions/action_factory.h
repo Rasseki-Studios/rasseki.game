@@ -6,6 +6,10 @@
 #include <unordered_map>
 using std::unordered_map;
 
+#include <memory>
+using std::move;
+using std::unique_ptr;
+
 #include "action.h"
 
 struct ActionData {
@@ -27,7 +31,7 @@ struct ActionData {
 
 class ActionFactory {
 public:
-    Action* Create(ActionData &actionData);
+    unique_ptr<Action> Create(ActionData &actionData);
 };
 
 #endif  // ACTION_FACTORY

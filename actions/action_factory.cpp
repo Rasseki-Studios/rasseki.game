@@ -13,7 +13,7 @@ using std::stoi;
 
 bool ActionData::isValid() {
 
-    if (actionList.find(type) == actionList.end()) {
+    if (/* actionList.find(type) == actionList.end() */0) {
         cout << "FAIL" << endl;
         cout << "Action type \"" << type << "\" is invalid." << endl;
         return false;
@@ -67,45 +67,45 @@ bool ActionData::isValid() {
     return true;
 }
 
-Action* ActionFactory::Create(ActionData &a) {
+unique_ptr<Action> ActionFactory::Create(ActionData &a) {
     if (a.type == "give") {
         /* create GiveArtifact action */
-        auto newAction = new GiveArtifact(
+        unique_ptr<Action> newAction( new GiveArtifact(
             a.chance,
             a.successNote,
             a.failureNote,
             a.duration,
             a.artifactID
-        );
+        ) );
         return newAction;
     } else if (a.type == "take_away") {
         /* create TakeAwayArtifact action */
-        auto newAction = new TakeAwayArtifact(
+        unique_ptr<Action> newAction( new TakeAwayArtifact(
             a.chance,
             a.successNote,
             a.failureNote,
             a.duration,
             a.artifactID
-        );
+        ) );
         return newAction;
     } else if (a.type == "wait") {
         /* create Wait action */
-        auto newAction = new Wait(
+        unique_ptr<Action> newAction( new Wait(
             a.chance,
             a.successNote,
             a.failureNote,
             a.duration
-        );
+        ) );
         return newAction;
     } else if (a.type == "teleport") {
         /* create Teleport action */
-        auto newAction = new Teleport(
+        unique_ptr<Action> newAction( new Teleport(
             a.chance,
             a.successNote,
             a.failureNote,
             a.duration,
             a.coord
-        );
+        ) );
         return newAction;
     }
 
