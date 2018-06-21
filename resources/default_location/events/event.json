@@ -1,0 +1,86 @@
+{
+    "events": [
+    {
+        "id": "between_mountains",
+        "name": "Between mountains",
+        "level": 1,
+        "coord": {
+            "x": 659,
+            "y": 733
+        },
+        "radius": 20,
+        "priority": 6,
+        "actions": [
+            {
+                "type": "give",
+                "chance": 100,
+                "artifact_id": "stone",
+                "successNote": "О, камень. Возьму, мало ли придётся кому кинуть в голову.",
+                "failureNote": "Чуть не споткнулся об грязную каменюку.",
+                "duration": 2
+            }
+        ]
+    },
+    {
+        "id": "between_hills",
+        "name": "Between hills",
+        "level": 1,
+        "coord": {
+            "x": 636,
+            "y": 624
+        },
+        "radius": 15,
+        "priority": 6,
+        "actions": [
+            {
+                "type": "wait",
+                "chance": 50,
+                "successNote": "Кажется, на вершине горы кто-то есть. Залезу за куст на всякий пожарный.",
+                "failureNote": "Кольнуло пятку. Не к добру это.",
+                "duration": 5
+            }
+        ]
+    },
+    {
+        "id": "stadium_crossroad",
+        "name": "Stadium_crossroad",
+        "level": 1,
+        "coord": {
+            "x": 680,
+            "y": 505
+        },
+        "radius": 25,
+        "priority": 6,
+        "actions": [
+            {
+                "type": "take_away",
+                "chance": 50,
+                "artifact_id": "stone",
+                "successNote": "Уверен, пару минут назад у меня был камень...",
+                "failureNote": "Где камень? Фух, вот он, родненький.",
+                "duration": 2
+            }
+        ]
+    },
+    {
+        "id": "stadium",
+        "name": "Stadium",
+        "level": 1,
+        "coord": {
+            "x": 630,
+            "y": 478
+        },
+        "radius": 20,
+        "priority": 6,
+        "actions": [
+            {
+                "type": "wait",
+                "chance": 100,
+                "successNote": "Присел посидеть посреди стадиона.\nАААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААА!!!\nНеплохая акустика. Поору ещё.",
+                "failureNote": "Кольнуло пятку. Не к добру это.",
+                "duration": 10
+            }
+        ]
+    }
+    ]
+}
