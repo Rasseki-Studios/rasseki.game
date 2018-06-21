@@ -23,7 +23,7 @@ void Moving() {    //перемещение шагов
 
 int Game() {
     //Init(); //инициализация данных игры
-    gameData.hero.SetCoord({651, 414});
+    gameData.hero.SetCoord({624, 819});
     return 0;
 }
 
