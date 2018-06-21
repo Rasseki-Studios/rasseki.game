@@ -47,12 +47,12 @@ bool IData(std::vector<InventoryData> &pack) {
     if (gameData.changeInventory) {
         //std::vector<InventoryData> pack;
         auto artifacts = gameData.hero.GetInventory()->GetArtifacts();
-        for (auto artifact : artifacts) {
+        for (auto it : artifacts) {
             InventoryData note;
-            note.name = artifact->GetName();
-            note.level = artifact->GetLevel();
-            note.power = artifact->ApplyModifier(); //GetPower();
-            note.type = artifact->GetType();
+            note.name = it.second->GetName();
+            note.level = it.second->GetLevel();
+            note.power = it.second->ApplyModifier(); //GetPower();
+            note.type = it.second->GetType();
             pack.push_back(note);
         }
         gameData.changeInventory = false;

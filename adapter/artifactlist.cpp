@@ -17,6 +17,7 @@ void ArtifactList::slotReload()
 {
     std::vector<InventoryData> pack;
     if (IData(pack)) {
+        clear();
         for (auto artifact : pack) {
             QString line = (artifact.name + " (" + std::to_string(artifact.level) + ") | " + artifact.type + " - " + std::to_string(artifact.power)).c_str();
             addItem(line);

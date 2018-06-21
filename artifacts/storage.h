@@ -2,7 +2,7 @@
 #define STORAGE_H
 
 #include <memory>
-#include <vector>
+#include <unordered_map>
 
 #include "artifact.h"
 
@@ -14,9 +14,9 @@ public:
     void RemoveArtifact(std::string);
     int GetCount();
     std::shared_ptr<Artifact> GetArtifact(std::string);
-    std::vector<std::shared_ptr<Artifact>> GetArtifacts();
+    std::unordered_map<std::string, std::shared_ptr<Artifact>> GetArtifacts();
 private:
-    std::vector<std::shared_ptr<Artifact>> artifacts;
+    std::unordered_map<std::string, std::shared_ptr<Artifact>> artifacts;
 };
 
 #endif //STORAGE_H

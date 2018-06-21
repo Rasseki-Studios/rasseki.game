@@ -66,8 +66,8 @@ TakeAwayArtifact::TakeAwayArtifact(
 
 void TakeAwayArtifact::MakeAction() const {
     /* by salman */
-    // gameData.hero.GetInventory()->RemoveArtifact(artifactID);
-    // gameData.changeInventory = true;
+    gameData.hero.GetInventory()->RemoveArtifact(artifactID);
+    gameData.changeInventory = true;
 }
 
 
