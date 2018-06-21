@@ -41,6 +41,20 @@
         "level": 1,
         "type": "throw_weapon",
         "power": 5
+    },
+    {
+        "id": "old_helmet",
+        "name": "старый шлем",
+        "level": 1,
+        "type": "helmet",
+        "power": 10
+    },
+    {
+        "id": "bronze_sword",
+        "name": "бронзовый меч",
+        "level": 1,
+        "type": "weapon",
+        "power": 10
     }
     ]
 }
