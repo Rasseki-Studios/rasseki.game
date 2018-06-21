@@ -16,7 +16,7 @@ const int MIN_ACTION_DURATION = 2;   // in seconds
 /* IMPORTANT!!! */
 /* ACTIONS ACCELERATED 10 TIMES! */
 /* CHANGE TO 1000 FOR PRODUCTION (kek) */
-const int DURATION_FACTOR = 100;
+const int DURATION_FACTOR = 1000;
 
 const std::unordered_set<std::string> actionList {
     "give",
