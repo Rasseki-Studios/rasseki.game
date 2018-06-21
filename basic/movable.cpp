@@ -5,6 +5,7 @@
 using std::cout;
 using std::endl;
 
+#include <queue>
 
 using namespace SessionData;
 
@@ -50,49 +51,43 @@ waveMap(width, height, true) {}
 std::vector<Coord> WaveAlgorithm::GetPath(Coord start, Coord dest) {
     std::vector<Coord> emptyVector(0);
 
-    /* Debug log */
-    // cout << "start coord is " << start << " " << endl;
-    // cout << "destination coord is " << dest << " " << endl;
-    // cout << "terrain index there is " << (int)dataMap[dest] << endl;
+    cout << "start coord is " << start << " " << endl;
+    cout << "destination coord is " << dest << " " << endl;
+    cout << "terrain index there is " << (int)dataMap[dest] << endl;
 
     if (!dataMap.CoordIsValid(start)
     ||  !dataMap.CoordIsValid(dest)
     ||  dataMap[start] == WALL
     ||  dataMap[dest] == WALL) {
-        // cout << "Check at algorithm start failed" << endl;
+        cout << "Check at algorithm start failed" << endl;
         return emptyVector;
     }
 
-    auto waveEdge = new std::vector<Coord>();
-    waveEdge->push_back(start);
+    std::queue<Coord> waveEdge;
+    waveEdge.emplace(start);
 
     short waveIndex = 1;
     waveMap[start] = waveIndex;
 
-    while(waveEdge->size() != 0) {
-        auto newEdge = new std::vector<Coord>();
-        waveIndex++;
-        for (auto edge : *waveEdge) {
-            for (auto it : neighbours) {
-                Coord current(edge.x + it.x, edge.y + it.y);
-                if (waveMap.CoordIsValid(current)
-                && waveMap[current] == 0
-                && dataMap[current] != WALL) {
-                    newEdge->push_back(current);
-                    waveMap[current] = waveIndex;
-                } else continue;
-                if (current == dest) {
-                    delete newEdge;
-                    delete waveEdge;
-                    return GetBackPath(dest);
-                }
+    for (Coord edge = waveEdge.front();
+        !waveEdge.empty();
+        edge = waveEdge.front()
+    ) {
+        waveEdge.pop();
+        for (auto it : neighbours) {
+            Coord current(edge.x + it.x, edge.y + it.y);
+            if (waveMap.CoordIsValid(current)
+            && waveMap[current] == 0
+            && dataMap[current] != WALL) {
+                waveEdge.emplace(current);
+                waveMap[current] = waveMap[edge] + 1;
+            } else continue;
+            if (current == dest) {
+                return GetBackPath(dest);
             }
         }
-        delete waveEdge;
-        waveEdge = newEdge;
     }
-
-    // cout << "no path found" << endl;
+    cout << "no path found" << endl;
     // no path found
     return emptyVector;
 }
