@@ -34,6 +34,13 @@
         "level": 1,
         "type": "throw_weapon",
         "power": 1
+    },
+    {
+        "id": "stone",
+        "name": "грязный камень",
+        "level": 1,
+        "type": "throw_weapon",
+        "power": 5
     }
     ]
 }
