@@ -1,49 +1,64 @@
 {
     "events": [
     {
-        "id": "test_event",
-        "name": "The first event ever",
+        "id": "between_mountains",
+        "name": "Between mountains",
         "level": 1,
         "coord": {
-            "x": 850,
-            "y": 170
+            "x": 632,
+            "y": 646
         },
-        "radius": 50,
+        "radius": 20,
         "priority": 6,
         "actions": [
             {
                 "type": "give",
                 "chance": 100,
-                "artifact_id": "wood_sword",
-                "successNote": "Неплохой меч валяется. И чего выбросили? Возьму себе",
-                "failureNote": "Только хотел поднять валяющийся на траве меч, как тысяча маленьких лапок, вылезших из земли, утянули его куда-то вниз",
-                "duration": 4
-            },
+                "artifact_id": "stone",
+                "successNote": "О, камень. Возьму, мало ли придётся кому кинуть в голову.",
+                "failureNote": "Чуть не споткнулся об грязную каменюку.",
+                "duration": 2
+            }
+        ]
+    },
+    {
+        "id": "between_mountains_1",
+        "name": "Between mountains_1",
+        "level": 1,
+        "coord": {
+            "x": 636,
+            "y": 624
+        },
+        "radius": 15,
+        "priority": 6,
+        "actions": [
+            {
+                "type": "wait",
+                "chance": 50,
+                "successNote": "Кажется, на вершине горы кто-то есть. Залезу за куст на всякий пожарный.",
+                "failureNote": "Что-то мелькнуло.",
+                "duration": 5
+            }
+        ]
+    },
+    {
+        "id": "stadium_crossroad",
+        "name": "Stadium_crossroad",
+        "level": 1,
+        "coord": {
+            "x": 680,
+            "y": 505
+        },
+        "radius": 25,
+        "priority": 6,
+        "actions": [
             {
                 "type": "take_away",
                 "chance": 100,
-                "artifact_id": "wood_sword",
-                "successNote": "Где меч? Спёр кто, что ли?",
-                "failureNote": "Где меч? Спёр кто, что ли?",
-                "duration": 4
-            },
-            {
-                "type": "wait",
-                "chance": 100,
-                "successNote": "Какой цветочек. Ну и красотища!",
-                "failureNote": "Симпатичный цветочек глухо зарычал. Пойду найду другие лопухи.",
-                "duration": 10
-            },
-            {
-                "type": "teleport",
-                "chance": 0,
-                "successNote": "Где я? Что это было?",
-                "failureNote": "Где я? Что это было?",
-                "duration": 2,
-                "coordinate": {
-                    "x": 850,
-                    "y": 170
-                }
+                "artifact_id": "stone",
+                "successNote": "Уверен, пару минут назад у меня был камень...",
+                "failureNote": "Где камень? Фух, вот он, родненький.",
+                "duration": 2
             }
         ]
     }
