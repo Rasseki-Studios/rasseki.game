@@ -1,0 +1,24 @@
+{
+    "events": [
+    {
+        "id": "river_bridge",
+        "name": "Мост через реку",
+        "level": 1,
+        "coord": {
+            "x": 778,
+            "y": 228
+        },
+        "radius": 5,
+        "priority": 1,
+        "actions": [
+            {
+                "type": "wait",
+                "chance": 80,
+                "successNote": "Ух ты! Ну и красотища... АУУУУУУУУ",
+                "failureNote": "Хлипкий мостик какой-то...",
+                "duration": 3
+            }
+        ]
+    }
+    ]
+}
