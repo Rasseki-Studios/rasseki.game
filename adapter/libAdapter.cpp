@@ -77,12 +77,12 @@ int Go(int x, int y) {  //перемещение героя
     gameData.tdWorking = true;
     gameData.writer = gameData.hero.GetName();
     if (gameData.hero.Move({x, y})) {
-        gameData.diaryString = say_go;
+        // gameData.diaryString = say_go;
         Moving();
     }
-    else {
-        gameData.diaryString = say_cant_go;
-    }
+    // else {
+    //     gameData.diaryString = say_cant_go;
+    // }
     return 0;
 }
 
