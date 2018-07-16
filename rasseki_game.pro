@@ -9,6 +9,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = rasseki_game
 TEMPLATE = app
+CONFIG += static
 
 SOURCES = $$files(*.cpp, true)
 HEADERS = $$files(*.h, true)
